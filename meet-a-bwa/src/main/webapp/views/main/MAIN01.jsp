@@ -242,6 +242,21 @@
             <!-- end recommendAct -->
         </div>
         <!-- end contentWrap -->
+        
+        <!-- START LOGOUT POPUP -->
+         <div class="logout-popup-wrap">
+            <img src="resources/img/worry.svg" alt="logout worry img"/>
+            <h1>
+              정말 로그아웃 <br />
+              하시겠습니까?
+            </h1>
+      
+            <div class="btn-group">
+              <button class="btn-logout">로그아웃</button>
+              <button class="btn-cancel">취소</button>
+            </div>
+        </div>
+        <!-- END LOGOUT POPUP -->
     
         <!--  START HEADER INCLUDE -->
 			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
