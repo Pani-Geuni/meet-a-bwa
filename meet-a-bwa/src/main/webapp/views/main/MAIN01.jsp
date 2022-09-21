@@ -99,11 +99,11 @@
                             
                             <div class = "likeWrap">
                                 <section class = "heartSection">
-                                    <img src = "../img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon blind"/>
-                                    <img src = "../img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon"/>
+                                    <img src = "resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon"/>
+                                    <img src = "resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon blind"/>
                                 </section>
                                 <section class = "likeCnt">
-                                    <span>99+</span>
+                                    <span>12</span>
                                 </section>
                             </div>
                         </div>
@@ -146,6 +146,7 @@
                             <span class = "tagItem">생활정보/인테리어</span>
                             <span class = "tag_plus">
                                 <img src = "resources/img/더보기.svg" alt = "더보기 이미지" id = "plusImg">
+                                <img src = "resources/img/fold.svg" alt = "접기 이미지" id = "foldImg" class = "blind">
                             </span>
                         </div>
                         <div id = "fold_tag" class = "blind">
@@ -224,8 +225,8 @@
                             
                             <div class = "likeWrap">
                                 <section class = "heartSection">
-                                    <img src = "../img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon blind"/>
-                                    <img src = "../img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon"/>
+                                    <img src = "resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon blind"/>
+                                    <img src = "resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon"/>
                                 </section>
                                 <section class = "likeCnt">
                                     <span>99+</span>
