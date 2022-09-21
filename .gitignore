@@ -2,9 +2,7 @@
 
 
 # Package Files
-*.jar
-*.war
-*.ear
+# *.jar
 
 # Mac
 .DS_Store
