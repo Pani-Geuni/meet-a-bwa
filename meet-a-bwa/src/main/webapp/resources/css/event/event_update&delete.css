@@ -1,0 +1,19 @@
+
+#topSection{
+    display: flex;
+    width: 500px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+#title{
+    width: 480px;
+    text-align: center;
+    letter-spacing: 4px; /* 글자간격 조정 */
+}
+#closeBtn{
+    width: 20px;
+    height: 20px;
+}
+
+
