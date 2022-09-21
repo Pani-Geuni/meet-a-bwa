@@ -1,25 +1,19 @@
-$(document).ready(function() {
-    console.log("ready");
+/**
+ * 
+ */
+ $(document).ready(function() {
+    console.log("search ready");
+    
     let category = [];
     $.ajax({
-        url : "../txt/cate.txt",
+        url : "resources/text/cate.txt",
         success : function(res){
             category = res.split("\r\n");
             console.log(category);
             category_load(category);
         }
     });
-
-    $("#plusImg").click(function(){
-        $("#fold_tag").toggleClass("blind");
-    });
-
-    $(".tagItem").click(function(e){
-        $(".tagItem").removeClass("check");
-        $(e.target).addClass("check");
-    })
-
-
+ 
     function category_load(arr){
         let cnt = 0;
         let sample = $("#detailCategory>.sample").clone().removeClass("sample");
@@ -40,4 +34,5 @@ $(document).ready(function() {
 
         $("#detailCategory>.sample").addClass("blind");
     }
-});
+    
+ });
