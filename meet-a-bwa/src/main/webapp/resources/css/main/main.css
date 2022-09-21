@@ -197,6 +197,10 @@
     width: 59px;
     cursor: pointer;
 }
+#foldImg{
+    height: 24px;
+    cursor: pointer;
+}
 
 #fold_tag{
     margin-top: 8px;
