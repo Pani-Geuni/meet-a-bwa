@@ -8,8 +8,15 @@
     <link rel="stylesheet" href="resources/css/common/common.css"/>
     <link rel="stylesheet" href="resources/css/common/header.css"/>
     <link rel="stylesheet" href="resources/css/common/searchBar.css"/>
+    
     <link rel="stylesheet" href="resources/css/main/main.css"/>
     <link rel="stylesheet" href="resources/css/common/footer.css"/>
+    
+    <link rel="stylesheet" href="resources/css/user/login.css"/>
+    <link rel="stylesheet" href="resources/css/user/logout.css"/>
+    
+    
+    
     <script src="resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="resources/js/common/searchBar.js"></script>
     <script src="resources/js/main/main.js"></script>
@@ -243,7 +250,43 @@
         </div>
         <!-- end contentWrap -->
         
+        <!-- START LOGIN POPUP -->
+        <div class="login-layer blind">
+	      <div class="login-popup-wrap">
+		    <div class="login-top">
+		      <a href="">
+		        <img id="logo" src="resources/img/logo.svg" alt="login logo image" />
+		      </a>
+		    </div>
+	
+		    <div class="login-middle">
+		      <form action="#" class="login-form" method="get">
+		        <label for="id">아이디</label>
+		        <input type="text" placeholder="아이디 입력" />
+		
+	            <label for="pw">비밀번호</label>
+		        <input type="password" placeholder="비밀번호 입력" />
+		        <button type="submit">로그인</button>
+		      </form>
+		
+	        <div class="login-bottom">
+		        <div>
+		          <a href="">ID 찾기</a>
+		        </div>
+		        <div>
+		          <a href="">PW 찾기</a>
+	            </div>
+	           	<div>
+		          <a href="">회원가입</a>
+		        </div>
+		      </div>
+		    </div>
+	      </div>
+	    </div>
+        <!-- END LOGIN POPUP -->
+        
         <!-- START LOGOUT POPUP -->
+        <div class="logout-layer blind">
          <div class="logout-popup-wrap">
             <img src="resources/img/worry.svg" alt="logout worry img"/>
             <h1>
@@ -255,8 +298,12 @@
               <button class="btn-logout">로그아웃</button>
               <button class="btn-cancel">취소</button>
             </div>
+       	  </div>
         </div>
         <!-- END LOGOUT POPUP -->
+        
+        
+        
     
         <!--  START HEADER INCLUDE -->
 			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
