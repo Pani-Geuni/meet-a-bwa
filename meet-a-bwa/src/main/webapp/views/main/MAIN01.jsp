@@ -91,7 +91,7 @@
                                 
                                 <!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
                                 <div class = "meet_condition">
-                                    <img src = "../img/line.svg" class = "divide">
+                                    <img src = "resources/img/line.svg" alt="line image" class = "divide">
                                     <span class = "condition_bold condition_common"><b>모집</b></span>
                                     <span class = "condition_regular condition_common">20~30대</span>
                                 </div>
@@ -196,7 +196,7 @@
                                 <td colspan="3">
                                     <div class = "tagSection">
                                         <div class = "loca_tag tag">
-                                            <img src = "resources/img/map.png" class = "tag_img">
+                                            <img src = "resources/img/map.png" alt="map image" class = "tag_img">
                                             <span class = "location_name font_size_10">경안동</span>
                                         </div>
                                         <div class = "cate_tag tag">
@@ -217,7 +217,7 @@
                                 
                                 <!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
                                 <div class = "meet_condition">
-                                    <img src = "../img/line.svg" class = "divide">
+                                    <img src = "resources/img/line.svg" alt="line image" class = "divide">
                                     <span class = "condition_bold condition_common"><b>모집</b></span>
                                     <span class = "condition_regular condition_common">20~30대</span>
                                 </div>
