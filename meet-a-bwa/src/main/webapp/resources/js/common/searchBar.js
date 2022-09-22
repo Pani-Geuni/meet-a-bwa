@@ -7,6 +7,7 @@
     let category = [];
     $.ajax({
         url : "resources/text/cate.txt",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         success : function(res){
             category = res.split("\r\n");
             console.log(category);
