@@ -32,7 +32,7 @@ body{
     
 }
 
-.blind{ display:none;}
+.blind{ display:none !important;}
 .hide{ visibility: hidden;}
 
 a{
