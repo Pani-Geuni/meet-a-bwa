@@ -12,10 +12,7 @@
     <link rel="stylesheet" href="resources/css/main/main.css"/>
     <link rel="stylesheet" href="resources/css/common/footer.css"/>
     
-    <link rel="stylesheet" href="resources/css/user/login.css"/>
-    <link rel="stylesheet" href="resources/css/user/logout.css"/>
-    
-    
+    <link rel="stylesheet" href="resources/css/user/login.css"/>   
     
     <script src="resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="resources/js/common/searchBar.js"></script>
