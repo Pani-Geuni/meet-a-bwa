@@ -18,6 +18,7 @@
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
     <script src="/meet-a-bwa/resources/js/main/main.js"></script>
+
 	<title>밋:어봐</title>
 </head>
 <body>
