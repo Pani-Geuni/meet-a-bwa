@@ -4,7 +4,7 @@
 <div id = "menuWrap">
     <div id = "logoSection">
         <a href = "">
-            <img src = "resources/img/logo.svg" alt = "logo img" id = "logo_img">
+            <img src = "/meet-a-bwa/resources/img/logo.svg" alt = "logo img" id = "logo_img">
         </a>
     </div>
     <div id = "log_Section">

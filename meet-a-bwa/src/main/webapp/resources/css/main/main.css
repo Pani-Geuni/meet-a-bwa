@@ -9,6 +9,17 @@
     padding-bottom: 30px;
 }
 
+#contentWrapRow{
+    width: 1320px;
+  	height: auto;
+  	display: flex;
+  	justify-content: space-between;
+  	flex-direction: row;
+  	background-color: #f7f8fa;
+  	margin-top: 0px;
+  	padding-bottom: 30px;
+}
+
 .titleSection{
     padding-bottom: 10px;
     padding-left: 20px;
