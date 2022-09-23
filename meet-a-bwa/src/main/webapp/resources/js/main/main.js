@@ -1,5 +1,17 @@
 $(document).ready(function() {
 
+	$.ajax({
+		url : "/main_init.do",
+		success : function(response,status){
+			console.log("error");
+			console.log(res);
+		},
+		error : function(res){
+			console.log("error");
+			console.log(res);
+		}
+	});
+	
     $("#plusImg").click(function(){
         $("#fold_tag").removeClass("blind");
         $(this).addClass("blind");
