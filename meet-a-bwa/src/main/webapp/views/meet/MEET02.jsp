@@ -14,6 +14,12 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
+
+<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+<script src="/meet-a-bwa/resources/js/meet/select-list.js"></script>
+<script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 
 <title>모임 피드</title>
 </head>
@@ -195,4 +201,19 @@
 	</div>
 
 </body>
+
+<!-- *******************  -->
+<!-- delete popup SECTION -->
+<!-- *******************  -->
+  <div class="logout-popup-layer" data-popup="delete">
+    <div class="logout-popup-wrap">
+      <img src="/meet-a-bwa/resources/img/worry.svg" alt="" />
+      <h1>정말 삭제 하시겠습니까?</h1>
+
+      <div class="btn-group">
+        <button class="btn-logout" data-popup-close="delete">삭제</button>
+        <button class="btn-cancel" data-popup-close="delete">취소</button>
+      </div>
+    </div>
+  </div>
 </html>
