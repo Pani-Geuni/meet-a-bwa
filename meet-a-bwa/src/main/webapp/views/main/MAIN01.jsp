@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
     <script src="/meet-a-bwa/resources/js/main/main.js"></script>
 
