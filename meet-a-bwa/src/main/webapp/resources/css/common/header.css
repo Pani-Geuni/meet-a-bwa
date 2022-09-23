@@ -13,6 +13,23 @@
 
 /* ----------------------------------- */
 
+#logoSection{
+    width: 20%;
+    height: 100%;
+    padding-left: 30px;
+}
+#log_Section{
+    width: 80%;
+    height: 100%;
+}
+
+#logo_img{
+    width : 130px;
+    height: 100%; 
+}
+
+/* ----------------------------------- */
+
 .logSection{
     width: 100%;
     height : 100%;
@@ -28,22 +45,6 @@
     margin-right: 10px;
 }
 
-/* ----------------------------------- */
-
-#logoSection{
-    width: 20%;
-    height: 100%;
-    padding-left: 30px;
-}
-#log_Section{
-    width: 80%;
-    height: 100%;
-}
-
-#logo_img{
-    width : 130px;
-    height: 100%; 
-}
 
 /* ----------------------------------- */
 

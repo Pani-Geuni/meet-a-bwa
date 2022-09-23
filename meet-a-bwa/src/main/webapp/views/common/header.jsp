@@ -1,33 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <div id = "menuWrap">
     <div id = "logoSection">
-        <a href = "">
+        <a href = "/meet-a-bwa/main.do">
             <img src = "/meet-a-bwa/resources/img/logo.svg" alt = "logo img" id = "logo_img">
         </a>
     </div>
     <div id = "log_Section">
-        <!-- beforeLogin은 flex와 충돌나서 blind 클래스 add하고 logSection 클래스 remove 해줘야함-->
-        <ul id = "beforeLogin" class = "blind">
+        <ul id = "beforeLogin" class = "logSection blind">
             <li class = "logItem">
-                <a href = "">
-                    <button id = "loginBtn" class = "logBtn btn_css">로그인</button>
-                </a>
+            	<button id = "loginBtn" class = "logBtn btn_css">로그인</button>
             </li>
         </ul>
         
-        <!-- afterLogin은 flex와 충돌나서 blind 클래스 add하고 logSection 클래스 remove 해줘야함-->
-        <ul id = "afterLogin" class = "logSection">
+        <ul id = "afterLogin" class = "logSection ">
             <li class = "logItem">
-                <a href = "">
-                    <button id = "mypageBtn" class = "btn_css">마이페이지</button>
-                </a>
+                <a href = "/meet-a-bwa/mypage.do">
+            		<button id = "mypageBtn" class = "btn_css">마이페이지</button>
+           		</a>
             </li>
             <li class = "logItem">
-                <a href = "">
-                    <button id = "logoutBtn" class = "logBtn btn_css">로그아웃</button>
-                </a>
+            	<button id = "logoutBtn" class = "logBtn btn_css">로그아웃</button>
             </li>
         </ul>
     </div>

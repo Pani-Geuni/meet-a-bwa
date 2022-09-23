@@ -1,16 +1,8 @@
 $(document).ready(function() {
 
-	$.ajax({
-		url : "/main_init.do",
-		success : function(response,status){
-			console.log("error");
-			console.log(res);
-		},
-		error : function(res){
-			console.log("error");
-			console.log(res);
-		}
-	});
+//	$.ajax({
+//		url : "/meet-a-bwa/main_init.do"
+//	});
 	
     $("#plusImg").click(function(){
         $("#fold_tag").removeClass("blind");
