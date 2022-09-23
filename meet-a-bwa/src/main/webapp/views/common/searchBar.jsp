@@ -10,7 +10,7 @@
          </select>
          <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line 이미지" class = "line">
          <select id = "detailCategory" class = "selectCommon">
-             <option class = "sample optionCommon"></option>
+         	<option class = "optionCommon detailCate_list" idx = "0" value="전체" >전체</option>
          </select>
          <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line 이미지" class = "line">
          <img src = "/meet-a-bwa/resources/img/search.svg" alt = "search 이미지" id = "searchImg">
