@@ -76,10 +76,36 @@
     box-shadow: 0 3px 6px #E4E4E4, 0 3px 8px #E4E4E4;
     cursor: pointer;
 }
-.content_title{
-    font-size: 20px;
-    font-weight: bold;
+
+.content_title {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  vertical-align: middle;
 }
+
+.meet-leader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+
+  font-size: 12px;
+  background-color: #f86d7d;
+
+  border-radius: 16px;
+
+  padding: 0 6px;
+
+  margin-right: 4px;
+}
+
+.meet-leader p {
+  margin: 0;
+  text-align: center;
+  margin-block-start: 2px;
+}
+
 .content_img{
     width: auto;
     height: auto;

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/mypage.css"/>
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-page.css"/>
 
 <title>마이 페이지</title>
 </head>
@@ -40,7 +40,7 @@
             <a href="#">개인 정보 수정</a>
           </li>
           <li>
-            <a href="./my-meet.html">나의 모임</a>
+            <a href="/meet-a-bwa/views/user/USER05.jsp">나의 모임</a>
           </li>
           <li>
             <a href="#">나의 액티비티</a>
