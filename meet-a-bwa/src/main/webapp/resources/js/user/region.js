@@ -1,43 +1,71 @@
 $(function () {
 
-  let countryArr = [];
-
-  $("#city").on("change", function (e) {
-    const state = $(this).val();
-    console.log(state);
-
-    $.ajax({
-      url: "/meet-a-bwa/resources/js/user/city.json",
-      type: "get",
-      dataType: "json",
-      success: function (responseTxt, status, obj) {
-        countryArr = responseTxt.slice();
-
-        let arr = countryArr.filter(function (value, index) {
-          if (value.city == state) {
-            return true;
-          }
-        }).slice();
-        arr = arr[0].arr;
-
-        let opt = $(".country_option").clone();
-        for (property of arr) {
-          opt = opt.clone();
-          opt.text(property);
-          $("#country").append(opt);
-        }
-      },
-      error: function (xhr, status, error) {
-        console.log("error:function....", xhr);
-        console.log("error:function....", status);
-        console.log("error:function....", error);
-      }
+  let cityArr = [];
+  let townArr = []; 
+  
+  let city = '';
+  let country = '';
+  
+  $("#city").on("click", function (e) {
+    city = $(this).val();
+    console.log(city);
+    
+    $.getJSON("/meet-a-bwa/resources/json/city.json", function(data) {
+        cityArr = data.map(v => v.city);
+        city_set(cityArr);
     });
 
   });
 
-  $("#country").on("change", function () {
-    console.log($(this).val());
+  $("#country").on("click", function () {
+  	 country = $(this).val();
+     console.log(country);
+     
+     if($("#city").val() == "" || $("#city").val() == "전체"){
+     	//진실이가 알아서 수정하렴 (feat.예은)
+     }
+     else{
+	      $.getJSON("/meet-a-bwa/resources/json/city.json", function(data) {
+		        //townArr = data.map(v => v.arr);
+		        townArr = data.filter(function(v,i){
+		        	if(v.city == city){
+		        		console.log(i);
+		        		return true;
+		        	}
+		        });
+		        townArr = townArr[0].arr;
+			    town_set(townArr);
+		  });
+	}
   });
 
+
+	/****************************************/
+	/* 함수 섹션 */
+	/****************************************/
+	//도시 리스트 세팅
+	function city_set(arr){
+		let sample = $(".city_list:eq(0)").clone();
+		
+		for(x of arr){
+			let list = sample.clone();
+			list.text(x);
+			list.val(x);
+			
+			$("#city").append(list);
+		}
+	}
+	
+	// 시/군 리스트 세팅
+	function town_set(arr){
+		let sample = $(".country_option:eq(0)").clone();
+		
+		for(x of arr){
+			let list = sample.clone();
+			list.text(x);
+			list.val(x);
+			
+			$("#country").append(list);
+		}
+	}
 });
