@@ -5,21 +5,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <link rel="stylesheet" href="resources/css/common/common.css"/>
-    <link rel="stylesheet" href="resources/css/common/header.css"/>
-    <link rel="stylesheet" href="resources/css/common/searchBar.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css"/>
     
-    <link rel="stylesheet" href="resources/css/main/main.css"/>
-    <link rel="stylesheet" href="resources/css/common/footer.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
     
-    <link rel="stylesheet" href="resources/css/user/login.css"/>
-    <link rel="stylesheet" href="resources/css/user/logout.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
     
-    
-    
-    <script src="resources/js/common/jquery-3.6.1.min.js"></script>
-    <script src="resources/js/common/searchBar.js"></script>
-    <script src="resources/js/main/main.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
+    <script src="/meet-a-bwa/resources/js/main/main.js"></script>
 	<title>밋:어봐</title>
 </head>
 <body>
