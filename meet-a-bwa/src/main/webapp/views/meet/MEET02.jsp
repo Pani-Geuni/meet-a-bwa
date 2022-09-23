@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/select-list.js"></script>
@@ -123,7 +122,7 @@
 								</div>
 							</div>
 							<div class="feed-post">
-								<a href="./post-detail.html">
+								<a href="./MEET03.jsp">
 									<p>Lorem ipsum dolor sit amet consectetur, adipisicing
 										elit. Minima repellendus fugit perspiciatis neque nihil
 										distinctio praesentium ex expedita est possimus provident

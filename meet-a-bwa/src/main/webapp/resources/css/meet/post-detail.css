@@ -21,6 +21,22 @@
   justify-content: space-between;
 }
 
+.user-info {
+	display: flex;
+	align-items: center;
+}
+
+.user-nickname {
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 8px;
+  text-align: center;
+}
+
+.write-date {
+  font-size: 12px;
+}
+
 .post-detail-top h1 {
   font-size: 32px;
   font-weight: 700;
@@ -35,7 +51,7 @@
 }
 
 .btn-post-more {
-  background: url('../img/more.svg');
+  background: url('/meet-a-bwa/resources/img/more.svg');
   background-size: 18px 18px;
   width: 18px;
   height: 18px;
