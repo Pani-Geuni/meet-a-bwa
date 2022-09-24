@@ -13,7 +13,7 @@
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-meet.css"/>
 
-<title>나의 모임 리스트</title>
+<title>나의 액티비티 리스트</title>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 <section id="bodyWrap">
       <div id="contentWrap">
         <div class="mainContent">
-          <h1 class="titleSection">나의 모임</h1>
+          <h1 class="titleSection">나의 액티비티</h1>
 
           <div class="content_list">
             <!-- start content div-->

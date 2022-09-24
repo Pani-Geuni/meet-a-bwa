@@ -84,7 +84,8 @@
   vertical-align: middle;
 }
 
-.meet-leader {
+/* 모임 리더 span */
+.leader {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,12 +99,6 @@
   padding: 0 6px;
 
   margin-right: 4px;
-}
-
-.meet-leader p {
-  margin: 0;
-  text-align: center;
-  margin-block-start: 2px;
 }
 
 .content_img{

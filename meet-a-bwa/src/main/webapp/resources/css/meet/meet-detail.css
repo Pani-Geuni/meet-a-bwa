@@ -82,7 +82,7 @@
 }
 
 .meet-summary-info p:first-child::after {
-  content: ' · ';
+  content: '·\00a0';
 }
 
 .meet-summary-info p:last-child::after {

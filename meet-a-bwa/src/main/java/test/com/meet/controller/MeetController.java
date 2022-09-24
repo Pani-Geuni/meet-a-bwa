@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MeemController
  */
-@WebServlet("/meet_main.do")
+@WebServlet({"/meet-main.do", "/meet-member.do"})
 public class MeetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,9 +28,12 @@ public class MeetController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String sPath = request.getServletPath();
+		System.out.println("sPath : " + sPath);
 		
-		if (sPath.equals("/meet_main.do")) {
+		if (sPath.equals("/meet-main.do")) {
 			request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
+		} else if (sPath.equals("/meet-member.do")) {
+			request.getRequestDispatcher("views/meet/MEET04.jsp").forward(request, response);
 		}
 	}
 
