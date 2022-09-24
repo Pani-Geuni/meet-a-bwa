@@ -31,7 +31,7 @@
             <table>
               <tr>
                 <td class="content_title">
-                  <span class="meet-leader"><p>리더</p></span>경기 광주 평페달
+                  <span class="leader">리더</span>경기 광주 평페달
                 </td>
                 <td rowspan="2" class="content_img">
                   <img src="/meet-a-bwa/resources/img/loopy.svg" class="list_img" />
