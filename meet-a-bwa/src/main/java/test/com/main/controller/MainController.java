@@ -27,14 +27,20 @@ public class MainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet..." + request.getServletPath());
+		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String sPath = request.getServletPath();
+		System.out.println("doGet..." + sPath);
+
+		if(sPath.equals("/main_init.do")) {
+			new MainInitAction().execute(request, response);
+		}
 	}
 
 }
