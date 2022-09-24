@@ -47,7 +47,7 @@
 				</div>
 				<div class="meet-summary-info">
 					<p>
-						<a href="./act-detail-member.html">멤버 22명</a>
+						<a href="/meet-a-bwa/meet-member.do">멤버 22명</a>
 					</p>
 					<p>리더 팡근</p>
 				</div>
