@@ -13,7 +13,7 @@ import test.com.user.model.UserDAOImpl;
 /**
  * Servlet implementation class UserController
  */
-@WebServlet({ "/u_insert.do", "/u_insertOK.do" })
+@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do" })
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAO u_dao = new UserDAOImpl();
@@ -36,9 +36,15 @@ public class UserController extends HttpServlet {
 		System.out.println(sPath);
 
 		if (sPath.equals("/u_insert.do")) {
-			request.getRequestDispatcher("user/JOIN01.jsp").forward(request, response);
+			request.getRequestDispatcher("views/user/USER02.jsp").forward(request, response);
 		} else if (sPath.equals("/u_insertOK.do")) {
 			response.sendRedirect("/u_insert.do");
+		} else if(sPath.equals("/idCheck.do")) {
+			new idCheckAction().execute(request,response);
+		}else if(sPath.equals("/nickCheck.do")) {
+			new nickCheckAction().execute(request,response);
+		}else if(sPath.equals("/emailCheck.do")) {
+			new emailCheckAction().execute(request,response);
 		}
 	}
 

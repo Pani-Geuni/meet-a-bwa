@@ -21,10 +21,7 @@ $(function () {
   	 country = $(this).val();
      console.log(country);
      
-     if($("#city").val() == "" || $("#city").val() == "전체"){
-     	//진실이가 알아서 수정하렴 (feat.예은)
-     }
-     else{
+     if(city.val()!=undefined && city.val()!="전체"){
 	      $.getJSON("/meet-a-bwa/resources/json/city.json", function(data) {
 		        //townArr = data.map(v => v.arr);
 		        townArr = data.filter(function(v,i){

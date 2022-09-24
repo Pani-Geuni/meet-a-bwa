@@ -1,22 +1,25 @@
 $(function() {
 		console.log("onload....");
 		let btn_nickCheck = $("#btn_nickCheck");
+		let result = $("#result");
 		// console.log(result);
 
 		$("#btn_nickCheck").click(function(event) {
 			console.log("onclick....");
-			let nickname = document.querySelector("#nickname");
+			//let nickname = document.querySelector("#nickname");
+			let nickname = $("#nickname");
 			// console.log(nickname);
 			console.log(nickname.value);
 			
 			let req = new XMLHttpRequest();
 
-			// req.load( function() {
-			// 	if(this.status==200){
-			// 		try {
-						// let txt_json = this.responseText;
-						// let obj_json = JSON.parse(txt_json);
-						let obj_json = {result : "OK"};
+			 //req.load( function() {
+			 req.addEventListener("load", function() {
+			 	if(this.status==200){
+			 		try {
+						let txt_json = this.responseText;
+						let obj_json = JSON.parse(txt_json);
+						//let obj_json = {result : "OK"};
 						// let obj_json = {result : "Not OK"};
 						console.log(obj_json);
 						console.log(obj_json.result);
@@ -41,19 +44,19 @@ $(function() {
 								$(".toastText_nickCheck").addClass("blind");
 							});
 						}
-			// 		} catch (e) {
-			// 			console.log("json 형식이 아님.");
-			// 		}
+			 		} catch (e) {
+			 			console.log("json 형식이 아님.");
+			 		}
 					
-			// 	}//end if
+			 	}//end if
 				
 
 				
 
-			// });
+			 });
 			
 			req.open("GET",
-					"http://localhost:8080/jinsil/json_nickCheck.do?nickname="
+					"http://localhost:8090/meet-a-bwa/nickCheck.do?nickname="
 							+ nickname.value);
 			req.send();
 

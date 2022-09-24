@@ -1,10 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
 <head>
 
-<meta charset="UTF-8">
+<!--  <meta charset="UTF-8">-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet"
@@ -33,7 +33,7 @@
 	<jsp:include page="/views/common/header.jsp"></jsp:include>
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
-	<form action="joinOK.do" method="post" enctype="multipart/form-data">
+	<form action="u_insertOK.do" method="post" enctype="multipart/form-data">
 		<div class="joinWrap">
 			<h2 id="joinTitle">회원 가입</h2>
 

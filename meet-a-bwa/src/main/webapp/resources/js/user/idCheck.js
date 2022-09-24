@@ -1,23 +1,25 @@
 $(function() {
 		console.log("onload....");
 		let btn_idCheck = $("#btn_idCheck");
+		let result = $("#result");
 		// console.log(result);
 
 		$("#btn_idCheck").click(function(event) {
 			console.log("onclick....");
-			let id = document.querySelector("#id");
+			//let id = document.querySelector("#id");
+			let id =$("#id");
 			// console.log(id);
 			console.log(id.value);
 			
 			let req = new XMLHttpRequest();
 
-			// req.load(function() {
+			 req.addEventListener("load", function() {
 				
-			// 	if(this.status==200){
-			// 		try {
-						// let txt_json = this.responseText;
-						// let obj_json = JSON.parse(txt_json);
-						let obj_json = {result : "OK"};
+			 	if(this.status==200){
+			 		try {
+						let txt_json = this.responseText;
+						let obj_json = JSON.parse(txt_json);
+						// let obj_json = {result : "OK"};
 						// let obj_json = {result : "Not OK"};
 						console.log(obj_json);
 						console.log(obj_json.result);
@@ -43,19 +45,19 @@ $(function() {
 							});
 						}
 
-				// 	} catch (e) {
-				// 		console.log("json 형식이 아님.");
-				// 	}
+				 	} catch (e) {
+				 		console.log("json 형식이 아님.");
+				 	}
 					
-				// }//end if
+				 }//end if
 				
 
 				
 
-			// });
+			 });
 			
 			req.open("GET",
-					"http://localhost:8080/jinsil/json_idCheck.do?id="
+					"http://localhost:8090/meet-a-bwa/idCheck.do?id="
 							+ id.value);
 			req.send();
 
