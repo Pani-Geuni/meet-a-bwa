@@ -1,0 +1,506 @@
+#contentWrap{
+    width : 1320px;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: #F7F8FA;
+    padding-bottom: 30px;
+    /* align-items: center; */
+}
+#contentWrap *{
+    font-family: 'InfinitySans';
+}
+
+#innercontentWrap{
+    display: inline-flex;
+    justify-content: space-evenly;
+    height: auto;
+}
+.bodyWrap{
+    height: auto;
+}
+
+#meetLeftWrap{
+    /* margin-left: 10px;
+    margin-top: 40px;
+    justify-content: left; */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    margin: 40px 24px;
+    margin-left: 24px;
+}
+
+.act-profile-img {
+    height: 150px;
+  }
+
+#meetImg{
+    width : 100%;
+    height : 100%;
+}
+
+.act-detail-aside-top {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .act-deatil-aside-title {
+    font-size: 20px;
+    width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .heart-common {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .heart-common img {
+    cursor: pointer;
+  }
+  
+  .heart-common span {
+    display: inline;
+    font-size: 12px;
+  }
+  
+   .img-heart-filled_btn {
+   	border:none;
+   	background-color:transparent;
+  }  
+  
+  .img-heart-outlined_btn {
+  	border:none;
+  	background-color:transparent;
+  }
+  
+  .img-heart-filled {
+    width: 24px;
+    height: 24px;
+  }  
+  
+  .img-heart-outlined {
+    width: 24px;
+    height: 24px;
+  }  
+
+  .act-summary-info {
+    display: flex;
+    padding: 0;
+    margin-bottom: 12px;
+  }
+  
+  .act-summary-info p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .act-summary-info a {
+    color: #000000;
+  }
+  
+  .act-summary-info p:first-child::after {
+    content: '•';
+  }
+  
+  .act-summary-info p:last-child::after {
+    text-overflow: hidden;
+  }
+  
+  .act-summary {
+    line-height: 1.2em;
+
+    width: 100%;
+    height: 3.6em;
+  
+    margin-top: 20px;
+    margin-bottom: 12px;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+  }
+
+.tagSection{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
+    width: 250px;
+}
+.tag{
+    display: flex;
+    height: auto;
+    border: 1px solid #CFD2CF;
+    border-radius: 3px;
+    margin-right: 5px;
+    padding: 3px;
+}
+.tag_img{
+    width: 12px;
+    height: 13px;
+}
+.font_size_10{
+    font-size: 10px;
+}
+
+#innerbodyWrap{
+    width : 900px;
+    height : auto;
+    align-items: center;
+    display: inline-flex;
+    flex-flow: row wrap;
+    margin-top: 40px;
+    /* margin-left: px; */
+    align-content:stretch;
+}
+
+#intro{
+    width : 100%;
+    height : auto;
+    align-items: center;
+    /* margin-top: 20px; */
+    margin-left: 13px;
+    background-color: #ffffff;
+    padding-bottom: 20px;
+}
+
+#introTitle{
+    padding-left: 30px;
+    padding-right: 13px;
+}
+
+#innerIntro{
+    padding-left: 30px;
+    padding-right: 30px;
+    height: auto;
+}
+
+/* #introTag,  */
+#IntroDescription, #IntroInfo {
+    height: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* .introTag,  */
+.introInfo{
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+.IntroDescription{
+    height: 120px;
+}
+
+.introInfoUl{
+    height: 50px;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+#openDate, #nop {
+    height: 25px;
+}
+
+#introHeader{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.activityUpdateBtn{
+    display: flex;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    margin-right: 10px;
+}
+.activityDeleteBtn{
+    display: flex;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    margin-right: 5px;
+}
+
+.activityExitBtn{
+    display: flex;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    margin-right: 5px;
+}
+
+.firstLine {
+    border: none;
+    border-top: 1px solid #E0E0E0;
+    overflow: visible;
+    text-align: left;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    height: 1px;
+   
+}
+.secondLine {
+    border: none;
+    border-top: 1px solid #E0E0E0;
+    overflow: visible;
+    text-align: center;
+    height: 1px;
+}
+.thirdLine {
+    border: none;
+    border-top: 1px solid #E0E0E0;
+    overflow: visible;
+    text-align: center;
+    height: 1px;
+}
+
+/* 가입 전 피드------------------------------------ */
+#pheed_1{
+    width : 100%;
+    height : 250px;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 13px;
+    background-color: #ffffff;
+}
+
+ #defaultPheedText_1{
+    text-align : center;
+    padding : 100px 0;
+    height: 20px;
+}
+/* -------------------------------------------------------- */
+
+/* 가입 후 피드 - 작성된 이벤트,투표,모임신청이 없을 때---- */
+.pheed{
+    width : 100%;
+    height : auto;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 13px;
+    margin-bottom: 20px;
+    
+}
+
+.voteApplication {
+    display: flex;
+    justify-content:space-between;
+}
+
+.pheedEvent{
+    width : 100%;
+    height : 300px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+.pheedVote, .pheedApplication{
+    width : 48.9%;
+    height : 550px;
+    background-color: #ffffff;
+}
+
+.pheedEventHeader, .pheedVoteHeader, .pheedApplicationHeader{
+    display: flex;
+    justify-content:space-between;
+    height: auto;
+    padding-left: 30px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.pheedEventHeaderText, .pheedVoteHeaderText, .pheedApplicationHeaderText{
+    height: 20px;
+}
+
+.addBtn{
+    height: 20px;
+    margin-top: 18px;
+}
+/* .pheedEventBody{
+    text-align : center;
+    line-height: 260px;
+    overflow-x:hidden; overflow-y:scroll; height:238px;
+} */
+
+.pheedEventBody::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+    /* opacity:0 */
+}
+
+.pheedEventBody::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #666666; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    /* opacity:0 */
+}
+
+.pheedEventBody::-webkit-scrollbar-track {
+    background: rgba(36, 36, 36, 0.1);  /*스크롤바 뒷 배경 색상*/
+    /* opacity:0 */
+}
+
+/* .pheedVoteBody, .pheedApplicationBody {
+    text-align : center;
+    line-height: 530px; 
+    overflow-x:hidden; overflow-y:scroll; height:478px;
+} */
+
+.pheedVoteBody::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+    /* opacity:0 */
+}
+
+.pheedVoteBody::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #666666; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    /* opacity:0 */
+}
+
+.pheedVoteBody::-webkit-scrollbar-track {
+    background: rgba(36, 36, 36, 0.1);  /*스크롤바 뒷 배경 색상*/
+    /* opacity:0 */
+}
+
+.pheedApplicationBody::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+    /* opacity:0 */
+}
+
+.pheedApplicationBody::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #666666; /* 스크롤바의 색상 */
+    border-radius: 10px;
+    /* opacity:0 */
+}
+
+.pheedApplicationBody::-webkit-scrollbar-track {
+    background: rgba(36, 36, 36, 0.1);  /*스크롤바 뒷 배경 색상*/
+    /* opacity:0 */
+}
+
+
+#EventdefaultPheedText, #VotedefaultPheedText, #AppplictiondefaultPheedText{
+    text-align : center;
+    padding : 100px 0;
+    height: 20px;
+}
+/* -------------------------------------------------------------- */
+/* 가입 후 피드 */
+.pheedEventBody{
+    height: 260px;
+    padding-top : 15px;
+    padding-left: 15px;
+    /* display: flex; */
+    /* justify-content: space-evenly; */
+    overflow-x:hidden; overflow-y:scroll; height:223px;
+}
+
+.pheedVoteBody, .pheedApplicationBody {
+    height: 530px;
+    padding-top : 15px;
+    overflow-x:hidden; overflow-y:scroll; height:463px;
+}
+.content_list{
+    display: inline-block;
+    width: 320px;
+    height: 100px;
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px 12px 15px 22px;
+    padding: 15px;
+    box-shadow: 0 3px 6px #E4E4E4, 0 3px 8px #E4E4E4;
+    cursor: pointer;
+}
+.content_title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.content_description{
+    font-size: 13px;
+    padding-right: 10px;
+}
+.meet_info{
+    display: flex;
+    justify-content: left;
+    margin-top: 9px;
+    margin-left: 5px;
+}
+.member_ment{
+    font-size: 11px;
+    font-weight: 900;
+}
+.member_cnt{
+    color: #006FD6;
+}
+.smallLine{
+    padding-left: 15px;
+    height: 15px;
+    padding-top: 6px;
+}
+.period_info{
+    padding-left: 15px;
+}
+/* ------------------------------------------------------------------ */
+#join_activity_btn {
+    /* background: #3DA5F5;
+    border: 0px;
+    border-radius: 4px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    width: 250px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 15px;
+    display: block; */
+
+
+box-sizing: border-box;
+
+  width: 100%;
+  height: 40px;
+
+  border: none;
+  border-radius: 4px;
+
+  margin-bottom: 12px;
+
+  background-color: #3da5f5;
+
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+#join_activity_btn a {
+    color: #ffffff;
+  
+    width: inherit;
+    height: inherit;
+  }
+
+
+
