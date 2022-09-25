@@ -7,7 +7,6 @@ public interface UserDB {
 	String DRIVER_NAME = "oracle.jdbc.OracleDriver";
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	String USER = "meetabwa";
-	
 	String PASSWORD = "meetabwa";
 	
 //	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

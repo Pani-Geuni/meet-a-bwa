@@ -26,7 +26,9 @@
 </head>
 <body>
     <!--  START HEADER INCLUDE -->
-	<jsp:include page="../../views/common/header.jsp"></jsp:include>
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
     <!--  END HEADER INCLUDE -->
 	
 	<div id = "bodyWrap">
@@ -41,19 +43,32 @@
             <div id = "recommendMeet" class = "mainContent">
                 <div class = "titleSection">
                     <section class = "title titleLeft">
-                        <!-- 로그인 전, 추천-->
-                        <section id = "beforeLogin_recommend" class = "">
-                            <span class = "comment">안녕하세요! 현재 가장 인기있는 모임 추천해드려요!</span>
-                        </section>
+						<c:choose>
+						
+							<c:when test="${list.isLogin eq false || list.isLogin eq null}">
+	                        	<!-- 로그인 전, 추천-->
+		                        <section id = "beforeLogin_recommend">
+		                            <span class = "comment">안녕하세요! 현재 가장 인기있는 모임 추천해드려요!</span>
+		                        </section>
+	                        </c:when>
 
-                        <!-- 로그인 성공 후, 추천 -->
-                        <section id = "afterLogin_recommend" class = "blind">
-                            <span id = "nickname">"00님",</span>
-                            <!-- 회원이 설정한 관심사 없을 때,-->
-                            <span class = "region_comment comment">안녕하세요! 현재 거주지 주변 모임 추천해드려요!</span>
-                            <!-- 회원이 설정한 관심사 있을 때,-->
-                            <span class = "interest_comment comment">안녕하세요! 설정하신 관심사와 관련된 모임 추천해드려요!</span>
-                        </section>
+							<c:when test="${list.isLogin eq true}">
+		                        <!-- 로그인 성공 후, 추천 -->
+		                        <section id = "afterLogin_recommend">
+		                            <span id = "nickname">"${list.nick_name}님"의  </span>
+		                            
+		                            <c:if test="${list.interest == null}">
+		                            	<!-- 회원이 설정한 관심사 없을 때,-->
+			                            <span class = "region_comment comment">거주지 주변 모임 추천해드려요!</span>
+		                            </c:if>
+		                            
+		                            <c:if test="${list.interest ne null}">
+			                            <!-- 회원이 설정한 관심사 있을 때,-->
+			                            <span class = "interest_comment comment">관심사와 관련된 모임 추천해드려요!</span>
+		                            </c:if>
+		                        </section>
+							</c:when>
+						</c:choose>
                     </section>
 
                     <section class = "title titleRight">
@@ -267,12 +282,13 @@
 		    </div>
 	
 		    <div class="login-middle">
-		      <form action="#" class="login-form" method="get">
+		      <form action="/meet-a-bwa/loginOK.do" class="login-form" method="post">
 		        <label for="id">아이디</label>
-		        <input type="text" placeholder="아이디 입력" />
+		        <input type="text" name = "id" placeholder="아이디 입력"/>
 		
 	            <label for="pw">비밀번호</label>
-		        <input type="password" placeholder="비밀번호 입력" />
+		        <input type="password" name = "pw" placeholder="비밀번호 입력"/>
+		        
 		        <button type="submit">로그인</button>
 		      </form>
 		
@@ -302,7 +318,9 @@
             </h1>
       
             <div class="btn-group">
-              <button class="btn-logout">로그아웃</button>
+	            <a href = "/meet-a-bwa/logoutOK.do">
+	              <button class="btn-logout">로그아웃</button>
+	            </a>
               <button class="btn-cancel">취소</button>
             </div>
        	  </div>

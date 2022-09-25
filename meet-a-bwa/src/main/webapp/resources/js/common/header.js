@@ -20,4 +20,8 @@
  		$(".logout-layer").removeClass("blind");
  	});
  	
+ 	
+ 	function init(){
+ 		
+ 	}
  });

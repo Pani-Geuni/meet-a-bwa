@@ -68,7 +68,7 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} // end finally
 	}
-	//»ç¿ëÀÚ Ãß°¡
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	@Override
 	public int user_insert(UserVO uvo,InterestVO ivo) {
 		int flag=0;
@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(4, uvo.getUser_nickname());
 			pstmt.setString(4, uvo.getUser_email());
 			pstmt.setString(4, uvo.getUser_tel());
-			pstmt.setDate(5, (java.sql.Date) new Date()); //¾ÈµÇ¸é util·Î ¹Þ¾Æº¸±â
+			pstmt.setDate(5, (java.sql.Date) new Date()); //ï¿½ÈµÇ¸ï¿½ utilï¿½ï¿½ ï¿½Þ¾Æºï¿½ï¿½ï¿½
 			pstmt.setString(6, uvo.getUser_gender());
 			pstmt.setString(1, ivo.getInterest_name());
 			pstmt.setString(7, uvo.getUser_region());
@@ -262,7 +262,8 @@ public class UserDAOImpl implements UserDAO {
 		return uvo2;
 	}
 
-	//»ç¿ëÀÚÀÇ °ü½É»ç Ãß°¡
+
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É»ï¿½ ï¿½ß°ï¿½
 //	@Override
 //	public int interest_insert(InterestVO ivo) {
 //		int flag=0;

@@ -20,10 +20,10 @@ public class MainInitAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
         
-		boolean isLogin =  Boolean.parseBoolean(request.getParameter("isLogin"));
+		String isLogin =  request.getParameter("isLogin");
 		
 		// 사용자가 로그인했을 때
-		if(isLogin) {
+		if(isLogin == "true") {
 			String userInterest = request.getParameter("userInterest");
 			String userRegion = request.getParameter("userRegion");
 			
@@ -67,8 +67,6 @@ public class MainInitAction {
 			response.setContentType("application/x-json; charset=UTF-8");
 			response.getWriter().print(obj_wrap);
 			
-//			request.setAttribute("list", list);
-//			request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 		}
 	}
 }
