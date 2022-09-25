@@ -14,11 +14,14 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+<script src="/meet-a-bwa/resources/js/common/header.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/select-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
+<script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
 
 <title>모임 피드</title>
 </head>
@@ -122,7 +125,7 @@
 								</div>
 							</div>
 							<div class="feed-post">
-								<a href="./MEET03.jsp">
+								<a href="/meet-a-bwa/views/meet/MEET03.jsp">
 									<p>Lorem ipsum dolor sit amet consectetur, adipisicing
 										elit. Minima repellendus fugit perspiciatis neque nihil
 										distinctio praesentium ex expedita est possimus provident
@@ -198,8 +201,32 @@
         </aside>
 		</div>
 	</div>
-
 </body>
+
+<!-- ==================================== -->
+<!-- 글쓰기 view 팝업 -->
+<!-- ==================================== -->
+<div class="popup-layer">
+	<div class="popup-box">
+		<div class="popup-top">
+        	<h1>글쓰기</h1>
+        </div>
+        <div class="popup-writer">
+          	<form action="" class="popup-writer">
+            	<input type="text" placeholder="제목" />
+	            <textarea
+	              name="content"
+	              id="content"
+	              placeholder="내용을 입락하세요."
+	            ></textarea>
+          	</form>
+        </div>
+        <div class="popup-btn-group">
+         	<button class="btn-cancel" onclick="popupHide()">취소</button>
+          	<button class="btn-submit">게시</button>
+        </div>
+	</div>
+</div>
 
 <!-- *******************  -->
 <!-- delete popup SECTION -->
