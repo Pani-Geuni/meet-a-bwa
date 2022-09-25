@@ -22,20 +22,20 @@ public class MainInitAction {
         
 		boolean isLogin =  Boolean.parseBoolean(request.getParameter("isLogin"));
 		
-		// »ç¿ëÀÚ°¡ ·Î±×ÀÎÇÏ°í ¸ŞÀÎÆäÀÌÁö ·ÎµåÇßÀ» ¶§
+		// ì‚¬ìš©ìê°€ ë¡œê·¸ì¸í–ˆì„ ë•Œ
 		if(isLogin) {
-			System.out.println("isLogin : true");
 			String userInterest = request.getParameter("userInterest");
 			String userRegion = request.getParameter("userRegion");
 			
 			if(userInterest.equals("")) {
-				// »ç¿ëÀÚ Áö¿ª¿¡¼­ ÀÎ±â¸¹Àº¼øÀ¸·Î ÃÖ´ë 10°³ ¸®½ºÆ® ³ª¿­
-				System.out.println("¹Ş¾Æ¿Â °ü½É»ç Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+				// ì„¤ì •í•œ ê´€ì‹¬ì‚¬ ì—†ì„ ë•Œ
+				// ì‚¬ìš©ì ì§€ì—­ì— ìˆëŠ” ë¦¬ìŠ¤íŠ¸ ì¸ê¸°ìˆœìœ¼ë¡œ ë‚˜ì—´
+				System.out.println("ì„¤ì •í•œ ê´€ì‹¬ì‚¬ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			}else {
-				// »ç¿ëÀÚ °ü½É»ç¿¡ ¸Â´Â ¸®½ºÆ® ÀÎ±â¸¹Àº¼øÀ¸·Î ÃÖ´ë 10°³ ¸®½ºÆ® ³ª¿­
+				// ì„¤ì •í•œ ê´€ì‹¬ì‚¬ ìˆì„ ë•Œ
 			}
-		}else { // »ç¿ëÀÚ°¡ ·Î±×ÀÎÇÏÁö¾Ê°í ¸ŞÀÎÆäÀÌÁö ·ÎµåÇßÀ» ¶§
-			// ÀÎ±â¸¹Àº¼ø ³»¸²Â÷¼øÀ¸·Î ÃÖ´ë 10°³ ÃßÃµ
+		}else { // ì‚¬ìš©ìê°€ ë¡œê·¸ì¸í•˜ì§€ ì•Šì•˜ì„ ë•Œ
+			// ì¢‹ì•„ìš” ë§ì€ ìˆœìœ¼ë¡œ 
 			System.out.println("false");
 			
 			MeetDAO dao = new MeetDAOImpl();
