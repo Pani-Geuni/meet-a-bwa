@@ -10,7 +10,7 @@ $(document).ready(function() {
 			userRegion : ""
 		},
 		success : function(result) {
-			console.log(result);    
+            load_meet(result);
 		},
 		error : function(request, status, error) {
 		 	console.log(error);
@@ -38,4 +38,25 @@ $(document).ready(function() {
  		$(".logout-layer").addClass("blind");
  	});
     
+    function load_meet(res){
+        for(var i = 0; i < res.list_length; i++){
+            let sample = $(".content_list_sample").clone();
+
+            sample.removeClass("content_list_sample");
+            sample.removeClass("blind");
+            sample.find(".content_title").text(res.list[i].meet_name);
+            sample.find(".content_description").text(res.list[i].meet_description);
+            /* prop-flag */
+            sample.find(".likeCnt").attr("likeCnt", res.list[i].like_cnt);
+            
+            if(res.list[i].like_cnt < 100){
+            	sample.find(".likeCnt").text(res.list[i].like_cnt);
+        	}
+			else
+        		sample.find(".likeCnt").text("99+");
+				
+            $("#meet_recommendSection").append(sample);
+        }
+
+    }
 });
