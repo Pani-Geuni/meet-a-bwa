@@ -5,17 +5,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css"/>
-    
-    <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
     
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
     <script src="/meet-a-bwa/resources/js/main/main.js"></script>

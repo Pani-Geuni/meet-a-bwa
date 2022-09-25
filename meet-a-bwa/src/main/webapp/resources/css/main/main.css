@@ -29,7 +29,7 @@
 .titleSection * {
     font-family: "Pretendard";
     font-weight: bold;
-    letter-spacing: 1px; /* ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    letter-spacing: 1px; /* ê¸€ì ì‚¬ì´ ê°„ê²© ì¡°ì • */
 }
 
 .mainContent{
@@ -62,7 +62,7 @@
 }
 
 /*------------------------------------------*/
-/* ¸ğÀÓ ÃßÃµ ¼½¼Ç*/
+/* ëª¨ì„ ì¶”ì²œ ì„¹ì…˜*/
 /*-------------------------------------------*/
 #meet_recommendSection{
     display: flex;

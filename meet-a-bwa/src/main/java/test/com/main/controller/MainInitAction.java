@@ -24,7 +24,6 @@ public class MainInitAction {
 		
 		// 사용자가 로그인하고 메인페이지 로드했을 때
 		if(isLogin) {
-			System.out.println("isLogin : true");
 			String userInterest = request.getParameter("userInterest");
 			String userRegion = request.getParameter("userRegion");
 			

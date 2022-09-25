@@ -5,14 +5,14 @@ $(document).ready(function() {
 		type : "POST",
 		dataType : 'json',
 		data : {
-			isLogin : false, // 추후에 쿠키로 값 가져올거임
-			userInterest : "",
-			userRegion : ""
+			isLogin : $.cookie('isLogin') == "" ? false : $.cookie('isLogin'), // 추후에 쿠키로 값 가져올거임
+			userInterest : $.cookie('userInterest'),
+			userRegion : $.cookie('userRegion')
 		},
 		success : function(result) {
             load_meet(result);
 		},
-		error : function(request, status, error) {
+		error : function(error) {
 		 	console.log(error);
 		 }
 	});
