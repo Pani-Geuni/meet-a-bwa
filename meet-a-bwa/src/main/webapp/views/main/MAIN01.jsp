@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -49,9 +48,9 @@
                         <section id = "afterLogin_recommend" class = "blind">
                             <span id = "nickname">"00님",</span>
                             <!-- 회원이 설정한 관심사 없을 때,-->
-                            <span class = "comment">안녕하세요! 현재 거주지 주변 모임 추천해드려요!</span>
+                            <span class = "region_comment comment">안녕하세요! 현재 거주지 주변 모임 추천해드려요!</span>
                             <!-- 회원이 설정한 관심사 있을 때,-->
-                            <span class = "comment">안녕하세요! 관심사와 관련된 모임 추천해드려요!</span>
+                            <span class = "interest_comment comment">안녕하세요! 설정하신 관심사와 관련된 모임 추천해드려요!</span>
                         </section>
                     </section>
 
@@ -60,36 +59,41 @@
                     </section>
                 </div>
                 
+                <!-- START Meet RECOMMEND SECTION -->
                 <div id = "meet_recommendSection">
-                    <div class = "content_list"><!-- start content div-->
-                        <table>
-                            <tr>
-                                <td class = "content_title">경기 광주 평페달</td>
-                                <td rowspan="2" class = "content_img">
-                                    <img src = "resources/img/loopy.svg" class = "list_img">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "content_description">
+                
+                    <!-- start content_list div-->
+                    <div class = "content_list content_list_sample blind">
+                        <div class = "info-list-wrap">
+                            <div class = "listCommon">
+                                <span class = "content_title">경기 광주 다이어트</span>
+                            </div>
+
+                            <div class = "description_list listCommon">
+                                <span class = "content_description">
                                     혼자 타도 좋고!! 같이 타면 더 좋다!! 경기도 광주 소개 자전거 모임입니다. 초보부터 중고수까지 솰라솰라
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                    <div class = "tagSection">
-                                        <div class = "loca_tag tag">
-                                            <img src = "resources/img/map.png" class = "tag_img">
-                                            <span class = "location_name font_size_10">경안동</span>
-                                        </div>
-                                        <div class = "cate_tag tag">
-                                            <span class = "category_name font_size_10">자전거</span>
-                                        </div>
+                                    혼자 타도 좋고!! 같이 타면 더 좋다!! 경기도 광주 소개 자전거 모임입니다. 초보부터 중고수까지 솰라솰라
+                                </span>
+                            </div>
+
+                            <div class = "listCommon">
+                                <div class = "tagSection">
+                                    <div class = "loca_tag tag">
+                                        <img src = "/meet-a-bwa/resources/img/map.png" class = "tag_img">
+                                        <span class = "location_name font_size_10">경안동</span>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                        
-                        <!-- START bottomWrap -->
+                                    <div class = "cate_tag tag">
+                                        <span class = "category_name font_size_10">자전거</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class = "content_img">
+                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
+                            </div>
+                        </div>
+
+
                         <div class = "bottomWrap">
                             <div class = "meet_info">
                                 <div class = "meet_member_info">
@@ -99,25 +103,22 @@
                                 
                                 <!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
                                 <div class = "meet_condition">
-                                    <img src = "resources/img/line.svg" alt="line image" class = "divide">
+                                    <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line이미지" class = "divide">
                                     <span class = "condition_bold condition_common"><b>모집</b></span>
                                     <span class = "condition_regular condition_common">20~30대</span>
                                 </div>
                             </div>
-                            
+    
                             <div class = "likeWrap">
                                 <section class = "heartSection">
-                                    <img src = "resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon"/>
-                                    <img src = "resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon blind"/>
+                                    <img src = "/meet-a-bwa/resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon"/>
+                                    <img src = "/meet-a-bwa/resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon blind"/>
                                 </section>
-                                <section class = "likeCnt">
-                                    <span>12</span>
-                                </section>
+                                <span class = "likeCnt"></span>
                             </div>
                         </div>
-                        <!-- END bottomWrap -->
                     </div>
-                    <!-- end content div -->
+                    <!-- end content_list div -->
                 </div>
                 <!-- end Meet RECOMMEND SECTION -->
             </div>
@@ -186,36 +187,39 @@
                             </ul>
                         </div>
                     </div>
+                    
+                    
+                    <div class = "content_list blind">
+                        <div class = "info-list-wrap">
+                            <div class = "listCommon">
+                                <span class = "content_title">경기 광주 다이어트</span>
+                            </div>
 
-                    <div class = "content_list"><!-- start content div-->
-                        <table>
-                            <tr>
-                                <td class = "content_title">경기 광주 평페달</td>
-                                <td rowspan="2" class = "content_img">
-                                    <img src = "resources/img/loopy.svg" class = "list_img">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "content_description">
+                            <div class = "description_list listCommon">
+                                <span class = "content_description">
                                     혼자 타도 좋고!! 같이 타면 더 좋다!! 경기도 광주 소개 자전거 모임입니다. 초보부터 중고수까지 솰라솰라
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                    <div class = "tagSection">
-                                        <div class = "loca_tag tag">
-                                            <img src = "resources/img/map.png" alt="map image" class = "tag_img">
-                                            <span class = "location_name font_size_10">경안동</span>
-                                        </div>
-                                        <div class = "cate_tag tag">
-                                            <span class = "category_name font_size_10">자전거</span>
-                                        </div>
+                                    혼자 타도 좋고!! 같이 타면 더 좋다!! 경기도 광주 소개 자전거 모임입니다. 초보부터 중고수까지 솰라솰라
+                                </span>
+                            </div>
+
+                            <div class = "listCommon">
+                                <div class = "tagSection">
+                                    <div class = "loca_tag tag">
+                                        <img src = "/meet-a-bwa/resources/img/map.png" class = "tag_img">
+                                        <span class = "location_name font_size_10">경안동</span>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                        
-                        <!-- START bottomWrap -->
+                                    <div class = "cate_tag tag">
+                                        <span class = "category_name font_size_10">자전거</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class = "content_img">
+                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
+                            </div>
+                        </div>
+
+
                         <div class = "bottomWrap">
                             <div class = "meet_info">
                                 <div class = "meet_member_info">
@@ -225,25 +229,25 @@
                                 
                                 <!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
                                 <div class = "meet_condition">
-                                    <img src = "resources/img/line.svg" alt="line image" class = "divide">
+                                    <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line이미지" class = "divide">
                                     <span class = "condition_bold condition_common"><b>모집</b></span>
                                     <span class = "condition_regular condition_common">20~30대</span>
                                 </div>
                             </div>
-                            
+    
                             <div class = "likeWrap">
                                 <section class = "heartSection">
-                                    <img src = "resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon blind"/>
-                                    <img src = "resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon"/>
+                                    <img src = "/meet-a-bwa/resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon"/>
+                                    <img src = "/meet-a-bwa/resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon blind"/>
                                 </section>
-                                <section class = "likeCnt">
-                                    <span>99+</span>
-                                </section>
+                                <span class = "likeCnt">
+                                    0
+                                </span>
                             </div>
                         </div>
-                        <!-- END bottomWrap -->
-                    </div> 
-                    <!-- end content div -->
+                    </div>
+                    <!-- end content_list div -->
+
                 </div>
                 <!-- end act recommend section -->
             </div>
