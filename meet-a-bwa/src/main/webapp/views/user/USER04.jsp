@@ -4,13 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-page.css"/>
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-page.css"/>
+
+	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/header.js"></script>
 
 <title>마이 페이지</title>
 </head>
