@@ -1,22 +1,24 @@
 $(function() {
     console.log("onload....");
     let btn_emCheck = $("#btn_emCheck");
+    let result = $("#result");
     // console.log(result);
 
     $("#btn_emCheck").click(function(event) {
         console.log("onclick....");
-        let email = document.querySelector("#email");
-        // console.log(nickname);
+        //let email = document.querySelector("#email");
+        let email = $("#email");
         console.log(email.value);
         
         let req = new XMLHttpRequest();
 
         // req.load( function() {
-        //     if(this.status==200){
-        //         try {
-                    // let txt_json = this.responseText;
-                    // let obj_json = JSON.parse(txt_json);
-                    let obj_json = {result : "OK"};
+         req.addEventListener("load", function() {
+             if(this.status==200){
+                 try {
+                   	let txt_json = this.responseText;
+                    let obj_json = JSON.parse(txt_json);
+                    // let obj_json = {result : "OK"};
                     // let obj_json = {result : "Not OK"};
                     console.log(obj_json);
                     console.log(obj_json.result);
@@ -41,20 +43,20 @@ $(function() {
 								$(".toastText_emailCheck").addClass("blind");
 							});
 						}
-        //         } catch (e) {
-        //             console.log("json 형식이 아님.");
-        //         }
+                 } catch (e) {
+                     console.log("json 형식이 아님.");
+                 }
                 
-        //     }//end if
+             }//end if
             
 
             
 
-        // });
+         });
         
         req.open("GET",
-                "http://localhost:8080/jinsil/json_nickCheck.do?nickname="
-                        + nickname.value);
+                "http://localhost:8090/meet-a-bwa/emailCheck.do?email="
+                        + email.value);
         req.send();
 
         event.preventDefault();

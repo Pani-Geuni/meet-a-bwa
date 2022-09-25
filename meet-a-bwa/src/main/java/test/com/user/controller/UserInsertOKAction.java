@@ -116,6 +116,7 @@ public class UserInsertOKAction {
 
 			
 			UserVO uvo = new UserVO();
+			InterestVO ivo = new InterestVO();
 			uvo.setUser_id(user_id);
 			uvo.setUser_pw(user_pw);
 			uvo.setUser_name(user_name);
@@ -124,9 +125,9 @@ public class UserInsertOKAction {
 			uvo.setUser_tel(user_tel);
 			uvo.setUser_birth(user_birth);
 			uvo.setUser_gender(user_gender);
+			ivo.setInterest_name(interest_name);
 			uvo.setUser_region(user_region);
 			
-			InterestVO ivo = new InterestVO();
 //			for (int i = 0; i < array.length; i++) {
 //				ivo.setInterest_name(interest_name);
 //			}
@@ -134,12 +135,13 @@ public class UserInsertOKAction {
 			uvo.setUser_image(user_image.length()==0?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
 			
 			UserDAO u_dao = new UserDAOImpl();
-			int result1 = u_dao.user_insert(uvo);
-			int result2 = u_dao.interest_insert(ivo);
+			int result1 = u_dao.user_insert(uvo,ivo);
+//			int result2 = u_dao.interest_insert(ivo);
 			System.out.println("result: "+result1);
 
-			if(result1==1&&result2==1) {
-				response.sendRedirect("user_selectAll.do");
+			if(result1==1) {
+//				if(result1==1&&result2==1) {
+				response.sendRedirect("main_init.do");
 				}else
 					response.sendRedirect("user_insert.do");
 			}
