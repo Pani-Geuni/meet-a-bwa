@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.com.member.controller.LoginOKAction;
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 
@@ -54,11 +55,11 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // ÇÑ±Û ±úÁü ¹æÁö
+		request.setCharacterEncoding("UTF-8"); // ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		// doGet(request, response);
 		String sPath = request.getServletPath();
 		System.out.print("doPost:");
-		System.out.println(sPath); // ¼­¹ö¿¡ ÇÁ¸°Æ®
+		System.out.println(sPath); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		if (sPath.equals("/u_insertOK.do")) {
 			new UserInsertOKAction().execute(request, response);
 		}
