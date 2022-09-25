@@ -59,18 +59,25 @@
 }
 
 .logBtn{width: 80px;}
+
+#logo_img{
+	cursor:pointer;
+}
 #loginBtn{
     background-color: #3DA5F5;
     border: 1px solid #3DA5F5;
+	cursor:pointer;
 }
 #logoutBtn{
     background-color: #783DF5;
     border: 1px solid #783DF5;
+	cursor:pointer;
 }
 #mypageBtn{
     width: 95px; 
     background-color: #783DF5;
     border: 1px solid #783DF5;
+	cursor:pointer;
 }
 
 a{

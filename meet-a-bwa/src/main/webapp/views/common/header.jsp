@@ -4,9 +4,7 @@
     
 <div id = "menuWrap">
     <div id = "logoSection">
-        <a href = "/meet-a-bwa/main.do">
-            <img src = "/meet-a-bwa/resources/img/logo.svg" alt = "logo img" id = "logo_img">
-        </a>
+        <img src = "/meet-a-bwa/resources/img/logo.svg" alt = "logo img" id = "logo_img">
     </div>
     <div id = "log_Section">
         <ul id = "beforeLogin" class = "logSection blind">
@@ -17,12 +15,10 @@
         
         <ul id = "afterLogin" class = "logSection ">
             <li class = "logItem">
-                <a href = "/meet-a-bwa/mypage.do">
-            		<button id = "mypageBtn" class = "btn_css">마이페이지</button>
-           		</a>
+           		<input type = "button" id = "mypageBtn" class = "btn_css" value = "마이페이지">
             </li>
             <li class = "logItem">
-            	<button id = "logoutBtn" class = "logBtn btn_css">로그아웃</button>
+            	<input type = "button" id = "logoutBtn" class = "logBtn btn_css" value = "로그아웃">
             </li>
         </ul>
     </div>

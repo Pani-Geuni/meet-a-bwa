@@ -3,16 +3,21 @@
  */
  
  $(function(){
+ 
+ 	$("#logo_img").click(function(){
+	 	window.location.href="/meet-a-bwa/main.do";
+ 	});
  	
- 	$("#beforeLogin").click(function(){
+ 	$("#mypageBtn").click(function(){
+	 	window.location.href="/meet-a-bwa/mypage.do";
+ 	});
+ 	
+ 	$("#loginBtn").click(function(){
  		$(".login-layer").removeClass("blind");
  	});
  	
- 	$("#afterLogin").click(function(){
+ 	$("#logoutBtn").click(function(){
  		$(".logout-layer").removeClass("blind");
  	});
  	
- 	$(".btn-cancel").click(function(){
- 		$(".logout-layer").addClass("blind");
- 	});
  });
