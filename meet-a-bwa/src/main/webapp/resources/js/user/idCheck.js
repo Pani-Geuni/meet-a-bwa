@@ -8,8 +8,8 @@ $(function() {
 			console.log("onclick....");
 			//let id = document.querySelector("#id");
 			let id =$("#id");
-			// console.log(id);
-			console.log(id.value);
+			//console.log(id);
+			console.log(id.val());
 			
 			let req = new XMLHttpRequest();
 
@@ -58,7 +58,7 @@ $(function() {
 			
 			req.open("GET",
 					"http://localhost:8090/meet-a-bwa/idCheck.do?id="
-							+ id.value);
+							+ id.val());
 			req.send();
 
 			event.preventDefault();

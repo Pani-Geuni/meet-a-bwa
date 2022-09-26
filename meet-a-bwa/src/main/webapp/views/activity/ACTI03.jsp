@@ -31,7 +31,7 @@
 	<jsp:include page="/views/common/header.jsp"></jsp:include>
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
-	<form action="Activity_insertOK.do" method="post" enctype="multipart/form-data">
+	<form action="a_insertOK.do" method="post" enctype="multipart/form-data">
 
 		<div class="activityCUDWrap">
 			<h2 id="activityTitle">액티비티 생성</h2>
@@ -123,7 +123,7 @@
 			<section class="conditionWrap">
 			<section class="conditionHeader">
 			<hr class="conditionLine">
-			<h5>* 모임에 가입할 회원들을 아래 선택 항목(성별,인원 수, 연령대) 기준으로 제한합니다.</h5>
+			<h5>* 액티비티에 가입할 회원들을 아래 선택 항목(성별,인원 수, 연령대) 기준으로 제한합니다.</h5>
 			</section> <!--conditionHeader end-->
 			<section class="conditionBody">
 			<section id="genderdiv">
@@ -161,7 +161,13 @@
 			</section> <!--conditionWrap end-->
 
 			
-			<input type="button" id="create_activity" value="액티비티 생성" />
+			<input type="submit" id="create_activity" value="액티비티 생성" />
+			
+			<input type="hidden" values="user_no">
+			<input type="hidden" values="meet_no">
+			
+<!-- 			<input type="hidden" values="<c:out value='${user_no}'/>">
+			<input type="hidden" values="<c:out value='${meet_no}'/>"> -->
 
 			</div>
 		

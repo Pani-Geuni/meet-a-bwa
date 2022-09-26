@@ -10,7 +10,7 @@ import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 import test.com.user.model.UserVO;
 
-public class emailCheckAction {
+public class EmailCheckAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println(request.getParameter("email"));
 	    
