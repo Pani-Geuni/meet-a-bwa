@@ -57,7 +57,13 @@ public class M_LoginOKAction {
 			request.setAttribute("list", map);
 			
 			MeetDAO m_dao = new MeetDAOImpl();
-			List<MeetVO2> list = m_dao.select_like();
+			List<MeetVO2> list;
+			if(vo2.getMember_interest() == null) {
+				list = m_dao.select_county(vo2.getMember_county());
+			}else {
+				list = m_dao.select_interest(vo2.getMember_interest());
+			}
+			System.out.println(list);
 			request.setAttribute("m_list", list);
 			
 		}else {
@@ -76,8 +82,11 @@ public class M_LoginOKAction {
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
-			
 			request.setAttribute("list", map);
+			
+			MeetDAO m_dao = new MeetDAOImpl();
+			List<MeetVO2> list = m_dao.select_like();
+			request.setAttribute("m_list", list);
 		}
 		
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);

@@ -4723,20 +4723,7 @@
   <!-- deployment descriptor, that list *replaces* the list configured      -->
   <!-- here, so be sure to include any of the default values that you wish  -->
   <!-- to use within your application.                                       -->
-
-    
-    <!--
-    <servlet>
-		<servlet-name>Main</servlet-name>
-		<servlet-class>test.com.main.controller.MainController</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>Main</servlet-name>
-		<url-pattern>/main.do</url-pattern>
-	</servlet-mapping>
- -->
-    <!-- <welcome-file-list> -->
-<!--         <welcome-file>/views/main/MAIN01.jsp</welcome-file>
-  -->   <!-- </welcome-file-list> -->
+  <welcome-file-list>
+         <welcome-file>index.jsp</welcome-file>
+   </welcome-file-list> 
 </web-app>
