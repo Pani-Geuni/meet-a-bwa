@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberController
  */
-@WebServlet({"/loginOK.do", "/logoutOK.do"})
+@WebServlet({"/loginOK.do", "/m_loginOK.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,8 +41,8 @@ public class MemberController extends HttpServlet {
 		String sPath = request.getServletPath();
 		System.out.println("doPost..." + sPath);
 		
-		if(sPath.equals("/loginOK.do")) {
-			new LoginOKAction().execute(request, response);
+		if(sPath.equals("/m_loginOK.do")) {
+			new M_LoginOKAction().execute(request, response);
 		}
 	}
 
