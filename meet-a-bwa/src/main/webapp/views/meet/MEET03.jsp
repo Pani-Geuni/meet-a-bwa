@@ -89,15 +89,15 @@
 			<section class="post-detail">
           <div class="post-detail-top">
             <h1 class="post-detail-title" id="post-detail-title">
-              게시글 제목입니당
+              ${ bvo2.board_title }
             </h1>
             <div class="post-user-info">
               <div class="user-info">
                 <div class="user-info-profile">
                   <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
                 </div>
-                <p class="user-nickname">팡팡팡</p>
-                <p class="write-date">2022.09.12</p>
+                <p class="user-nickname">${ bvo2.user_name }</p>
+                <p class="write-date">${ bvo2.board_date }</p>
               </div>
               <div class="post-more-select">
               	<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
@@ -109,18 +109,7 @@
             </div>
           </div>
 
-          <pre class="post-detail-content">
-게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 
-게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글
-내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용
-게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글
-내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용
-게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 ㅁㄴㅇ
-내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용 게시글 내용
-asdfasd
-asdfasd
-asdfㄹ
-          </pre>
+          <pre class="post-detail-content">${ bvo2.board_content }</pre>
 
           <div class="coment-wrap">
             <form action="#" class="form-comment">
