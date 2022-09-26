@@ -223,18 +223,19 @@ asdfㄹ
         	<h1>글쓰기</h1>
         </div>
         <div class="popup-writer">
-          	<form action="" class="popup-writer">
-            	<input type="text" placeholder="제목" />
+          	<form action="b_insertOK.do" method="post" class="popup-writer">
+            	<input name="board_title" type="text" placeholder="제목" />
 	            <textarea
-	              name="content"
+	              name="board_content"
 	              id="content"
 	              placeholder="내용을 입락하세요."
 	            ></textarea>
+	            
+	            <div class="popup-btn-group">
+		         	<button type="button" class="btn-cancel" onclick="popupHide()">취소</button>
+		          	<button type="submit" class="btn-submit">게시</button>
+		        </div>
           	</form>
-        </div>
-        <div class="popup-btn-group">
-         	<button class="btn-cancel" onclick="popupHide()">취소</button>
-          	<button class="btn-submit">게시</button>
         </div>
 	</div>
 </div>
