@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import test.com.member.controller.LoginOKAction;
+import test.com.member.controller.M_LoginOKAction;
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 

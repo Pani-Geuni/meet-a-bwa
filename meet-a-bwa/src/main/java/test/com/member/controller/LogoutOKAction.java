@@ -22,6 +22,7 @@ public class LogoutOKAction {
 			response.addCookie(cookies[i]);
 		}
 		
-		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
+		response.sendRedirect("/views/main/MAIN01.jsp");
+//		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 	}
 }

@@ -1,5 +1,7 @@
+	console.log("member_id : " + member_id);
 $(document).ready(function() {
 
+	
 	$.ajax({
 		url : "/meet-a-bwa/main_init.do",
 		type : "POST",

@@ -2,6 +2,7 @@ package test.com.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,11 +13,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.valves.rewrite.Substitution.MapElement;
 
+import test.com.meet.model.MeetDAO;
+import test.com.meet.model.MeetDAOImpl;
+import test.com.meet.model.MeetVO2;
 import test.com.member.model.MemberDAO;
 import test.com.member.model.MemberDAOImpl;
 import test.com.member.model.MemberVO;
 
-public class LoginOKAction {
+public class M_LoginOKAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -51,6 +55,10 @@ public class LoginOKAction {
 			map.put("county", vo2.getMember_county());
 			
 			request.setAttribute("list", map);
+			
+			MeetDAO m_dao = new MeetDAOImpl();
+			List<MeetVO2> list = m_dao.select_like();
+			request.setAttribute("m_list", list);
 			
 		}else {
 			HttpSession session = request.getSession();
