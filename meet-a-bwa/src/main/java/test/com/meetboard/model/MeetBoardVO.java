@@ -12,10 +12,12 @@ public class MeetBoardVO {
 	private String user_no;
 	private String meet_no;
 	
+	private String user_name;
+	
 	public MeetBoardVO() {}
 
 	public MeetBoardVO(String board_no, String board_title, String board_content, Date board_date, String user_no,
-			String meet_no) {
+			String meet_no, String user_name) {
 		super();
 		this.board_no = board_no;
 		this.board_title = board_title;
@@ -23,6 +25,7 @@ public class MeetBoardVO {
 		this.board_date = board_date;
 		this.user_no = user_no;
 		this.meet_no = meet_no;
+		this.user_name = user_name;
 	}
 
 	public String getBoard_no() {
@@ -73,15 +76,24 @@ public class MeetBoardVO {
 		this.meet_no = meet_no;
 	}
 
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
 	@Override
 	public String toString() {
 		return "MeetBoardVO [board_no=" + board_no + ", board_title=" + board_title + ", board_content=" + board_content
-				+ ", board_date=" + board_date + ", user_no=" + user_no + ", meet_no=" + meet_no + "]";
+				+ ", board_date=" + board_date + ", user_no=" + user_no + ", meet_no=" + meet_no + ", user_name="
+				+ user_name + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(board_content, board_date, board_no, board_title, meet_no, user_no);
+		return Objects.hash(board_content, board_date, board_no, board_title, meet_no, user_name, user_no);
 	}
 
 	@Override
@@ -95,8 +107,11 @@ public class MeetBoardVO {
 		MeetBoardVO other = (MeetBoardVO) obj;
 		return Objects.equals(board_content, other.board_content) && Objects.equals(board_date, other.board_date)
 				&& Objects.equals(board_no, other.board_no) && Objects.equals(board_title, other.board_title)
-				&& Objects.equals(meet_no, other.meet_no) && Objects.equals(user_no, other.user_no);
+				&& Objects.equals(meet_no, other.meet_no) && Objects.equals(user_name, other.user_name)
+				&& Objects.equals(user_no, other.user_no);
 	}
+
+	
 	
 	
 }

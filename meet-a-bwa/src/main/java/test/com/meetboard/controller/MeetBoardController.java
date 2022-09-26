@@ -66,7 +66,7 @@ public class MeetBoardController extends HttpServlet {
 			System.out.println("result : " + result);
 			
 			if (result == 1)
-				response.sendRedirect("main.do");
+				response.sendRedirect("meet-main.do");
 			else
 				response.sendRedirect("meet-main.do");
 			
