@@ -7,6 +7,12 @@ public interface MeetDB {
 	String TEST_USER = "mab_test_db";
 	String TEST_PASSWORD = "test1234";
 	
-	String SQL_SELECT_ALL_LIKE = "select meet_no, meet_name, meet_description, meet_date, user_no, like_cnt from main_init_view";
+	String SQL_SELECT_ALL_LIKE = "select * from main_init_view where rownum between 1 and 10 order by like_cnt asc";
+	String SQL_SELECT_ALL_INTEREST = "select * from main_init_view "
+			+ "where MEET_INTEREST_NAME = ? AND rownum between 1 and 10"
+			+ "order by like_cnt asc";
+	String SQL_SELECT_ALL_COUNTY = "select * from main_init_view "
+			+ "where MEET_COUNTY = ? AND rownum between 1 and 10 "
+			+ "order by like_cnt asc";
 	
 }

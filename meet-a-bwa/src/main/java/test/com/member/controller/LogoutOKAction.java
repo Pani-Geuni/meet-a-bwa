@@ -22,7 +22,7 @@ public class LogoutOKAction {
 			response.addCookie(cookies[i]);
 		}
 		
-		response.sendRedirect("/views/main/MAIN01.jsp");
+		response.sendRedirect("/meet-a-bwa");
 //		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 	}
 }

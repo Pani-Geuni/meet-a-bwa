@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MainController
  */
-@WebServlet({"/main_init.do"})
+@WebServlet({"/index.do"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,11 @@ public class MainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sPath = request.getServletPath();
-		System.out.println("doGet..." + sPath);
+		System.out.println("doGet...main:" + sPath);
+		
+		if(sPath.equals("/index.do")) {
+			new MainInitAction().execute(request, response);
+		}
 	}
 
 	/**
@@ -37,9 +41,6 @@ public class MainController extends HttpServlet {
 		String sPath = request.getServletPath();
 		System.out.println("doPost..." + sPath);
 
-		if(sPath.equals("/main_init.do")) {
-			new MainInitAction().execute(request, response);
-		}
 	}
 
 }
