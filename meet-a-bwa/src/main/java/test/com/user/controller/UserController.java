@@ -1,6 +1,8 @@
 package test.com.user.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,20 +33,23 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doGet...");
+		
 		String sPath = request.getServletPath();
-		System.out.println(sPath);
+		System.out.println("doGet..." + sPath);
 
 		if (sPath.equals("/u_insert.do")) {
 			request.getRequestDispatcher("views/user/USER02.jsp").forward(request, response);
-		} else if (sPath.equals("/u_insertOK.do")) {
+		} 
+		else if (sPath.equals("/u_insertOK.do")) {
 			response.sendRedirect("/u_insert.do");
-		} else if(sPath.equals("/idCheck.do")) {
-			new idCheckAction().execute(request,response);
+		}
+		
+		else if(sPath.equals("/idCheck.do")) {
+			new IdCheckAction().execute(request,response);
 		}else if(sPath.equals("/nickCheck.do")) {
-			new nickCheckAction().execute(request,response);
+			new NickCheckAction().execute(request,response);
 		}else if(sPath.equals("/emailCheck.do")) {
-			new emailCheckAction().execute(request,response);
+			new EmailCheckAction().execute(request,response);
 		}
 	}
 
@@ -60,7 +65,12 @@ public class UserController extends HttpServlet {
 		System.out.print("doPost:");
 		System.out.println(sPath); // 서버에 프린트
 		if (sPath.equals("/u_insertOK.do")) {
-			new UserInsertOKAction().execute(request, response);
+			try {
+				new UserInsertOKAction().execute(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

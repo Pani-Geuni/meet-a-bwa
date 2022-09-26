@@ -10,16 +10,16 @@ import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 import test.com.user.model.UserVO;
 
-public class idCheckAction {
+public class EmailCheckAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println(request.getParameter("id"));
+		System.out.println(request.getParameter("email"));
 	    
 		UserDAO u_dao = new UserDAOImpl();
 	    UserVO uvo = new UserVO();
-	    uvo.setUser_id(request.getParameter("id"));
+	    uvo.setUser_email(request.getParameter("email"));
 		
-	    UserVO uvo2 = u_dao.idCheck(uvo);
-	    System.out.println("idCheck:"+uvo2);
+	    UserVO uvo2 = u_dao.emailCheck(uvo);
+	    System.out.println("emailCheck:"+uvo2);
 	    
 	    
 	    response.addHeader("Access-Control-Allow-Origin", "*");

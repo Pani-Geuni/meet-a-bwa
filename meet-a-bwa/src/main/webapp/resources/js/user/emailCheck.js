@@ -8,7 +8,7 @@ $(function() {
         console.log("onclick....");
         //let email = document.querySelector("#email");
         let email = $("#email");
-        console.log(email.value);
+        console.log(email.val());
         
         let req = new XMLHttpRequest();
 
@@ -56,7 +56,7 @@ $(function() {
         
         req.open("GET",
                 "http://localhost:8090/meet-a-bwa/emailCheck.do?email="
-                        + email.value);
+                        + email.val());
         req.send();
 
         event.preventDefault();

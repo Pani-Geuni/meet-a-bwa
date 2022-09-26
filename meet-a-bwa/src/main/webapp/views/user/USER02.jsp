@@ -33,7 +33,7 @@
 	<jsp:include page="/views/common/header.jsp"></jsp:include>
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
-	<form action="u_insertOK.do" method="post" enctype="multipart/form-data">
+	<form action="/meet-a-bwa/u_insertOK.do" method="post" enctype="multipart/form-data">
 		<div class="joinWrap">
 			<h2 id="joinTitle">회원 가입</h2>
 
