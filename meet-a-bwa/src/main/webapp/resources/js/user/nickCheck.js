@@ -9,7 +9,7 @@ $(function() {
 			//let nickname = document.querySelector("#nickname");
 			let nickname = $("#nickname");
 			// console.log(nickname);
-			console.log(nickname.value);
+			console.log(nickname.val());
 			
 			let req = new XMLHttpRequest();
 
@@ -57,7 +57,7 @@ $(function() {
 			
 			req.open("GET",
 					"http://localhost:8090/meet-a-bwa/nickCheck.do?nickname="
-							+ nickname.value);
+							+ nickname.val());
 			req.send();
 
 			event.preventDefault();

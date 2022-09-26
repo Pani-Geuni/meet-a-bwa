@@ -8,6 +8,15 @@ $(function () {
         });
     
     });
+    
+     $(function () {
+
+        $("#birth").on("change", function () {
+            console.log($(this).val());
+            console.log(typeof($(this).val()));
+        });
+    
+    });
 
     // NOT NULL 에 alert Popup 
 
