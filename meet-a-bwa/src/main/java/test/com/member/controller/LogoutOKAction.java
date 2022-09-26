@@ -22,7 +22,6 @@ public class LogoutOKAction {
 			response.addCookie(cookies[i]);
 		}
 		
-		response.sendRedirect("/meet-a-bwa");
-//		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
+		response.sendRedirect("/index.do");
 	}
 }
