@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="test.com.meetboard.model.MeetBoardVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -99,14 +100,15 @@
 					<!-- end meet-notification -->
 
 					<div class="all-feed">
+						<c:forEach var="vo" items="${vos }">
 						<div class="feed">
 							<div class="feed-profile">
 								<div class="user-info">
 									<div>
 										<img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
 									</div>
-									<p class="user-nickname">팡팡팡</p>
-									<p class="write-date">2022.09.12</p>
+									<p class="user-nickname">${ vo.user_name }</p>
+									<p class="write-date">${ vo.board_date }</p>
 								</div>
 
 								<div class="post-more-select">
@@ -121,15 +123,7 @@
 							</div>
 							<div class="feed-post">
 								<a href="/meet-a-bwa/views/meet/MEET03.jsp">
-									<p>Lorem ipsum dolor sit amet consectetur, adipisicing
-										elit. Minima repellendus fugit perspiciatis neque nihil
-										distinctio praesentium ex expedita est possimus provident
-										facere deserunt perferendis, recusandae quidem et deleniti
-										nobis laborum. Lorem ipsum dolor sit amet consectetur
-										adipisicing elit. Corporis quam atque iure possimus,
-										consequuntur ea hic. Nisi libero qui incidunt nihil dolores.
-										Quam dignissimos nemo at temporibus numquam magnam quibusdam.
-									</p>
+									<p>${ vo.board_content }</p>
 								</a>
 							</div>
 							<div class="feed-options">
@@ -139,6 +133,7 @@
 							</div>
 						</div>
 						<!-- end one feed -->
+						</c:forEach>
 					</div>
 					<!-- end all feed -->
 				</article>
