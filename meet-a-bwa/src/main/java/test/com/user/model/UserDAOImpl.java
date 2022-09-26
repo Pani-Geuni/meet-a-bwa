@@ -24,6 +24,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 	
+<<<<<<< Updated upstream
 	private void jdbcConnectionTest() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -69,24 +70,36 @@ public class UserDAOImpl implements UserDAO {
 		} // end finally
 	}
 	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+=======
+	//»ç¿ëÀÚ Ãß°¡
+>>>>>>> Stashed changes
 	@Override
-	public int user_insert(UserVO uvo,InterestVO ivo) {
+	public int user_insert(UserVO uvo) {
 		int flag=0;
 		try {
 			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
-			System.out.println("conn successed...");
+			System.out.println("user insert db conn successed...");
 			pstmt = conn.prepareStatement(UserDB.SQL_USER_INSERT);
-			pstmt = conn.prepareStatement(UserDB.SQL_USER_INSERT_INTEREST);
 			pstmt.setString(1, uvo.getUser_id());
 			pstmt.setString(2, uvo.getUser_pw());
 			pstmt.setString(3, uvo.getUser_name());
 			pstmt.setString(4, uvo.getUser_nickname());
+<<<<<<< Updated upstream
 			pstmt.setString(4, uvo.getUser_email());
 			pstmt.setString(4, uvo.getUser_tel());
 			pstmt.setDate(5, (java.sql.Date) new Date()); //ï¿½ÈµÇ¸ï¿½ utilï¿½ï¿½ ï¿½Þ¾Æºï¿½ï¿½ï¿½
 			pstmt.setString(6, uvo.getUser_gender());
 			pstmt.setString(1, ivo.getInterest_name());
 			pstmt.setString(7, uvo.getUser_region());
+=======
+			pstmt.setString(5, uvo.getUser_email());
+			pstmt.setString(6, uvo.getUser_tel());
+			pstmt.setDate(7,(java.sql.Date) uvo.getUser_birth()); //¾ÈµÇ¸é util·Î ¹Þ¾Æº¸±â
+			pstmt.setString(8, uvo.getUser_gender());
+			pstmt.setString(9, uvo.getUser_interest());
+			pstmt.setString(10, uvo.getUser_city());
+			pstmt.setString(11, uvo.getUser_county());
+>>>>>>> Stashed changes
 			
 			flag=pstmt.executeUpdate(); 
 			
@@ -126,7 +139,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
-			System.out.println("conn successed...");
+			System.out.println("user join id check conn successed...");
 			pstmt = conn.prepareStatement(UserDB.SQL_ID_CHECK);
 			pstmt.setString(1, uvo.getUser_id());
 			rs = pstmt.executeQuery();
