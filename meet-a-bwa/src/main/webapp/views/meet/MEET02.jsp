@@ -122,7 +122,7 @@
 								</div>
 							</div>
 							<div class="feed-post">
-								<a href="/meet-a-bwa/views/meet/MEET03.jsp">
+								<a href="b_selectOne.do?board_no=${ vo.board_no }">
 									<p>${ vo.board_content }</p>
 								</a>
 							</div>
