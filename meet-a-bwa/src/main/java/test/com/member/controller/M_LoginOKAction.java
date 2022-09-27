@@ -26,21 +26,21 @@ public class M_LoginOKAction {
 		String pw = request.getParameter("pw");
 		
 		MemberVO vo = new MemberVO();
-		vo.setMember_id(id);
-		vo.setMember_pw(pw);
+		vo.setUser_id(id);
+		vo.setUser_pw(pw);
 		
 		
 		MemberDAO dao = new MemberDAOImpl();
 		MemberVO vo2 = dao.login(vo);
 		
-		if(vo2.getMember_no() != null) {
+		if(vo2.getUser_no() != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("member_id", vo2.getMember_id());
+			session.setAttribute("user_id", vo2.getUser_id());
 			
 			// 쿠키 생성
 			Cookie cookie1 = new Cookie("isLogin", "true");
-			Cookie cookie2 = new Cookie("member_no", vo2.getMember_no());
-			Cookie cookie3 = new Cookie("member_interest", vo2.getMember_interest());
+			Cookie cookie2 = new Cookie("user_no", vo2.getUser_no());
+			Cookie cookie3 = new Cookie("user_interest", vo2.getUser_interest());
 
 			// 쿠키를 클라이언트로 전송
 			response.addCookie(cookie1);
@@ -50,21 +50,21 @@ public class M_LoginOKAction {
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", true);
-			map.put("nick_name", vo2.getMember_nickname());
-			map.put("interest", vo2.getMember_interest());
-			map.put("county", vo2.getMember_county());
+			map.put("nick_name", vo2.getUser_nickname());
+			map.put("interest", vo2.getUser_interest());
+			map.put("county", vo2.getUser_county());
 			
 			request.setAttribute("list", map);
 			
 			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list;
-			if(vo2.getMember_interest() == null) {
-				list = m_dao.select_county(vo2.getMember_county());
+			if(vo2.getUser_interest() == null) {
+				list = m_dao.select_county(vo2.getUser_county());
 			}else {
-				list = m_dao.select_interest(vo2.getMember_interest());
+				list = m_dao.select_interest(vo2.getUser_interest());
 			}
 			System.out.println(list);
-			request.setAttribute("m_list", list);
+			request.setAttribute("u_list", list);
 			
 		}else {
 			HttpSession session = request.getSession();
@@ -72,8 +72,8 @@ public class M_LoginOKAction {
 			
 			// 쿠키 생성
 			Cookie cookie1 = new Cookie("isLogin", "false");
-			Cookie cookie2 = new Cookie("member_no", "");
-			Cookie cookie3 = new Cookie("member_interest", "");
+			Cookie cookie2 = new Cookie("user_no", "");
+			Cookie cookie3 = new Cookie("user_interest", "");
 
 			// 쿠키를 클라이언트로 전송
 			response.addCookie(cookie1);
@@ -86,7 +86,7 @@ public class M_LoginOKAction {
 			
 			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list = m_dao.select_like();
-			request.setAttribute("m_list", list);
+			request.setAttribute("u_list", list);
 		}
 		
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);

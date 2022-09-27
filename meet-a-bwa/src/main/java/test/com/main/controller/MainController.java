@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MainController
  */
-@WebServlet({"/index.do"})
+@WebServlet({"/index.do", "/a_selectOne.do"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,6 +31,8 @@ public class MainController extends HttpServlet {
 		
 		if(sPath.equals("/index.do")) {
 			new MainInitAction().execute(request, response);
+		}else if(sPath.equals("/a_selectOne.do")) {
+			new SelectOne_category_Action().execute(request, response);
 		}
 	}
 
