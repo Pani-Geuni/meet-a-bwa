@@ -10,6 +10,11 @@ public class ActivityListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Activity List Action");
 		
-		request.getRequestDispatcher("views/activity/ACTI01.jsp").forward(request, response);
+		
+		String category = request.getParameter("category");
+		String searchWord = request.getParameter("searchWord");
+		System.out.println("category : " + category);
+		System.out.println("searchWord : " + searchWord);
+//		request.getRequestDispatcher("views/activity/ACTI01.jsp").forward(request, response);
 	}
 }

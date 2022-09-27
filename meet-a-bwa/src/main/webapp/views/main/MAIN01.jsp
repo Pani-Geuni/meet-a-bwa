@@ -17,23 +17,26 @@
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
     <script>
     	$(function(){
     		var user_id = '${user_id}'; //세션값 가져옴
-			console.log(user_id);
-	    		
+	    	
+			// 액티비티 추천 - 카테고리 더보기 버튼 클릭 이벤트
     	    $("#plusImg").click(function(){
     	        $("#fold_tag").removeClass("blind");
     	        $(this).addClass("blind");
     	        $("#foldImg").removeClass("blind");
     	    });
     	    
+    	    // 액티비티 추천 - 카테고리 접기 버튼 클릭 이벤트
     	    $("#foldImg").click(function(){
     	        $("#fold_tag").addClass("blind");
     	        $(this).addClass("blind");
     	        $("#plusImg").removeClass("blind");
     	    });
 	
+    	    // 액티비티 추천 - 카테고리 클릭 이벤트
     	    $(".tagItem").click(function(e){
     	        $(".tagItem").removeClass("check");
     	        $(e.target).addClass("check");
@@ -42,12 +45,32 @@
     	        location.href = "/meet-a-bwa/a_selectOne.do?category="+category;
     	    })
     	    
+    	    // 로그아웃 팝업 - 취소버튼 클릭
     	 	$(".btn-cancel").click(function(){
     	 		$(".logout-layer").addClass("blind");
     	 	});
+    	    
+    	    // 모임 추천 -  +더보기 버튼 클릭
+    	    $("#plusBtn_meet").click(function(){
+    	    	if($.cookie('isLogin') == "false" || $.cookie('isLogin') == "" || $.cookie('isLogin') == undefined){
+    	    		location.href = "/meet-a-bwa/meet-list.do?type=like&&typeData=&&searchWord=";
+    	    	}
+   	    		else if($.cookie('isLogin') == "true"){
+   	    			if($.cookie('user_interest') == "" || $.cookie('user_interest') == undefined){
+   	    				location.href = "/meet-a-bwa/meet-list.do?type=county&&typeData=" + $.cookie('user_county')+ "&&searchWord=";
+   	    			}else{
+   	    				location.href = "/meet-a-bwa/meet-list.do?type=interest&&typeData=" + $.cookie('user_interest') + "&&searchWord=";
+   	    			}
+   	    		}
+    	    });
+    	    
+    	 // 액티비티 추천 - +더보기 버튼 클릭
+    	 $("#plusBtn_act").click(function(){
+    		 let category = $(".tagItem.check").text();
+    		 location.href = "/meet-a-bwa/activity-list.do?category=" + category + "&&searchWord=";
+    	 });
     	});
     </script>
-    <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 
