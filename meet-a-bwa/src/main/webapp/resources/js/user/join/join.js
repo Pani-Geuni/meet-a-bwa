@@ -61,23 +61,23 @@ $(function () {
             &&$("#nickname").attr("readonly")
             &&$("#email").attr("readonly")){
                 console.log("가입 가능");
-        }else {
-            console.log("가입 불가능");
-            if(id>0&&pw>0&&pw_check>0&&name>0&&nickname>0
-                &&email>0&&tel>0&&bitrh>0&&gender>0){
-
-            }else if(pw<7&&($("#pw").val()!==$("#pw_check").val())){
-
-            }else if($("#id").attr("readonly",false)){
-
-            }else if($("#nickname").attr("readonly",false)){
-                
-            }else if($("#email").attr("readonly",false)){
-                
-            }
-            
-        }
+        }else{
+						console.log("가입 불가능");
+					 if(id<=0||pw_check<=0||name<=0||nickname<=0||email<=0||tel<=0||birth<=0||gender<=0){
+						 $(".bin-popup").removeClass("blind");
+				      }else if(pw<7&&($("#pw").val()!==$("#pw_check").val())){
+				    	  $(".pwd-popup").removeClass("blind");
+				      }else if($("#id").attr("readonly",false)){
+				    	  $(".id-popup").removeClass("blind");
+				      }else if($("#nickname").attr("readonly",false)){
+				    	  $(".nickname-popup").removeClass("blind");
+				      }else if($("#email").attr("readonly",false)){
+				    	  $(".email-popup").removeClass("blind");
+				      }else if($("#image").size()>4000){
+				    	  $(".image-popup").removeClass("blind");
+				      }
+					}
     });
-
+    
 
 });

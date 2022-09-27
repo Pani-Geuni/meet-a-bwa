@@ -13,17 +13,23 @@
 	href="/meet-a-bwa/resources/css/common/header.css" />
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/common/footer.css" />
+	
+	<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/user/withdrawal-popup.css" />
+	
+	<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/user/bin-popup.css" />
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/join.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
-<script src="/meet-a-bwa/resources/js//user/join/join.js"></script>
+<script src="/meet-a-bwa/resources/js/user/join/join.js"></script>
 <script src="/meet-a-bwa/resources/js/user/join/textCondition.js"></script>
 <script src="/meet-a-bwa/resources/js/user/idCheck.js"></script>
-<script src="/meet-a-bwa/resources/js/user/nickCheck.js"></script>
-<script src="/meet-a-bwa/resources/js/user/emailCheck.js"></script>
-<script src="/meet-a-bwa/resources/js/user/region.js"></script>
-<script src="/meet-a-bwa/resources/js/user/interest.js"></script>
+<script src="/meet-a-bwa/resources/js/user/join/nickCheck.js"></script>
+<script src="/meet-a-bwa/resources/js/user/join/emailCheck.js"></script>
+<script src="/meet-a-bwa/resources/js/user/join/region.js"></script>
+<script src="/meet-a-bwa/resources/js/user/join/interest.js"></script>
 <script src="/meet-a-bwa/resources/js/user/profileImage.js"></script>
 
 <title>밋:어봐</title>
@@ -250,6 +256,144 @@
 			<!--  END HEADER INCLUDE -->
 	</form>
 </div>
-
+<!-- 팝업 -->
+	<!-- not null -->
+	<section class="bin-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content-inner">
+						<section class="modal-content1">
+							<p>빈 항목을 채워주세요!</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content2">
+							<button class="ok">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+	<!-- 비밀번호 확인 -->
+	<section class="pwd-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content-inner">
+						<section class="modal-content1">
+							<p>비밀번호를 확인해주세요!</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content2">
+							<button class="ok">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+	<!-- 중복확인 -->
+	<section class="id-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content-inner">
+						<section class="modal-content1">
+							<p>아이디 중복체크를 완료해주세요!</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content2">
+							<button class="ok">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+	<!-- 닉네임 확인 -->
+	<section class="nickname-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content-inner">
+						<section class="modal-content1">
+							<p>닉네임 중복체크를 완료해주세요!</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content2">
+							<button class="ok">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+	<!-- 이메일 확인 -->
+	<section class="email-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content-inner">
+						<section class="modal-content1">
+							<p>이메일 중복체크를 완료해주세요!</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content2">
+							<button class="ok">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+	<!-- 이미지 용량 초과 -->
+	<section class="image-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content-inner">
+						<section class="modal-content1">
+							<p>이미지 용량 초과 ㅠㅠ!</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content2">
+							<button class="ok">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
 </body>
 </html>

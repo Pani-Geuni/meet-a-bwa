@@ -16,7 +16,7 @@ import test.com.user.model.UserDAOImpl;
 /**
  * Servlet implementation class UserController
  */
-@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do" })
+@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do", "/u_update.do", "/u_updateOK.do" })
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAO u_dao = new UserDAOImpl();
@@ -51,7 +51,10 @@ public class UserController extends HttpServlet {
 			new NickCheckAction().execute(request,response);
 		}else if(sPath.equals("/emailCheck.do")) {
 			new EmailCheckAction().execute(request,response);
-		}
+		}else if (sPath.equals("/u_update.do")) {
+			new UserUpdateAction().execute(request, response);
+
+		} 
 	}
 
 	/**
@@ -68,6 +71,13 @@ public class UserController extends HttpServlet {
 		if (sPath.equals("/u_insertOK.do")) {
 			try {
 				new UserInsertOKAction().execute(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if (sPath.equals("/u_updateOK.do")) {
+			try {
+				new UserUpdateOKAction().execute(request, response);
 			} catch (ServletException | IOException | ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

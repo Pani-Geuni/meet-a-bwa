@@ -232,8 +232,161 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO user_selectOne(UserVO uvo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		UserVO uvo2 = null;
+		try {
+			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
+			System.out.println("user update db conn successed...");
+			pstmt = conn.prepareStatement(UserDB.SQL_USER_SELECT_ONE);
+			
+		    pstmt.setString(1, uvo.getUser_no());    
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				uvo2 = new UserVO();
+				uvo2.setUser_no(rs.getString("user_no"));
+				uvo2.setUser_image(rs.getString("user_image"));
+				uvo2.setUser_id(rs.getString("user_id"));
+				uvo2.setUser_pw(rs.getString("user_pw"));
+				uvo2.setUser_name(rs.getString("user_name"));
+				uvo2.setUser_nickname(rs.getString("user_nickname"));
+				uvo2.setUser_email(rs.getString("user_email"));
+				uvo2.setUser_tel(rs.getString("user_tel"));
+				uvo2.setUser_birth(rs.getDate("user_birth"));
+				uvo2.setUser_gender(rs.getString("user_gender"));
+				uvo2.setUser_interest(rs.getString("user_interest"));
+				uvo2.setUser_city(rs.getString("user_city"));
+				uvo2.setUser_county(rs.getString("user_county"));
+				uvo2.setUser_state(rs.getString("user_state"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return uvo2;
+	}
+
+
+	@Override
+	public int user_update(UserVO uvo) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
+			System.out.println("user update db conn successed...");
+			pstmt = conn.prepareStatement(UserDB.SQL_USER_UPDATE);
+			
+//			 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		        String formattedDate = simpleDateFormat.format(uvo.getUser_birth());
+//		        java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
+		    pstmt.setString(1, uvo.getUser_image());    
+//			pstmt.setString(2, uvo.getUser_id());
+			pstmt.setString(2, uvo.getUser_pw());
+//			pstmt.setString(4, uvo.getUser_name());
+			pstmt.setString(3, uvo.getUser_nickname());
+			pstmt.setString(4, uvo.getUser_email());
+			pstmt.setString(5, uvo.getUser_tel());
+//			System.out.println("DAOImpl:"+date1);
+//			System.out.println(date1 instanceof Date);
+//			pstmt.setDate(8,date1); //안되면 util로 받아보기
+//			pstmt.setString(9, uvo.getUser_gender());
+			pstmt.setString(6, uvo.getUser_interest());
+			pstmt.setString(7, uvo.getUser_city());
+			pstmt.setString(8, uvo.getUser_county());
+			pstmt.setString(9, uvo.getUser_no());
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+
+
+	@Override
+	public int user_delete(UserVO uvo) {
+		System.out.println("delete()...");
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
+			System.out.println("user update db conn successed...");
+			pstmt = conn.prepareStatement(UserDB.SQL_USER_DELETE);
+			pstmt.setString(1, uvo.getUser_no()); 
+			flag=pstmt.executeUpdate();  // insert占쏙옙 executeUpdate占싱곤옙 占쏙옙占쏙옙타占쏙옙(flag)占쏙옙 占쌍억옙占� 占쏙옙
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return flag;
 	}
 
 

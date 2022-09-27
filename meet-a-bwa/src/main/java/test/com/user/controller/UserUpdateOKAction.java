@@ -26,21 +26,22 @@ import test.com.user.model.UserVO;
 public class UserUpdateOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		String dir_path = request.getServletContext().getRealPath("/meet-a-bwa/resources/img/"); // ½Ç°æ·Î(=½Ç¼­¹ö)¿¡ ÀúÀå
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // ì‹¤ê²½ë¡œ(=ì‹¤ì„œë²„)ì— ì €ì¥
 		System.out.println(dir_path);
 
 		int fileSizeMax = 1024 * 1024 * 100;
 
-		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ¸ÖÆ¼ÆÄÆ®ÇüÀÎÁö ¹°À½.
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ë©€í‹°íŒŒíŠ¸í˜•ì¸ì§€ ë¬¼ìŒ.
 
-		// Multipart ¿äÃ»ÀÌ¸é true, ÀÏ¹İ¿äÃ»ÀÌ¸é false
+		// Multipart ìš”ì²­ì´ë©´ true, ì¼ë°˜ìš”ì²­ì´ë©´ false
 		if (isMultipartContent) {
 
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(fileSizeMax);
 			ServletFileUpload sfu = new ServletFileUpload(factory);
-			sfu.setFileSizeMax(fileSizeMax);// ÆÄÀÏ »çÀÌÁî Á¦ÇÑ
+			sfu.setFileSizeMax(fileSizeMax);// íŒŒì¼ ì‚¬ì´ì¦ˆ ì œí•œ
 
+			String user_no =null;
 			String user_image = null;
 			
 			String user_id = null;
@@ -57,14 +58,17 @@ public class UserUpdateOKAction {
 			
 //			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			
-
+			long checkFileSize = 0;
 
 			try {
 				List<FileItem> items = sfu.parseRequest(request);
 				for (FileItem item : items) {
 
 					if (item.isFormField()) {
-						if(item.getFieldName().equals("id")) {
+						if(item.getFieldName().equals("user_no")) {
+							user_no = item.getString("UTF-8");
+						}
+						else if(item.getFieldName().equals("id")) {
 							user_id = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("pw")) {
 							user_pw =  item.getString("UTF-8");
@@ -78,7 +82,7 @@ public class UserUpdateOKAction {
 							user_tel = item.getString("UTF-8");
 						}
 						else if(item.getFieldName().equals("birth")) {
-							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate ÇØº¸±â
+							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate í•´ë³´ê¸°
 							System.out.println("insertOKAction:" + (user_birth instanceof Date));
 						}
 						else if(item.getFieldName().equals("gender")) {
@@ -92,30 +96,30 @@ public class UserUpdateOKAction {
 						}
 
 
-						//System.out.println("ÆûÇÊµå Å° : " + item.getFieldName());
+						//System.out.println("í¼í•„ë“œ í‚¤ : " + item.getFieldName());
 
-						//System.out.println("ÆûÇÊµå °ª : " + item.getString("UTF-8"));
+						//System.out.println("í¼í•„ë“œ ê°’ : " + item.getString("UTF-8"));
 
-					} else {// upFile¹Ş±â
+					} else {// upFileë°›ê¸°
 
-						System.out.println("ÆÄÀÏÀÇ Å° : " + item.getFieldName());
-						System.out.println("ÆÄÀÏ ÆÄÀÏ¸í : " + item.getName());
-						System.out.println("ÆÄÀÏ ÄÁÅÙÃ÷ Å¸ÀÔ : " + item.getContentType());
-						System.out.println("ÆÄÀÏ »çÀÌÁî  : " + item.getSize());
+						System.out.println("íŒŒì¼ì˜ í‚¤ : " + item.getFieldName());
+						System.out.println("íŒŒì¼ íŒŒì¼ëª… : " + item.getName());
+						System.out.println("íŒŒì¼ ì»¨í…ì¸  íƒ€ì… : " + item.getContentType());
+						System.out.println("íŒŒì¼ ì‚¬ì´ì¦ˆ  : " + item.getSize());
+						checkFileSize = item.getSize();
+						if (checkFileSize != 0)
+//							response.sendRedirect("u_update.do?user_no=" + user_no);
+//						else {
+							user_image = FilenameUtils.getName(item.getName());
 
-						if(item.getSize()!=0) { // »çÀÌÁî°¡ 0ÀÌ ¾Æ´Ò¶§ ½ÇÇà 
-						user_image = FilenameUtils.getName(item.getName());
-							
-						
-						
-						File saveFile = new File(dir_path, user_image); // dir_path: ¾÷·Îµå °æ·Î
+							File saveFile = new File(dir_path, user_image); // dir_path: ï¿½ë¾½æ¿¡ì’•ë±¶ å¯ƒìˆì¤ˆ
 
-						try {
-							item.write(saveFile);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						}
+							try {
+								item.write(saveFile);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+//						}
 					}
 				} // end for loop
 
@@ -124,36 +128,39 @@ public class UserUpdateOKAction {
 			}
 			
 
-			
+//			if(checkFileSize!=0) { // ì‚¬ì´ì¦ˆê°€ 0ì´ ì•„ë‹ë•Œ ì‹¤í–‰ 
 			UserVO uvo = new UserVO();
-			uvo.setUser_id(user_id);
+			uvo.setUser_no(user_no);
+//			uvo.setUser_id(user_id);
+//			uvo.setUser_image(user_image);
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image);
 			uvo.setUser_pw(user_pw);
-			uvo.setUser_name(user_name);
+//			uvo.setUser_name(user_name);
 			uvo.setUser_nickname(user_nickname);
 			uvo.setUser_email(user_email);
 			uvo.setUser_tel(user_tel);
-			uvo.setUser_birth(user_birth);
-			System.out.println("InsertOKAction:"+user_birth);
-			uvo.setUser_gender(user_gender);
+//			uvo.setUser_birth(user_birth);
+//			System.out.println("InsertOKAction:"+user_birth);
+//			uvo.setUser_gender(user_gender);
 			uvo.setUser_interest(user_interest);
 			uvo.setUser_city(user_city);
 			uvo.setUser_county(user_county);
 			
-//			System.out.println("please:"+user_image.length());
-			System.out.println("please:"+user_image);
-			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0ÀÌ¸é img_001.jpgÀÇ ÀÌ¹ÌÁö¸¦, 0ÀÌ ¾Æ´Ï¸é img
+//			System.out.println("please:"+user_image);
+//			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0ì´ë©´ img_001.jpgì˜ ì´ë¯¸ì§€ë¥¼, 0ì´ ì•„ë‹ˆë©´ img
 			
 			UserDAO u_dao = new UserDAOImpl();
-			int result = u_dao.user_insert(uvo);
+			int result = u_dao.user_update(uvo);
 			System.out.println("result: "+result);
 
 			if(result==1) {
-//				if(result1==1&&result2==1) {
-				request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
+				//request.getRequestDispatcher("/views/main/USER04.jsp?user_no"+user_no).forward(request, response);
+				request.getRequestDispatcher("/views/main/USER04.jsp").forward(request, response);
 				}else
-//					response.sendRedirect("u_insert.do");
-					request.getRequestDispatcher("/views/user/USER02.jsp").forward(request, response);
+					request.getRequestDispatcher("/views/user/u_update.do?user_no"+user_no).forward(request, response);
 			}
+//		 }// end if
+		
 		} // end if << isMultipartContent
 	
 }

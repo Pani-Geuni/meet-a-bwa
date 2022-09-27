@@ -26,7 +26,7 @@ import test.com.user.model.UserVO;
 public class UserInsertOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		String dir_path = request.getServletContext().getRealPath("/meet-a-bwa/resources/img/"); // 실경로(=실서버)에 저장
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 실경로(=실서버)에 저장
 		System.out.println(dir_path);
 
 		int fileSizeMax = 1024 * 1024 * 100;
