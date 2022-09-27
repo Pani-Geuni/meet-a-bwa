@@ -230,6 +230,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
+	@Override
+	public UserVO user_selectOne(UserVO uvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	//占쏙옙占쏙옙占쏙옙占� 占쏙옙占심삼옙 占쌩곤옙
 //	@Override
 //	public int interest_insert(InterestVO ivo) {
