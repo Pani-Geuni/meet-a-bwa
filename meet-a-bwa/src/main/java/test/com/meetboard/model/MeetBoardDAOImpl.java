@@ -140,5 +140,61 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 		return vos;
 	}
 
+	@Override
+	public MeetBoardVO board_selectOne(MeetBoardVO bvo) {
+		System.out.println("board selectOne()...");
+		
+		try {
+			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
+			System.out.println("MemberBoard selectOne conn succeed...");
+			
+			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_SELECT_ONE_TEST);
+			
+			pstmt.setString(1, bvo.getBoard_no());
+			rs = pstmt.executeQuery();
+			
+			
+			while (rs.next()) {
+				bvo.setBoard_no(rs.getString("board_no"));
+				bvo.setBoard_title(rs.getString("board_title"));
+				bvo.setBoard_content(rs.getString("board_content"));
+				bvo.setBoard_date(rs.getDate("board_date"));
+				bvo.setUser_name(rs.getString("user_name"));
+				bvo.setUser_no(rs.getString("user_no"));
+			}
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+
+        return bvo;
+	}
+
 
 }

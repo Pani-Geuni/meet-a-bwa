@@ -17,7 +17,7 @@ import test.com.meetboard.model.MeetBoardVO;
 /**
  * Servlet implementation class MeetBoardController
  */
-@WebServlet("/b_insertOK.do")
+@WebServlet({"/b_insertOK.do", "/b_selectOne.do" })
 public class MeetBoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MeetBoardDAO dao = new MeetBoardDAOImpl(); 
@@ -37,6 +37,30 @@ public class MeetBoardController extends HttpServlet {
 
 		String sPath = request.getServletPath();
 		System.out.println("doPost..." + sPath);
+		
+		if (sPath.equals("/b_selectOne.do")) {
+			MeetBoardDAO dao = new MeetBoardDAOImpl();
+			
+			if (request.getParameter("board_no") != null) {
+				String board_no = request.getParameter("board_no");
+				System.out.println("SelectOne board_no :" + board_no);
+				
+				MeetBoardVO bvo = new MeetBoardVO();
+				
+				bvo.setBoard_no(board_no);
+				System.out.println("board_no check 1 : " + board_no);
+				
+				MeetBoardVO bvo2 = dao.board_selectOne(bvo);
+				
+				System.out.println("board_no check 2 : " + board_no);
+				
+				request.setAttribute("bvo2", bvo2);
+				
+				request.getRequestDispatcher("views/meet/MEET03.jsp").forward(request, response);
+			} else {
+				response.sendRedirect("meet-main.do");
+			}
+		}
 		
 	}
 
