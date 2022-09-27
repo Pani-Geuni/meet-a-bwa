@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ListController
  */
-@WebServlet({ "/meet-list.do", "/activity-list.do", "/search-list.do" })
+@WebServlet({ "/meet-list.do", "/activity-list.do" })
 public class ListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +34,6 @@ public class ListController extends HttpServlet {
 			new MeetListAction().execute(request, response);
 		} else if (sPath.equals("/activity-list.do")) {
 			new ActivityListAction().execute(request, response);
-		} else if (sPath.equals("/search-list.do")) {
-			new SearchListAction().execute(request, response);
 		}
 	}
 
