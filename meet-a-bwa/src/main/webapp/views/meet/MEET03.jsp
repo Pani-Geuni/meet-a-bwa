@@ -232,13 +232,13 @@
 <!-- *******************  -->
 <!-- delete popup SECTION -->
 <!-- *******************  -->
-  <div class="logout-popup-layer" data-popup="delete">
-    <div class="logout-popup-wrap">
+  <div class="delete-popup-layer" data-popup="delete">
+    <div class="delete-popup-wrap">
       <img src="/meet-a-bwa/resources/img/worry.svg" alt="" />
       <h1>정말 삭제 하시겠습니까?</h1>
 
       <div class="btn-group">
-        <button class="btn-logout" data-popup-close="delete">삭제</button>
+        <button class="btn-delete" data-popup-close="delete">삭제</button>
         <button class="btn-cancel" data-popup-close="delete">취소</button>
       </div>
     </div>

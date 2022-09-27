@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -194,6 +193,54 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
         }
 
         return bvo;
+	}
+
+	@Override
+	public int board_delete(MeetBoardVO bvo) {
+		System.out.println("board delete()...");
+		
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
+			System.out.println("MemberBoard selectOne conn succeed...");
+			
+			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_DELETE_TEST);
+			
+			pstmt.setString(1, bvo.getBoard_no());
+			flag = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return flag;
 	}
 
 
