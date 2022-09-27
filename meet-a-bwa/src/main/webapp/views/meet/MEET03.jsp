@@ -101,7 +101,7 @@
               </div>
               <div class="post-more-select">
               	<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
-              		<ul class="post-option-list">
+              		<ul class="post-option-list" idx="${ bvo2.board_no }">
               			<li class="post-option-item">수정하기</li>
               			<li class="post-option-item" data-popup-open="delete">삭제하기</li>
 					</ul>
@@ -238,7 +238,7 @@
       <h1>정말 삭제 하시겠습니까?</h1>
 
       <div class="btn-group">
-        <button class="btn-delete" data-popup-close="delete">삭제</button>
+        <button id="btn-delete" class="btn-delete" data-popup-close="delete">삭제</button>
         <button class="btn-cancel" data-popup-close="delete">취소</button>
       </div>
     </div>

@@ -100,6 +100,15 @@
 					<!-- end meet-notification -->
 
 					<div class="all-feed">
+					
+						<c:choose>
+						<c:when test="${ empty vos }">
+							<div class="feed-empty">
+				                <h1>현재 모임에 작성된 글이 없어요!</h1>
+				                <p>모임에 글을 작성해 소통해봐요!</p>
+				            </div>
+						</c:when>
+						<c:when test="${ not empty vos }">
 						<c:forEach var="vo" items="${ vos }">
 						<div class="feed">
 							<div class="feed-profile">
@@ -134,6 +143,8 @@
 						</div>
 						<!-- end one feed -->
 						</c:forEach>
+						</c:when>
+						</c:choose>
 					</div>
 					<!-- end all feed -->
 				</article>
