@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserDAOImpl implements UserDAO {
@@ -12,7 +13,9 @@ public class UserDAOImpl implements UserDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-
+	
+//	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    
 	public UserDAOImpl() {
 		System.out.println("DeptDAOimpl()...");
 
@@ -33,17 +36,24 @@ public class UserDAOImpl implements UserDAO {
 			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
 			System.out.println("user insert db conn successed...");
 			pstmt = conn.prepareStatement(UserDB.SQL_USER_INSERT);
-			pstmt.setString(1, uvo.getUser_id());
-			pstmt.setString(2, uvo.getUser_pw());
-			pstmt.setString(3, uvo.getUser_name());
-			pstmt.setString(4, uvo.getUser_nickname());
-			pstmt.setString(5, uvo.getUser_email());
-			pstmt.setString(6, uvo.getUser_tel());
-			pstmt.setDate(7,(java.sql.Date) uvo.getUser_birth()); //안되면 util로 받아보기
-			pstmt.setString(8, uvo.getUser_gender());
-			pstmt.setString(9, uvo.getUser_interest());
-			pstmt.setString(10, uvo.getUser_city());
-			pstmt.setString(11, uvo.getUser_county());
+			
+			 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        String formattedDate = simpleDateFormat.format(uvo.getUser_birth());
+		        java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
+		    pstmt.setString(1, uvo.getUser_image());    
+			pstmt.setString(2, uvo.getUser_id());
+			pstmt.setString(3, uvo.getUser_pw());
+			pstmt.setString(4, uvo.getUser_name());
+			pstmt.setString(5, uvo.getUser_nickname());
+			pstmt.setString(6, uvo.getUser_email());
+			pstmt.setString(7, uvo.getUser_tel());
+			System.out.println("DAOImpl:"+date1);
+			System.out.println(date1 instanceof Date);
+			pstmt.setDate(8,date1); //안되면 util로 받아보기
+			pstmt.setString(9, uvo.getUser_gender());
+			pstmt.setString(10, uvo.getUser_interest());
+			pstmt.setString(11, uvo.getUser_city());
+			pstmt.setString(12, uvo.getUser_county());
 			
 			flag=pstmt.executeUpdate(); 
 			

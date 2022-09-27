@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
-//import java.sql.Date;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,53 +41,53 @@ public class UserInsertOKAction {
 			ServletFileUpload sfu = new ServletFileUpload(factory);
 			sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
 
-			String user_image = "";
+			String user_image = null;
 			
-			String user_id = "";
-			String user_pw = "";
-			String user_name = "";
-			String user_nickname = "";
-			String user_email = "";
-			String user_tel = "";
+			String user_id = null;
+			String user_pw = null;
+			String user_name = null;
+			String user_nickname = null;
+			String user_email = null;
+			String user_tel = null;
 			Date user_birth = null;
-			String user_gender = "";
-			String user_interest = "";
-			String user_city = "";
-			String user_county = "";
+			String user_gender = null;
+			String user_interest = null;
+			String user_city = null;
+			String user_county = null;
 			
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			
-//			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//			String strDate = dateFormat.format(Calendar.getInstance().getTime());
+
 
 			try {
 				List<FileItem> items = sfu.parseRequest(request);
 				for (FileItem item : items) {
 
 					if (item.isFormField()) {
-						if(item.getFieldName().equals("user_id")) {
+						if(item.getFieldName().equals("id")) {
 							user_id = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_pw")) {
+						}else if(item.getFieldName().equals("pw")) {
 							user_pw =  item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_name")) {
+						}else if(item.getFieldName().equals("name")) {
 							user_name = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_nickname")) {
+						}else if(item.getFieldName().equals("nickname")) {
 							user_nickname = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_email")) {
+						}else if(item.getFieldName().equals("email")) {
 							user_email = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_tel")) {
+						}else if(item.getFieldName().equals("tel")) {
 							user_tel = item.getString("UTF-8");
 						}
-						else if(item.getFieldName().equals("user_birth")) {
-							user_birth =formatter.parse(item.getString("UTF-8"));
+						else if(item.getFieldName().equals("birth")) {
+							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate 해보기
+							System.out.println("insertOKAction:" + (user_birth instanceof Date));
 						}
-						else if(item.getFieldName().equals("user_gender")) {
+						else if(item.getFieldName().equals("gender")) {
 							user_gender = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_interest")) {
+						}else if(item.getFieldName().equals("interest")) {
 							user_interest = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_city")) {
+						}else if(item.getFieldName().equals("city")) {
 							user_city = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("user_county")) {
+						}else if(item.getFieldName().equals("country")) {
 							user_county = item.getString("UTF-8");
 						}
 
@@ -133,13 +133,15 @@ public class UserInsertOKAction {
 			uvo.setUser_email(user_email);
 			uvo.setUser_tel(user_tel);
 			uvo.setUser_birth(user_birth);
+			System.out.println("InsertOKAction:"+user_birth);
 			uvo.setUser_gender(user_gender);
 			uvo.setUser_interest(user_interest);
 			uvo.setUser_city(user_city);
 			uvo.setUser_county(user_county);
 			
-			
-			uvo.setUser_image(user_image.length()==0?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
+//			System.out.println("please:"+user_image.length());
+			System.out.println("please:"+user_image);
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
 			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_insert(uvo);

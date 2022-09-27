@@ -196,7 +196,7 @@
 				<div id="birth_div">
 					<label><span class="noChange">*</span> 생년월일</label>
 					<p>
-						<input type="date" id="birth">
+						<input type="date" id="birth" name="birth">
 					</p>
 				</div>
 
@@ -204,7 +204,7 @@
 					<div id="gender_la">
 						<label><span class="noChange">*</span> 성별</label>
 					</div>
-					<select id="gender">
+					<select id="gender" name="gender">
 						<option value="">선택</option>
 						<option value="여">여</option>
 						<option value="남">남</option>
@@ -216,7 +216,7 @@
 				<div id="interest_la">
 					<label>관심사</label>
 				</div>
-				<select id="interest">
+				<select id="interest" name="interest">
 					<option value="" class="interest_opt">선택</option>
 				</select>
 			</div>
