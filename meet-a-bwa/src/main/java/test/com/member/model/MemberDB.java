@@ -8,5 +8,5 @@ public interface MemberDB {
 	String PASSWORD = "test1234";
 	
 		
-	String SQL_ID_CHECK = "select * from member where member_id=?";
+	String SQL_ID_CHECK = "select * from test_user where user_id=?";
 }

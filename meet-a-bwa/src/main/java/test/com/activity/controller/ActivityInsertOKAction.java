@@ -26,20 +26,20 @@ import test.com.user.model.UserVO;
 
 public class ActivityInsertOKAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dir_path = request.getServletContext().getRealPath("/meet-a-bwa/resources/img"); // ½Ç°æ·Î(=½Ç¼­¹ö)¿¡ ÀúÀå
+		String dir_path = request.getServletContext().getRealPath("/meet-a-bwa/resources/img"); // ï¿½Ç°ï¿½ï¿½(=ï¿½Ç¼ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		System.out.println(dir_path);
 
 		int fileSizeMax = 1024 * 1024 * 100;
 
-		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ¸ÖÆ¼ÆÄÆ®ÇüÀÎÁö ¹°À½.
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ï¿½ï¿½Æ¼ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-		// Multipart ¿äÃ»ÀÌ¸é true, ÀÏ¹Ý¿äÃ»ÀÌ¸é false
+		// Multipart ï¿½ï¿½Ã»ï¿½Ì¸ï¿½ true, ï¿½Ï¹Ý¿ï¿½Ã»ï¿½Ì¸ï¿½ false
 		if (isMultipartContent) {
 
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(fileSizeMax);
 			ServletFileUpload sfu = new ServletFileUpload(factory);
-			sfu.setFileSizeMax(fileSizeMax);// ÆÄÀÏ »çÀÌÁî Á¦ÇÑ
+			sfu.setFileSizeMax(fileSizeMax);// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			String activity_image = "";
 			String activity_name = "";
@@ -82,23 +82,23 @@ public class ActivityInsertOKAction {
 						}
 
 
-						//System.out.println("ÆûÇÊµå Å° : " + item.getFieldName());
+						//System.out.println("ï¿½ï¿½ï¿½Êµï¿½ Å° : " + item.getFieldName());
 
-						//System.out.println("ÆûÇÊµå °ª : " + item.getString("UTF-8"));
+						//System.out.println("ï¿½ï¿½ï¿½Êµï¿½ ï¿½ï¿½ : " + item.getString("UTF-8"));
 
-					} else {// upFile¹Þ±â
+					} else {// upFileï¿½Þ±ï¿½
 
-						System.out.println("ÆÄÀÏÀÇ Å° : " + item.getFieldName());
-						System.out.println("ÆÄÀÏ ÆÄÀÏ¸í : " + item.getName());
-						System.out.println("ÆÄÀÏ ÄÁÅÙÃ÷ Å¸ÀÔ : " + item.getContentType());
-						System.out.println("ÆÄÀÏ »çÀÌÁî  : " + item.getSize());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å° : " + item.getFieldName());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ : " + item.getName());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ : " + item.getContentType());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  : " + item.getSize());
 
-						if(item.getSize()!=0) { // »çÀÌÁî°¡ 0ÀÌ ¾Æ´Ò¶§ ½ÇÇà 
+						if(item.getSize()!=0) { // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 0ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 						activity_image = FilenameUtils.getName(item.getName());
 							
 						
 						
-						File saveFile = new File(dir_path, activity_image); // dir_path: ¾÷·Îµå °æ·Î
+						File saveFile = new File(dir_path, activity_image); // dir_path: ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½
 
 						try {
 							item.write(saveFile);
@@ -128,7 +128,7 @@ public class ActivityInsertOKAction {
 			
 			
 			
-			avo.setActivity_image(activity_image.length()==0?"/meet-a-bwa/resources/img/default-image2":activity_image); // 0ÀÌ¸é img_001.jpgÀÇ ÀÌ¹ÌÁö¸¦, 0ÀÌ ¾Æ´Ï¸é img
+			avo.setActivity_image(activity_image.length()==0?"/meet-a-bwa/resources/img/default-image2":activity_image); // 0ï¿½Ì¸ï¿½ img_001.jpgï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½, 0ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ img
 			
 			ActivityDAO a_dao = new ActivityDAOImpl();
 			int result = a_dao.activity_insert(avo);

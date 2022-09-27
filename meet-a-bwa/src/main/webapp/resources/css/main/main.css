@@ -68,9 +68,9 @@
     display: flex;
     align-items : center;
     justify-content: space-between;
-    flex-wrap : no-wrap;
+    flex-wrap : wrap;
 
-    width: 100%;
+    width: 985px;
     box-sizing: border-box;
     padding : 20px;
 }
@@ -78,9 +78,12 @@
     position: relative;
 
     width: 420px;
+    min-width: 420px;
+    max-width: 420px;
     height: 135px;
 
     padding: 15px;
+    margin-bottom : 15px;
 
     border-radius: 15px;
     background-color: white;
@@ -159,11 +162,12 @@
     display: flex;
     justify-content: space-between;
     margin-right : 8px;
+    height : 25px;
 }
 .meet_info{
     display: flex;
     justify-content: left;
-    margin-top: 9px;
+    margin-top : 4px;
     margin-left: 5px;
 }
 .meet_condition{
@@ -267,4 +271,18 @@
     display: inline-block;
     height: 31px;
     margin-top: 8px;
+}
+
+
+/***********************************************/
+
+#recommend_list_wrap{
+	display: flex;
+    align-items : center;
+    justify-content: space-between;
+    flex-wrap : wrap;
+
+    width: 985px;
+    box-sizing: border-box;
+    padding : 20px;
 }

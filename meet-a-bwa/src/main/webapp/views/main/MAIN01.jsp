@@ -19,8 +19,8 @@
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script>
     	$(function(){
-    		var member_id = '${member_id}'; //세션값 가져옴
-			console.log(member_id);
+    		var user_id = '${user_id}'; //세션값 가져옴
+			console.log(user_id);
 	    		
     	    $("#plusImg").click(function(){
     	        $("#fold_tag").removeClass("blind");
@@ -37,6 +37,9 @@
     	    $(".tagItem").click(function(e){
     	        $(".tagItem").removeClass("check");
     	        $(e.target).addClass("check");
+    	        console.log($(this).text());
+    	        let category = $(this).text();
+    	        location.href = "/meet-a-bwa/a_selectOne.do?category="+category;
     	    })
     	    
     	 	$(".btn-cancel").click(function(){
@@ -89,7 +92,7 @@
 		                            
 		                            <c:if test="${list.interest ne null}">
 			                            <!-- 회원이 설정한 관심사 있을 때,-->
-			                            <span class = "interest_comment comment">관심사와 관련된 모임 추천해드려요!</span>
+			                            <span class = "interest_comment comment">관심사인  <u>${list.interest}</u>와 관련된 모임 추천해드려요!</span>
 		                            </c:if>
 		                        </section>
 							</c:when>
@@ -104,9 +107,9 @@
                 <!-- START Meet RECOMMEND SECTION -->
                 <div id = "meet_recommendSection">
                 
-                	<c:forEach var="mvo" items="${m_list}">
+                	<c:forEach var="mvo" items="${u_list}">
 	                    <!-- start content_list div-->
-	                    <div class = "content_list content_list_sample">
+	                    <div class = "content_list">
 	                        <div class = "info-list-wrap">
 	                            <div class = "listCommon">
 	                                <span class = "content_title">${mvo.meet_name}</span>
@@ -150,12 +153,14 @@
 		                                </div>
 	                                </c:if>
 	                                
-	                                <!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
-	                                <div class = "meet_condition">
-	                                    <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line이미지" class = "divide">
-	                                    <span class = "condition_bold condition_common"><b>모집</b></span>
-	                                    <span class = "condition_regular condition_common">20~30대</span>
-	                                </div>
+	                                <c:if test = "${mvo.meet_age != 0}">
+	                                	<!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
+		                                <div class = "meet_condition">
+		                                    <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line이미지" class = "divide">
+		                                    <span class = "condition_bold condition_common"><b>모집</b></span>
+		                                    <span class = "condition_regular condition_common">${mvo.meet_age}대</span>
+		                                </div>
+	                                </c:if>
 	                            </div>
 	    
 	                            <div class = "likeWrap">
@@ -238,65 +243,74 @@
                         </div>
                     </div>
                     
-                    
-                    <div class = "content_list blind">
-                        <div class = "info-list-wrap">
-                            <div class = "listCommon">
-                                <span class = "content_title">경기 광주 다이어트</span>
-                            </div>
-
-                            <div class = "description_list listCommon">
-                                <span class = "content_description">
-                                    혼자 타도 좋고!! 같이 타면 더 좋다!! 경기도 광주 소개 자전거 모임입니다. 초보부터 중고수까지 솰라솰라
-                                    혼자 타도 좋고!! 같이 타면 더 좋다!! 경기도 광주 소개 자전거 모임입니다. 초보부터 중고수까지 솰라솰라
-                                </span>
-                            </div>
-
-                            <div class = "listCommon">
-                                <div class = "tagSection">
-                                    <div class = "loca_tag tag">
-                                        <img src = "/meet-a-bwa/resources/img/map.png" class = "tag_img">
-                                        <span class = "location_name font_size_10">경안동</span>
-                                    </div>
-                                    <div class = "cate_tag tag">
-                                        <span class = "category_name font_size_10">자전거</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class = "content_img">
-                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
-                            </div>
-                        </div>
-
-
-                        <div class = "bottomWrap">
-                            <div class = "meet_info">
-                                <div class = "meet_member_info">
-                                    <span class = "member_cnt member_ment">19명</span>
-                                    <span class = "member_ment">참여 중</span>
-                                </div>
-                                
-                                <!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
-                                <div class = "meet_condition">
-                                    <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line이미지" class = "divide">
-                                    <span class = "condition_bold condition_common"><b>모집</b></span>
-                                    <span class = "condition_regular condition_common">20~30대</span>
-                                </div>
-                            </div>
-    
-                            <div class = "likeWrap">
-                                <section class = "heartSection">
-                                    <img src = "/meet-a-bwa/resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon"/>
-                                    <img src = "/meet-a-bwa/resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon blind"/>
-                                </section>
-                                <span class = "likeCnt">
-                                    0
-                                </span>
-                            </div>
-                        </div>
+                    <div id = "recommend_list_wrap">
+	                    <c:forEach var="avo" items="${a_list}">
+		                   	<div class = "content_list">
+		                        <div class = "info-list-wrap">
+		                            <div class = "listCommon">
+		                                <span class = "content_title">${avo.activity_name}</span>
+		                            </div>
+		
+		                            <div class = "description_list listCommon">
+		                                <span class = "content_description">
+		                                    ${avo.activity_description}
+		                                </span>
+		                            </div>
+		
+		                            <div class = "listCommon">
+		                                <div class = "tagSection">
+		                                	<c:if test = "${avo.activity_county ne null}">
+			                                    <div class = "loca_tag tag">
+			                                        <img src = "/meet-a-bwa/resources/img/map.png" class = "tag_img">
+			                                        <span class = "location_name font_size_10">${avo.activity_county}</span>
+			                                    </div>
+		                                    </c:if>
+		                                    
+		                                    <c:if test = "${avo.activity_interest_name ne null}">
+			                                    <div class = "cate_tag tag">
+			                                        <span class = "category_name font_size_10">${avo.activity_interest_name}</span>
+			                                    </div>
+		                                    </c:if>
+		                                </div>
+		                            </div>
+		
+		                            <div class = "content_img">
+		                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
+		                            </div>
+		                        </div>
+		
+		
+		                        <div class = "bottomWrap">
+		                            <div class = "meet_info">
+		                            	<c:if test = "${avo.user_cnt ne null}">
+			                                <div class = "meet_member_info">
+			                                    <span class = "member_cnt member_ment">${avo.user_cnt}명</span>
+			                                    <span class = "member_ment">참여 중</span>
+			                                </div>
+		                                </c:if>
+		                                
+		                                <c:if test = "${avo.activity_age != 0}">
+		                                	<!-- 조건있는 모임(조건없을 시 hide 클래스 추가) -->
+			                                <div class = "meet_condition">
+			                                    <img src = "/meet-a-bwa/resources/img/line.svg" alt = "line이미지" class = "divide">
+			                                    <span class = "condition_bold condition_common"><b>모집</b></span>
+			                                    <span class = "condition_regular condition_common">${avo.activity_age}대</span>
+			                                </div>
+		                                </c:if>
+		                            </div>
+		    
+		                            <div class = "likeWrap">
+		                                <section class = "heartSection">
+		                                    <img src = "/meet-a-bwa/resources/img/heart-outlined.svg" alt = '라인하트이미지' class = "beforeLike_heart heartCommon"/>
+		                                    <img src = "/meet-a-bwa/resources/img/heart-filled.svg" alt = '풀하트이미지' class = "afterLike_heart heartCommon blind"/>
+		                                </section>
+		                                <span class = "likeCnt">${avo.like_cnt}</span>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!-- end content_list div -->
+	                    </c:forEach>
                     </div>
-                    <!-- end content_list div -->
 
                 </div>
                 <!-- end act recommend section -->

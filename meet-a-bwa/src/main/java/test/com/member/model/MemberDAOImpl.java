@@ -32,23 +32,23 @@ public class MemberDAOImpl implements MemberDAO {
 			conn = DriverManager.getConnection(MemberDB.URL,MemberDB.USER,MemberDB.PASSWORD);
 			System.out.println("conn successed...");
 			pstmt = conn.prepareStatement(MemberDB.SQL_ID_CHECK);
-			pstmt.setString(1, uvo.getMember_id());
+			pstmt.setString(1, uvo.getUser_id());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				if(uvo.getMember_pw().equals(rs.getString("member_pw"))) {
-					vo.setMember_no(rs.getString("member_no"));
-					vo.setMember_id(rs.getString("member_id"));
-					vo.setMember_name(rs.getString("member_name"));
-					vo.setMember_nickname(rs.getString("member_nickname"));
-					vo.setMember_email(rs.getString("member_email"));
-					vo.setMember_tel(rs.getString("member_tel"));
-					vo.setMember_birth(rs.getDate("member_birth"));
-					vo.setMember_gender(rs.getString("member_gender"));
-					vo.setMember_city(rs.getString("member_city"));
-					vo.setMember_county(rs.getString("member_county"));
-					vo.setMember_state(rs.getString("member_state"));
-					vo.setMember_interest(rs.getString("member_interest"));
+				if(uvo.getUser_pw().equals(rs.getString("user_pw"))) {
+					vo.setUser_no(rs.getString("user_no"));
+					vo.setUser_id(rs.getString("user_id"));
+					vo.setUser_name(rs.getString("user_name"));
+					vo.setUser_nickname(rs.getString("user_nickname"));
+					vo.setUser_email(rs.getString("user_email"));
+					vo.setUser_tel(rs.getString("user_tel"));
+					vo.setUser_birth(rs.getDate("user_birth"));
+					vo.setUser_gender(rs.getString("user_gender"));
+					vo.setUser_city(rs.getString("user_city"));
+					vo.setUser_county(rs.getString("user_county"));
+					vo.setUser_state(rs.getString("user_state"));
+					vo.setUser_interest(rs.getString("user_interest"));
 				}
 			}
 
