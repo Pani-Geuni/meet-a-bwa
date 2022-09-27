@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MeetBoardController
  */
-@WebServlet({"/b_insertOK.do", "/b_selectOne.do", "/b_deleteOK.do" })
+@WebServlet({"/b_insertOK.do", "/b_selectOne.do", "/b_deleteOK.do", "/b_updateOK" })
 public class MeetBoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L; 
        

@@ -72,6 +72,54 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 		
 		return flag;
 	}
+	
+	@Override
+	public int board_update(MeetBoardVO bvo) {
+		int flag = 0;
+		
+		System.out.println("board update()...");
+		
+		try {
+			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
+			System.out.println("MemberBoard conn succeed...");
+			
+			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_UPDATE_TEST);
+			
+			pstmt.setString(1, bvo.getBoard_title());
+			pstmt.setString(2, bvo.getBoard_content());
+			pstmt.setString(3, bvo.getBoard_no());
+			
+			flag = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		return flag;
+	}
 
 	@Override
 	public List<MeetBoardVO> board_selectAll() {
