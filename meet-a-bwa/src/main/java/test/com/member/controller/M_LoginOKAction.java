@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.valves.rewrite.Substitution.MapElement;
 
+import test.com.activity.model.ActivityDAO;
+import test.com.activity.model.ActivityDAOImpl;
+import test.com.activity.model.ActivityVO2;
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
 import test.com.meet.model.MeetVO2;
@@ -41,11 +44,15 @@ public class M_LoginOKAction {
 			Cookie cookie1 = new Cookie("isLogin", "true");
 			Cookie cookie2 = new Cookie("user_no", vo2.getUser_no());
 			Cookie cookie3 = new Cookie("user_interest", vo2.getUser_interest());
+			Cookie cookie4 = new Cookie("user_county", vo2.getUser_county());
+			Cookie cookie5 = new Cookie("nick_name", vo2.getUser_nickname());
 
 			// 쿠키를 클라이언트로 전송
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
 			response.addCookie(cookie3);
+			response.addCookie(cookie4);
+			response.addCookie(cookie5);
 			
 			
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -74,11 +81,16 @@ public class M_LoginOKAction {
 			Cookie cookie1 = new Cookie("isLogin", "false");
 			Cookie cookie2 = new Cookie("user_no", "");
 			Cookie cookie3 = new Cookie("user_interest", "");
+			Cookie cookie4 = new Cookie("user_county", "");
+			Cookie cookie5 = new Cookie("nick_name", "");
+			
 
 			// 쿠키를 클라이언트로 전송
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
 			response.addCookie(cookie3);
+			response.addCookie(cookie4);
+			response.addCookie(cookie5);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
@@ -88,6 +100,12 @@ public class M_LoginOKAction {
 			List<MeetVO2> list = m_dao.select_like();
 			request.setAttribute("u_list", list);
 		}
+		
+		ActivityDAO dao2 = new ActivityDAOImpl();
+		List<ActivityVO2> list2 = dao2.selectAll10();
+		request.setAttribute("a_list", list2);
+		request.setAttribute("checkCategory", "전체");
+
 		
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 	}
