@@ -1,7 +1,6 @@
 package test.com.meet.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import test.com.meetboard.model.MeetBoardDAO;
-import test.com.meetboard.model.MeetBoardDAOImpl;
-import test.com.meetboard.model.MeetBoardVO;
+import test.com.meetboard.controller.MeetBoardSelectAllAction;
 
 /**
  * Servlet implementation class MeemController
@@ -37,14 +34,8 @@ public class MeetController extends HttpServlet {
 		System.out.println("sPath : " + sPath);
 		
 		if (sPath.equals("/meet-main.do")) {
+			new MeetBoardSelectAllAction().execute(request, response);
 			
-			MeetBoardDAO dao = new MeetBoardDAOImpl();
-			
-			List<MeetBoardVO> vos = dao.board_selectAll();
-			
-			request.setAttribute("vos", vos);
-			
-			request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
 		} else if (sPath.equals("/meet-member.do")) {
 			request.getRequestDispatcher("views/meet/MEET04.jsp").forward(request, response);
 		}

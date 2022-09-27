@@ -8,4 +8,6 @@ public interface MeetBoardDAO {
 	public List<MeetBoardVO> board_selectAll();
 	
 	public MeetBoardVO board_selectOne(MeetBoardVO bvo);
+	
+	public int board_delete(MeetBoardVO bvo);
 }

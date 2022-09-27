@@ -100,7 +100,16 @@
 					<!-- end meet-notification -->
 
 					<div class="all-feed">
-						<c:forEach var="vo" items="${vos }">
+					
+						<c:choose>
+						<c:when test="${ empty vos }">
+							<div class="feed-empty">
+				                <h1>현재 모임에 작성된 글이 없어요!</h1>
+				                <p>모임에 글을 작성해 소통해봐요!</p>
+				            </div>
+						</c:when>
+						<c:when test="${ not empty vos }">
+						<c:forEach var="vo" items="${ vos }">
 						<div class="feed">
 							<div class="feed-profile">
 								<div class="user-info">
@@ -114,7 +123,7 @@
 								<div class="post-more-select">
 									<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
 
-									<ul class="post-option-list">
+									<ul class="post-option-list" idx="${ vo.board_no }">
 										<li class="post-option-item">수정하기</li>
 										<li class="post-option-item" data-popup-open="delete">
 											삭제하기</li>
@@ -134,6 +143,8 @@
 						</div>
 						<!-- end one feed -->
 						</c:forEach>
+						</c:when>
+						</c:choose>
 					</div>
 					<!-- end all feed -->
 				</article>
@@ -222,13 +233,13 @@
 <!-- *******************  -->
 <!-- delete popup SECTION -->
 <!-- *******************  -->
-  <div class="logout-popup-layer" data-popup="delete">
-    <div class="logout-popup-wrap">
+  <div class="delete-popup-layer" data-popup="delete">
+    <div class="delete-popup-wrap">
       <img src="/meet-a-bwa/resources/img/worry.svg" alt="" />
       <h1>정말 삭제 하시겠습니까?</h1>
 
       <div class="btn-group">
-        <button class="btn-logout" data-popup-close="delete">삭제</button>
+        <button id="btn-delete" class="btn-delete" data-popup-close="delete">삭제</button>
         <button class="btn-cancel" data-popup-close="delete">취소</button>
       </div>
     </div>
