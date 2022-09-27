@@ -8,12 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
-import test.com.meetboard.model.MeetBoardDAO;
-import test.com.meetboard.model.MeetBoardDAOImpl;
-import test.com.meetboard.model.MeetBoardVO;
-
 
 /**
  * Servlet implementation class MeetBoardController
@@ -41,26 +35,7 @@ public class MeetBoardController extends HttpServlet {
 		if (sPath.equals("/b_selectOne.do")) {
 			new MeetBoardSelectOneAction().execute(request, response);
 		} else if (sPath.equals("/b_deleteOK.do")) {
-			String board_no = request.getParameter("board_no");
-			System.out.println("SelectOne board_no :" + board_no);
-			
-			MeetBoardDAO dao = new MeetBoardDAOImpl();
-			MeetBoardVO bvo = new MeetBoardVO();
-			
-			bvo.setBoard_no(board_no);
-			
-			
-			int result = dao.board_delete(bvo);
-			
-			if (result == 1) {
-				JSONObject obj = new JSONObject();
-				System.out.println(bvo.getBoard_no());
-				
-				obj.put("result", (String) bvo.getBoard_no());
-				
-				response.setContentType("application/x-json; charset=UTF-8");
-				response.getWriter().print(obj);
-			}
+			new MeetBoardDeleteOKAction().execute(request, response);
 		}
 		
 	}

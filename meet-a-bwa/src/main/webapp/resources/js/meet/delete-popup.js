@@ -41,7 +41,9 @@ $(function () {
   	    console.log("success")
   	  	console.log(res)
   	  	
-  	  	location.reload()
+  	  	// 삭제 성공시 meet-main으로 이동
+  	  	location.replace('meet-main.do')
+  	  	// location.reload()
   	  },
   	  
   	  error : function(res, status, text) {
