@@ -23,7 +23,7 @@ import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 import test.com.user.model.UserVO;
 
-public class UserInsertOKAction {
+public class UserUpdateOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		String dir_path = request.getServletContext().getRealPath("/meet-a-bwa/resources/img/"); // 실경로(=실서버)에 저장

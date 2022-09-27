@@ -6,6 +6,7 @@ public interface UserDAO {
 	public UserVO idCheck(UserVO uvo);
 	public UserVO nickCheck(UserVO uvo);
 	public UserVO emailCheck(UserVO uvo);
+	public UserVO user_selectOne(UserVO uvo);
 	
 //	public int interest_insert(InterestVO ivo);
 }
