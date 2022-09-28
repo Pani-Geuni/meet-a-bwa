@@ -14,6 +14,7 @@
 
 	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 
 <title>마이 페이지</title>
 </head>
@@ -33,8 +34,10 @@
 	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
 	            </div>
 	            <div id="user-contents">
-	              <p><span>팡근님,</span> 안녕하세요.</p>
+	              <%-- <c:if test="${list.isLogin eq true} }"> --%>
+	              <p><span>${ list.nick_name }님,</span> 안녕하세요.</p>
 	              <p>golfzon@gmail.com</p>
+	              <%-- </c:if> --%>
 	            </div>
 	          </div>
 	        </section>
