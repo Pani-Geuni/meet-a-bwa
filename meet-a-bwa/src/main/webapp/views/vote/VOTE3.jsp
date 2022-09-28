@@ -1,30 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <!-- 이벤트 생성 -->
- 
- 
+    <!-- 이벤트 수정 -->
+    
+    
 <!-- Start voteWrap -->
 <div id = "voteWrap">
     <!-- Start vote_popup -->
     <div id = "vote_popup">
-        <h1 id = "title">투표 생성</h1>
+        <div id = "topSection">
+            <h1 id = "title">투표 수정</h1>
+            <img src = "../img/close.png" alt = "close이미지" id = "closeBtn" />
+        </div>
 
         <!-- Start sectionWrap -->
         <div id = 'sectionWrap'>
             <section id = "titleSection" class = "section_common">
                 <h4 class = "section_title">투표 제목</h4>
                 <section id = "title_section">
-                    <input type = "text" id = "vote_title" class = "common" placeholder="투표 제목">
+                    <input type = "text" id = "vote_title" class = "common" placeholder="투표 제목" value="">
                     <span id = "title_text_length" class = "text_length">0/15</span>
                 </section>
             </section>
 
             <section id = "endDateSection"  class = "section_common">
-                <h4 class = "section_title">투표 마감 날짜 설정</h4>
+                <h4 class = "section_title">투표 마감 시간/날짜 설정</h4>
                 <div id = "pickerWrap">
                     <input type = "text" id = "vote_endDate" class = "dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요.">
-                    <!-- START TIMEPICKER -->
                     <div id = "timepicker_box" class = "dateCommon">
                         <section id = "timeSection">
                             <span id = "timeValue">--:--:--</span>
@@ -52,7 +54,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END TIMEPICKER -->
                 </div>
             </section>
 
@@ -71,23 +72,19 @@
                     <!-- SAMPLE VOTE LIST -->
                     <div class = "vote_list sample blind">
                         <label class = "list_title"></label>
-                        <input type = "text" class = "list_text"/>
+                        <input type = "text" class = "list_text" value=""/>
                         <img src = "../img/close.png" alt = "항목 삭제 이미지" class = "removeBtn" />
                     </div>
             </section>
-            <input type ="button" id = "vote_list_plusBtn" value="투표 항목 추가"/>
-        </div>
-        <!-- END sectionWrap -->
+            <input type ="button" id = "vote_list_plusBtn" value="투표 항목 추가" />
+                
+        </div><!-- END sectionWrap -->
         
         <div id = "btnWrap">
-            <input type ="button" id = "vote_createBtn" class = "btnCommon" value="투표 만들기">
-            <input type ="button" id = "vote_cancleBtn" class = "btnCommon" value="취소">
+            <input type ="button" id = "vote_updateBtn" class = "btnCommon" value="투표 수정">
         </div>
-        
-    </div>
-    <!-- END vote_popup -->
-</div>
-<!-- END voteWrap -->
+    </div><!-- END vote_popup -->
+</div><!-- END voteWrap -->
 
 <!-- START toastWrap -->
 <!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
