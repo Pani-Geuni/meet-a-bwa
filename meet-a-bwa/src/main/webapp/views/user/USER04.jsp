@@ -9,17 +9,23 @@
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
-
+	
+	
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-page.css"/>
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
 
 	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+    <script src="/meet-a-bwa/resources/js/user/myPage.js"></script>
 
 <title>마이 페이지</title>
 </head>
 <body>
 	<!--  START HEADER INCLUDE -->
-	<jsp:include page="/views/common/header.jsp"></jsp:include>
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
 	<!--  END HEADER INCLUDE -->
 	
 	<section id="bodyWrap">
@@ -31,7 +37,7 @@
 	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
 	            </div>
 	            <div id="user-contents">
-	              <p><span>팡근님,</span> 안녕하세요.</p>
+	              <p><span>${ list.nick_name }님,</span> 안녕하세요.</p>
 	              <p>golfzon@gmail.com</p>
 	            </div>
 	          </div>
@@ -40,7 +46,7 @@
         
         <ul class="my-menu-list" id="my-menu-list">
           <li>
-            <a href="#">개인 정보 수정</a>
+            <p class="edit-user-info">개인 정보 수정</p>
           </li>
           <li>
             <a href="/meet-a-bwa/views/user/USER05.jsp">나의 모임</a>
@@ -51,6 +57,25 @@
         </ul>
         <!-- end my-meeting contentSection -->
 		</div>
+		
+		<!-- START LOGOUT POPUP -->
+        <div class="logout-layer blind">
+         <div class="logout-popup-wrap">
+            <img src="resources/img/worry.svg" alt="logout worry img"/>
+            <h1>
+              정말 로그아웃 <br />
+              하시겠습니까?
+            </h1>
+      
+            <div class="btn-group">
+	            <a href = "/meet-a-bwa/logoutOK.do">
+	              <button class="btn-logout">로그아웃</button>
+	            </a>
+              <button class="btn-cancel">취소</button>
+            </div>
+       	  </div>
+        </div>
+        <!-- END LOGOUT POPUP -->
 		
 		<div id="footerWrap-mypage">
       		<h5>© Golfzon Tech Academy, Inc. All rights reserved.</h5>
