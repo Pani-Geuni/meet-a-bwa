@@ -75,6 +75,7 @@
                         <input type = "text" class = "list_text" value=""/>
                         <img src = "../img/close.png" alt = "항목 삭제 이미지" class = "removeBtn" />
                     </div>
+                </div>
             </section>
             <input type ="button" id = "vote_list_plusBtn" value="투표 항목 추가" />
                 
@@ -83,11 +84,14 @@
         <div id = "btnWrap">
             <input type ="button" id = "vote_updateBtn" class = "btnCommon" value="투표 수정">
         </div>
-    </div><!-- END vote_popup -->
-</div><!-- END voteWrap -->
+    </div>
+    <!-- END vote_popup -->
+</div>
+<!-- END voteWrap -->
 
 <!-- START toastWrap -->
 <!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
 <div id = "toastWrap" class = "hide">
     <span id = "toast_txt"></span>
-<div><!-- END toastWrap -->
+</div>
+<!-- END toastWrap -->

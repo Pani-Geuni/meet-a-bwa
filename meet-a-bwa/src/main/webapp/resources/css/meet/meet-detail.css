@@ -313,3 +313,6 @@
   height: 150px;
   background-color: #ffffff;
 }
+#vote_create_btn{
+	cursor : pointer;
+}
