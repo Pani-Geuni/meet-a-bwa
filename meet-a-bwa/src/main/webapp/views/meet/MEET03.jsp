@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-update.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
@@ -71,16 +72,11 @@
 				</button>
 
 				<!-- 로그인 후 -->
-				<button type="button" class="btn-meet join" onclick="popupShow()">
+				<button type="button" class="btn-meet join" onclick="writePopupShow()">
 					글쓰기</button>
-				<!-- <input type="button" onclick="popupShow()" value="글쓰기" /> -->
 				<button type="button" class="btn-meet join">
 					<a href="">액티비티 개설</a>
 				</button>
-
-				<!-- <button type="button" class="btn-meet wirte">
-            			<a href="#">글 쓰기</a>
-          		</button> -->
 
 				<a class="meet-detail-link" href="./meet-info-detail.html">모임
 					자세히 보기</a>
@@ -206,7 +202,7 @@
 <!-- ==================================== -->
 <!-- 글쓰기 view 팝업 -->
 <!-- ==================================== -->
-<div class="popup-layer">
+<div class="write-popup-layer">
 	<div class="popup-box">
 		<div class="popup-top">
         	<h1>글쓰기</h1>
@@ -221,7 +217,7 @@
 	            ></textarea>
 	            
 	            <div class="popup-btn-group">
-		         	<button type="button" class="btn-cancel" onclick="popupHide()">취소</button>
+		         	<button type="button" class="btn-cancel" onclick="writePopupHide()">취소</button>
 		          	<button type="submit" class="btn-submit">게시</button>
 		        </div>
           	</form>
