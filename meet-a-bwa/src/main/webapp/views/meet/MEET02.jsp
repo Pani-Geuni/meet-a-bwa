@@ -92,18 +92,18 @@
 						alt="샘플 대표 이미지" />
 				</div>
 				<div class="meet-detail-aside-top">
-					<h1 class="meet-deatil-aside-title">금요일은 소고기 먹는 날 날날날날날날</h1>
+					<h1 class="meet-deatil-aside-title">${ mvo2.meet_name }</h1>
 					<div class="heart-common">
 						<img class="img-heart-filled"
 							src="/meet-a-bwa/resources/img/heart-filled.svg" alt="좋아요 이미지" />
 						<img class="img-heart-outlined blind"
 							src="/meet-a-bwa/resources/img/heart-outlined.svg"
-							alt="좋아요 테두리 이미지" /> <span>9789</span>
+							alt="좋아요 테두리 이미지" /> <span>${ mvo2.like_cnt }</span>
 					</div>
 				</div>
 				<div class="meet-summary-info">
 					<p>
-						<a href="/meet-a-bwa/meet-member.do">멤버 22명</a>
+						<a href="/meet-a-bwa/meet-member.do">멤버 ${ mvo2.user_cnt }명</a>
 					</p>
 					<p>리더 팡근</p>
 				</div>
@@ -111,10 +111,10 @@
 				<div class="tagSection">
 					<div class="loca_tag tag">
 						<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" /> <span
-							class="location_name font_size_10">경안동</span>
+							class="location_name font_size_10">${ mvo2.meet_county }</span>
 					</div>
 					<div class="cate_tag tag">
-						<span class="category_name font_size_10">자전거</span>
+						<span class="category_name font_size_10">${ mvo2.meet_interest_name }</span>
 					</div>
 				</div>
 
@@ -160,34 +160,27 @@
 							<div class="tagSection">
 								<div class="loca_tag tag">
 									<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" />
-									<span class="location_name font_size_10">경안동</span>
+									<span class="location_name font_size_10">${ mvo2.meet_county }</span>
 								</div>
 								<div class="cate_tag tag">
-									<span class="category_name font_size_10">자전거</span>
+									<span class="category_name font_size_10">${ mvo2.meet_interest_name }</span>
 								</div>
 							</div>
 						</div>
 
 						<div class="meet-info-content">
-							<pre>
-옛 말에 그런 말이 있죠
-"금요일은 소고기를 먹어라"
-- 맛있는 소고기와 와인을 먹어요
-- 즐거운 이야기를 나눠요
-- 지갑은 비우고 배는 가득 채우는 모임이에요🙌
-- 아 참! 사실 그런 예삼ㄹ은 없어요. 그냥 맛있게 먹어요!
-            </pre>
+							<pre>${ mvo2.meet_description }</pre>
 						</div>
 
 						<div class="meet-info-detail">
 							<h3>모임 정보</h3>
 							<div>
 								<p>모임 개설일</p>
-								<span>2022년 08월</span>
+								<span>${ mvo2.meet_date }</span>
 							</div>
 							<div>
 								<p>멤버 수</p>
-								<span>22명</span>
+								<span>${ mvo2.user_cnt }명</span>
 							</div>
 						</div>
 					</section>
