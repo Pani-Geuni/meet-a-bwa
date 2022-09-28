@@ -135,4 +135,71 @@ public class MeetDAOImpl implements MeetDAO {
 		return l_mvo;
 	}
 
+	@Override
+	public MeetVO2 meet_selectOne(MeetVO2 mvo2) {
+		System.out.println("meet selectOne()...");
+		
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			System.out.println("Meet selectOne conn succeed...");
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ONE_MEET);
+			
+			pstmt.setString(1, mvo2.getMeet_no());
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				System.out.print(rs.getString("MEET_NO") + " ");
+				System.out.print(rs.getString("MEET_NAME") + " ");
+				System.out.print(rs.getString("MEET_DESCRIPTION") + " ");
+				System.out.print(rs.getString("MEET_COUNTY") + " ");
+				System.out.print(rs.getString("MEET_INTEREST_NAME") + " ");
+				
+				mvo2.setMeet_no(rs.getString("MEET_NO"));
+				mvo2.setMeet_image(rs.getString("MEET_IMAGE"));
+				mvo2.setMeet_name(rs.getString("MEET_NAME"));
+				mvo2.setMeet_description(rs.getString("MEET_DESCRIPTION"));
+				mvo2.setMeet_county(rs.getString("MEET_COUNTY"));
+				mvo2.setMeet_interest_name(rs.getString("MEET_INTEREST_NAME"));
+				mvo2.setMeet_gender(rs.getString("MEET_GENDER"));
+				mvo2.setMeet_nop(rs.getInt("MEET_NOP"));
+				mvo2.setMeet_date(rs.getDate("MEET_DATE"));
+				mvo2.setUser_no(rs.getString("USER_NO"));
+				mvo2.setLike_cnt(rs.getInt("LIKE_CNT"));
+				mvo2.setUser_cnt(rs.getInt("USER_CNT"));
+			}
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return mvo2;
+	}
+
 }
