@@ -19,7 +19,9 @@
 </head>
 <body>
 	<!--  START HEADER INCLUDE -->
-	<jsp:include page="/views/common/header.jsp"></jsp:include>
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
 	<!--  END HEADER INCLUDE -->
 	
 	<section id="bodyWrap">
