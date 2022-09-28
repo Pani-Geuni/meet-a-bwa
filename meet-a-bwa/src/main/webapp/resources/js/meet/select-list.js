@@ -1,6 +1,6 @@
 window.onload = () => {
-  const img = document.querySelector('.img-more')
-  const options = document.querySelectorAll('.post-option-item')
+  //const img = document.querySelector('.img-more')
+  //const options = document.querySelectorAll('.post-option-item')
 
   // 클릭한 옵션의 text를 label에 넣기
   // const handleSelect = (item) => {
@@ -14,13 +14,26 @@ window.onload = () => {
   // })
 
   // 라벨 클릭시 옵션 목록이 열림/닫힘
-  if (img) {
-  img.addEventListener('click', () => {
+  $(".feed").on('click', '.img-more', function(event) {
+  	console.log("select click")
+  	console.log($(".img-more").parent())
+  	
+  	if ($(this).parent().hasClass('active')) {
+  		console.log("active")
+  		$(this).parent().removeClass('active')
+  	} else {
+  		$(this).parent().addClass('active')
+  	}
+  	
+  	event.stopPropagation()
+  })
+  
+  /*img.addEventListener('click', () => {
+ 	console.log("img click")
     if (img.parentNode.classList.contains('active')) {
       img.parentNode.classList.remove('active')
     } else {
       img.parentNode.classList.add('active')
     }
-  })
-  }
+  })*/
 }
