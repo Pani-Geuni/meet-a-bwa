@@ -4,20 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
+	
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
+	
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
-<title>모임 멤버 리스트</title>
+	<title>모임 멤버 리스트</title>
 </head>
 <body>
-
 	<!--  START HEADER INCLUDE -->
-	<jsp:include page="/views/common/header.jsp"></jsp:include>
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
 	<!--  END HEADER INCLUDE -->
 	
 	<div id="bodyWrap">
@@ -77,100 +81,127 @@
 					자세히 보기</a>
 			</aside>
 			
-			<section class="feedWrap feed-member-list">
-	          <div class="member-list-title">
-	            <h1>멤버</h1>
-	            <p id="all-member-count">3</p>
-	          </div>
-	          <div class="meet-member-list">
-	            <ul>
-	              <li>
-	                <div class="feed-profile member-list">
-	                  <div>
-	                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
-	                  </div>
-	                  <p class="user-nickname">팡팡팡</p>
-	                  <span class="meet-user leader">리더</span>
-	                  <p></p>
-	                </div>
-	              </li>
-	              <li>
-	                <div class="feed-profile member-list">
-	                  <div>
-	                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
-	                  </div>
-	                  <p class="user-nickname">팡팡팡</p>
-	                  <span class="meet-user operator">운영자</span>
-	                  <p></p>
-	                </div>
-	              </li>
-	              <li>
-	                <div class="feed-profile member-list">
-	                  <div>
-	                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
-	                  </div>
-	                  <p class="user-nickname">팡팡팡</p>
-	                  <span class="meet-user"></span>
-	                </div>
-	              </li>
-	            </ul>
-	          </div>
-	        </section>
+			<c:choose>
+			<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
+				<h1>로그인 하셈</h1>
+			</c:when>
 			
-        
-	        <aside class="meet-right-aside">
-	          <div class="right-summary-list" id="event-summary-list">
-	            <div class="right-summary-list-top">
-	              <h1>모임 내 액티비티</h1>
-	              <p><a href="#">+</a></p>
-	            </div>
-	            <ul class="right-summary-list-contents">
-	              <li>
-	                <a href="">액티비티1</a>
-	              </li>
-	              <li>
-	                <a href="">액티비티2</a>
-	              </li>
-	              <li>
-	                <a href="">액티비티3</a>
-	              </li>
-	              <li>
-	                <a href="">액티비티4</a>
-	              </li>
-	              <li>
-	                <a href="">액티비티5</a>
-	              </li>
-	              <li>
-	                <a href="">액티비티6</a>
-	              </li>
-	            </ul>
-	          </div>
-	          <div class="right-summary-list" id="vote-summary-list">
-	            <div class="right-summary-list-top">
-	              <h1>투표</h1>
-	              <p><a href="#">+</a></p>
-	            </div>
-	            <ul class="right-summary-list-contents">
-	              <li>
-	                <a href="">투표 1</a>
-	              </li>
-	              <li>
-	                <a href="">투표 2</a>
-	              </li>
-	              <li>
-	                <a href="">투표 3</a>
-	              </li>
-	              <li>
-	                <a href="">투표 4</a>
-	              </li>
-	              <li>
-	                <a href="">투표 5</a>
-	              </li>
-	            </ul>
-	          </div>
-	        </aside>
+			<c:when test="${list.isLogin eq true}">
+				<section class="feedWrap feed-member-list">
+		          <div class="member-list-title">
+		            <h1>멤버</h1>
+		            <p id="all-member-count">3</p>
+		          </div>
+		          <div class="meet-member-list">
+		            <ul>
+		              <li>
+		                <div class="feed-profile member-list">
+		                  <div>
+		                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
+		                  </div>
+		                  <p class="user-nickname">팡팡팡</p>
+		                  <span class="meet-user leader">리더</span>
+		                  <p></p>
+		                </div>
+		              </li>
+		              <li>
+		                <div class="feed-profile member-list">
+		                  <div>
+		                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
+		                  </div>
+		                  <p class="user-nickname">팡팡팡</p>
+		                  <span class="meet-user operator">운영자</span>
+		                  <p></p>
+		                </div>
+		              </li>
+		              <li>
+		                <div class="feed-profile member-list">
+		                  <div>
+		                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
+		                  </div>
+		                  <p class="user-nickname">팡팡팡</p>
+		                  <span class="meet-user"></span>
+		                </div>
+		              </li>
+		            </ul>
+		          </div>
+		        </section>
+				
+	        
+		        <aside class="meet-right-aside">
+		          <div class="right-summary-list" id="event-summary-list">
+		            <div class="right-summary-list-top">
+		              <h1>모임 내 액티비티</h1>
+		              <p><a href="#">+</a></p>
+		            </div>
+		            <ul class="right-summary-list-contents">
+		              <li>
+		                <a href="">액티비티1</a>
+		              </li>
+		              <li>
+		                <a href="">액티비티2</a>
+		              </li>
+		              <li>
+		                <a href="">액티비티3</a>
+		              </li>
+		              <li>
+		                <a href="">액티비티4</a>
+		              </li>
+		              <li>
+		                <a href="">액티비티5</a>
+		              </li>
+		              <li>
+		                <a href="">액티비티6</a>
+		              </li>
+		            </ul>
+		          </div>
+		          <div class="right-summary-list" id="vote-summary-list">
+		            <div class="right-summary-list-top">
+		              <h1>투표</h1>
+		              <p><a href="#">+</a></p>
+		            </div>
+		            <ul class="right-summary-list-contents">
+		              <li>
+		                <a href="">투표 1</a>
+		              </li>
+		              <li>
+		                <a href="">투표 2</a>
+		              </li>
+		              <li>
+		                <a href="">투표 3</a>
+		              </li>
+		              <li>
+		                <a href="">투표 4</a>
+		              </li>
+		              <li>
+		                <a href="">투표 5</a>
+		              </li>
+		            </ul>
+		          </div>
+		        </aside>
+		      </c:when>
+	        </c:choose>
 		</div>
 	</div>
+	
+	<!-- START LOGOUT POPUP -->
+        <div class="logout-layer blind">
+         <div class="logout-popup-wrap">
+            <img src="resources/img/worry.svg" alt="logout worry img"/>
+            <h1>
+              정말 로그아웃 <br />
+              하시겠습니까?
+            </h1>
+      
+            <div class="btn-group">
+	            <a href = "/meet-a-bwa/logoutOK.do">
+	              <button class="btn-logout">로그아웃</button>
+	            </a>
+              <button class="btn-cancel">취소</button>
+            </div>
+       	  </div>
+        </div>
+        <!-- END LOGOUT POPUP -->
 	<!-- END bodyWrap  -->
 </body>
 </html>
