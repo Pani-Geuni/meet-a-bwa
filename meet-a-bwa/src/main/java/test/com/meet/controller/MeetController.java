@@ -1,7 +1,6 @@
 package test.com.meet.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import test.com.meetboard.model.MeetBoardDAO;
-import test.com.meetboard.model.MeetBoardDAOImpl;
-import test.com.meetboard.model.MeetBoardVO;
+import test.com.meetboard.controller.MeetBoardSelectAllAction;
 
 /**
  * Servlet implementation class MeemController
  */
-@WebServlet({"/meet-main.do", "/meet-member.do"})
+@WebServlet({"/meet-member.do"})
 public class MeetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,16 +33,7 @@ public class MeetController extends HttpServlet {
 		String sPath = request.getServletPath();
 		System.out.println("sPath : " + sPath);
 		
-		if (sPath.equals("/meet-main.do")) {
-			
-			MeetBoardDAO dao = new MeetBoardDAOImpl();
-			
-			List<MeetBoardVO> vos = dao.board_selectAll();
-			
-			request.setAttribute("vos", vos);
-			
-			request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
-		} else if (sPath.equals("/meet-member.do")) {
+		if (sPath.equals("/meet-member.do")) {
 			request.getRequestDispatcher("views/meet/MEET04.jsp").forward(request, response);
 		}
 	}

@@ -7,9 +7,21 @@
     $("#detailCategory").click(function(){
     	$.getJSON("/meet-a-bwa/resources/json/cate.json", function(data) {
             category = data.category;
-            console.log(category);
             category_load(category);
         });
+    });
+    
+    $("#searchWord").keydown(function(key){
+    	if(key.keyCode==13) {             
+	    	console.log("엔터");
+	    	console.log($("#category").val());
+	    	console.log($("#detailCategory").val());
+	    	if($("#category").val() == "모임")
+	    		location.href = "/meet-a-bwa/meet-list.do?type=interest&&typeData=" + $("#detailCategory").val() + "&&searchWord=" + $(this).val();
+    		else if($("#category").val() == "액티비티")
+	    		 location.href = "/meet-a-bwa/activity-list.do?category=" + $("#detailCategory").val() + "&&searchWord=" + $(this).val();
+    			
+		}
     });
  
     function category_load(arr){

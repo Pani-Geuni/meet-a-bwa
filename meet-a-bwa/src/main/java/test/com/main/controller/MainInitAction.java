@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
@@ -18,6 +19,7 @@ import test.com.meet.model.MeetVO2;
 
 public class MainInitAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isLogin", false);
 		
@@ -27,14 +29,13 @@ public class MainInitAction {
 		
 		ActivityDAO dao2 = new ActivityDAOImpl();
 		List<ActivityVO2> list2 = dao2.selectAll10();
-		System.out.println("list2 : ");
-		System.out.println(list2);
 		
 		request.setAttribute("list", map);
 		request.setAttribute("u_list", list);
 		request.setAttribute("a_list", list2);
+		request.setAttribute("checkCategory", "전체");
 		
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
-			
+		
 	}
 }

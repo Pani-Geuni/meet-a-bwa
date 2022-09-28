@@ -16,21 +16,23 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-update.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
-<script src="/meet-a-bwa/resources/js/meet/select-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
+
 
 <title>모임 피드</title>
 </head>
 <body>
 
 	<!--  START HEADER INCLUDE -->
-	<jsp:include page="/views/common/header.jsp"></jsp:include>
-	<!--  END HEADER INCLUDE -->
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
 
 	<div id="bodyWrap">
 		<div id="contentWrapRow">
@@ -73,7 +75,7 @@
 				</button>
 
 				<!-- 로그인 후 -->
-				<button type="button" class="btn-meet join" onclick="popupShow()">
+				<button type="button" class="btn-meet join" onclick="writePopupShow()">
 					글쓰기</button>
 				<button type="button" class="btn-meet join">
 					<a href="">액티비티 개설</a>
@@ -100,7 +102,16 @@
 					<!-- end meet-notification -->
 
 					<div class="all-feed">
-						<c:forEach var="vo" items="${vos }">
+					
+						<c:choose>
+						<c:when test="${ empty vos }">
+							<div class="feed-empty">
+				                <h1>현재 모임에 작성된 글이 없어요!</h1>
+				                <p>모임에 글을 작성해 소통해봐요!</p>
+				            </div>
+						</c:when>
+						<c:when test="${ not empty vos }">
+						<c:forEach var="vo" items="${ vos }">
 						<div class="feed">
 							<div class="feed-profile">
 								<div class="user-info">
@@ -114,8 +125,8 @@
 								<div class="post-more-select">
 									<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
 
-									<ul class="post-option-list">
-										<li class="post-option-item">수정하기</li>
+									<ul class="post-option-list" idx="${ vo.board_no }">
+										<li class="post-option-item" data-popup-open="update">수정하기</li>
 										<li class="post-option-item" data-popup-open="delete">
 											삭제하기</li>
 									</ul>
@@ -134,6 +145,8 @@
 						</div>
 						<!-- end one feed -->
 						</c:forEach>
+						</c:when>
+						</c:choose>
 					</div>
 					<!-- end all feed -->
 				</article>
@@ -168,7 +181,7 @@
           <div class="right-summary-list" id="vote-summary-list">
             <div class="right-summary-list-top">
               <h1>투표</h1>
-              <p><a href="#">+</a></p>
+              <p><a href="/meet-a-bwa/m_vote_create.do">+</a></p>
             </div>
             <ul class="right-summary-list-contents">
               <li>
@@ -196,7 +209,7 @@
 <!-- ==================================== -->
 <!-- 글쓰기 view 팝업 -->
 <!-- ==================================== -->
-<div class="popup-layer">
+<div class="write-popup-layer">
 	<div class="popup-box">
 		<div class="popup-top">
         	<h1>글쓰기</h1>
@@ -207,11 +220,11 @@
 	            <textarea
 	              name="board_content"
 	              id="content"
-	              placeholder="내용을 입락하세요."
+	              placeholder="내용을 입력하세요."
 	            ></textarea>
 	            
 	            <div class="popup-btn-group">
-		         	<button type="button" class="btn-cancel" onclick="popupHide()">취소</button>
+		         	<button type="button" class="btn-cancel" onclick="writePopupHide()">취소</button>
 		          	<button type="submit" class="btn-submit">게시</button>
 		        </div>
           	</form>
@@ -219,16 +232,40 @@
 	</div>
 </div>
 
+<!-- ==================================== -->
+<!-- 글 업데이트 view 팝업 -->
+<!-- ==================================== -->
+<div class="update-popup-layer" data-popup="update">
+	<div class="popup-box">
+		<div class="popup-top">
+        	<h1>글 수정</h1>
+        </div>
+        <div class="popup-writer" id="popup-update">
+            	<input name="update_title" id="update_title" type="text" placeholder="제목" value="${ vo.board_title }"/>
+	            <textarea
+	              name="update_content"
+	              id="update_content"
+	              placeholder="내용을 입력하세요."
+	            >${ vo.board_content }</textarea>
+	            
+	            <div class="popup-btn-group">
+		         	<button type="button" class="btn-cancel" data-popup-close="update">취소</button>
+		          	<button type="submit" class="btn-submit-update">게시</button>
+		        </div>
+        </div>
+	</div>
+</div>
+
 <!-- *******************  -->
 <!-- delete popup SECTION -->
 <!-- *******************  -->
-  <div class="logout-popup-layer" data-popup="delete">
-    <div class="logout-popup-wrap">
+  <div class="delete-popup-layer" data-popup="delete">
+    <div class="delete-popup-wrap">
       <img src="/meet-a-bwa/resources/img/worry.svg" alt="" />
       <h1>정말 삭제 하시겠습니까?</h1>
 
       <div class="btn-group">
-        <button class="btn-logout" data-popup-close="delete">삭제</button>
+        <button id="btn-delete" class="btn-delete" data-popup-close="delete">삭제</button>
         <button class="btn-cancel" data-popup-close="delete">취소</button>
       </div>
     </div>

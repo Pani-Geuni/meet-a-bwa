@@ -5,7 +5,11 @@ import java.util.List;
 public interface MeetBoardDAO {
 	public int board_insert(MeetBoardVO bvo);
 	
+	public int board_update(MeetBoardVO bvo);
+	
 	public List<MeetBoardVO> board_selectAll();
 	
 	public MeetBoardVO board_selectOne(MeetBoardVO bvo);
+	
+	public int board_delete(MeetBoardVO bvo);
 }

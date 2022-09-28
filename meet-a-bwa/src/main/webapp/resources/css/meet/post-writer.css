@@ -1,4 +1,4 @@
-.popup-layer {
+.write-popup-layer {
   display: none;
   position: fixed;
   left: 0;
@@ -103,6 +103,18 @@
 }
 
 .popup-btn-group .btn-submit {
+  background-color: #3da5f5;
+  border: none;
+  border-radius: 4px;
+
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  
+  cursor: pointer;
+}
+
+.popup-btn-group .btn-submit-update {
   background-color: #3da5f5;
   border: none;
   border-radius: 4px;

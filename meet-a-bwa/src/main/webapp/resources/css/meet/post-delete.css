@@ -1,18 +1,22 @@
-.logout-popup-layer {
+.delete-popup-layer {
   display: none;
   position: fixed;
+  left: 0;
+  top: 0;
+  
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.logout-popup-wrap {
-  position: absolute;
-  top: 50%;
+.delete-popup-wrap {
+  position: fixed;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
+
   display: flex;
   flex-direction: column;
 
@@ -22,22 +26,21 @@
   width: 350px;
   height: auto;
 
-  background-color: #ffffff;
-
   margin: 0 auto;
 
   padding: 50px 0;
 
   border: 1px solid #e4e4e4;
   border-radius: 4px;
+  background-color: #ffffff;
 }
 
-.logout-popup-wrap img {
+.delete-popup-wrap img {
   width: 96px;
   height: 96px;
 }
 
-.logout-popup-wrap h1 {
+.delete-popup-wrap h1 {
   font-size: 20px;
   letter-spacing: -0.01em;
   line-height: 30px;
@@ -53,7 +56,7 @@
   height: auto;
 }
 
-.btn-logout {
+.btn-delete {
   width: 300px;
   height: 40px;
 
