@@ -70,7 +70,7 @@ public class UserInsertOKAction {
 							user_pw =  item.getString("UTF-8");
 						}else if(item.getFieldName().equals("name")) {
 							user_name = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("nickname")) {
+						}else if(item.getFieldName().equals("u_nickname")) {
 							user_nickname = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("email")) {
 							user_email = item.getString("UTF-8");

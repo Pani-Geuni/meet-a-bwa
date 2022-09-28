@@ -7,15 +7,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/header.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/footer.css" />
-
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/searchBar.css" />
+ <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
+    
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
 
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/user/edit-info.css" />
@@ -28,7 +27,9 @@
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
-<!-- <script src="/meet-a-bwa/resources/js//user/edit_info/edit_info.js"></script> -->
+   <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<!-- <script src="/meet-a-bwa/resources/js/user/edit_info/edit_info.js"></script> -->
 <script src="/meet-a-bwa/resources/js/user/edit_info/textCondition.js"></script>
 <script src="/meet-a-bwa/resources/js/user/idCheck.js"></script>
 <script src="/meet-a-bwa/resources/js/user/edit_info/nickCheck.js"></script>
@@ -39,6 +40,9 @@
 <script>
 	//성별 출력
 	$(function() {
+		
+		var user_id = '${user_id}'; //세션값 가져옴
+		console.log(user_id);
 
 		$("#gender").on("change", function() {
 			console.log($(this).val());
@@ -48,32 +52,21 @@
 			$(".withdrawal-popup").removeClass("blind");
 			$(".withdrawalOK").click(function() {
 				$(".withdrawal-popup").addClass("blind");
-				init();
+					
+					// $.cookie("user_no");
+					
+					location.replace("u_delete.do?user_no=" + $.cookie("user_no"));
+				});
 			});
 			$(".cancle").click(function() {
 				$(".withdrawal-popup").addClass("blind");
 			});
-		});
+		
 
 	});
 	
-	 function init() {
-	     $.ajax({
-	         type : "GET",
-	         url : "/meet-a-bwa/u_delete.do",
-	         success : function (data, status) {
-	            alert(status);
-	         },
-	         error : function (status) {
-	            alert(status + "error!");
-	         }
-	     });
-	  }
-
+	
 	function check() {
-
-		//	var user_id = '${user_id}'; //세션값 가져옴
-		//	console.log(user_id);
 
 		console.log($("#id").val());
 
@@ -136,8 +129,8 @@
 
 			<div class="OuterWrap">
 				<section class="blind">
-					<label for="user_no">user_no:</label>${vo2.user_no}<input
-						id="user_no" name="user_no" value="${vo2.user_no}">
+					<label for="user_no">user_no:</label>${uvo2.user_no}<input
+						id="user_no" name="user_no" value="${uvo2.user_no}">
 				</section>
 				<h2 id="editperinfoTitle">개인정보수정</h2>
 				<p>
@@ -231,7 +224,7 @@
 						<label>닉네임</label>
 					</div>
 					<input type="text" placeholder="닉네임을 입력해주세요. (최대 10자)"
-						id="nickname" name="nickname" value="${uvo2.user_nickname}" />
+						id="u_nickname" name="u_nickname" value="${uvo2.user_nickname}" />
 					<p class="blind" id="origin_nickname">${uvo2.user_nickname}</p>
 					<input type="button" id="btn_nickCheck" value="중복체크">
 					<!-- <span id="result"></span> -->
@@ -304,15 +297,16 @@
 					<div id="interest_la">
 						<label>관심사</label>
 					</div>
-					<select id="interest" name="interest">
+					<select id="interest" name="interest" value="${uvo2.user_interest}">
+						<option class="interest_opt" value="${uvo2.user_interest}">${uvo2.user_interest}</option>
 						<option value="" class="interest_opt">선택</option>
 					</select>
 				</div>
 
 				<div id="tagWrap">
-					<input type="button" class="delete_interest interest_result blind">
+					<input type="button" class="delete_interest interest_result blind" >
 					<input type="button"
-						class="delete_interest interest_result uvo2_interest blind"
+						class="delete_interest interest_result uvo2_interest"
 						value="${uvo2.user_interest} X">
 				</div>
 
@@ -324,8 +318,8 @@
 						<option class="city_list" value='${uvo2.user_city}'>${uvo2.user_city}</option>
 						<option class="city_list" value=''>도/시 선택</option>
 						<option class="city_list" value='전체'>전체</option>
-					</select> <select name='country' id="country" class=select>
-						<option class="country_option" value=''>${uvo2.user_county}</option>
+					</select> <select name='country' id="country" class=select  value="${uvo2.user_county}">
+						<option class="country_option" value='${uvo2.user_county}'>${uvo2.user_county}</option>
 						<option class="country_option" value='전체'>전체</option>
 					</select>
 				</div>

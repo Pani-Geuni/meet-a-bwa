@@ -6,11 +6,11 @@ $(function() {
 
 		$("#btn_nickCheck").click(function(event) {
 			console.log("onclick....");
-			//let nickname = document.querySelector("#nickname");
+			//let u_nickname = document.querySelector("#u_nickname");
 			let origin = $("#origin_nickname");
-			let nickname = $("#nickname");
-			// console.log(nickname);
-			console.log(nickname.val());
+			let u_nickname = $("#u_nickname");
+			// console.log(u_nickname);
+			console.log(u_nickname.val());
 			
 			let req = new XMLHttpRequest();
 
@@ -27,17 +27,17 @@ $(function() {
 
 						let txt = "";
 						
-						if(nickname.val()==origin.text()){
+						if(u_nickname.val()==origin.text()){
 						$(".toastText_nickCheck").removeClass("blind");
 							$(".toastText_nickCheck").text("기존 닉네임 입니다.");
 							$(".toastText_nickCheck").addClass("yes");
-							$("#nickname").attr("readonly",true);
+							$("#u_nickname").attr("readonly",true);
 							$("#btn_nickCheck").addClass("blind");
 							$("#btn_nickRe").removeClass("blind");
 							$("#btn_nickRe").click(function(){
 								$("#btn_nickCheck").removeClass("blind");
 								$("#btn_nickRe").addClass("blind");
-								$("#nickname").removeAttr("readonly");
+								$("#u_nickname").removeAttr("readonly");
 								// '사용 가능한 아이디' 토스트 메시지 지우기
 								$(".toastText_nickCheck").addClass("blind");
 							});
@@ -49,13 +49,13 @@ $(function() {
 							$(".toastText_nickCheck").removeClass("blind");
 							$(".toastText_nickCheck").text("사용가능한 닉네임 입니다.");
 							$(".toastText_nickCheck").addClass("yes");
-							$("#nickname").attr("readonly",true);
+							$("#u_nickname").attr("readonly",true);
 							$("#btn_nickCheck").addClass("blind");
 							$("#btn_nickRe").removeClass("blind");
 							$("#btn_nickRe").click(function(){
 								$("#btn_nickCheck").removeClass("blind");
 								$("#btn_nickRe").addClass("blind");
-								$("#nickname").removeAttr("readonly");
+								$("#u_nickname").removeAttr("readonly");
 								// '사용 가능한 아이디' 토스트 메시지 지우기
 								$(".toastText_nickCheck").addClass("blind");
 							});
@@ -72,8 +72,8 @@ $(function() {
 			 });
 			
 			req.open("GET",
-					"http://localhost:8090/meet-a-bwa/nickCheck.do?nickname="
-							+ nickname.val());
+					"http://localhost:8090/meet-a-bwa/nickCheck.do?u_nickname="
+							+ u_nickname.val());
 			req.send();
 
 			event.preventDefault();

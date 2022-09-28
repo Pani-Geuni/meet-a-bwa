@@ -126,7 +126,7 @@ form{
 	border: 0px;
 }
 
-#id, #pw, #name, #nickname,#birth, #tel, #pw_check, #email, #interest, #city, #country {
+#id, #pw, #name, #u_nickname,#birth, #tel, #pw_check, #email, #interest, #city, #country {
 	padding-left: 10px;
 	margin: 5px;
 	border-radius: 4px;

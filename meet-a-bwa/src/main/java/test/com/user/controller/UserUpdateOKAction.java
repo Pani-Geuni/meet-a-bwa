@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 //import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -26,6 +30,45 @@ import test.com.user.model.UserVO;
 public class UserUpdateOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+		
+		HttpSession session = request.getSession();
+		String session_user_id = (String) session.getAttribute("user_id");
+		
+		String cookie_interest = "";
+		String cookie_county = "";
+		String cookie_nickName = "";
+		
+		//濡쒓렇�씤 O
+		if(session_user_id != null) {
+			Cookie[] cookies = request.getCookies();
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("user_interest")) {
+					cookie_interest = cookie.getValue();
+				}else if(cookie.getName().equals("user_county")) {
+					cookie_county = cookie.getValue();
+				}else if(cookie.getName().equals("nick_name")) {
+					cookie_nickName = cookie.getValue();
+				}
+			}
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("isLogin", true);
+			map.put("nick_name", cookie_nickName);
+			map.put("interest", cookie_interest);
+			map.put("county", cookie_county);
+			
+			request.setAttribute("list", map);
+			
+			System.out.println("Headercontroller");
+			System.out.println(cookie_nickName);
+		}else {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("isLogin", false);
+			request.setAttribute("list", map);
+		}
+		
+		
+		
 		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 실경로(=실서버)에 저장
 		System.out.println(dir_path);
 
@@ -74,7 +117,7 @@ public class UserUpdateOKAction {
 							user_pw =  item.getString("UTF-8");
 						}else if(item.getFieldName().equals("name")) {
 							user_name = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("nickname")) {
+						}else if(item.getFieldName().equals("u_nickname")) {
 							user_nickname = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("email")) {
 							user_email = item.getString("UTF-8");
@@ -130,7 +173,7 @@ public class UserUpdateOKAction {
 
 //			if(checkFileSize!=0) { // 사이즈가 0이 아닐때 실행 
 			UserVO uvo = new UserVO();
-//			uvo.setUser_no(user_no);
+			uvo.setUser_no(user_no);
 //			uvo.setUser_id(user_id);
 //			uvo.setUser_image(user_image);
 			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image);
@@ -167,9 +210,10 @@ public class UserUpdateOKAction {
 			if(result==1) {
 				//request.getRequestDispatcher("/views/main/USER04.jsp?user_no"+user_no).forward(request, response);
 				request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
+				//request.getRequestDispatcher("/u_deleteOK.do?user_id"+session_user_id).forward(request, response);
 				}else
 //					request.getRequestDispatcher("/views/user/u_update.do?user_no"+user_no).forward(request, response);
-			request.getRequestDispatcher("/views/user/USER03.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/user/USER03.jsp?user_no"+user_no).forward(request, response);
 			}
 //		 }// end if
 		

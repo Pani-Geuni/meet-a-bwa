@@ -12,7 +12,7 @@ $(function () {
   $("#city").on("click",function (e) {
     if(flag){ 
     	flag = false;
-    	$(".city:option.eq(0)").addClass("blind");
+    	//$(".city option:eq(0)").addClass("blind");
 	    $.getJSON("/meet-a-bwa/resources/json/city.json", function(data) {
 	        cityArr = data.map(v => v.city);
 	        city_set(cityArr);

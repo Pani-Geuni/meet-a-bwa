@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.com.member.controller.LogoutOKAction;
 import test.com.member.controller.M_LoginOKAction;
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
@@ -16,7 +17,7 @@ import test.com.user.model.UserDAOImpl;
 /**
  * Servlet implementation class UserController
  */
-@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do", "/u_update.do", "/u_updateOK.do","/u_delete.do" })
+@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do", "/u_update.do", "/u_updateOK.do","/u_delete.do","/u_deleteOK.do" })
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAO u_dao = new UserDAOImpl();
@@ -53,6 +54,8 @@ public class UserController extends HttpServlet {
 			new UserUpdateAction().execute(request, response);
 		}else if(sPath.equals("/u_delete.do")) {
 			new UserDeleteOKAction().execute(request, response);
+		}else if(sPath.equals("/u_deleteOK.do")) {
+			new LogoutOKAction().execute(request, response);
 		}
 	}
 
