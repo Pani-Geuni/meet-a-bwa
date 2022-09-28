@@ -43,20 +43,23 @@ $(function () {
     let tag = $(".delete_interest:eq(0)").clone();
     let cnt=0;
 	var result = [];
+	var result_x = [];
     $("#interest").on("change", function (e) {
 
         tag = tag.clone();
         tag.removeClass("blind");
         let select_value = $(this).val();
-    		
-    		 if (!result.includes(select_value)) {
+    		console.log($(".uvo2_interest").val());
+    		 if (!result.includes(select_value)&&select_value+" X"!=$(".uvo2_interest").val()) {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
             tag.val(select_value + " X");
+            result.push(select_value);
             tag.attr("idx",++cnt);
             $("#tagWrap").append(tag);
             console.log(select_value);
-            result.push(select_value);
-            console.log(result);
+            result_x.push(select_value+ " X");
+            console.log("result:"+result);
+            console.log("result_x:"+result_x);
         }
     });
 
@@ -68,27 +71,30 @@ $(function () {
         let idx =$(this).attr("idx"); // 현재 배열 크기
         let arr = $(".delete_interest").slice(); // 태그 배열 전체 복시
         //console.log(arr);
+
+        let select_value = $(this).val();
+        //console.log($(this).val());
         
         $("#tagWrap").empty().append($(arr[0])); // 부모 비우고, 복사할 0번째 샘플 데이터만 붙임
-        
+
         for (let index = 1; index < arr.length; index++) { 
-        console.log("gk:"+$(arr[index]).attr("idx"));
            if($(arr[index]).attr("idx")!=idx){ // 삭제할 값과 같지 않은 데이터들만
                 $("#tagWrap").append(arr[index]); //부모에 붙여줌.
            }
         }
         
-        console.log($(".interest_result").val());
-        
-        for(let i = 0; i < result.length; i++) {
-  			if(result[i] === $(".interest_result").text())  {
+        //let filtered = result_x.filter((element) => element !== select_value);
+
+        for(let i = 0; i < result_x.length; i++) {
+  			if(result_x[i]==select_value)  {
     			result.splice(i, 1);
+    			result_x.splice(i, 1);
     			i--;
   			}
 		}
         
-        console.log("result:"+result);
-        
+        console.log("삭제 후 result:"+result);
+        console.log("삭제 후 result_x:"+result_x);
 
     });
 

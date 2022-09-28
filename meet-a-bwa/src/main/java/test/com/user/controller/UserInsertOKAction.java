@@ -26,9 +26,9 @@ import test.com.user.model.UserVO;
 public class UserInsertOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		String dir_path = request.getServletContext().getRealPath("/meet-a-bwa/resources/img/"); // 실경로(=실서버)에 저장
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 실경로(=실서버)에 저장
 		System.out.println(dir_path);
-
+		
 		int fileSizeMax = 1024 * 1024 * 100;
 
 		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > 멀티파트형인지 물음.
@@ -107,7 +107,7 @@ public class UserInsertOKAction {
 						user_image = FilenameUtils.getName(item.getName());
 							
 						
-						
+						System.out.println("ddddddddddddddddd:"+user_image);
 						File saveFile = new File(dir_path, user_image); // dir_path: 업로드 경로
 
 						try {
@@ -141,7 +141,7 @@ public class UserInsertOKAction {
 			
 //			System.out.println("please:"+user_image.length());
 			System.out.println("please:"+user_image);
-			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
 			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_insert(uvo);
@@ -155,5 +155,5 @@ public class UserInsertOKAction {
 					request.getRequestDispatcher("/views/user/USER02.jsp").forward(request, response);
 			}
 		} // end if << isMultipartContent
-	
+//	
 }
