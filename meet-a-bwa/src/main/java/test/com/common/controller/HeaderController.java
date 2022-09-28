@@ -1,11 +1,18 @@
 package test.com.common.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import test.com.user.controller.MyPageAction;
 
 /**
  * Servlet implementation class HeaderController
@@ -30,8 +37,7 @@ public class HeaderController extends HttpServlet {
 		System.out.println("doGet..." + sPath);
 		
 		if(sPath.equals("/mypage.do")) {
-			System.out.println("in");
-			request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
+			new MyPageAction().execute(request, response);
 		}else if(sPath.equals("/main.do")) {
 			request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 		}
