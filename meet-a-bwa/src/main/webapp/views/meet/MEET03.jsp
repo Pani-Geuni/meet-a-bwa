@@ -98,7 +98,7 @@
               <div class="post-more-select">
               	<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
               		<ul class="post-option-list" idx="${ bvo2.board_no }">
-              			<li class="post-option-item">수정하기</li>
+              			<li class="post-option-item" data-popup-open="update">수정하기</li>
               			<li class="post-option-item" data-popup-open="delete">삭제하기</li>
 					</ul>
 			  </div>
@@ -202,7 +202,7 @@
 <!-- ==================================== -->
 <!-- 글쓰기 view 팝업 -->
 <!-- ==================================== -->
-<div class="write-popup-layer">
+<div class="write-popup-layer" data-popup="update">
 	<div class="popup-box">
 		<div class="popup-top">
         	<h1>글쓰기</h1>
@@ -213,7 +213,7 @@
 	            <textarea
 	              name="board_content"
 	              id="content"
-	              placeholder="내용을 입락하세요."
+	              placeholder="내용을 입력하세요."
 	            ></textarea>
 	            
 	            <div class="popup-btn-group">
@@ -221,6 +221,30 @@
 		          	<button type="submit" class="btn-submit">게시</button>
 		        </div>
           	</form>
+        </div>
+	</div>
+</div>
+
+<!-- ==================================== -->
+<!-- 글 업데이트 view 팝업 -->
+<!-- ==================================== -->
+<div class="update-popup-layer" data-popup="update">
+	<div class="popup-box">
+		<div class="popup-top">
+        	<h1>글 수정</h1>
+        </div>
+        <div class="popup-writer" id="popup-update">
+            	<input name="update_title" id="update_title" type="text" placeholder="제목" value="${ bvo2.board_title }"/>
+	            <textarea
+	              name="update_content"
+	              id="update_content"
+	              placeholder="내용을 입력하세요."
+	            >${ bvo2.board_content }</textarea>
+	            
+	            <div class="popup-btn-group">
+		         	<button type="button" class="btn-cancel" data-popup-close="update">취소</button>
+		          	<button type="submit" class="btn-submit-update">게시</button>
+		        </div>
         </div>
 	</div>
 </div>

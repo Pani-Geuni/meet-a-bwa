@@ -16,13 +16,14 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-update.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
-<script src="/meet-a-bwa/resources/js/meet/select-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
+
 
 <title>모임 피드</title>
 </head>
@@ -73,7 +74,7 @@
 				</button>
 
 				<!-- 로그인 후 -->
-				<button type="button" class="btn-meet join" onclick="popupShow()">
+				<button type="button" class="btn-meet join" onclick="writePopupShow()">
 					글쓰기</button>
 				<button type="button" class="btn-meet join">
 					<a href="">액티비티 개설</a>
@@ -124,7 +125,7 @@
 									<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
 
 									<ul class="post-option-list" idx="${ vo.board_no }">
-										<li class="post-option-item" data-popup-open="update">수정하기</li>
+										<!-- <li class="post-option-item" data-popup-open="update">수정하기</li> -->
 										<li class="post-option-item" data-popup-open="delete">
 											삭제하기</li>
 									</ul>
@@ -207,7 +208,7 @@
 <!-- ==================================== -->
 <!-- 글쓰기 view 팝업 -->
 <!-- ==================================== -->
-<div class="popup-layer">
+<div class="write-popup-layer">
 	<div class="popup-box">
 		<div class="popup-top">
         	<h1>글쓰기</h1>
@@ -218,11 +219,11 @@
 	            <textarea
 	              name="board_content"
 	              id="content"
-	              placeholder="내용을 입락하세요."
+	              placeholder="내용을 입력하세요."
 	            ></textarea>
 	            
 	            <div class="popup-btn-group">
-		         	<button type="button" class="btn-cancel" onclick="popupHide()">취소</button>
+		         	<button type="button" class="btn-cancel" onclick="writePopupHide()">취소</button>
 		          	<button type="submit" class="btn-submit">게시</button>
 		        </div>
           	</form>
@@ -233,25 +234,23 @@
 <!-- ==================================== -->
 <!-- 글 업데이트 view 팝업 -->
 <!-- ==================================== -->
-<div class="popup-layer" data-popup="update">
+<div class="update-popup-layer" data-popup="update">
 	<div class="popup-box">
 		<div class="popup-top">
-        	<h1>글쓰기</h1>
+        	<h1>글 수정</h1>
         </div>
-        <div class="popup-writer">
-          	<form action="#" method="post" class="popup-writer">
-            	<input name="board_title" type="text" placeholder="제목" value="${ vo.board_title }"/>
+        <div class="popup-writer" id="popup-update">
+            	<input name="update_title" id="update_title" type="text" placeholder="제목" value="${ vo.board_title }"/>
 	            <textarea
-	              name="board_content"
-	              id="content"
-	              placeholder="내용을 입락하세요."
-	            ></textarea>
+	              name="update_content"
+	              id="update_content"
+	              placeholder="내용을 입력하세요."
+	            >${ vo.board_content }</textarea>
 	            
 	            <div class="popup-btn-group">
-		         	<button type="button" class="btn-cancel" onclick="popupHide()">취소</button>
-		          	<button type="submit" class="btn-submit">게시</button>
+		         	<button type="button" class="btn-cancel" data-popup-close="update">취소</button>
+		          	<button type="submit" class="btn-submit-update">게시</button>
 		        </div>
-          	</form>
         </div>
 	</div>
 </div>
