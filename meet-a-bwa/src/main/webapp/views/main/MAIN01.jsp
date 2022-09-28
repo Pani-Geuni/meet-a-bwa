@@ -5,6 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
@@ -18,7 +19,7 @@
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
-    <script>
+    <script>    	
     	$(function(){
     		var user_id = '${user_id}'; //세션값 가져옴
 	    	
@@ -45,6 +46,13 @@
     	        location.href = "/meet-a-bwa/a_selectOne.do?category="+category;
     	    })
     	    
+    	    // 로그인 팝업 - 창닫기 버튼 클릭
+    	    $("#login-popup-closeBtn").click(function(){
+    	    	$('#idInput').removeClass("length_error");
+	    		$('#pwInput').removeClass("length_error");
+    	    	$(".login-layer").addClass("blind");
+    	    });
+    	    
     	    // 로그아웃 팝업 - 취소버튼 클릭
     	 	$(".btn-cancel").click(function(){
     	 		$(".logout-layer").addClass("blind");
@@ -64,11 +72,42 @@
    	    		}
     	    });
     	    
-    	 // 액티비티 추천 - +더보기 버튼 클릭
-    	 $("#plusBtn_act").click(function(){
-    		 let category = $(".tagItem.check").text();
-    		 location.href = "/meet-a-bwa/activity-list.do?category=" + category + "&&searchWord=";
-    	 });
+	    	 // 액티비티 추천 - +더보기 버튼 클릭
+	    	 $("#plusBtn_act").click(function(){
+	    		 let category = $(".tagItem.check").text();
+	    		 location.href = "/meet-a-bwa/activity-list.do?category=" + category + "&&searchWord=";
+	    	 });
+
+	    	 // 상세 리스트 클릭 이벤트
+	    	 $(".content_list.meet-list").click(function(){
+	    		 let idx = $(this).attr("idx");
+	    		 location.href = "/meet-a-bwa/meet-main.do?idx="+idx;
+	    	 });
+	    	 $(".content_list.activity-list").click(function(){
+	    		 let idx = $(this).attr("idx");
+	    	 });
+	    	  
+	    	 // 로그인 버튼 클릭 시 제출 전에 아이디/비번 입력되었는지 확인
+	    	  $( '#loginForm' ).submit( function() {
+	    		$('#idInput').removeClass("length_error");
+	    		$('#pwInput').removeClass("length_error");
+	    		
+	          	if($('#idInput').val().trim().length > 0){
+	          		if($('#pwInput').val().trim().length > 0){
+	          			return true;
+	          		}else{
+	          			$('#pwInput').addClass("length_error");
+	          			return false;
+	          		}
+	          	}else{
+          			$('#idInput').addClass("length_error");
+	          		if($('#pwInput').val().trim().length == 0){
+	          			$('#pwInput').addClass("length_error");
+	          			return false;
+	          		}
+	          		return false;
+	          	}
+	          });
     	});
     </script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
@@ -132,7 +171,7 @@
                 
                 	<c:forEach var="mvo" items="${u_list}">
 	                    <!-- start content_list div-->
-	                    <div class = "content_list">
+	                    <div class = "content_list meet-list" idx = "${mvo.meet_no}">
 	                        <div class = "info-list-wrap">
 	                            <div class = "listCommon">
 	                                <span class = "content_title">${mvo.meet_name}</span>
@@ -268,7 +307,7 @@
                     
                     <div id = "recommend_list_wrap">
 	                    <c:forEach var="avo" items="${a_list}">
-		                   	<div class = "content_list">
+		                   	<div class = "content_list activity-list" idx = "${avo.activity_no}">
 		                        <div class = "info-list-wrap">
 		                            <div class = "listCommon">
 		                                <span class = "content_title">${avo.activity_name}</span>
@@ -346,20 +385,19 @@
         <div class="login-layer blind">
 	      <div class="login-popup-wrap">
 		    <div class="login-top">
-		      <a href="">
 		        <img id="logo" src="resources/img/logo.svg" alt="login logo image" />
-		      </a>
 		    </div>
 	
 		    <div class="login-middle">
-		      <form action="/meet-a-bwa/m_loginOK.do" class="login-form" method="post">
+		      <form action="/meet-a-bwa/m_loginOK.do" class="login-form" method="post" id = "loginForm">
 		        <label for="id">아이디</label>
-		        <input type="text" name = "id" placeholder="아이디 입력"/>
+		        <input type="text" id = "idInput" name = "id" placeholder="아이디 입력"/>
 		
 	            <label for="pw">비밀번호</label>
-		        <input type="password" name = "pw" placeholder="비밀번호 입력"/>
+		        <input type="password" id = "pwInput" name = "pw" placeholder="비밀번호 입력"/>
 		        
-		        <button type="submit">로그인</button>
+		        <input type="submit" onsubmit = "check_length();" value = "로그인">
+		        <input type = "button" value = "창닫기" id = "login-popup-closeBtn">
 		      </form>
 		
 	        <div class="login-bottom">
@@ -370,7 +408,7 @@
 		          <a href="">PW 찾기</a>
 	            </div>
 	           	<div>
-		          <a href="">회원가입</a>
+		          <a href="/meet-a-bwa/u_insert.do">회원가입</a>
 		        </div>
 		      </div>
 		    </div>
