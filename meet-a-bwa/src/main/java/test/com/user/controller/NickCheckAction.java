@@ -13,11 +13,11 @@ import test.com.user.model.UserVO;
 public class NickCheckAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println(request.getParameter("nickname"));
+		System.out.println(request.getParameter("u_nickname"));
 	    
 		UserDAO u_dao = new UserDAOImpl();
 	    UserVO uvo = new UserVO();
-	    uvo.setUser_nickname(request.getParameter("nickname"));
+	    uvo.setUser_nickname(request.getParameter("u_nickname"));
 		
 	    UserVO uvo2 = u_dao.nickCheck(uvo);
 	    System.out.println("nickCheck:"+uvo2);
