@@ -1,104 +1,90 @@
 $(function(){
-    let cnt = 1;
-    let cnt2 = 1;
-    let flag = true;
+	let content_arr = [];
+	let flag = true;
+	
+	$("#vote_cancleBtn").click(function(){
+		$("#event-create").addClass("blind");
+		$(".vote-create-update-wrap").addClass("blind");
+	});
     
-    plus_list();
+    // 투표 생성 버튼
+    $("#vote_createBtn").click(function(){
+        let title_length = $("#vote_title").val().trim().length;
+        let endDate_length = $("#vote_endDate").val().trim().length;
+        let time = $("#timeValue").text().trim().includes("--");
+        let description_length = $("#vote_description").val().trim().length;
+        let content = returnContent_checkNull();
 
-
-    /************************************************ */
-    /** 버튼 클릭 이벤트 SECTION */
-    /************************************************ */
-    // 투표 항목 추가 버튼 클릭 이벤트
-    $("#vote_list_plusBtn").click(function(){
-        plus_list();
-    });
-
-
-    /************************************************ */
-    /** 글자수 제한 */
-    /************************************************ */
-    // 투표 제목 글자수 제한
-    $("#vote_title").keydown(function(){
-        text_limit(15, $(this), $("#title_text_length"));
-    });
-    $("#vote_title").keyup(function(){
-        text_limit(15, $(this), $("#title_text_length"));
+        if(title_length > 0 && endDate_length > 0 && !time && description_length > 0 && content){
+        	let time = "";
+        	let arr = $("#timeValue").text().trim().split(":");
+        	let ampm = arr[0];
+        	if(ampm == "오후"){
+        		if(Number(arr[1]) != 12){
+        			time = (Number(arr[1]) + 12) + ":" + arr[2] + ":59";
+        		}else{
+        			console.log("dd");
+        			time = arr[1] + ":" + arr[2] + ":59";
+        		}
+        	}else if(ampm == "오전"){
+        		time = arr[1] + ":" + arr[2] + ":59";
+        	}
+        	
+        	console.log(content_arr);
+            insert_ajax(time, content_arr);
+        }
+        else{
+            fade_in_out(undefined, undefined, "빈 항목이 존재합니다.");
+        }  
     });
     
-    // 투표 설명 글자수 제한
-    $("#vote_description").keydown(function(){
-        text_limit(150, $(this), $("#description_text_length"));
-    });
-    $("#vote_description").keyup(function(){
-        text_limit(150, $(this), $("#description_text_length"));
-    });
-
-
-    /************************************************ */
-    /** 투표 항목 삭제 */
-    /************************************************ */
-    $("#vote_list_Wrap").on("click", ".removeBtn", function(){
-        cnt2=1;
-        let wrap = $(this).parents("#vote_list_Wrap");
-        let sample = $(".sample").clone();
-        let idx = $(this).parents(".vote_list").attr("idx");
-        let arr = wrap.children(".vote_list").not(".blind");
-        wrap.empty().append(sample);
-
-        for(var i = 0; i < arr.length; i++){
-            if($(arr[i]).attr("idx") != idx){
-                $(arr[i]).children(".list_title").text(cnt2+".");
-                wrap.append(arr[i]);
-                cnt2++;
+    
+    function returnContent_checkNull(){
+    	content_arr = [];
+        let elementArr = $("#event-create").find(".list_text:gt(0)").slice();
+        
+        for(element of elementArr){
+            if($(element).val().trim().length == 0){
+            	content_arr = [];
+                return false;
+            }else if($(element).val().trim().length != 0){
+            	content_arr.push($(element).val().trim());
             }
         }
-
-    });
-
-
-    /************************************************ */
-    /** DATEPICKER **/
-    /************************************************ */
-    $("#vote_endDate").datepicker({
-        changeYear:true,
-        changeMonth:true,
-        onSelect:function(dateText) {
-            console.log(dateText);
-        }
-    });
-    
-
-    /************************************************ */
-    /** 함수 SECTION **/
-    /************************************************ */
-    // 글자수 제한 및 글자수 표기 함수
-    function text_limit(max_length, element, length_txt_element){
-        if(element.val().length > max_length){
-            fade_in_out(element, max_length);
-        }
-        length_txt_element.text(element.val().length + "/" + max_length);
+        return true;
     }
     
-    // 투표 항목 추가 함수
-    function plus_list(){
-        let sample_list = $(".sample").clone();
-        sample_list.removeClass("blind sample");
-        sample_list.attr("idx", cnt);
-        sample_list.children(".list_title").text(cnt2+".");
-        cnt++;
-        cnt2++;
-
-        $("#vote_list_Wrap").append(sample_list);
+    function insert_ajax(time, content_arr){
+    	 $.ajax({
+        	url : "/meet-a-bwa/m_vote_create.do",
+			type : "POST",
+			traditional : true, // data value중에 배열있을 때 필요
+			dataType : 'json', // 결과값 받을 타입
+			data : {
+				vote_title : $("#vote_title").val().trim(),
+				vote_content : $("#vote_description").val().trim(),
+				vote_eod : $("#vote_endDate").val().trim() + " " + time,
+				user_no : $.cookie("user_no"),
+				meet_no : location.href.split("idx=")[1],
+				contents : content_arr
+			},
+			success : function(result) {
+		        console.log(result);
+			},
+			error : function(error) {
+			 	console.log(error);
+			 }
+        });
     }
-
+    
     // 토스트 함수
-    function fade_in_out(element, max_length){
-        element.val(element.val().substr(0,max_length));
+    function fade_in_out(element, max_length, text){
+        if(element != undefined && max_length != undefined)
+            element.val(element.val().substr(0,max_length));
 
         if(flag){
             flag = false;
-            $("#toast_txt").text("글자수를 초과하였습니다.")
+            $("#toast_txt").text(text);
             $("#toastWrap").removeClass("hide");
             $("#toastWrap").removeClass("fade-out");
             $("#toastWrap").addClass("fade-in");
@@ -110,5 +96,4 @@ $(function(){
             }, 2000);
         }
     }
-
 });

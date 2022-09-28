@@ -27,7 +27,7 @@
     align-items: center;
     position: relative;
 }
-#title{
+#view-title{
     width: 480px;
     font-size: 21px;
     font-weight: bold;
@@ -91,7 +91,7 @@
     font-size: 17px;
     color : #F76E11;
 }
-#vote_description{
+#vote_view_description{
     min-height: 30px;
     max-height: 45px;
     overflow : overlay;
