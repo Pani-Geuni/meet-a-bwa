@@ -6,8 +6,8 @@ import java.util.Calendar;
 public interface UserDB {
 	String DRIVER_NAME = "oracle.jdbc.OracleDriver";
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	String USER = "meetabwa";
-	String PASSWORD = "meetabwa";
+	String USER = "mab_test_db";
+	String PASSWORD = "test1234";
 	
 //	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //	String strDate = dateFormat.format(Calendar.getInstance().getTime());

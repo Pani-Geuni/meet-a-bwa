@@ -17,6 +17,7 @@
 	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+    <script src="/meet-a-bwa/resources/js/user/myPage.js"></script>
 
 <title>마이 페이지</title>
 </head>
@@ -36,10 +37,8 @@
 	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
 	            </div>
 	            <div id="user-contents">
-	              <%-- <c:if test="${list.isLogin eq true} }"> --%>
 	              <p><span>${ list.nick_name }님,</span> 안녕하세요.</p>
 	              <p>golfzon@gmail.com</p>
-	              <%-- </c:if> --%>
 	            </div>
 	          </div>
 	        </section>
@@ -47,7 +46,7 @@
         
         <ul class="my-menu-list" id="my-menu-list">
           <li>
-            <a href="#">개인 정보 수정</a>
+            <p class="edit-user-info">개인 정보 수정</p>
           </li>
           <li>
             <a href="/meet-a-bwa/views/user/USER05.jsp">나의 모임</a>
