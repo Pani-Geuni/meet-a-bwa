@@ -312,7 +312,7 @@
 				<div id="tagWrap">
 					<input type="button" class="delete_interest interest_result blind">
 					<input type="button"
-						class="delete_interest interest_result uvo2_interest"
+						class="delete_interest interest_result uvo2_interest blind"
 						value="${uvo2.user_interest} X">
 				</div>
 
@@ -321,6 +321,7 @@
 						<label>활동 지역</label>
 					</div>
 					<select id="city" name='city' class="input" value="${uvo2.user_city}">
+						<option class="city_list" value='${uvo2.user_city}'>${uvo2.user_city}</option>
 						<option class="city_list" value=''>도/시 선택</option>
 						<option class="city_list" value='전체'>전체</option>
 					</select> <select name='country' id="country" class=select>
