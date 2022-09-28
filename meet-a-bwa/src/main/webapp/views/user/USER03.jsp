@@ -320,8 +320,8 @@
 					<div id="city_la">
 						<label>활동 지역</label>
 					</div>
-					<select id="city" name='city' class="input">
-						<option class="city_list" value=''>${uvo2.user_city}</option>
+					<select id="city" name='city' class="input" value="${uvo2.user_city}">
+						<option class="city_list" value=''>도/시 선택</option>
 						<option class="city_list" value='전체'>전체</option>
 					</select> <select name='country' id="country" class=select>
 						<option class="country_option" value=''>${uvo2.user_county}</option>
@@ -329,7 +329,7 @@
 					</select>
 				</div>
 
-				<section class="blind">
+				<section class="blind" >
 					<label for="user_state">user_state:</label><input id="user_state"
 						name="user_state" value="${uvo2.user_state}">
 				</section>

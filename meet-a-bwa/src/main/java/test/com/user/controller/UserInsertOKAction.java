@@ -141,7 +141,7 @@ public class UserInsertOKAction {
 			
 //			System.out.println("please:"+user_image.length());
 			System.out.println("please:"+user_image);
-			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
 			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_insert(uvo);
