@@ -30,8 +30,9 @@
 <body>
 
 	<!--  START HEADER INCLUDE -->
-	<jsp:include page="/views/common/header.jsp"></jsp:include>
-	<!--  END HEADER INCLUDE -->
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
 
 	<div id="bodyWrap">
 		<div id="contentWrapRow">
