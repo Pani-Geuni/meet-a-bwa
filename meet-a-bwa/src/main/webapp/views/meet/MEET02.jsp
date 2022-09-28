@@ -10,6 +10,7 @@
 	href="/meet-a-bwa/resources/css/common/common.css" />
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/common/header.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
 
@@ -18,6 +19,7 @@
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-info.css" />
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/meet/post-detail.css" />
 <link rel="stylesheet"
@@ -105,12 +107,55 @@
 
 			<c:choose>
 				<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
-					<section class="feedWrap-not-login">
+					<!-- <section class="feedWrap-not-login">
 						<div class="feed-not-login">
 							<img alt="경고 이미지" src="/meet-a-bwa/resources/img/worry.svg">
 							<h1>아직 로그인을 안하셨어요 로그인 후 이용해주세요</h1>
 						</div>
-					</section>
+					</section> -->
+					<section class="meet-info-wrap">
+          <div class="meet-info-top">
+            <h1 class="meet-info-title">모임소개</h1>
+            <button class="btn-meet-info-edit"></button>
+            <button class="btn-meet-info-remove"></button>
+          </div>
+
+          <div class="meet-info-tag">
+            <h3>모임 정보</h3>
+            <div class="tagSection">
+              <div class="loca_tag tag">
+                <img src="/meet-a-bwa/resources/img/map.png" class="tag_img" />
+                <span class="location_name font_size_10">경안동</span>
+              </div>
+              <div class="cate_tag tag">
+                <span class="category_name font_size_10">자전거</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="meet-info-content">
+            <pre>
+옛 말에 그런 말이 있죠
+"금요일은 소고기를 먹어라"
+- 맛있는 소고기와 와인을 먹어요
+- 즐거운 이야기를 나눠요
+- 지갑은 비우고 배는 가득 채우는 모임이에요🙌
+- 아 참! 사실 그런 예삼ㄹ은 없어요. 그냥 맛있게 먹어요!
+            </pre>
+          </div>
+
+          <div class="meet-info-detail">
+            <h3>모임 정보</h3>
+            <div>
+              <p>모임 개설일</p>
+              <span>2022년 08월</span>
+            </div>
+            <div>
+              <p>멤버 수</p>
+              <span>22명</span>
+            </div>
+          </div>
+        </section>
 				</c:when>
 
 				<c:when test="${list.isLogin eq true}">
@@ -219,6 +264,9 @@
 				</c:when>
 			</c:choose>
 		</div>
+			<!--  START HEADER INCLUDE -->
+			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
+	    <!--  END HEADER INCLUDE -->
 	</div>
 </body>
 
