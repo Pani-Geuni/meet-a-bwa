@@ -174,7 +174,7 @@
           <div class="right-summary-list" id="vote-summary-list">
             <div class="right-summary-list-top">
               <h1>투표</h1>
-              <p><a href="#">+</a></p>
+              <p><a href="m_vote_create.do">+</a></p>
             </div>
             <ul class="right-summary-list-contents">
               <li>

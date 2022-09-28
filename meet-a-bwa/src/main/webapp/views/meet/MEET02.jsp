@@ -125,7 +125,7 @@
 									<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
 
 									<ul class="post-option-list" idx="${ vo.board_no }">
-										<!-- <li class="post-option-item" data-popup-open="update">수정하기</li> -->
+										<li class="post-option-item" data-popup-open="update">수정하기</li>
 										<li class="post-option-item" data-popup-open="delete">
 											삭제하기</li>
 									</ul>
@@ -180,7 +180,7 @@
           <div class="right-summary-list" id="vote-summary-list">
             <div class="right-summary-list-top">
               <h1>투표</h1>
-              <p><a href="#">+</a></p>
+              <p><a href="/meet-a-bwa/m_vote_create.do">+</a></p>
             </div>
             <ul class="right-summary-list-contents">
               <li>
