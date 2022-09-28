@@ -29,4 +29,7 @@ public interface MeetDB {
 		+ ") "
 		+ "WHERE MEET_COUNTY = ? AND ROWNUM BETWEEN 1 AND 10 ";
 	
+	
+	String SQL_SELECT_ONE_MEET = "SELECT * from MEET_JOIN_VIEW WHERE MEET_NO=?";
+	
 }
