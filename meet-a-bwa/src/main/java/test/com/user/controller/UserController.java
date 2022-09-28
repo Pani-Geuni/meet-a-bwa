@@ -16,7 +16,7 @@ import test.com.user.model.UserDAOImpl;
 /**
  * Servlet implementation class UserController
  */
-@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do", "/u_update.do", "/u_updateOK.do" })
+@WebServlet({ "/u_insert.do", "/u_insertOK.do", "/idCheck.do", "/nickCheck.do", "/emailCheck.do", "/u_update.do", "/u_updateOK.do","/u_delete.do" })
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAO u_dao = new UserDAOImpl();
@@ -41,9 +41,7 @@ public class UserController extends HttpServlet {
 		if (sPath.equals("/u_insert.do")) {
 			request.getRequestDispatcher("views/user/USER02.jsp").forward(request, response);
 		} 
-		else if (sPath.equals("/u_insertOK.do")) {
-			response.sendRedirect("/u_insert.do");
-		}
+		
 		
 		else if(sPath.equals("/idCheck.do")) {
 			new IdCheckAction().execute(request,response);
@@ -53,8 +51,9 @@ public class UserController extends HttpServlet {
 			new EmailCheckAction().execute(request,response);
 		}else if (sPath.equals("/u_update.do")) {
 			new UserUpdateAction().execute(request, response);
-
-		} 
+		}else if(sPath.equals("/u_delete.do")) {
+			new UserDeleteOKAction().execute(request, response);
+		}
 	}
 
 	/**

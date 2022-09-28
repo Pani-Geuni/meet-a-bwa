@@ -58,7 +58,7 @@ public class UserUpdateOKAction {
 			
 //			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			
-			long checkFileSize = 0;
+			//long checkFileSize = 0;
 
 			try {
 				List<FileItem> items = sfu.parseRequest(request);
@@ -106,8 +106,8 @@ public class UserUpdateOKAction {
 						System.out.println("파일 파일명 : " + item.getName());
 						System.out.println("파일 컨텐츠 타입 : " + item.getContentType());
 						System.out.println("파일 사이즈  : " + item.getSize());
-						checkFileSize = item.getSize();
-						if (checkFileSize != 0)
+						//checkFileSize = item.getSize();
+						if (item.getSize() != 0) {
 //							response.sendRedirect("u_update.do?user_no=" + user_no);
 //						else {
 							user_image = FilenameUtils.getName(item.getName());
@@ -122,7 +122,7 @@ public class UserUpdateOKAction {
 //						}
 					}
 				} // end for loop
-
+				}
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			}
@@ -130,10 +130,10 @@ public class UserUpdateOKAction {
 
 //			if(checkFileSize!=0) { // 사이즈가 0이 아닐때 실행 
 			UserVO uvo = new UserVO();
-			uvo.setUser_no(user_no);
+//			uvo.setUser_no(user_no);
 //			uvo.setUser_id(user_id);
 //			uvo.setUser_image(user_image);
-			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image);
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image);
 			uvo.setUser_pw(user_pw);
 //			uvo.setUser_name(user_name);
 			uvo.setUser_nickname(user_nickname);
@@ -149,15 +149,27 @@ public class UserUpdateOKAction {
 //			System.out.println("please:"+user_image);
 //			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
 			
+			System.out.println(user_image);
+			System.out.println(user_pw);
+			System.out.println(user_nickname);
+			System.out.println(user_email);
+			System.out.println(user_tel);
+			System.out.println(user_birth);
+			System.out.println(user_gender);
+			System.out.println(user_interest);
+			System.out.println(user_city);
+			System.out.println(user_county);
+			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_update(uvo);
 			System.out.println("result: "+result);
 
 			if(result==1) {
 				//request.getRequestDispatcher("/views/main/USER04.jsp?user_no"+user_no).forward(request, response);
-				request.getRequestDispatcher("/views/main/USER04.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
 				}else
-					request.getRequestDispatcher("/views/user/u_update.do?user_no"+user_no).forward(request, response);
+//					request.getRequestDispatcher("/views/user/u_update.do?user_no"+user_no).forward(request, response);
+			request.getRequestDispatcher("/views/user/USER03.jsp").forward(request, response);
 			}
 //		 }// end if
 		

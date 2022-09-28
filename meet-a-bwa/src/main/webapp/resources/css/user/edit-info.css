@@ -142,6 +142,8 @@ form{
 	width: 100px;
 	height: 40px;
 	line-height: 40px;
+	margin-top: 15px;
+    margin-left: 4px;
 }
 
 #gender_la{
@@ -205,7 +207,7 @@ form{
 
 #gender_div{
 	float: left;
-	margin-bottom: 25px;
+	margin-bottom: 5px;
 }
 
 #pictures {

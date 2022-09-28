@@ -1,5 +1,5 @@
 .modal-bg {
-    width: 100;
+    width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
@@ -33,6 +33,24 @@
     padding-top: 30px;
     height: 140px;
 }
+
+/*******이미지팝업********/
+.modal-content-inner2{
+    padding-top: 15px;
+    height: 140px;
+}
+
+
+.modal-content3{
+	 height: 40px;
+	 margin-top:35px;
+}
+
+.font{
+	font-size:17px;
+}
+
+/********************/
 
 .modal-content1{
     padding-bottom: 20px;

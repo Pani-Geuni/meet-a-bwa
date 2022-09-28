@@ -15,15 +15,19 @@
 	href="/meet-a-bwa/resources/css/common/footer.css" />
 
 <link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/common/searchBar.css" />
+
+<link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/user/edit-info.css" />
 
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/user/withdrawal-popup.css" />
-	
-	<link rel="stylesheet"
+
+<link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/user/bin-popup.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+<script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 <!-- <script src="/meet-a-bwa/resources/js//user/edit_info/edit_info.js"></script> -->
 <script src="/meet-a-bwa/resources/js/user/edit_info/textCondition.js"></script>
 <script src="/meet-a-bwa/resources/js/user/idCheck.js"></script>
@@ -33,63 +37,92 @@
 <script src="/meet-a-bwa/resources/js/user/edit_info/interest.js"></script>
 <script src="/meet-a-bwa/resources/js/user/profileImage.js"></script>
 <script>
+	//성별 출력
 	$(function() {
+
+		$("#gender").on("change", function() {
+			console.log($(this).val());
+		});
+
+		$("#membership_withdrawal_btn").on("click", function() {
+			$(".withdrawal-popup").removeClass("blind");
+			$(".withdrawalOK").click(function() {
+				$(".withdrawal-popup").addClass("blind");
+				init();
+			});
+			$(".cancle").click(function() {
+				$(".withdrawal-popup").addClass("blind");
+			});
+		});
+
+	});
+	
+	 function init() {
+	     $.ajax({
+	         type : "GET",
+	         url : "/meet-a-bwa/u_delete.do",
+	         success : function (data, status) {
+	            alert(status);
+	         },
+	         error : function (status) {
+	            alert(status + "error!");
+	         }
+	     });
+	  }
+
+	function check() {
 
 		//	var user_id = '${user_id}'; //세션값 가져옴
 		//	console.log(user_id);
 
-		//성별 출력
-		$(function() {
-
-			$("#gender").on("change", function() {
-				console.log($(this).val());
-			});
-
-		});
-
 		console.log($("#id").val());
 
-		$("#edit_member_information_btn").click(
-				function() {
-					let pw = $("#pw").val().length;
-					let pw_check = $("#pw_check").val().length;
-					let nickname = $("#nickname").val().length;
-					let email = $("#email").val().length;
-					let tel = $("#tel").val().length;
+		let pw = $("#pw").val().length;
+		let pw_check = $("#pw_check").val().length;
+		let nickname = $("#nickname").val().length;
+		let email = $("#email").val().length;
+		let tel = $("#tel").val().length;
 
-					console.log(pw_check);
-					console.log(nickname);
-					console.log(email);
-					console.log(tel);
+		console.log(pw_check);
+		console.log(nickname);
+		console.log(email);
+		console.log(tel);
 
-					//if 절에 이미지 사이즈 용량 초과 조건 넣기
-					if (pw_check > 0 && nickname > 0 && email > 0 && tel > 0
-							&& ($("#pw").val() === $("#pw_check").val())
-							&& $("#nickname").attr("readonly")
-							&& $("#email").attr("readonly")) {
-						console.log("가입 가능");
-					} else{
-						console.log("가입 불가능");
-					 if(pw_check<=0||nickname<=0||email<=0||tel<=0){
-						 $(".bin-popup").removeClass("blind");
-				      }else if(pw<7&&($("#pw").val()!==$("#pw_check").val())){
-				    	  $(".pwd-popup").removeClass("blind");
-				      }else if($("#id").attr("readonly",false)){
-				    	  $(".id-popup").removeClass("blind");
-				      }else if($("#nickname").attr("readonly",false)){
-				    	  $(".nickname-popup").removeClass("blind");
-				      }else if($("#email").attr("readonly",false)){
-				    	  $(".email-popup").removeClass("blind");
-				      }else if($("#image").size()>4000){
-				    	  $(".image-popup").removeClass("blind");
-				      }
-					}
+		//if 절에 이미지 사이즈 용량 초과 조건 넣기
+		if (pw_check > 0 && nickname > 0 && email > 0 && tel > 0
+				&& ($("#pw").val() === $("#pw_check").val())
+				&& $("#nickname").attr("readonly")
+				&& $("#email").attr("readonly")) {
+			console.log("가입 가능");
+		} else {
+			console.log("가입 불가능");
+			if (pw <= 0 || pw_check <= 0 || nickname <= 0 || email <= 0
+					|| tel <= 0) {
+				$(".bin-popup").removeClass("blind");
+				$(".ok").on("click", function() {
+					$(".bin-popup").addClass("blind");
 				});
+			} else if (pw < 7 || pw_check < 7
+					|| ($("#pw").val() !== $("#pw_check").val())) {
+				$(".pwd-popup").removeClass("blind");
+				$(".ok").on("click", function() {
+					$(".pwd-popup").addClass("blind");
+				});
+			} else if ($("#nickname").attr("readonly", false)) {
+				$(".nickname-popup").removeClass("blind");
+				$(".ok").on("click", function() {
+					$(".nickname-popup").addClass("blind");
+				});
+			} else if ($("#email").attr("readonly", false)) {
+				$(".email-popup").removeClass("blind");
+				$(".ok").on("click", function() {
+					$(".email-popup").addClass("blind");
+				});
+			}
+			return false;
+		}
 
-		$("#membership_withdrawal_btn").click(function() {
-			$(".withdrawal-popup").removeClass("blind");
-		});
-	});
+	}
 </script>
 <title>밋:어봐</title>
 </head>
@@ -98,8 +131,8 @@
 	<jsp:include page="/views/common/header.jsp"></jsp:include>
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
-		<form action="u_updateOK.do" method="post"
-			enctype="multipart/form-data">
+		<form action="/meet-a-bwa/u_updateOK.do" method="post"
+			enctype="multipart/form-data" onsubmit="return check();">
 
 			<div class="OuterWrap">
 				<section class="blind">
@@ -121,10 +154,6 @@
 						</label>
 						<div class="img_btn">
 
-							<!-- input type="image" src="../img/imageAddBtn2.svg" class="input-file-btn" for="input-file">
-					<input type="file" name="upFile" id="input-file" class="input-file">< -->
-							<!-- <input type="image" src="../img/imageDropBtn2.svg" id="delete-file1" value="삭제"> -->
-
 							<label class="input-file-btn" for="input-file"> <img
 								src="/meet-a-bwa/resources/img/imageAddBtn2.svg" width=50px;
 								height=50px;>
@@ -135,10 +164,10 @@
 								<img src="/meet-a-bwa/resources/img/imageDropBtn2.svg"
 									width=50px; height=50px; alt="삭제">
 							</button>
-
 						</div>
 					</section>
 				</div>
+
 				<div id="id_div">
 					<div id="id_la">
 						<label><span class="noChange">*</span> 아이디</label>
@@ -181,6 +210,8 @@
 								<p class="toastText_checkYes blind">비밀번호가 일치합니다.</p>
 								<p class="toastText_checkNo blind">비밀번호가 일치하지 않습니다.</p>
 								<p class="toastText_min2 hide">최소 8글자 이상으로 입력해주세요</p>
+							</section>
+						</section>
 					</div>
 					<!--pw_check_div end-->
 				</div>
@@ -255,7 +286,8 @@
 					<div id="birth_div">
 						<label><span class="noChange">*</span> 생년월일</label>
 						<p>
-							<input type="date" id="birth" value="${uvo2.user_birth}" readonly>
+							<input type="text" id="birth" name="birth"
+						value="${uvo2.user_birth}" readonly />
 						</p>
 					</div>
 
@@ -263,9 +295,8 @@
 						<div id="gender_la">
 							<label><span class="noChange">*</span> 성별</label>
 						</div>
-						<p id="gender" name="gender" readonly>${uvo2.user_gender}</p>
-						<!-- <select id="gender"  value="${uvo2.user_gender}" readonly>
-				</select> -->
+						<input type="text" id="gender" name="gender"
+						value="${uvo2.user_gender}" readonly />
 					</div>
 				</div>
 
@@ -300,7 +331,7 @@
 
 				<section class="blind">
 					<label for="user_state">user_state:</label><input id="user_state"
-						name="user_state" value="${param.user_state}">
+						name="user_state" value="${uvo2.user_state}">
 				</section>
 
 				<div class="btnWrap">
@@ -327,7 +358,7 @@
 						</section>
 						<!--modal-content2-->
 						<section class="modal-content2">
-							<button class="ok">확인</button>
+							<button class="withdrawalOK">확인</button>
 							<button class="cancle">취소</button>
 						</section>
 						<!--modal-content3-->
@@ -460,12 +491,13 @@
 		<div class="modal-bg">
 			<div class="modal-wrap">
 				<div class="modal-content-wrap">
-					<section class="modal-content-inner">
+					<section class="modal-content-inner2">
 						<section class="modal-content1">
-							<p>이미지 용량 초과 ㅠㅠ!</p>
+							<p class="font">첨부파일 사이즈</p>
+							<p class="font">10KB 이내로 등록 가능</p>
 						</section>
 						<!--modal-content2-->
-						<section class="modal-content2">
+						<section class="modal-content3">
 							<button class="ok">확인</button>
 						</section>
 						<!--modal-content3-->

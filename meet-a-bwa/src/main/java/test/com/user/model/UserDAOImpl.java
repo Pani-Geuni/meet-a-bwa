@@ -302,20 +302,14 @@ public class UserDAOImpl implements UserDAO {
 //		        String formattedDate = simpleDateFormat.format(uvo.getUser_birth());
 //		        java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
 		    pstmt.setString(1, uvo.getUser_image());    
-//			pstmt.setString(2, uvo.getUser_id());
 			pstmt.setString(2, uvo.getUser_pw());
-//			pstmt.setString(4, uvo.getUser_name());
 			pstmt.setString(3, uvo.getUser_nickname());
 			pstmt.setString(4, uvo.getUser_email());
 			pstmt.setString(5, uvo.getUser_tel());
-//			System.out.println("DAOImpl:"+date1);
-//			System.out.println(date1 instanceof Date);
-//			pstmt.setDate(8,date1); //안되면 util로 받아보기
-//			pstmt.setString(9, uvo.getUser_gender());
 			pstmt.setString(6, uvo.getUser_interest());
 			pstmt.setString(7, uvo.getUser_city());
 			pstmt.setString(8, uvo.getUser_county());
-			pstmt.setString(9, uvo.getUser_no());
+			//pstmt.setString(9, uvo.getUser_no());
 			
 			flag=pstmt.executeUpdate(); 
 			
@@ -357,7 +351,8 @@ public class UserDAOImpl implements UserDAO {
 			conn = DriverManager.getConnection(UserDB.URL,UserDB.USER,UserDB.PASSWORD);
 			System.out.println("user update db conn successed...");
 			pstmt = conn.prepareStatement(UserDB.SQL_USER_DELETE);
-			pstmt.setString(1, uvo.getUser_no()); 
+			pstmt.setString(1, uvo.getUser_state()); 
+//			pstmt.setString(2, uvo.getUser_no()); 
 			flag=pstmt.executeUpdate();  // insert占쏙옙 executeUpdate占싱곤옙 占쏙옙占쏙옙타占쏙옙(flag)占쏙옙 占쌍억옙占� 占쏙옙
 			
 		} catch (SQLException e) {

@@ -1,22 +1,19 @@
 $(function () {
 
+
     //성별 출력
-    $(function () {
+   
 
         $("#gender").on("change", function () {
             console.log($(this).val());
         });
-    
-    });
-    
-     $(function () {
+ 
 
         $("#birth").on("change", function () {
             console.log($(this).val());
             console.log(typeof($(this).val()));
         });
-    
-    });
+   
 
     // NOT NULL 에 alert Popup 
 
@@ -32,52 +29,7 @@ $(function () {
 
 
     
-    $("#join_btn").click(function(){
-        let id = $("#id").val().length;
-        let pw =$("#pw").val().length;
-        let pw_check =$("#pw_check").val().length;
-        let name = $("#name").val().length;
-        let nickname = $("#nickname").val().length;
-        let email = $("#email").val().length;
-        let tel = $("#tel").val().length;
-        let bitrh = $("#birth").val().length;
-        let gender = $("#gender").val().length;
-
-        console.log(id);
-        console.log(pw);
-        console.log(pw_check);
-        console.log(name);
-        console.log(nickname);
-        console.log(email);
-        console.log(tel);
-        console.log(birth);
-        console.log(gender);
-
-
-        if(id>0&&pw>0&&pw_check>0&&name>0&&nickname>0
-            &&email>0&&tel>0&&bitrh>0&&gender>0
-            &&pw>7&&($("#pw").val()===$("#pw_check").val())
-            &&$("#id").attr("readonly")
-            &&$("#nickname").attr("readonly")
-            &&$("#email").attr("readonly")){
-                console.log("가입 가능");
-        }else{
-						console.log("가입 불가능");
-					 if(id<=0||pw_check<=0||name<=0||nickname<=0||email<=0||tel<=0||birth<=0||gender<=0){
-						 $(".bin-popup").removeClass("blind");
-				      }else if(pw<7&&($("#pw").val()!==$("#pw_check").val())){
-				    	  $(".pwd-popup").removeClass("blind");
-				      }else if($("#id").attr("readonly",false)){
-				    	  $(".id-popup").removeClass("blind");
-				      }else if($("#nickname").attr("readonly",false)){
-				    	  $(".nickname-popup").removeClass("blind");
-				      }else if($("#email").attr("readonly",false)){
-				    	  $(".email-popup").removeClass("blind");
-				      }else if($("#image").size()>4000){
-				    	  $(".image-popup").removeClass("blind");
-				      }
-					}
-    });
+    
     
 
 });
