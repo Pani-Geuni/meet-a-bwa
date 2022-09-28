@@ -2,10 +2,10 @@
 //   $('.popup').show()
 // })
 
-function popupShow() {
-  $('.popup-layer').show()
+function writePopupShow() {
+  $('.write-popup-layer').show()
 }
 
-function popupHide() {
-  $('.popup-layer').hide()
+function writePopupHide() {
+  $('.write-popup-layer').hide()
 }

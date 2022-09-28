@@ -30,8 +30,8 @@ public class MeetBoardInsertOKAction {
 		System.out.println("result : " + result);
 		
 		if (result == 1)
-			response.sendRedirect("meet-main.do");
+			response.sendRedirect("/meet-a-bwa/meet-main.do");
 		else
-			response.sendRedirect("meet-main.do");
+			response.sendRedirect("/meet-a-bwa/meet-main.do");
 	}
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MeetBoardController
  */
-@WebServlet({"/b_insertOK.do", "/b_selectOne.do", "/b_deleteOK.do", "/b_updateOK" })
+@WebServlet({"/b_insertOK.do", "/b_selectOne.do", "/b_deleteOK.do", "/b_updateOK.do" })
 public class MeetBoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L; 
        
@@ -51,6 +51,8 @@ public class MeetBoardController extends HttpServlet {
 		
 		if (sPath.equals("/b_insertOK.do")) {
 			new MeetBoardInsertOKAction().execute(request, response);
+		} else if (sPath.equals("/b_updateOK.do")) {
+			new MeetBoardUpdateOKAction().execute(request, response);
 		}
 	}
 

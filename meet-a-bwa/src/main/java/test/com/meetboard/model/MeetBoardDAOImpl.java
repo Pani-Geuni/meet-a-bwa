@@ -81,7 +81,7 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
-			System.out.println("MemberBoard conn succeed...");
+			System.out.println("MemberBoard update conn succeed...");
 			
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_UPDATE_TEST);
 			
@@ -135,16 +135,7 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_SELECT_ALL_TEST);
 			rs = pstmt.executeQuery();
 			
-			System.out.println("TTEST");
-			
 			while(rs.next()) {
-				System.out.print(rs.getString("BOARD_NO") + " ");
-				System.out.print(rs.getString("BOARD_TITLE") + " ");
-				System.out.print(rs.getString("BOARD_CONTENT") + " ");
-				System.out.print(rs.getDate("BOARD_DATE") + " ");
-				System.out.print(rs.getString("USER_NO") + " ");
-				System.out.print(rs.getString("MEET_NO") + " ");
-				System.out.println(rs.getString("USER_NAME"));
 				
 				
 				MeetBoardVO vo = new MeetBoardVO();
