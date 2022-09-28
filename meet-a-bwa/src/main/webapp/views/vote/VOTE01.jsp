@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <!-- 이벤트 생성 -->
+ <!-- 투표 생성 -->
  
  
 <!-- Start voteWrap -->

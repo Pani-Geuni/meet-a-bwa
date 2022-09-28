@@ -26,11 +26,10 @@ public class VoteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String sPath = request.getServletPath();
-//		System.out.println(sPath);
+		System.out.println("doGet : " + sPath);
 		
-		if (sPath == "m_vote_create.do") {
+		if (sPath.equals("/m_vote_create.do")) {
 			new VoteCreateAction().execute(request, response);
 		}
 	}
