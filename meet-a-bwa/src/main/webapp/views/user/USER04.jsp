@@ -9,8 +9,10 @@
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
-
+	
+	
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-page.css"/>
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
 
 	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
@@ -56,6 +58,25 @@
         </ul>
         <!-- end my-meeting contentSection -->
 		</div>
+		
+		<!-- START LOGOUT POPUP -->
+        <div class="logout-layer blind">
+         <div class="logout-popup-wrap">
+            <img src="resources/img/worry.svg" alt="logout worry img"/>
+            <h1>
+              정말 로그아웃 <br />
+              하시겠습니까?
+            </h1>
+      
+            <div class="btn-group">
+	            <a href = "/meet-a-bwa/logoutOK.do">
+	              <button class="btn-logout">로그아웃</button>
+	            </a>
+              <button class="btn-cancel">취소</button>
+            </div>
+       	  </div>
+        </div>
+        <!-- END LOGOUT POPUP -->
 		
 		<div id="footerWrap-mypage">
       		<h5>© Golfzon Tech Academy, Inc. All rights reserved.</h5>
