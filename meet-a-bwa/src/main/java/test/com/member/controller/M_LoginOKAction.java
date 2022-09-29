@@ -54,7 +54,8 @@ public class M_LoginOKAction {
 			String like_meetNo_str = String.join("/", like_meetNo);
 			Cookie cookie6 = new Cookie("like_meet", like_meetNo_str);
 			
-			List<String> like_activityNo = m_dao.select_all_activity_like(vo2.getUser_no());
+			ActivityDAO a_dao = new ActivityDAOImpl();
+			List<String> like_activityNo = a_dao.select_all_activity_like(vo2.getUser_no());
 			String like_activityNo_str = String.join("/", like_activityNo);
 			Cookie cookie7 = new Cookie("like_activity", like_activityNo_str);
 
