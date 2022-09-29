@@ -47,9 +47,7 @@ public class ActivityDAOImpl implements ActivityDAO {
 			pstmt.setInt(9, avo.getActivity_age());
 //			pstmt.setDate(9, (java.sql.Date) new Date());
 //			pstmt.setString(10, avo.getUser_no()); 
-			pstmt.setString(10, "U1007"); 
 //			pstmt.setString(11, avo.getMeet_no()); 
-			pstmt.setString(11, "M1003"); 
 			
 			
 			flag=pstmt.executeUpdate(); 
