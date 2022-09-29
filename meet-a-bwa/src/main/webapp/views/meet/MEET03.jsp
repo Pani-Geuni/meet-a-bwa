@@ -19,6 +19,7 @@
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/select-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
@@ -32,55 +33,8 @@
 	
 	<div id="bodyWrap">
 		<div id="contentWrapRow">
+		<jsp:include page="../../views/common/meetLeftSideBar.jsp"></jsp:include>
 		
-		<aside class="meet-detail-aside">
-				<div class="meet-profile-img">
-					<img src="/meet-a-bwa/resources/img/sample/sample-img-01.png"
-						alt="샘플 대표 이미지" />
-				</div>
-				<div class="meet-detail-aside-top">
-					<h1 class="meet-deatil-aside-title">금요일은 소고기 먹는 날 날날날날날날</h1>
-					<div class="heart-common">
-						<img class="img-heart-filled"
-							src="/meet-a-bwa/resources/img/heart-filled.svg" alt="좋아요 이미지" />
-						<img class="img-heart-outlined blind"
-							src="/meet-a-bwa/resources/img/heart-outlined.svg"
-							alt="좋아요 테두리 이미지" /> <span>9789</span>
-					</div>
-				</div>
-				<div class="meet-summary-info">
-					<p>
-						<a href="./act-detail-member.html">멤버 22명</a>
-					</p>
-					<p>리더 팡근</p>
-				</div>
-
-				<div class="tagSection">
-					<div class="loca_tag tag">
-						<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" /> <span
-							class="location_name font_size_10">경안동</span>
-					</div>
-					<div class="cate_tag tag">
-						<span class="category_name font_size_10">자전거</span>
-					</div>
-				</div>
-
-				<!-- 로그인 전 -->
-				<!-- <button type="button" class="btn-meet join"> -->
-				<button type="button" class="blind">
-					<a href="#">모임 가입하기</a>
-				</button>
-
-				<!-- 로그인 후 -->
-				<button type="button" class="btn-meet join" onclick="writePopupShow()">
-					글쓰기</button>
-				<button type="button" class="btn-meet join">
-					<a href="">액티비티 개설</a>
-				</button>
-
-				<a class="meet-detail-link" href="./meet-info-detail.html">모임
-					자세히 보기</a>
-			</aside>
 			
 			<section class="post-detail">
           <div class="post-detail-top">

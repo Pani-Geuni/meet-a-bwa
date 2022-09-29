@@ -49,7 +49,7 @@ $(function () {
         tag.removeClass("blind");
         let select_value = $(this).val();
     		
-    		 if (!arr.includes(select_value)) {
+    		 if (!arr.includes(select_value)&&select_value!='') {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
             tag.val(select_value + " X");
             tag.attr("idx",++cnt);

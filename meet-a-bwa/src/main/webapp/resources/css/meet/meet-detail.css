@@ -290,13 +290,15 @@
   height: auto;
 
   padding: 12px;
+  
+  cursor: pointer;
 }
 
 .right-summary-list-contents li:not(:last-of-type) {
   border-bottom: 1px solid #e4e4e4;
 }
 
-.right-summary-list-contents a {
+.right-summary-list-contents p {
   color: #000000;
   font-size: 10px;
   font-weight: 400;

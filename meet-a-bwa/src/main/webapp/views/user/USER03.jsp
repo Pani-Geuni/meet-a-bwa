@@ -165,7 +165,7 @@
 					<div id="id_la">
 						<label><span class="noChange">*</span> 아이디</label>
 					</div>
-					<input type="text" placeholder="${uvo2.user_id}" id="id" name="id"
+					<input type="text" placeholder="아이디를 입력해주세요 (최대 15자)" id="id" name="id"
 						value="${uvo2.user_id}" readonly />
 				</div>
 

@@ -1,29 +1,29 @@
-package test.com.meet_feed.controller;
+package test.com.activity.controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import test.com.meet.model.MeetDAO;
-import test.com.meet.model.MeetDAOImpl;
-import test.com.meet.model.MeetVO3;
-import test.com.meetboard.model.MeetBoardDAO;
-import test.com.meetboard.model.MeetBoardDAOImpl;
-import test.com.meetboard.model.MeetBoardVO;
-import test.com.vote.model.VoteDAO;
-import test.com.vote.model.VoteDAOImpl;
-import test.com.vote.model.VoteVO;
+import test.com.activity.model.ActivityDAO;
+import test.com.activity.model.ActivityDAOImpl;
+import test.com.activity.model.ActivityVO;
 
-public class MeetFeedSelectAll_Action {
+
+public class ActionUpdateAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("activity_no"));
 		
+		//********************************헤더***********************************//
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -31,7 +31,7 @@ public class MeetFeedSelectAll_Action {
 		String cookie_county = "";
 		String cookie_nickName = "";
 		
-		//로그인 O
+		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -51,36 +51,25 @@ public class MeetFeedSelectAll_Action {
 			map.put("county", cookie_county);
 			
 			request.setAttribute("list", map);
+			
+			System.out.println("Headercontroller");
+			System.out.println(cookie_nickName);
 		}else {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
 			request.setAttribute("list", map);
 		}
-		
-		
-		String idx = request.getParameter("idx");
-		
-		// Feed 불러오기
-		MeetBoardDAO dao = new MeetBoardDAOImpl();
-		List<MeetBoardVO> vos = dao.board_selectAll(idx);
-		
-		request.setAttribute("vos", vos);
-		
-		// 모임 정보 불러오기
-		MeetDAO mdao = new MeetDAOImpl();
-		MeetVO3 mvo = new MeetVO3();
-		mvo.setMeet_no(idx);
-		
-		MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
-		
-		request.setAttribute("mvo3", mvo3);
-		
-		// 투표 불러오기
-		VoteDAO vdao = new VoteDAOImpl();
-		List<VoteVO> vvos = vdao.vote_selectAll(); 
-		
-		request.setAttribute("vvos", vvos);
-		
-		request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
+		//**********************************************************************//
+
+		ActivityVO avo = new ActivityVO();
+		avo.setActivity_no(request.getParameter("activity_no"));
+
+		ActivityDAO a_dao = new ActivityDAOImpl();
+		ActivityVO avo2 = a_dao.activity_selectOne(avo);
+
+		request.setAttribute("avo2", avo2);
+
+		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp");
+		rd.forward(request, response);
 	}
 }
