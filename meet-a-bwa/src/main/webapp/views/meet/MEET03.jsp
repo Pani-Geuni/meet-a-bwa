@@ -54,13 +54,16 @@
                 <p class="user-nickname">${ bvo2.user_name }</p>
                 <p class="write-date">${ bvo2.board_date }</p>
               </div>
-              <div class="post-more-select">
-              	<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
-              		<ul class="post-option-list" idx="${ bvo2.board_no }">
-              			<li class="post-option-item" data-popup-open="update">수정하기</li>
-              			<li class="post-option-item" data-popup-open="delete">삭제하기</li>
-					</ul>
-			  </div>
+              
+              <c:if test="${ bvo2.user_no eq list.user_no }">
+	              <div class="post-more-select">
+	              	<img class="img-more" src="/meet-a-bwa/resources/img/more.svg" alt="" />
+	              		<ul class="post-option-list" idx="${ bvo2.board_no }">
+	              			<li class="post-option-item" data-popup-open="update">수정하기</li>
+	              			<li class="post-option-item" data-popup-open="delete">삭제하기</li>
+						</ul>
+				  </div>
+			  </c:if>
             </div>
           </div>
 

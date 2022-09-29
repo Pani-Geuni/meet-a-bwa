@@ -168,7 +168,9 @@
 														<p class="user-nickname">${ vo.user_name }</p>
 														<p class="write-date">${ vo.board_date }</p>
 													</div>
-
+													
+													
+													<c:if test="${ vo.user_no eq list.user_no }">
 													<div class="post-more-select">
 														<img class="img-more"
 															src="/meet-a-bwa/resources/img/more.svg" alt="" />
@@ -179,6 +181,7 @@
 																삭제하기</li>
 														</ul>
 													</div>
+													</c:if>
 												</div>
 												<div class="feed-post">
 													<a href="b_selectOne.do?board_no=${ vo.board_no }">
