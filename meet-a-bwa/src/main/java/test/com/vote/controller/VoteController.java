@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class VoteController
  */
-@WebServlet({ "/m_vote_create.do", "/m_vote_update.do", "/m_vote_view.do" })
+@WebServlet({ "/m_vote_create.do", "/m_vote_update.do", "/m_vote_selectOne.do", "/m_vote_view.do" })
 public class VoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,6 +31,8 @@ public class VoteController extends HttpServlet {
 		
 		if (sPath.equals("/m_vote_create.do")) {
 			new VoteCreateAction().execute(request, response);
+		} else if (sPath.equals("/m_vote_selectOne.do")) {
+			new VoteSelectOneAction().execute(request, response);
 		}
 	}
 

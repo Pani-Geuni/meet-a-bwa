@@ -22,7 +22,7 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
-			System.out.println("Vote SelectALl conn secceed");
+			System.out.println("Vote SelectAll conn secceed");
 			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ALL_M);
 			rs = pstmt.executeQuery();
@@ -64,5 +64,52 @@ public class VoteDAOImpl implements VoteDAO {
 		}
 		
 		return vos;
+	}
+
+	@Override
+	public VoteVO vote_selectOne(VoteVO vvo) {
+
+		System.out.println("vote selectAll()..");
+		
+		try {
+			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
+			System.out.println("Vote SelectOne conn secceed");
+			
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ONE_M);
+			
+			pstmt.setString(1, vvo.getVote_no());
+			rs = pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return vvo;
 	}
 }
