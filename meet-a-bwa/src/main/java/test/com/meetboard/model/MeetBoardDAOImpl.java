@@ -40,7 +40,9 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 			
 			pstmt.setString(1, bvo.getBoard_title());
 			pstmt.setString(2, bvo.getBoard_content());
-			
+			pstmt.setString(3, bvo.getUser_no());
+			pstmt.setString(4, bvo.getMeet_no());
+						
 			flag = pstmt.executeUpdate();
 			
 			
