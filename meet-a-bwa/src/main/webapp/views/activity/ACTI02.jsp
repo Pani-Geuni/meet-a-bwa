@@ -9,11 +9,19 @@
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/common/header.css" />
 <link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/common/searchBar.css" />
+<link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/common/footer.css" />
+
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 	
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/activity/feed.css" />
 	
 	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+	<script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
+ <script src="/meet-a-bwa/resources/js/common/header.js"></script>
 	<script src="/meet-a-bwa/resources/js/activity/feed.js"></script>
 <title>액티비티 상세 페이지</title>
 </head>
