@@ -17,7 +17,7 @@ import test.com.user.controller.MyPageAction;
 /**
  * Servlet implementation class HeaderController
  */
-@WebServlet({"/mypage.do", "/main.do"})
+@WebServlet({"/mypage.do"})
 public class HeaderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,8 +38,6 @@ public class HeaderController extends HttpServlet {
 		
 		if(sPath.equals("/mypage.do")) {
 			new MyPageAction().execute(request, response);
-		}else if(sPath.equals("/main.do")) {
-			request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 		}
 	}
 
