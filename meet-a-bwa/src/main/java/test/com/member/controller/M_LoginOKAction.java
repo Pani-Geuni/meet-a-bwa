@@ -1,6 +1,7 @@
 package test.com.member.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.valves.rewrite.Substitution.MapElement;
+import org.json.simple.JSONArray;
 
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
@@ -46,6 +48,15 @@ public class M_LoginOKAction {
 			Cookie cookie3 = new Cookie("user_interest", vo2.getUser_interest());
 			Cookie cookie4 = new Cookie("user_county", vo2.getUser_county());
 			Cookie cookie5 = new Cookie("nick_name", vo2.getUser_nickname());
+			
+			MeetDAO m_dao = new MeetDAOImpl();
+			List<String> like_meetNo = m_dao.select_all_meet_like(vo2.getUser_no());
+			String like_meetNo_str = String.join("/", like_meetNo);
+			Cookie cookie6 = new Cookie("like_meet", like_meetNo_str);
+			
+			List<String> like_activityNo = m_dao.select_all_activity_like(vo2.getUser_no());
+			String like_activityNo_str = String.join("/", like_activityNo);
+			Cookie cookie7 = new Cookie("like_activity", like_activityNo_str);
 
 			// 쿠키를 클라이언트로 전송
 			response.addCookie(cookie1);
@@ -53,6 +64,8 @@ public class M_LoginOKAction {
 			response.addCookie(cookie3);
 			response.addCookie(cookie4);
 			response.addCookie(cookie5);
+			response.addCookie(cookie6);
+			response.addCookie(cookie7);
 			
 			
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -63,7 +76,6 @@ public class M_LoginOKAction {
 			
 			request.setAttribute("list", map);
 			
-			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list;
 			if(vo2.getUser_interest() == null) {
 				list = m_dao.select_county(vo2.getUser_county());

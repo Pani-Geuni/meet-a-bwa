@@ -22,12 +22,16 @@ public interface MeetDB {
 		+ ") "
 		+ "WHERE MEET_INTEREST_NAME = ? AND ROWNUM BETWEEN 1 AND 10";
 	String SQL_SELECT_ALL_COUNTY 
-		= "SELECT * from("
+		= "SELECT * FROM ("
 		+ "    SELECT meet_no, meet_image, meet_name, meet_description, meet_county, meet_interest_name, meet_gender, meet_nop, meet_age, meet_date, user_no, like_cnt, user_cnt "
 		+ "    FROM MEET_JOIN_VIEW"
 		+ "    ORDER BY LIKE_CNT DESC, MEET_NO ASC"
 		+ ") "
 		+ "WHERE MEET_COUNTY = ? AND ROWNUM BETWEEN 1 AND 10 ";
+	
+	String SQL_SELECT_ALL_LIKE_MEET_NO
+		= "SELECT MEET_NO FROM test_meet_like WHERE USER_NO = ? ";
+	
 	
 	
 	String SQL_SELECT_ONE_MEET = "SELECT * from MEET_JOIN_VIEW WHERE MEET_NO=?";

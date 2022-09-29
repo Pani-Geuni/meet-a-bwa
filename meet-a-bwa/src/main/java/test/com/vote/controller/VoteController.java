@@ -30,7 +30,7 @@ public class VoteController extends HttpServlet {
 		System.out.println("doGet : " + sPath);
 		
 		if (sPath.equals("/m_vote_create.do")) {
-			new VoteCreateAction().execute(request, response);
+			new M_VoteCreateAction().execute(request, response);
 		}
 	}
 

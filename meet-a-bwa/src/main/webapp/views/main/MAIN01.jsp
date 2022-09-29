@@ -18,6 +18,10 @@
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/login.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
     <script>    	
     	$(function(){
     		var user_id = '${user_id}'; //세션값 가져옴
@@ -43,19 +47,8 @@
     	        console.log($(this).text());
     	        let category = $(this).text();
     	        location.href = "/meet-a-bwa/a_selectOne.do?category="+category;
-    	    })
-    	    
-    	    // 로그인 팝업 - 창닫기 버튼 클릭
-    	    $("#login-popup-closeBtn").click(function(){
-    	    	$('#idInput').removeClass("length_error");
-	    		$('#pwInput').removeClass("length_error");
-    	    	$(".login-layer").addClass("blind");
     	    });
-    	    
-    	    // 로그아웃 팝업 - 취소버튼 클릭
-    	 	$(".btn-cancel").click(function(){
-    	 		$(".logout-layer").addClass("blind");
-    	 	});
+    	   
     	    
     	    // 모임 추천 -  +더보기 버튼 클릭
     	    $("#plusBtn_meet").click(function(){
@@ -85,32 +78,39 @@
 	    	 $(".content_list.activity-list").click(function(){
 	    		 let idx = $(this).attr("idx");
 	    	 });
-	    	  
-	    	 // 로그인 버튼 클릭 시 제출 전에 아이디/비번 입력되었는지 확인
-	    	  $( '#loginForm' ).submit( function() {
-	    		$('#idInput').removeClass("length_error");
-	    		$('#pwInput').removeClass("length_error");
-	    		
-	          	if($('#idInput').val().trim().length > 0){
-	          		if($('#pwInput').val().trim().length > 0){
-	          			return true;
-	          		}else{
-	          			$('#pwInput').addClass("length_error");
-	          			return false;
-	          		}
-	          	}else{
-          			$('#idInput').addClass("length_error");
-	          		if($('#pwInput').val().trim().length == 0){
-	          			$('#pwInput').addClass("length_error");
-	          			return false;
-	          		}
-	          		return false;
-	          	}
-	          });
+	    	 
+	    	 
+	    	 // 모임 좋아요 처리
+	    	 let like_meet_arr = $.cookie('like_meet');
+	    	 like_meet_arr = like_meet_arr.split("/");
+	    	 
+    		 let meet_elements = $(".content_list.meet-list").slice();
+	    	 for(like_meet of like_meet_arr){
+	    		 for(list of meet_elements){
+		    		 if($(list).attr("idx") == like_meet) {
+			    		 $(list).find(".beforeLike_heart").addClass("blind");
+			    		 $(list).find(".afterLike_heart").removeClass("blind");
+		    		 }
+	    		 }
+	    	 }
+	    	 
+	    	// 액티비티 좋아요 처리
+	    	 let like_activity_arr = $.cookie('like_activity');
+	    	 like_activity_arr = like_activity_arr.split("/");
+	    	 
+    		 let activity_elements = $(".content_list.activity-list").slice();
+	    	 for(like_activity of like_activity_arr){
+	    		 for(list of activity_elements){
+		    		 if($(list).attr("idx") == like_activity) {
+			    		 $(list).find(".beforeLike_heart").addClass("blind");
+			    		 $(list).find(".afterLike_heart").removeClass("blind");
+		    		 }
+	    		 }
+	    	 }
+	   
     	});
     </script>
-    <script src="/meet-a-bwa/resources/js/common/header.js"></script>
-    <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
+
 
 	<title>밋:어봐</title>
 </head>
