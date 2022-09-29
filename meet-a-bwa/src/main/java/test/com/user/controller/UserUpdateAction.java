@@ -23,15 +23,13 @@ import test.com.user.model.UserVO;
 public class UserUpdateAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("user_no"));
-		
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
+		String cookie_userNo = "";
 		
 		//濡쒓렇�씤 O
 		if(session_user_id != null) {
@@ -43,6 +41,8 @@ public class UserUpdateAction {
 					cookie_county = cookie.getValue();
 				}else if(cookie.getName().equals("nick_name")) {
 					cookie_nickName = cookie.getValue();
+				}else if(cookie.getName().equals("user_no")) {
+					cookie_userNo = cookie.getValue();
 				}
 			}
 			
@@ -64,14 +64,14 @@ public class UserUpdateAction {
 		
 
 		UserVO uvo = new UserVO();
-		uvo.setUser_no(request.getParameter("user_no"));
+		uvo.setUser_no(cookie_userNo);
 
 		UserDAO u_dao = new UserDAOImpl();
 		UserVO uvo2 = u_dao.user_selectOne(uvo);
 
 		request.setAttribute("uvo2", uvo2);
 		
-        File file = new File("C:\\git-test\\meet-a-bwa\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\meet-a-bwa\\resources\\json\\city.json"); // File객체 생성
+        File file = new File("C:\\git-test\\meet-a-bwas\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\meet-a-bwa\\resources\\json\\city.json"); // File객체 생성
 
 		if(file.exists()){ // 파일이 존재하면
             BufferedReader reader = new BufferedReader(new FileReader(file));
