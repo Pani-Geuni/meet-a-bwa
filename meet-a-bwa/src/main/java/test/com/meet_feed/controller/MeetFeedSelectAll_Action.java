@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
-import test.com.meet.model.MeetVO2;
+import test.com.meet.model.MeetVO3;
 import test.com.meetboard.model.MeetBoardDAO;
 import test.com.meetboard.model.MeetBoardDAOImpl;
 import test.com.meetboard.model.MeetBoardVO;
@@ -67,12 +67,12 @@ public class MeetFeedSelectAll_Action {
 		
 		// 모임 정보 불러오기
 		MeetDAO mdao = new MeetDAOImpl();
-		MeetVO2 mvo = new MeetVO2();
+		MeetVO3 mvo = new MeetVO3();
 		mvo.setMeet_no(idx);
 		
-		MeetVO2 mvo2 = mdao.meet_selectOne(mvo);
+		MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
 		
-		request.setAttribute("mvo2", mvo2);
+		request.setAttribute("mvo3", mvo3);
 		
 		request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
 	}

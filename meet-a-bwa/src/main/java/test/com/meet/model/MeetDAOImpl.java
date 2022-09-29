@@ -136,16 +136,16 @@ public class MeetDAOImpl implements MeetDAO {
 	}
 
 	@Override
-	public MeetVO2 meet_selectOne(MeetVO2 mvo2) {
+	public MeetVO3 meet_selectOne(MeetVO3 mvo3) {
 		System.out.println("meet selectOne()...");
 		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
 			System.out.println("Meet selectOne conn succeed...");
 			
-			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ONE_MEET);
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ONE_MEET_INFO);
 			
-			pstmt.setString(1, mvo2.getMeet_no());
+			pstmt.setString(1, mvo3.getMeet_no());
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -155,18 +155,19 @@ public class MeetDAOImpl implements MeetDAO {
 				System.out.print(rs.getString("MEET_COUNTY") + " ");
 				System.out.print(rs.getString("MEET_INTEREST_NAME") + " ");
 				
-				mvo2.setMeet_no(rs.getString("MEET_NO"));
-				mvo2.setMeet_image(rs.getString("MEET_IMAGE"));
-				mvo2.setMeet_name(rs.getString("MEET_NAME"));
-				mvo2.setMeet_description(rs.getString("MEET_DESCRIPTION"));
-				mvo2.setMeet_county(rs.getString("MEET_COUNTY"));
-				mvo2.setMeet_interest_name(rs.getString("MEET_INTEREST_NAME"));
-				mvo2.setMeet_gender(rs.getString("MEET_GENDER"));
-				mvo2.setMeet_nop(rs.getInt("MEET_NOP"));
-				mvo2.setMeet_date(rs.getDate("MEET_DATE"));
-				mvo2.setUser_no(rs.getString("USER_NO"));
-				mvo2.setLike_cnt(rs.getInt("LIKE_CNT"));
-				mvo2.setUser_cnt(rs.getInt("USER_CNT"));
+				mvo3.setMeet_no(rs.getString("MEET_NO"));
+				mvo3.setMeet_image(rs.getString("MEET_IMAGE"));
+				mvo3.setMeet_name(rs.getString("MEET_NAME"));
+				mvo3.setMeet_description(rs.getString("MEET_DESCRIPTION"));
+				mvo3.setMeet_county(rs.getString("MEET_COUNTY"));
+				mvo3.setMeet_interest_name(rs.getString("MEET_INTEREST_NAME"));
+				mvo3.setMeet_gender(rs.getString("MEET_GENDER"));
+				mvo3.setMeet_nop(rs.getInt("MEET_NOP"));
+				mvo3.setMeet_date(rs.getDate("MEET_DATE"));
+				mvo3.setUser_no(rs.getString("USER_NO"));
+				mvo3.setUser_nickname(rs.getString("USER_NICKNAME"));
+				mvo3.setLike_cnt(rs.getInt("LIKE_CNT"));
+				mvo3.setUser_cnt(rs.getInt("USER_CNT"));
 			}
 			
 		} catch (SQLException e) {
@@ -199,7 +200,7 @@ public class MeetDAOImpl implements MeetDAO {
             }
         }
 		
-		return mvo2;
+		return mvo3;
 	}
 
 }

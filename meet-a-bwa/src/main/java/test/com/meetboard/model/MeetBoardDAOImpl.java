@@ -199,6 +199,7 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 				bvo.setBoard_date(rs.getDate("board_date"));
 				bvo.setUser_name(rs.getString("user_name"));
 				bvo.setUser_no(rs.getString("user_no"));
+				bvo.setMeet_no(rs.getString("MEET_NO"));
 			}
 			
 		} catch (SQLException e) {
