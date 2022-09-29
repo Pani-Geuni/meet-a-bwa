@@ -160,8 +160,9 @@ public class ActivityInsertOKAction {
 			avo.setActivity_city(activity_city);
 			avo.setActivity_county(activity_county);
 			avo.setActivity_interest_name(activity_interest_name);
-			avo.setActivity_nop(activity_nop);
 			avo.setActivity_gender(activity_gender);
+			avo.setActivity_nop(activity_nop);
+			avo.setActivity_age(activity_age);
 			avo.setUser_no(user_no);
 			avo.setMeet_no(meet_no);
 			
@@ -178,7 +179,8 @@ public class ActivityInsertOKAction {
 //				if(result1==1&&result2==1) {
 				request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 				}else
-					response.sendRedirect("a_insert.do");
+					//response.sendRedirect("a_insert.do");
+			request.getRequestDispatcher("/views/activity/ACTI03.jsp").forward(request, response);
 			}
 		} // end if << isMultipartContent
 }
