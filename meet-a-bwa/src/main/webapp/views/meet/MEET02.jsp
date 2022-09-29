@@ -62,6 +62,7 @@
 <script src="/meet-a-bwa/resources/js/vote/vote_common.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_update.js"></script>
+<script src="/meet-a-bwa/resources/js/vote/vote_select.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_view.js"></script>
 
 <script>
@@ -207,12 +208,8 @@
 								</p>
 							</div>
 							<ul class="right-summary-list-contents">
-								<li><a href="">액티비티1</a></li>
-								<li><a href="">액티비티2</a></li>
-								<li><a href="">액티비티3</a></li>
-								<li><a href="">액티비티4</a></li>
-								<li><a href="">액티비티5</a></li>
-								<li><a href="">액티비티6</a></li>
+								<li><p>액티비티1</p></li>
+								<li><p>액티비티2</p></li>
 							</ul>
 						</div>
 						<div class="right-summary-list" id="vote-summary-list">
@@ -225,11 +222,9 @@
 								</p>
 							</div>
 							<ul class="right-summary-list-contents">
-								<li><a href="">투표 1</a></li>
-								<li><a href="">투표 2</a></li>
-								<li><a href="">투표 3</a></li>
-								<li><a href="">투표 4</a></li>
-								<li><a href="">투표 5</a></li>
+								<c:forEach var="vvo" items="${ vvos }">
+									<li class="vote-list-item" idx= "${ vvo.vote_no }"><p>${ vvo.vote_title }<p></li>
+								</c:forEach>
 							</ul>
 						</div>
 

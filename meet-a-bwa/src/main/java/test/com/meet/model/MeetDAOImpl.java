@@ -15,7 +15,7 @@ public class MeetDAOImpl implements MeetDAO {
 	private ResultSet rs = null;
 	
 	public MeetDAOImpl() {
-		System.out.println("EmpDAOimpl()...");
+		System.out.println("MeetDAOImpl()...");
 		
 		try {
 			Class.forName(MeetDB.DRIVER_NAME);
@@ -202,5 +202,30 @@ public class MeetDAOImpl implements MeetDAO {
 		
 		return mvo3;
 	}
+
+	@Override
+	public List<String> select_all_meet_like(String user_no) {
+		List<String> list = new ArrayList<String>();
+		
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_LIKE_MEET_NO);
+			pstmt.setString(1, user_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String meet_no = rs.getString("meet_no");
+				
+				list.add(meet_no);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
 
 }

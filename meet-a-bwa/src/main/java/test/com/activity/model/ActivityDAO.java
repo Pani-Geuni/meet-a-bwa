@@ -10,5 +10,5 @@ public interface ActivityDAO {
 	public List<ActivityVO2> selectCate10(String category);
 	public ActivityVO activity_selectOne(ActivityVO avo);
 	public int activity_update(ActivityVO avo);
-	
+	public List<String> select_all_activity_like(String user_no); 
 }
