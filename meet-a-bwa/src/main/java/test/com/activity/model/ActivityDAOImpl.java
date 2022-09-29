@@ -35,6 +35,9 @@ public class ActivityDAOImpl implements ActivityDAO {
 		try {
 			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
 			System.out.println("conn successed...");
+			
+			System.out.println("Activity Impl ::: " + avo.getActivity_age());
+			
 			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_INSERT);
 			pstmt.setString(1, avo.getActivity_image()); 
 			pstmt.setString(2, avo.getActivity_name());
@@ -164,8 +167,9 @@ public class ActivityDAOImpl implements ActivityDAO {
 			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_SELECT_ONE);
 			
 		    pstmt.setString(1, avo.getActivity_no());    
-		    pstmt.setString(2, avo.getUser_no());    
-		    pstmt.setString(3, avo.getMeet_no());    
+		   // pstmt.setString(1, "A1030");    
+		    //pstmt.setString(2, avo.getUser_no());    
+		    //pstmt.setString(3, avo.getMeet_no());    
 			
 			rs=pstmt.executeQuery();
 			
@@ -181,9 +185,9 @@ public class ActivityDAOImpl implements ActivityDAO {
 				avo2.setActivity_gender(rs.getString("activity_gender"));
 				avo2.setActivity_nop(rs.getInt("activity_nop"));
 				avo2.setActivity_age(rs.getInt("activity_age"));
-				//avo2.setActivity_date(rs.getDate("activity_date"));
-				avo2.setMeet_no(rs.getString("meet_no"));
-				avo2.setUser_no(rs.getString("user_no"));
+				avo2.setActivity_date(rs.getDate("activity_date"));
+				//avo2.setUser_no(rs.getString("user_no"));
+				//avo2.setMeet_no(rs.getString("meet_no"));
 			}
 			
 		} catch (SQLException e) {

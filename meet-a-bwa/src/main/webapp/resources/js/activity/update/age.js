@@ -1,12 +1,11 @@
 $(function () {
 
-    let ageRange = $("#ageRange");
-    $("#ageWrap").each(function () {
-        for (let i = 10; i <= 90; i+=10) {
-            // $("#ageBody").append("<option>" + i +"~"+(i+10)+"대"+ "</option>");
-            $("#ageBody").append("<option>" + i + "대"+ "</option>");
-        }
-    });
+ //   let ageRange = $("#ageRange");
+//    $("#ageWrap").each(function () {
+//        for (let i = 10; i <= 90; i+=10) {
+//            $("#ageBody").append("<option>" + i + "대"+ "</option>");
+ //       }
+ //   });
 
     // $("#ageBody").on("change", function () {
     //     console.log($(this).val());
