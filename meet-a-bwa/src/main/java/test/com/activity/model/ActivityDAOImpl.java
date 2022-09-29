@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import test.com.meet.model.MeetDB;
 import test.com.user.model.UserDB;
 import test.com.user.model.UserVO;
 
@@ -264,6 +265,30 @@ public class ActivityDAOImpl implements ActivityDAO {
 			}
 		}
 		return flag;
+	}
+	
+	@Override
+	public List<String> select_all_activity_like(String user_no) {
+		List<String> list = new ArrayList<String>();
+		
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(ActivityDB2.SQL_SELECT_ALL_LIKE_ACTIVITY_NO);
+			pstmt.setString(1, user_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String activity_no = rs.getString("activity_no");
+				
+				list.add(activity_no);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }

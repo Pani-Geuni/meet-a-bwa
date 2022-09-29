@@ -227,28 +227,5 @@ public class MeetDAOImpl implements MeetDAO {
 		return list;
 	}
 	
-	@Override
-	public List<String> select_all_activity_like(String user_no) {
-		List<String> list = new ArrayList<String>();
-		
-		try {
-			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
-			System.out.println("conn Successed...");
-			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_LIKE_ACTIVITY_NO);
-			pstmt.setString(1, user_no);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				String activity_no = rs.getString("activity_no");
-				
-				list.add(activity_no);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 
 }
