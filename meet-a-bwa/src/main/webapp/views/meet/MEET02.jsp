@@ -86,68 +86,10 @@
 
 	<div id="bodyWrap">
 		<div id="contentWrapRow">
-			<aside class="meet-detail-aside">
-				<div class="meet-profile-img">
-					<img src="/meet-a-bwa/resources/img/sample/sample-img-01.png"
-						alt="샘플 대표 이미지" />
-				</div>
-				<div class="meet-detail-aside-top">
-					<h1 class="meet-deatil-aside-title">${ mvo2.meet_name }</h1>
-					<div class="heart-common">
-						<img class="img-heart-filled"
-							src="/meet-a-bwa/resources/img/heart-filled.svg" alt="좋아요 이미지" />
-						<img class="img-heart-outlined blind"
-							src="/meet-a-bwa/resources/img/heart-outlined.svg"
-							alt="좋아요 테두리 이미지" /> <span>${ mvo2.like_cnt }</span>
-					</div>
-				</div>
-				<div class="meet-summary-info">
-					<p>
-						<a href="/meet-a-bwa/meet-member.do">멤버 ${ mvo2.user_cnt }명</a>
-					</p>
-					<p>리더 팡근</p>
-				</div>
-
-				<div class="tagSection">
-					<div class="loca_tag tag">
-						<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" /> <span
-							class="location_name font_size_10">${ mvo2.meet_county }</span>
-					</div>
-					<div class="cate_tag tag">
-						<span class="category_name font_size_10">${ mvo2.meet_interest_name }</span>
-					</div>
-				</div>
-
-				<!-- 로그인 전 -->
-				<!-- <button type="button" class="btn-meet join"> -->
-				<c:choose>
-					<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
-						<button type="button" class="btn-meet join">
-							<a href="#">모임 가입하기</a>
-						</button>
-					</c:when>
-
-
-					<c:when test="${list.isLogin eq true}">
-						<button type="button" class="btn-meet" onclick="writePopupShow()">글쓰기</button>
-						<button type="button" class="btn-meet">
-							<a href="">액티비티 개설</a>
-						</button>
-
-						<a class="meet-detail-link" href="./meet-info-detail.html">모임
-							자세히 보기</a>
-					</c:when>
-				</c:choose>
-			</aside>
+			<jsp:include page="../../views/common/meetLeftSideBar.jsp"></jsp:include>
 
 			<c:choose>
 				<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
-					<!-- <section class="feedWrap-not-login">
-						<div class="feed-not-login">
-							<img alt="경고 이미지" src="/meet-a-bwa/resources/img/worry.svg">
-							<h1>아직 로그인을 안하셨어요 로그인 후 이용해주세요</h1>
-						</div>
-					</section> -->
 					<section class="meet-info-wrap">
 						<div class="meet-info-top">
 							<h1 class="meet-info-title">모임소개</h1>
@@ -160,27 +102,27 @@
 							<div class="tagSection">
 								<div class="loca_tag tag">
 									<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" />
-									<span class="location_name font_size_10">${ mvo2.meet_county }</span>
+									<span class="location_name font_size_10">${ mvo3.meet_county }</span>
 								</div>
 								<div class="cate_tag tag">
-									<span class="category_name font_size_10">${ mvo2.meet_interest_name }</span>
+									<span class="category_name font_size_10">${ mvo3.meet_interest_name }</span>
 								</div>
 							</div>
 						</div>
 
 						<div class="meet-info-content">
-							<pre>${ mvo2.meet_description }</pre>
+							<pre>${ mvo3.meet_description }</pre>
 						</div>
 
 						<div class="meet-info-detail">
 							<h3>모임 정보</h3>
 							<div>
 								<p>모임 개설일</p>
-								<span>${ mvo2.meet_date }</span>
+								<span>${ mvo3.meet_date }</span>
 							</div>
 							<div>
 								<p>멤버 수</p>
-								<span>${ mvo2.user_cnt }명</span>
+								<span>${ mvo3.user_cnt }명</span>
 							</div>
 						</div>
 					</section>
