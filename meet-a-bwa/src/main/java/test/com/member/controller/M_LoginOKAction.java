@@ -1,7 +1,6 @@
 package test.com.member.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +10,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.catalina.valves.rewrite.Substitution.MapElement;
-import org.json.simple.JSONArray;
 
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
@@ -34,13 +30,12 @@ public class M_LoginOKAction {
 		vo.setUser_id(id);
 		vo.setUser_pw(pw);
 		
-		
 		MemberDAO dao = new MemberDAOImpl();
 		MemberVO vo2 = dao.login(vo);
 		
 		if(vo2.getUser_no() != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user_id", vo2.getUser_id());
+			session.setAttribute("user_id", id);
 			
 			// 쿠키 생성
 			Cookie cookie1 = new Cookie("isLogin", "true");
@@ -88,22 +83,29 @@ public class M_LoginOKAction {
 			
 		}else {
 			HttpSession session = request.getSession();
-			session.removeAttribute("member_id");
+			session.removeAttribute("user_id");
+			
+			Cookie[] cookies = request.getCookies();
+			if(cookies != null) { // NullPointerException 처리
+				for(int i = 0; i< cookies.length; i++){
+					// 유효시간을 0초 설정 삭제하는 효과
+					cookies[i].setMaxAge(0);
+					response.addCookie(cookies[i]);
+				}
+			}
 			
 			// 쿠키 생성
 			Cookie cookie1 = new Cookie("isLogin", "false");
-			Cookie cookie2 = new Cookie("user_no", "");
-			Cookie cookie3 = new Cookie("user_interest", "");
-			Cookie cookie4 = new Cookie("user_county", "");
-			Cookie cookie5 = new Cookie("nick_name", "");
+			Cookie cookie2 = new Cookie("login_result", "fail");
 			
 
 			// 쿠키를 클라이언트로 전송
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
-			response.addCookie(cookie3);
-			response.addCookie(cookie4);
-			response.addCookie(cookie5);
+			
+			Map<String, Object> login_result = new HashMap<String, Object>();
+			login_result.put("login_result", "fail");
+			request.setAttribute("login_result", login_result);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
@@ -119,7 +121,6 @@ public class M_LoginOKAction {
 		request.setAttribute("a_list", list2);
 		request.setAttribute("checkCategory", "전체");
 
-		
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 	}
 }

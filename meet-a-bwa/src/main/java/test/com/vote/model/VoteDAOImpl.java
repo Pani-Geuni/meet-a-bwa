@@ -79,18 +79,33 @@ public class VoteDAOImpl implements VoteDAO {
 	}
 	
 	@Override
-	public VoteVO vote_selectOne(VoteVO vvo) {
-
-		System.out.println("vote selectAll()..");
+	public List<VoteJOIN_VO> vote_selectOne(VoteVO vvo) {
+		List<VoteJOIN_VO> list = new ArrayList<VoteJOIN_VO>();
+		System.out.println("vote_selectOne()..");
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
 			System.out.println("Vote SelectOne conn secceed");
 			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ONE_M);
-			
 			pstmt.setString(1, vvo.getVote_no());
 			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				VoteJOIN_VO vvo2 = new VoteJOIN_VO();
+				vvo2.setVote_no(rs.getString("VOTE_NO"));
+				vvo2.setVote_title(rs.getString("VOTE_TITLE"));
+				vvo2.setVote_description(rs.getString("VOTE_DESCRIPTION"));
+				vvo2.setVote_eod(rs.getDate("VOTE_EOD"));
+				vvo2.setVote_state(rs.getString("VOTE_STATE"));
+				vvo2.setUser_no(rs.getString("USER_NO"));
+				vvo2.setMeet_no(rs.getString("MEET_NO"));
+				vvo2.setActivity_no(rs.getString("ACTIVITY_NO"));
+				vvo2.setContent_no(rs.getString("CONTENT_NO"));
+				vvo2.setVote_content(rs.getString("VOTE_CONTENT"));
+				
+				list.add(vvo2);
+			}
 			
 		} catch (SQLException e) {
             System.out.println("SQLException1 : " + e);
@@ -104,7 +119,6 @@ public class VoteDAOImpl implements VoteDAO {
                     System.out.println("SQLException2 : " + e);
                 }
             }
-
             if (pstmt != null) {
                 try {
                     pstmt.close();
@@ -112,7 +126,6 @@ public class VoteDAOImpl implements VoteDAO {
                     System.out.println("SQLException3 : " + e);
                 }
             }
-
             if (conn != null) {
                 try {
                     conn.close();
@@ -122,7 +135,7 @@ public class VoteDAOImpl implements VoteDAO {
             }
         }
 		
-		return vvo;
+		return list;
 	}
 
 	@Override
@@ -134,7 +147,7 @@ public class VoteDAOImpl implements VoteDAO {
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_INSERT_M);
 			
 		    pstmt.setString(1, vvo.getVote_title());    
-			pstmt.setString(2, vvo.getVote_content());
+			pstmt.setString(2, vvo.getVote_description());
 			pstmt.setDate(3, vvo.getVote_eod());
 			pstmt.setString(4, vvo.getUser_no());
 			pstmt.setString(5, vvo.getMeet_no());

@@ -8,7 +8,7 @@ public class VoteContentVO {
 	private String vote_content;
 	
 	public VoteContentVO() {}
-	
+
 	public VoteContentVO(String content_no, String vote_no, String vote_content) {
 		super();
 		this.content_no = content_no;
@@ -16,7 +16,6 @@ public class VoteContentVO {
 		this.vote_content = vote_content;
 	}
 
-	
 	public String getContent_no() {
 		return content_no;
 	}
@@ -41,7 +40,6 @@ public class VoteContentVO {
 		this.vote_content = vote_content;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(content_no, vote_content, vote_no);
@@ -62,9 +60,9 @@ public class VoteContentVO {
 
 	@Override
 	public String toString() {
-		return "VoteContent [content_no=" + content_no + ", vote_no=" + vote_no + ", vote_content=" + vote_content
+		return "VoteContentVO [content_no=" + content_no + ", vote_no=" + vote_no + ", vote_content=" + vote_content
 				+ "]";
 	}
-	
+
 	
 }

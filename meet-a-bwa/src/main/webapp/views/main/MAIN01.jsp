@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/toast.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css"/>
@@ -381,7 +382,14 @@
         <!-- end contentWrap -->
         
         <!-- START LOGIN POPUP -->
-        <div class="login-layer blind">
+        <c:choose>
+	        <c:when test = "${login_result.login_result eq 'fail'}">
+		        <div class="login-layer">
+	        </c:when>
+	        <c:when test = "${login_result.login_result eq null}">
+		        <div class="login-layer blind">
+	        </c:when>
+        </c:choose>
 	      <div class="login-popup-wrap">
 		    <div class="login-top">
 		        <img id="logo" src="resources/img/logo.svg" alt="login logo image" />
@@ -412,7 +420,9 @@
 		      </div>
 		    </div>
 	      </div>
-	    </div>
+	      
+	      
+    	</div>
         <!-- END LOGIN POPUP -->
         
         <!-- START LOGOUT POPUP -->
@@ -435,10 +445,16 @@
         <!-- END LOGOUT POPUP -->
         
         
-    
         <!--  START HEADER INCLUDE -->
 			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
 	    <!--  END HEADER INCLUDE -->
-    </div>
+    
+	  <!-- START toastWrap -->
+	<!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
+	<div id="toastWrap" class="hide">
+		<span id="toast_txt"></span>
+	</div>
+	<!-- END toastWrap -->
+    
 </body>
 </html>
