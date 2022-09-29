@@ -20,14 +20,14 @@ public class M_VoteCreateAction {
 	@SuppressWarnings("unchecked")  // JSONObject
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String vote_title = request.getParameter("vote_title");
-		String vote_content = request.getParameter("vote_content");
+		String vote_description = request.getParameter("vote_description");
 		String vote_eod = request.getParameter("vote_eod");
 		String user_no = request.getParameter("user_no");
 		String meet_no = request.getParameter("meet_no");
 		String[] contents = request.getParameterValues("contents");
 		
 //		System.out.println("vote_title : " + vote_title);
-//		System.out.println("vote_content : " + vote_content);
+//		System.out.println("vote_description : " + vote_description);
 //		System.out.println("vote_eod : " + vote_eod);
 //		System.out.println("user_no : " + user_no);
 //		System.out.println("meet_no : " + meet_no);
@@ -39,7 +39,6 @@ public class M_VoteCreateAction {
 		Date date = null;
 		
 		// java.util.Date to java.sql.Date
-		java.util.Date u = new java.util.Date();
 		java.sql.Date eod = null ;
 		try {
 			date = formatter.parse(vote_eod);
@@ -52,7 +51,7 @@ public class M_VoteCreateAction {
 		
 		VoteVO vo = new VoteVO();
 		vo.setVote_title(vote_title);
-		vo.setVote_content(vote_content);
+		vo.setVote_description(vote_description);
 		vo.setVote_eod(eod);
 		vo.setUser_no(user_no);
 		vo.setMeet_no(meet_no);

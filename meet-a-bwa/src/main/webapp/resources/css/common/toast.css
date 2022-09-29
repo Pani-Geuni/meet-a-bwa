@@ -1,7 +1,10 @@
 #toastWrap{
     position: fixed;
+    left: 50%;
+    transform: translate(-50%, 50%);
     bottom: 90px;
-    z-index: 2;
+    z-index: 400;
+    
     
     display: flex;
     justify-content: center;

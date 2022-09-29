@@ -1,6 +1,8 @@
 
 #menuWrap{
     position : fixed;
+    z-index : 100;
+    
     width : 1320px;
     height: 81px;
     display: flex;

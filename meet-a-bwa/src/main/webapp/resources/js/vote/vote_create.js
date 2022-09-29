@@ -61,7 +61,7 @@ $(function(){
 			dataType : 'json', // 결과값 받을 타입
 			data : {
 				vote_title : $("#vote_title").val().trim(),
-				vote_content : $("#vote_description").val().trim(),
+				vote_description : $("#vote_description").val().trim(),
 				vote_eod : $("#vote_endDate").val().trim() + " " + time,
 				user_no : $.cookie("user_no"),
 				meet_no : location.href.split("idx=")[1],
