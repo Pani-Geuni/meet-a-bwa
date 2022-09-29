@@ -5,7 +5,7 @@
  $(function(){
  
  	$("#logo_img").click(function(){
-	 	window.location.href="/meet-a-bwa/main.do";
+	 	window.location.href="/meet-a-bwa/index.do";
  	});
  	
  	$("#mypageBtn").click(function(){
@@ -19,9 +19,5 @@
  	$("#logoutBtn").click(function(){
  		$(".logout-layer").removeClass("blind");
  	});
- 	
- 	
- 	function init(){
- 		
- 	}
+
  });
