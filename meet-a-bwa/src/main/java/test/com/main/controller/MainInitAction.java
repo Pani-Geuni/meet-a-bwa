@@ -20,9 +20,9 @@ import test.com.meet.model.MeetVO2;
 
 public class MainInitAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
+		System.out.println("INIT session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -31,16 +31,17 @@ public class MainInitAction {
 		//로그인 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
-			for(Cookie cookie : cookies) {
-				if(cookie.getName().equals("user_interest")) {
-					cookie_interest = cookie.getValue();
-				}else if(cookie.getName().equals("user_county")) {
-					cookie_county = cookie.getValue();
-				}else if(cookie.getName().equals("nick_name")) {
-					cookie_nickName = cookie.getValue();
+			if(cookies != null) { // NullPointerException 처리
+				for(Cookie cookie : cookies) {
+					if(cookie.getName().equals("user_interest")) {
+						cookie_interest = cookie.getValue();
+					}else if(cookie.getName().equals("user_county")) {
+						cookie_county = cookie.getValue();
+					}else if(cookie.getName().equals("nick_name")) {
+						cookie_nickName = cookie.getValue();
+					}
 				}
 			}
-			
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", true);
@@ -63,6 +64,14 @@ public class MainInitAction {
 			request.setAttribute("u_list", list);
 			
 		}else {
+			Cookie[] cookies = request.getCookies();
+			if(cookies != null) { // NullPointerException 처리
+				for(int i = 0; i< cookies.length; i++){
+					// 유효시간을 0초 설정 삭제하는 효과
+					cookies[i].setMaxAge(0);
+					response.addCookie(cookies[i]);
+				}
+			}
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
@@ -71,7 +80,6 @@ public class MainInitAction {
 			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list = m_dao.select_like();
 			request.setAttribute("u_list", list);
-			
 		}
 		
 		ActivityDAO dao2 = new ActivityDAOImpl();

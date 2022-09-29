@@ -7,5 +7,5 @@ public interface VoteDAO {
 	public String select_last_voteNO();
 	public List<VoteVO> vote_selectAll();
 	
-	public VoteVO vote_selectOne(VoteVO vvo);
+	public List<VoteJOIN_VO> vote_selectOne(VoteVO vvo);
 }

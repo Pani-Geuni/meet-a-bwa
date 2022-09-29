@@ -32,7 +32,7 @@ public class VoteController extends HttpServlet {
 		if (sPath.equals("/m_vote_create.do")) {
 			new M_VoteCreateAction().execute(request, response);
 		} else if (sPath.equals("/m_vote_selectOne.do")) {
-			new VoteSelectOneAction().execute(request, response);
+			new M_VoteSelectOneAction().execute(request, response);
 		}
 	}
 

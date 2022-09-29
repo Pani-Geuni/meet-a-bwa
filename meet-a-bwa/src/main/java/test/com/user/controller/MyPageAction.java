@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 public class MyPageAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
+		System.out.println("session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -44,6 +44,15 @@ public class MyPageAction {
 			System.out.println("Headercontroller");
 			System.out.println(cookie_nickName);
 		}else {
+			Cookie[] cookies = request.getCookies();
+			if(cookies != null) { // NullPointerException 처리
+				for(int i = 0; i< cookies.length; i++){
+					// 유효시간을 0초 설정 삭제하는 효과
+					cookies[i].setMaxAge(0);
+					response.addCookie(cookies[i]);
+				}
+			}
+			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
 			request.setAttribute("list", map);

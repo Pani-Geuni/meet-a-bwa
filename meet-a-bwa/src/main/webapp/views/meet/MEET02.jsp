@@ -65,17 +65,6 @@
 <script src="/meet-a-bwa/resources/js/vote/vote_select.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_view.js"></script>
 
-<script>
-	$(function() {
-		// 오른쪽 섹션 - 투표 생성 버튼 클릭 (+)
-		$("#vote_create_btn").click(function() {
-			$(".vote-create-update-wrap").removeClass("blind");
-			$("#event-create").removeClass("blind");
-		});
-
-	});
-</script>
-
 <title>모임 피드</title>
 </head>
 <body>
@@ -367,9 +356,7 @@
 				<span id="view-title">투표 제목 부분입니다.</span> <img
 					src="/meet-a-bwa/resources/img/more-vertical.png" alt="더보기 세로 이미지"
 					id="more_vertival" />
-				<!-- 숨기고 싶을 때, select_custom 제거 후 blind 추가-->
-				<!-- 보이고 싶을 때, select_custom 추가 후 blind 제거-->
-				<div id="dropdown" class="blind">
+				<div id="dropdown" class="select_custom blind">
 					<img src="/meet-a-bwa/resources/img/vector.png"
 						alt="셀렉트 before 이미지" id="select_img" />
 					<ul class="select_list_wrap">
@@ -379,8 +366,6 @@
 				</div>
 			</div>
 			<div id="body_wrap" class="wrap_common">
-				<!-- START 투표 설명란 -->
-				<!-- START 투표 설명없으면, class blind 추가 -->
 				<fieldset id="description_field">
 					<legend class="field_title">투표 설명</legend>
 					<div id="vote_view_description">
@@ -483,7 +468,7 @@
 
 
 <!-- *******************  -->
-<!-- 이벤트 생성 / 수정 -->
+<!-- 투표 생성 / 수정 -->
 <!-- *******************  -->
 
 <!-- Start voteWrap -->
@@ -577,7 +562,7 @@
 		</div>
 		<!-- END 투표 생성 -->
 
-		<!--  이벤트 수정일 때 SHOW -->
+		<!--  투표 수정일 때 SHOW -->
 		<div id="event-update" class="blind">
 			<div id="topSection">
 				<h1 id="update-title">투표 수정</h1>
@@ -671,10 +656,10 @@
 <!-- END voteWrap -->
 
 
-<!-- START toastWrap -->
-<!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
-<div id="toastWrap" class="hide">
-	<span id="toast_txt"></span>
-</div>
-<!-- END toastWrap -->
+	<!-- START toastWrap -->
+	<!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
+	<div id="toastWrap" class="hide">
+		<span id="toast_txt"></span>
+	</div>
+	<!-- END toastWrap -->
 </html>

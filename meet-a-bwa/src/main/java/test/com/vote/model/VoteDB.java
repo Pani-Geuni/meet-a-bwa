@@ -9,7 +9,7 @@ public interface VoteDB {
 	
 	
 	String SQL_VOTE_INSERT_M
-		= "INSERT INTO TEST_VOTE(VOTE_NO, VOTE_TITLE, VOTE_CONTENT, VOTE_EOD, VOTE_STATE, USER_NO, MEET_NO) "
+		= "INSERT INTO TEST_VOTE(VOTE_NO, VOTE_TITLE, VOTE_DESCRIPTION, VOTE_EOD, VOTE_STATE, USER_NO, MEET_NO) "
 		+ "VALUES ('V'||SEQ_TEST_VOTE.NEXTVAL, ?, ?, ?, 'N', ?, ?)";
 	String SQL_V_CONTENT_INSERT
 		= "INSERT INTO TEST_VOTE_CONTENT(CONTENT_NO, VOTE_NO, VOTE_CONTENT) "
@@ -26,9 +26,11 @@ public interface VoteDB {
 	
 	String SQL_VOTE_SELECT_ALL_M
 		= "SELECT VOTE_NO, VOTE_TITLE, USER_NO, MEET_NO "
-		+ "FROM TEST_VOTE v ORDER BY VOTE_NO DESC";
+		+ "FROM TEST_VOTE ORDER BY VOTE_NO DESC";
 	
 	String SQL_VOTE_SELECT_ONE_M
-		= "SELECT VOTE_NO, VOTE_TITLE, USER_NO, MEET_NO "
-				+ "FROM TEST_VOTE v WHERE VOTE_NO=? ORDER BY VOTE_NO DESC";
+		= "select test_vote.vote_no, vote_title, vote_description, vote_eod, vote_state, user_no, meet_no, activity_no, content_no, vote_content "
+		+ "from test_vote left join test_vote_content on test_vote.vote_no = test_vote_content.vote_no "
+		+ "where test_vote.vote_no = ? "
+		+ "order by content_no";
 }
