@@ -32,4 +32,6 @@ public interface MeetDB {
 	
 	String SQL_SELECT_ONE_MEET = "SELECT * from MEET_JOIN_VIEW WHERE MEET_NO=?";
 	
+	String SQL_SELECT_ONE_MEET_INFO = "SELECT * from MEET_JOIN_USER_VIEW WHERE MEET_NO=?";
+	
 }
