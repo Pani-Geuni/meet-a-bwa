@@ -19,7 +19,7 @@ import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
 
-public class ActionUpdateAction {
+public class ActivityUpdateAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getParameter("activity_no"));
 		
@@ -71,7 +71,7 @@ public class ActionUpdateAction {
 
 		request.setAttribute("avo2", avo2);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp?Activity_no="+request.getParameter("activity_no"));
+		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp");
 		rd.forward(request, response);
 		
 //		request.getRequestDispatcher("/views/activity/ACTI04.jsp").forward(request, response);

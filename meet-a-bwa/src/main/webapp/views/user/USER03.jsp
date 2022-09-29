@@ -27,8 +27,11 @@
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
-   <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
-    <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+
 <!-- <script src="/meet-a-bwa/resources/js/user/edit_info/edit_info.js"></script> -->
 <script src="/meet-a-bwa/resources/js/user/edit_info/textCondition.js"></script>
 <script src="/meet-a-bwa/resources/js/user/idCheck.js"></script>
@@ -70,11 +73,11 @@
 
 		console.log($("#id").val());
 
-		let pw = $("#pw").val().length;
-		let pw_check = $("#pw_check").val().length;
-		let nickname = $("#nickname").val().length;
-		let email = $("#email").val().length;
-		let tel = $("#tel").val().length;
+		let pw = $("#pw").val().trim().length;
+		let pw_check = $("#pw_check").val().trim().length;
+		let nickname = $("#nickname").val().trim().length;
+		let email = $("#email").val().trim().length;
+		let tel = $("#tel").val().trim().length;
 
 		console.log(pw_check);
 		console.log(nickname);

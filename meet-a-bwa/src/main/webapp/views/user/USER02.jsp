@@ -27,17 +27,19 @@
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
  <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+ <script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 <script src="/meet-a-bwa/resources/js/user/join/join.js"></script>
 <script>
 	function check() {
 		//			$("#join_btn").click(function(){
-		let id = $("#id").val().length;
-		let pw = $("#pw").val().length;
-		let pw_check = $("#pw_check").val().length;
-		let name = $("#name").val().length;
-		let nickname = $("#nickname").val().length;
-		let email = $("#email").val().length;
-		let tel = $("#tel").val().length;
+		let id = $("#id").val().trim().length;
+		let pw = $("#pw").val().trim().length;
+		let pw_check = $("#pw_check").val().trim().length;
+		let name = $("#name").val().trim().length;
+		let nickname = $("#nickname").val().trim().length;
+		let email = $("#email").val().trim().length;
+		let tel = $("#tel").val().trim().length;
 		let bitrh = $("#birth").val().length;
 		let gender = $("#gender").val().length;
 

@@ -22,7 +22,10 @@
 
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
-   <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+   
 
 <script src="/meet-a-bwa/resources/js/activity/create/create.js"></script>
 <script src="/meet-a-bwa/resources/js/activity/create/textCondition.js"></script>
