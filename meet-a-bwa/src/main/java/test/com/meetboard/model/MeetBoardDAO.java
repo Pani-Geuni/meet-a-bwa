@@ -7,7 +7,7 @@ public interface MeetBoardDAO {
 	
 	public int board_update(MeetBoardVO bvo);
 	
-	public List<MeetBoardVO> board_selectAll();
+	public List<MeetBoardVO> board_selectAll(String idx);
 	
 	public MeetBoardVO board_selectOne(MeetBoardVO bvo);
 	

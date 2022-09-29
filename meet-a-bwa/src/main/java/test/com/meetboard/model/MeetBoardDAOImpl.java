@@ -122,10 +122,11 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 	}
 
 	@Override
-	public List<MeetBoardVO> board_selectAll() {
+	public List<MeetBoardVO> board_selectAll(String idx) {
 		System.out.println("board selectAll()...");
 		
 		List<MeetBoardVO> vos = new ArrayList<MeetBoardVO>();
+		
 		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
@@ -133,6 +134,7 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 			
 			// 전체 글 불러오기
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_SELECT_ALL_TEST);
+			pstmt.setString(1, idx);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -145,6 +147,7 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 				vo.setBoard_date(rs.getDate("BOARD_DATE"));
 				vo.setUser_no(rs.getString("USER_NO"));
 				vo.setUser_name(rs.getString("USER_NAME"));
+				vo.setMeet_no(rs.getString("MEET_NO"));
 			
 				vos.add(vo);
 			}

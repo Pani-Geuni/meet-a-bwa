@@ -61,7 +61,7 @@ public class MeetFeedSelectAll_Action {
 		MeetBoardDAO dao = new MeetBoardDAOImpl();
 		
 		// Feed 불러오기
-		List<MeetBoardVO> vos = dao.board_selectAll();
+		List<MeetBoardVO> vos = dao.board_selectAll(idx);
 		
 		request.setAttribute("vos", vos);
 		
