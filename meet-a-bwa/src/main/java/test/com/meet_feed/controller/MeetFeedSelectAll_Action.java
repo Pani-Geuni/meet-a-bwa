@@ -17,6 +17,9 @@ import test.com.meet.model.MeetVO3;
 import test.com.meetboard.model.MeetBoardDAO;
 import test.com.meetboard.model.MeetBoardDAOImpl;
 import test.com.meetboard.model.MeetBoardVO;
+import test.com.vote.model.VoteDAO;
+import test.com.vote.model.VoteDAOImpl;
+import test.com.vote.model.VoteVO;
 
 public class MeetFeedSelectAll_Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,12 +58,10 @@ public class MeetFeedSelectAll_Action {
 		}
 		
 		
-		
 		String idx = request.getParameter("idx");
 		
-		MeetBoardDAO dao = new MeetBoardDAOImpl();
-		
 		// Feed 불러오기
+		MeetBoardDAO dao = new MeetBoardDAOImpl();
 		List<MeetBoardVO> vos = dao.board_selectAll(idx);
 		
 		request.setAttribute("vos", vos);
@@ -73,6 +74,12 @@ public class MeetFeedSelectAll_Action {
 		MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
 		
 		request.setAttribute("mvo3", mvo3);
+		
+		// 투표 불러오기
+		VoteDAO vdao = new VoteDAOImpl();
+		List<VoteVO> vvos = vdao.vote_selectAll(); 
+		
+		request.setAttribute("vvos", vvos);
 		
 		request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
 	}

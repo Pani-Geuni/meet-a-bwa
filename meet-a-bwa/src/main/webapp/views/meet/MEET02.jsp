@@ -225,11 +225,14 @@
 								</p>
 							</div>
 							<ul class="right-summary-list-contents">
-								<li><a href="">투표 1</a></li>
-								<li><a href="">투표 2</a></li>
+								<c:forEach var="vvo" items="${ vvos }">
+									<li><a href="">${ vvo.vote_title }</a></li>
+								</c:forEach>
+								<!-- <li><a href="">투표 2</a></li>
 								<li><a href="">투표 3</a></li>
 								<li><a href="">투표 4</a></li>
-								<li><a href="">투표 5</a></li>
+								<li><a href="">투표 5</a></li> -->
+								
 							</ul>
 						</div>
 
