@@ -1,18 +1,17 @@
 package test.com.activity.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import test.com.user.controller.UserInsertOKAction;
-
 /**
  * Servlet implementation class ActivityController
  */
-@WebServlet({ "/a_insert.do", "/a_insertOK.do" })
+@WebServlet({ "/a_insert.do", "/a_insertOK.do", "/a_update.do", "/a_updateOK.do" })
 public class ActivityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +33,8 @@ public class ActivityController extends HttpServlet {
 
 		if (sPath.equals("/a_insert.do")) {
 			request.getRequestDispatcher("views/activity/ACT03.jsp").forward(request, response);
-		} else if (sPath.equals("/a_insertOK.do")) {
-			response.sendRedirect("/a_insert.do");
+		}else if (sPath.equals("/a_update.do")) {
+			new ActionUpdateAction().execute(request, response);
 		} 
 	}
 
@@ -50,6 +49,8 @@ public class ActivityController extends HttpServlet {
 		System.out.println(sPath); // 서버에 프린트
 		if (sPath.equals("/a_insertOK.do")) {
 			new ActivityInsertOKAction().execute(request, response);
+		}else if (sPath.equals("/a_updateOK.do")) {
+			new ActionUpdateOKAction().execute(request, response);
 		}
 	}
 

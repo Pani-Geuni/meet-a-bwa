@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import test.com.user.model.UserDB;
+import test.com.user.model.UserVO;
 
 public class ActivityDAOImpl implements ActivityDAO {
 
@@ -34,17 +35,20 @@ public class ActivityDAOImpl implements ActivityDAO {
 			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
 			System.out.println("conn successed...");
 			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_INSERT);
-			pstmt.setString(1, avo.getActivity_name());
-			pstmt.setString(2, avo.getActivity_description());
-			pstmt.setString(3, avo.getActivity_city());
-			pstmt.setString(4, avo.getActivity_county());
-			pstmt.setString(5, avo.getActivity_interest_name());
-			pstmt.setString(6, avo.getActivity_gender());
-			pstmt.setInt(7, avo.getActivity_nop());
-			pstmt.setInt(8, avo.getActivity_age());
+			pstmt.setString(1, avo.getActivity_image()); 
+			pstmt.setString(2, avo.getActivity_name());
+			pstmt.setString(3, avo.getActivity_description());
+			pstmt.setString(4, avo.getActivity_city());
+			pstmt.setString(5, avo.getActivity_county());
+			pstmt.setString(6, avo.getActivity_interest_name());
+			pstmt.setString(7, avo.getActivity_gender());
+			pstmt.setInt(8, avo.getActivity_nop());
+			pstmt.setInt(9, avo.getActivity_age());
 //			pstmt.setDate(9, (java.sql.Date) new Date());
-			pstmt.setString(9, avo.getUser_no()); 
-			pstmt.setString(10, avo.getMeet_no()); 
+//			pstmt.setString(10, avo.getUser_no()); 
+			pstmt.setString(10, "U1007"); 
+//			pstmt.setString(11, avo.getMeet_no()); 
+			pstmt.setString(11, "M1003"); 
 			
 			
 			flag=pstmt.executeUpdate(); 
@@ -150,6 +154,116 @@ public class ActivityDAOImpl implements ActivityDAO {
 		}
 		
 		return l_avo;
+	}
+
+	@Override
+	public ActivityVO activity_selectOne(ActivityVO avo) {
+		ActivityVO avo2 = null;
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn successed...");
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_SELECT_ONE);
+			
+		    pstmt.setString(1, avo.getActivity_no());    
+		    pstmt.setString(2, avo.getUser_no());    
+		    pstmt.setString(3, avo.getMeet_no());    
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				avo2 = new ActivityVO();
+				avo2.setActivity_no(rs.getString("activity_no"));
+				avo2.setActivity_image(rs.getString("activity_image"));
+				avo2.setActivity_name(rs.getString("activity_name"));
+				avo2.setActivity_description(rs.getString("activity_description"));
+				avo2.setActivity_city(rs.getString("activity_city"));
+				avo2.setActivity_county(rs.getString("activity_county"));
+				avo2.setActivity_interest_name(rs.getString("activity_interest_name"));
+				avo2.setActivity_gender(rs.getString("activity_gender"));
+				avo2.setActivity_nop(rs.getInt("activity_nop"));
+				avo2.setActivity_age(rs.getInt("activity_age"));
+				//avo2.setActivity_date(rs.getDate("activity_date"));
+				avo2.setMeet_no(rs.getString("meet_no"));
+				avo2.setUser_no(rs.getString("user_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return avo2;
+	}
+
+	@Override
+	public int activity_update(ActivityVO avo) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn successed...");
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_UPDATE);
+			pstmt.setString(1, avo.getActivity_image()); 
+			pstmt.setString(2, avo.getActivity_name());
+			pstmt.setString(3, avo.getActivity_description());
+			pstmt.setString(4, avo.getActivity_city());
+			pstmt.setString(5, avo.getActivity_county());
+			pstmt.setString(6, avo.getActivity_interest_name());
+			pstmt.setString(7, avo.getActivity_gender());
+			pstmt.setInt(8, avo.getActivity_nop());
+			pstmt.setInt(9, avo.getActivity_age());
+//			pstmt.setDate(9, (java.sql.Date) new Date());
+			pstmt.setString(10, avo.getUser_no()); 
+			pstmt.setString(11, avo.getMeet_no()); 
+			
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
 	}
 
 }

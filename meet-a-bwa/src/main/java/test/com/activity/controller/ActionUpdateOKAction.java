@@ -22,9 +22,8 @@ import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
-public class ActivityInsertOKAction {
-	
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class ActionUpdateOKAction {
+public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//********************************헤더***********************************//
 		HttpSession session = request.getSession();
@@ -78,6 +77,7 @@ public class ActivityInsertOKAction {
 			ServletFileUpload sfu = new ServletFileUpload(factory);
 			sfu.setFileSizeMax(fileSizeMax);
 
+			String activity_no ="";
 			String activity_image = "";
 			String activity_name = "";
 			String activity_description = "";
@@ -96,7 +96,9 @@ public class ActivityInsertOKAction {
 				for (FileItem item : items) {
 
 					if (item.isFormField()) {
-						if(item.getFieldName().equals("activity_image")) {
+						if(item.getFieldName().equals("activity_no")) {
+							activity_no = item.getString("UTF-8");
+						}else if(item.getFieldName().equals("activity_image")) {
 							activity_image = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_name")) {
 							activity_name =  item.getString("UTF-8");
@@ -155,6 +157,8 @@ public class ActivityInsertOKAction {
 
 			
 			ActivityVO avo = new ActivityVO();
+			avo.setActivity_no(activity_no);
+			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			avo.setActivity_name(activity_name);
 			avo.setActivity_description(activity_description);
 			avo.setActivity_city(activity_city);
@@ -167,7 +171,6 @@ public class ActivityInsertOKAction {
 			
 			
 			
-			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
 			ActivityDAO a_dao = new ActivityDAOImpl();
 			int result = a_dao.activity_insert(avo);
@@ -176,9 +179,9 @@ public class ActivityInsertOKAction {
 
 			if(result==1) {
 //				if(result1==1&&result2==1) {
-				request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/activity/ACTI02.jsp").forward(request, response);
 				}else
-					response.sendRedirect("a_insert.do");
+					response.sendRedirect("a_update.do");
 			}
 		} // end if << isMultipartContent
 }
