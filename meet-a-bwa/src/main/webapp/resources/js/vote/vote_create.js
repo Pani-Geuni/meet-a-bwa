@@ -30,7 +30,6 @@ $(function(){
         		time = arr[1] + ":" + arr[2] + ":59";
         	}
         	
-        	console.log(content_arr);
             insert_ajax(time, content_arr);
         }
         else{
@@ -68,8 +67,14 @@ $(function(){
 				meet_no : location.href.split("idx=")[1],
 				contents : content_arr
 			},
-			success : function(result) {
-		        console.log(result);
+			success : function(res) {
+		        if(res.result == "insert success"){
+		        	$("#event-create").addClass("blind");
+					$(".vote-create-update-wrap").addClass("blind");
+		        	location.reload();
+		        }else if(res.result == "insert fail"){
+		        	fade_in_out(undefined, undefined, "오류로 인해 투표 생성에 실패하였습니다.");
+		        }
 			},
 			error : function(error) {
 			 	console.log(error);

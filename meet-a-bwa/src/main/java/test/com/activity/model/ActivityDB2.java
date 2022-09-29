@@ -16,4 +16,7 @@ public interface ActivityDB2 {
 			+ "where activity_interest_name = ? AND rownum between 1 and 10"
 			+ "order by activity_no";
 	
+	String SQL_SELECT_ALL_LIKE_ACTIVITY_NO
+	= "SELECT ACTIVITY_NO FROM TEST_ACTIVITY_LIKE WHERE USER_NO = ? ";
+	
 }
