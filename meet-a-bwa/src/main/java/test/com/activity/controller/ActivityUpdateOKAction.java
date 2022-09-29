@@ -22,7 +22,7 @@ import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
-public class ActionUpdateOKAction {
+public class ActivityUpdateOKAction {
 public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//********************************헤더***********************************//
@@ -165,10 +165,11 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			avo.setActivity_city(activity_city);
 			avo.setActivity_county(activity_county);
 			avo.setActivity_interest_name(activity_interest_name);
-			avo.setActivity_nop(activity_nop);
 			avo.setActivity_gender(activity_gender);
-			avo.setUser_no(user_no);
-			avo.setMeet_no(meet_no);
+			avo.setActivity_nop(activity_nop);
+			avo.setActivity_age(activity_age);
+			//avo.setUser_no(user_no);
+			//avo.setMeet_no(meet_no);
 			
 			
 			

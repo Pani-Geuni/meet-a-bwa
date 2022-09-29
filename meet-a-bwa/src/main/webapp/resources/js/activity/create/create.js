@@ -187,21 +187,21 @@ $(function () {
       
       
     //*******************************연령대 태그********************************//
-    let tag = $(".age_result:eq(0)").clone();
-    let cnt=0;
+    let age_tag = $(".age_result:eq(0)").clone();
+    let age_cnt=0;
     var arr = [];
     var arr_x = [];
     $("#ageBody").on("change", function (e) {
-        tag = tag.clone();
-        tag.removeClass("blind"); // 초기에 자동 생성된 버튼 숨기기
+        age_tag = age_tag.clone();
+        age_tag.removeClass("blind"); // 초기에 자동 생성된 버튼 숨기기
         let select_value = $("#ageBody option:selected").val();
         //let select_value = $("#ageBody option:selected").text();
         if (!arr.includes(select_value)&&select_value!='') {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
-            tag.val(select_value + " X");
+            age_tag.val(select_value + " X");
             arr.push(select_value);
-            tag.attr("idx",++cnt);
-            $("#tagWrap_age").append(tag);
+            age_tag.attr("idx",++age_cnt);
+            $("#tagWrap_age").append(age_tag);
             console.log(select_value);
             arr_x.push(select_value+" X");
             console.log(arr);
@@ -364,15 +364,15 @@ $(function () {
         		url : "/meet-a-bwa/a_insertOK.do",
 				type : "POST",
 				data : {
-					activity_image : $("#activity_image").val().trim(),
-					activity_name : $("#activity_name").val().trim(),
-					activity_description : $("#activity_description").val().trim(),
-					activity_city : $("#city").val().trim(),
-					activity_county : $("#county").val().trim(),
-					activity_interest_name : $("#interest").val().trim,
-					activity_gender : $("#gender").val().trim,
-					activity_nop : $("#nop").val().trim,
-					activity_age : $("#age").val().trim,
+					activity_image : $("#activity_image").val(),
+					activity_name : $("#activity_name").val(),
+					activity_description : $("#activity_description").val(),
+					activity_city : $("#city").val(),
+					activity_county : $("#county").val(),
+					activity_interest_name : $("#interest").val(),
+					activity_gender : $("#gender").val(),
+					activity_nop : $("#nop").val(),
+					activity_age : $("#age").val(),
 					user_no : $.cookie("user_no"),
 					meet_no : location.href.split("meet_no=")[1],
 				},

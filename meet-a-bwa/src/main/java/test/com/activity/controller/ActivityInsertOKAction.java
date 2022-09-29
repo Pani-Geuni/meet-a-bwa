@@ -105,17 +105,17 @@ public class ActivityInsertOKAction {
 							activity_name =  item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_description")) {
 							activity_description = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("city")) {
+						}else if(item.getFieldName().equals("activity_city")) {
 							activity_city = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("county")) {
+						}else if(item.getFieldName().equals("activity_county")) {
 							activity_county = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("interest")) {
+						}else if(item.getFieldName().equals("activity_interest_name")) {
 							activity_interest_name = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("gender")) {
+						}else if(item.getFieldName().equals("activity_gender")) {
 							activity_gender = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("nop")) {
+						}else if(item.getFieldName().equals("activity_nop")) {
 							activity_nop = Integer.parseInt(item.getString("UTF-8")); 
-						}else if(item.getFieldName().equals("age")) {
+						}else if(item.getFieldName().equals("activity_age")) {
 							String age_re = item.getString("UTF-8").replace("대", "");
 							activity_age = Integer.parseInt(age_re);
 						}else if(item.getFieldName().equals("user_no")) {
@@ -167,8 +167,8 @@ public class ActivityInsertOKAction {
 			avo.setActivity_gender(activity_gender);
 			avo.setActivity_nop(activity_nop);
 			avo.setActivity_age(activity_age);
-//			avo.setUser_no(user_no);
-			avo.setUser_no(cookie_userNo);
+			avo.setUser_no(user_no);
+			//avo.setUser_no(cookie_userNo);
 			avo.setMeet_no(meet_no);
 			
 			
