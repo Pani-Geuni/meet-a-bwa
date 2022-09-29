@@ -45,7 +45,7 @@
 
 
 		<c:when test="${list.isLogin eq true}">
-			<button type="button" class="btn-meet" onclick="writePopupShow()">글쓰기</button>
+			<button type="button" id="btn-meet-write" class="btn-meet" onclick="writePopupShow()" idx="${ mvo3.meet_no }">글쓰기</button>
 			<button type="button" class="btn-meet">
 				<a href="">액티비티 개설</a>
 			</button>

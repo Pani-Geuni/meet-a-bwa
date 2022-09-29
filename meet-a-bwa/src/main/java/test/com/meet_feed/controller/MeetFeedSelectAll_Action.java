@@ -30,6 +30,7 @@ public class MeetFeedSelectAll_Action {
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
+		String cookie_userNo = "";
 		
 		//로그인 O
 		if(session_user_id != null) {
@@ -41,6 +42,8 @@ public class MeetFeedSelectAll_Action {
 					cookie_county = cookie.getValue();
 				}else if(cookie.getName().equals("nick_name")) {
 					cookie_nickName = cookie.getValue();
+				}else if(cookie.getName().equals("user_no")) {
+					cookie_userNo = cookie.getValue();
 				}
 			}
 			
@@ -49,6 +52,7 @@ public class MeetFeedSelectAll_Action {
 			map.put("nick_name", cookie_nickName);
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
+			map.put("user_no", cookie_userNo);
 			
 			request.setAttribute("list", map);
 		}else {

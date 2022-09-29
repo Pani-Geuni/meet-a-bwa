@@ -250,7 +250,9 @@
 			<form action="b_insertOK.do" method="post" class="popup-writer">
 				<input name="board_title" type="text" placeholder="제목" />
 				<textarea name="board_content" id="content" placeholder="내용을 입력하세요."></textarea>
-
+				<input name="meet_no" value="${ mvo3.meet_no }" style="display: none">
+				<input name="user_no" value="${ list.user_no }" style="display: none">
+				
 				<div class="popup-btn-group">
 					<button type="button" class="btn-cancel" onclick="writePopupHide()">취소</button>
 					<button type="submit" class="btn-submit">게시</button>
