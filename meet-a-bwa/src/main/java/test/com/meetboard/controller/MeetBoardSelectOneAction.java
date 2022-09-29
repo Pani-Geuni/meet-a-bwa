@@ -2,6 +2,7 @@ package test.com.meetboard.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,9 @@ import test.com.meet.model.MeetVO3;
 import test.com.meetboard.model.MeetBoardDAO;
 import test.com.meetboard.model.MeetBoardDAOImpl;
 import test.com.meetboard.model.MeetBoardVO;
+import test.com.vote.model.VoteDAO;
+import test.com.vote.model.VoteDAOImpl;
+import test.com.vote.model.VoteVO;
 
 public class MeetBoardSelectOneAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -79,12 +83,18 @@ public class MeetBoardSelectOneAction {
 			// 모임 정보 불러오기
 			MeetDAO mdao = new MeetDAOImpl();
 			MeetVO3 mvo = new MeetVO3();
-			
+
 			mvo.setMeet_no(bvo2.getMeet_no());
 			
 			MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
 			
 			request.setAttribute("mvo3", mvo3);
+			
+			// 투표 불러오기
+			VoteDAO vdao = new VoteDAOImpl();
+			List<VoteVO> vvos = vdao.vote_selectAll(); 
+			
+			request.setAttribute("vvos", vvos);
 			
 			request.getRequestDispatcher("views/meet/MEET03.jsp").forward(request, response);
 		} else {

@@ -8,46 +8,32 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/header.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/toast.css" />
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
 
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/searchBar.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/searchBar.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/meet-info.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/post-detail.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/post-writer.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/post-update.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/meet/post-delete.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-info.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-detail.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-update.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/vote/vote_common.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/vote/vote_create.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/vote/vote_update.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/vote/vote_view.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_common.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_create.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_update.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_view.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 
 <!-- DATE PICKER -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/meet-a-bwa/resources/js/common/datePicker_ko.js"></script>
