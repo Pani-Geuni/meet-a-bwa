@@ -115,7 +115,8 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 						}else if(item.getFieldName().equals("nop")) {
 							activity_nop = Integer.parseInt(item.getString("UTF-8")); 
 						}else if(item.getFieldName().equals("age")) {
-							activity_age = Integer.parseInt(item.getString("UTF-8"));
+							String age_re = item.getString("UTF-8").replace("대", "");
+							activity_age = Integer.parseInt(age_re);
 						}else if(item.getFieldName().equals("user_no")) {
 							user_no = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("meet_no")) {

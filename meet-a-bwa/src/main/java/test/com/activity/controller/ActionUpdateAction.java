@@ -64,12 +64,16 @@ public class ActionUpdateAction {
 		ActivityVO avo = new ActivityVO();
 		avo.setActivity_no(request.getParameter("activity_no"));
 
+		System.out.println(avo);
+		
 		ActivityDAO a_dao = new ActivityDAOImpl();
 		ActivityVO avo2 = a_dao.activity_selectOne(avo);
 
 		request.setAttribute("avo2", avo2);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp?Activity_no="+request.getParameter("activity_no"));
 		rd.forward(request, response);
+		
+//		request.getRequestDispatcher("/views/activity/ACTI04.jsp").forward(request, response);
 	}
 }

@@ -1,12 +1,12 @@
 $(function () {
 
 	//nop : 인원 수
-	let num = $("#num");
-    $("#nop").each(function () {
-        for (let i = 1; i <= 20; i++) {
-            $("#numberofpeople").append("<option>" + i + "</option>");
-        }
-    });
+//	let num = $("#num");
+//   $("#nop").each(function () {
+//       for (let i = 1; i <= 20; i++) {
+//          $("#numberofpeople").append("<option>" + i + "</option>");
+//        }
+//    });
 
     $("#numberofpeople").on("change", function () {
         console.log($(this).val());

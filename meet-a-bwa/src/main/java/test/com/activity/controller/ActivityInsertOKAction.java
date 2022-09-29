@@ -33,6 +33,7 @@ public class ActivityInsertOKAction {
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
+		String cookie_userNo = "";
 		
 		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
@@ -44,6 +45,8 @@ public class ActivityInsertOKAction {
 					cookie_county = cookie.getValue();
 				}else if(cookie.getName().equals("nick_name")) {
 					cookie_nickName = cookie.getValue();
+				}else if(cookie.getName().equals("user_no")) {
+					cookie_userNo = cookie.getValue();
 				}
 			}
 			
@@ -113,7 +116,8 @@ public class ActivityInsertOKAction {
 						}else if(item.getFieldName().equals("nop")) {
 							activity_nop = Integer.parseInt(item.getString("UTF-8")); 
 						}else if(item.getFieldName().equals("age")) {
-							activity_age = Integer.parseInt(item.getString("UTF-8"));
+							String age_re = item.getString("UTF-8").replace("대", "");
+							activity_age = Integer.parseInt(age_re);
 						}else if(item.getFieldName().equals("user_no")) {
 							user_no = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("meet_no")) {
@@ -163,7 +167,8 @@ public class ActivityInsertOKAction {
 			avo.setActivity_gender(activity_gender);
 			avo.setActivity_nop(activity_nop);
 			avo.setActivity_age(activity_age);
-			avo.setUser_no(user_no);
+//			avo.setUser_no(user_no);
+			avo.setUser_no(cookie_userNo);
 			avo.setMeet_no(meet_no);
 			
 			

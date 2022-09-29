@@ -18,6 +18,7 @@ public interface ActivityDB {
 			+ "activity_city=?, activity_county=?, activity_interest_name=?, activity_gender=?, activity_nop=?, activity_age=?"
 			+ "where activity_no=?";
 	
-	String SQL_ACTIVITY_SELECT_ONE = null;
+	String SQL_ACTIVITY_SELECT_ONE = "select activity_no, activity_image, activity_name, activity_description, activity_city, activity_county, activity_interest_name, activity_gender, activity_nop, activity_age, activity_date,  from test_activity where activity_no='A1030'";
+//	String SQL_ACTIVITY_SELECT_ONE = "select * from test_activity where activity_no='A1030' && user_no='U1007' && meet_no='M1003'";
 	
 }
