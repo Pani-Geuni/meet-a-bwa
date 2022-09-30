@@ -40,8 +40,8 @@ public interface MeetDB {
 	
 	String SQL_SELECT_ALL_MEET_REGISTERED 
 		= "SELECT REGISTERED_NO, MEET_NO, mr.USER_NO, USER_NICKNAME "
-		+ "FROM TEST_MEET_REGISTERED mr JOIN TEST_USER "
-		+ "ON mr.user_no = u.user_no "
-		+ "WHERE meet_no = 'M1001'";
+		+ "FROM TEST_MEET_REGISTERED mr JOIN TEST_USER u "
+		+ "ON mr.USER_NO = u.USER_NO "
+		+ "WHERE meet_no = ?";
 	
 }

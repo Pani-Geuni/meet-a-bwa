@@ -2,6 +2,7 @@ package test.com.meet.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
+import test.com.meet.model.MeetUserVO;
 import test.com.meet.model.MeetVO3;
+import test.com.vote.model.VoteDAO;
+import test.com.vote.model.VoteDAOImpl;
+import test.com.vote.model.VoteVO;
 
 public class MemberListAction {
 
@@ -65,6 +70,17 @@ public class MemberListAction {
 		MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
 
 		request.setAttribute("mvo3", mvo3);
+		
+		// 모임 가입한 유저 정보 불러오기 - 유저 리스트
+		List<MeetUserVO> uvos = mdao.meetUser_selectAll(meet_no);
+		
+		request.setAttribute("uvos", uvos);
+		
+		// 투표 불러오기
+		VoteDAO vdao = new VoteDAOImpl();
+		List<VoteVO> vvos = vdao.vote_selectAll(); 
+				
+		request.setAttribute("vvos", vvos);
 		
 		request.getRequestDispatcher("views/meet/MEET04.jsp").forward(request, response);
 	}

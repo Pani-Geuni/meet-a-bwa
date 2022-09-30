@@ -134,7 +134,31 @@ public class MeetDAOImpl implements MeetDAO {
 		
 		return l_mvo;
 	}
-
+	
+	@Override
+	public List<String> select_all_meet_like(String user_no) {
+		List<String> list = new ArrayList<String>();
+		
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_LIKE_MEET_NO);
+			pstmt.setString(1, user_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String meet_no = rs.getString("meet_no");
+				
+				list.add(meet_no);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
 	@Override
 	public MeetVO3 meet_selectOne(MeetVO3 mvo3) {
 		System.out.println("meet selectOne()...");
@@ -204,27 +228,64 @@ public class MeetDAOImpl implements MeetDAO {
 	}
 
 	@Override
-	public List<String> select_all_meet_like(String user_no) {
-		List<String> list = new ArrayList<String>();
+	public List<MeetUserVO> meetUser_selectAll(String meet_no) {
+
+		System.out.println("meet user registered selectAll()...");
+		
+		List<MeetUserVO> uvos = new ArrayList<MeetUserVO>();
 		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
-			System.out.println("conn Successed...");
-			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_LIKE_MEET_NO);
-			pstmt.setString(1, user_no);
+			
+			// 모임에 가입한 유저 멤버 불러오기
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_MEET_REGISTERED);
+			pstmt.setString(1, meet_no);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String meet_no = rs.getString("meet_no");
 				
-				list.add(meet_no);
+				System.out.print(rs.getString("REGISTERED_NO"));
+				System.out.print(rs.getString("MEET_NO"));
+				System.out.print(rs.getString("USER_NO"));
+				System.out.println(rs.getString("USER_NICKNAME"));
+				MeetUserVO uvo = new MeetUserVO();
+				
+				uvo.setRegistered_no(rs.getString("REGISTERED_NO"));
+				uvo.setMeet_no(rs.getString("MEET_NO"));
+				uvo.setUser_no(rs.getString("USER_NO"));
+				uvo.setUser_nickname(rs.getString("USER_NICKNAME"));
+				
+				uvos.add(uvo);
+				
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
-		return list;
+		return uvos;
 	}
 	
 
