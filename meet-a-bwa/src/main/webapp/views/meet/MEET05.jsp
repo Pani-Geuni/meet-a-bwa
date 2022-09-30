@@ -34,7 +34,7 @@
 <script src="/meet-a-bwa/resources/js/meet/create/create.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/create/textCondition.js"></script>
 
-<script src="/meet-a-bwa/resources/js/user/region.js"></script>
+<script src="/meet-a-bwa/resources/js/meet/create/region.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/create/interest.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/create/profileImage.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/create/age.js"></script>
@@ -57,7 +57,7 @@
 			console.log(activity_name);
 			console.log(activity_description);
 			console.log(nop);
-			console.log($("#age").val());
+			//console.log($("#age").val());
 
 			if (meet_name > 0 && meet_description > 0 && nop != 0) {
 				console.log("생성 가능");
@@ -88,13 +88,13 @@
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
 
-		<form action="/meet-a-bwa/meet_insertOK.do" method="post"
+		<form action="/meet-a-bwa/m_insertOK.do" method="post"
 			enctype="multipart/form-data" onsubmit="return check();">
 
 			<div class="meetingCUDWrap">
 				<section class="blind">
-					<label for="user_no">user_no:</label>${uvo2.user_no}<input
-						id="user_no" name="user_no" value="${uvo2.user_no}">
+					<label for="user_no">user_no:</label>${mvo.user_no}<input
+						id="user_no" name="user_no" value="U1003">
 				</section>
 				<h2 id="meetTitle">모임 생성</h2>
 				<hr class="StartLine">
@@ -205,9 +205,6 @@
 								<label>인원 수 (필수입력)</label>
 							</section>
 							<select id="numberofpeople" class="numberofpeople" name="nop">
-								<!-- <optgroup id="num">
-									<option value="0">선택</option>
-								</optgroup> -->
 								<option value="0">선택</option>
 								<c:forEach var="i" begin="1" end="20">
 									<option>${i}</option>

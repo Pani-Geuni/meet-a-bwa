@@ -35,7 +35,7 @@
 <script src="/meet-a-bwa/resources/js/meet/update/update.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/update/textCondition.js"></script>
 
-<script src="/meet-a-bwa/resources/js/user/region.js"></script>
+<script src="/meet-a-bwa/resources/js/meet/update/region.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/update/interest.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/update/profileImage.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/update/age.js"></script>
@@ -89,9 +89,13 @@
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
 	
-	<form action="meet_insertOK.do" method="post" enctype="multipart/form-data" onsubmit="return check();">
+	<form action="/meet-a-bwa/m_updateOK.do" method="post" enctype="multipart/form-data" onsubmit="return check();">
 
 		<div class="meetingCUDWrap">
+		<section class="blind">
+					<label for="meet_no">meet_no:</label>${mvo2.meet_no}<input
+						id="meet_no" name="meet_no" value="${mvo2.meet_no}">
+				</section>
 			<h2 id="meetTitle">모임 수정</h2>
 			<hr class="StartLine">
 			<div id="img_la">
@@ -100,7 +104,7 @@
 			<div id="imgWrap">
 				<section class="img_body">
 				<div id="input-image">
-				<img src="/meet-a-bwa/resources/img/default-image2.png" width=300px; height=200px; id="image" />
+				<img src="${mvo2.meet_image}" width=300px; height=200px; id="image" />
 				</div>
 				<div class="img_btn_meet_activity"> 
 					<label class="input-file-btn" for="input-file">
@@ -117,7 +121,7 @@
 			<div id="namediv">
 				<div id="nameLa">
 					<label>모임 이름</label>
-				</div> <input type="text" placeholder="모임이름을 입력해주세요. (10자 이내)" id="meet_name" name="meet_name" value="" />
+				</div> <input type="text" placeholder="모임이름을 입력해주세요. (10자 이내)" id="meet_name" name="meet_name" value="${mvo2.meet_name}" />
 				<p class="textCount_name blind">0자</p>
 				<div id = "toastWrap_name" class="hide">
 					<p class="toastText">글자수를 초과하였습니다.</p>
@@ -128,7 +132,7 @@
 				<section id="introduceLa"> <label>모임 소개</label></section>
 				<section class="textLengthWrap">
 				<textarea rows="8" cols="36" placeholder="모임에 대해서 자세하게 설명해주세요." id="meet_description"
-					name="meet_description"></textarea>
+					name="meet_description" value="${mvo2.meet_description}">${mvo2.meet_description}</textarea>
 					<section class="textLength">
 						<p class="textCount">0자</p>
 						<p class="textTotal">/500자</p>
@@ -144,10 +148,12 @@
 					<div id="city_la">
 						<label>활동 지역</label>
 					</div>
-					<select id="city" name='city' class="input">
+					<select id="city" name='city' class="input" value="${mvo2.meet_city}">
+						<option class="city_list" value='${mvo2.meet_city}'>${mvo2.meet_city}</option>
 						<option class="city_list" value=''>도/시 선택</option>
 						<option class="city_list" value='전체'>전체</option>
-					</select> <select name='country' id="country" class=select>
+					</select> <select name='country' id="country" class=select value="${mvo2.meet_county}">
+						<option class="country_option" value='${mvo2.meet_county}'>${mvo2.meet_county}</option>
 						<option class="country_option" value=''>군/구 선택</option>
 						<option class="country_option" value='전체'>전체</option>
 					</select>
@@ -158,7 +164,8 @@
 					<div id="interestLa">
 						<label>활동 카테고리</label>
 					</div>
-					<select id="interest" name="interest">
+					<select id="interest" name="interest" value="${mvo2.meet_interest_name}">
+						<option value="${mvo2.meet_interest_name}" class="interest_opt">${mvo2.meet_interest_name}</option>
 						<option value="" class="interest_opt">선택</option>
 					</select>
 				</div>
@@ -179,7 +186,8 @@
 							<section id="genderLa">
 								<label>성별</label>
 							</section>
-							<select id="gender" name="gender">
+							<select id="gender" name="gender" value="${mvo2.meet_gender}">
+								<option value="${mvo2.meet_gender}">${mvo2.meet_gender}</option>
 								<option value="">선택</option>
 								<option value="여">여</option>
 								<option value="남">남</option>
@@ -190,10 +198,8 @@
 							<section id="nopLa">
 								<label>인원 수 (필수입력)</label>
 							</section>
-							<select id="numberofpeople" class="numberofpeople" name="nop">
-								<!-- <optgroup id="num">
-									<option value="0">선택</option>
-								</optgroup> -->
+							<select id="numberofpeople" class="numberofpeople" name="nop" value="${mvo2.meet_nop}">
+								<option value="${mvo2.meet_nop}">${mvo2.meet_nop}</option>
 								<option value="0">선택</option>
 								<c:forEach var="i" begin="1" end="20">
 									<option>${i}</option>
@@ -205,7 +211,8 @@
 							<section id="ageHeader">
 								<label>연령대</label>
 							</section>
-							<select id="ageBody" class="ageBody" name="age">
+							<select id="ageBody" class="ageBody" name="age" value="${mvo2.meet_age}">
+								<option value="${mvo2.meet_age}">${mvo2.meet_age}<span>대</span></option>
 								<option value="0">선택</option>
 								<c:forEach var="i" begin="10" end="100" step="10">
 									<option><span>${i}</span><span>대</span></option>
@@ -222,6 +229,14 @@
 					<label for="meet_no">meet_no:</label>${mvo2.meet_no}<input
 						id="meet_no" name="meet_no" value="${mvo2.meet_no}">
 				</section>
+				
+				<!-- ************************************************************* -->
+				<!-- 액티비티 개설자와 해당 모임 -->
+				<section class="blind">
+					<label for="user_no">user_no:</label>
+					<input type="text" id="user_no" name="user_no" value="${mvo2.user_no}">
+				</section>
+				<!-- ************************************************************* -->
 			<input type="submit" id="update_meet_information_btn" value="모임정보수정" />
 
 			</div>
