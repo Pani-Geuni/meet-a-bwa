@@ -332,9 +332,15 @@
 }
 
 .addBtn{
+   
+    border:none;
+   	background-color:transparent
+}
+
+ .imgBtn{
     height: 20px;
     margin-top: 18px;
-}
+  }  
 /* .pheedEventBody{
     text-align : center;
     line-height: 260px;

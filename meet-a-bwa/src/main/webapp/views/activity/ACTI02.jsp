@@ -29,7 +29,7 @@
 		// 생성 버튼 클릭 (+)
 		$("#vote_create_btn").click(function() {
 			$(".vote-create-update-wrap").removeClass("blind"); // 투표 팝업
-			$("#event-create").removeClass("blind");
+			$("#event-create").removeClass("blind"); //////////////////////////////예동 여기이이~~~~~~~~~~~~~~~
 		});
 		$("#event_create_btn").click(function() {
 			$(".vote-create-update-wrap").removeClass("blind"); // 이벤트 팝업
@@ -155,11 +155,13 @@
 
                     <!--///////////////////////////////////////////////가입 후(이벤트, 투표, 모임신청 없을 때)/////////////////////////////////////////////-->
 
-                    <section id="pheed" class="pheed blind">
+                    <section id="pheed" class="pheed">
                         <section class="pheedEvent">
                             <section class="pheedEventHeader">
                                 <h4 class="pheedEventHeaderText">이벤트</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn" id="event_create_btn">
+                             	<button class="addBtn" id="event_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section>
                             <!--pheedEventHeader end-->
                             <section class="pheedEventBody">
@@ -172,7 +174,9 @@
                             <section class="pheedVote">
                                 <section class="pheedVoteHeader">
                                     <h4 class="pheedVoteHeaderText">투표</h4>
-                                    <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn" id="vote_create_btn">
+                                    <button class="addBtn" id="vote_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                                 </section>
                                 <!--pheedVoteHeader end-->
                                 <section class="pheedVoteBody">
@@ -184,7 +188,9 @@
                             <section class="pheedApplication">
                                 <section class="pheedApplicationHeader">
                                     <h4 class="pheedApplicationHeaderText">활동 신청</h4>
-                                    <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn" id="recruit_create_btn">
+                                    <button class="addBtn" id="recruit_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                                 </section>
                                 <!--pheedApplicationHeader end-->
                                 <section class="pheedApplicationBody">
@@ -204,7 +210,9 @@
                         <section class="pheedEvent">
                             <section class="pheedEventHeader">
                                 <h4 class="pheedEventHeaderText">이벤트</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn" id="event_create_btn">
+                                <button class="addBtn" id="event_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section><!--pheedEventHeader end-->
                             <section class="pheedEventBody">
                             
@@ -231,7 +239,9 @@
                         <section class="pheedVote">
                             <section class="pheedVoteHeader">
                                 <h4 class="pheedVoteHeaderText">투표</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn" id="vote_create_btn">
+                                <button class="addBtn" id="vote_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section><!--pheedVoteHeader end-->
                             <section class="pheedVoteBody">
                             
@@ -268,7 +278,9 @@
                         <section class="pheedApplication">
                             <section class="pheedApplicationHeader">
                                 <h4 class="pheedApplicationHeaderText">활동 신청</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn" id="recruit_create_btn">
+                                <button class="addBtn" id="recruit_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section><!--pheedApplicationHeader end-->
                             <section class="pheedApplicationBody">
                             
