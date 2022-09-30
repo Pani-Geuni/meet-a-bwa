@@ -153,7 +153,7 @@ public class MeetDAOImpl implements MeetDAO {
 				System.out.print(rs.getString("MEET_NAME") + " ");
 				System.out.print(rs.getString("MEET_DESCRIPTION") + " ");
 				System.out.print(rs.getString("MEET_COUNTY") + " ");
-				System.out.print(rs.getString("MEET_INTEREST_NAME") + " ");
+				System.out.println(rs.getString("MEET_INTEREST_NAME") + " ");
 				
 				mvo3.setMeet_no(rs.getString("MEET_NO"));
 				mvo3.setMeet_image(rs.getString("MEET_IMAGE"));

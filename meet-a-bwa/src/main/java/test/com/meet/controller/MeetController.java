@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * Servlet implementation class MeemController
  */
@@ -33,10 +32,7 @@ public class MeetController extends HttpServlet {
 		System.out.println("sPath : " + sPath);
 		
 		if (sPath.equals("/meet-member.do")) {
-			
-			String meet_no = request.getParameter("meet_no");
-			System.out.println(meet_no);
-			request.getRequestDispatcher("views/meet/MEET04.jsp").forward(request, response);
+			new MemberListAction().execute(request, response);
 		}
 	}
 

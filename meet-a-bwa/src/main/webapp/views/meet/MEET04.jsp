@@ -11,10 +11,18 @@
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
 	
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/feed.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-info.css" />
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/meet-detail.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-update.css" />
 
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
 
+	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+	<script src="/meet-a-bwa/resources/js/common/header.js"></script>
+	<script src="/meet-a-bwa/resources/js/meet/meet-member-list.js"></script>
+	
 	<title>모임 멤버 리스트</title>
 </head>
 <body>
@@ -27,59 +35,7 @@
 	<div id="bodyWrap">
 		<div id="contentWrapRow">
 		
-			<aside class="meet-detail-aside">
-				<div class="meet-profile-img">
-					<img src="/meet-a-bwa/resources/img/sample/sample-img-01.png"
-						alt="샘플 대표 이미지" />
-				</div>
-				<div class="meet-detail-aside-top">
-					<h1 class="meet-deatil-aside-title">금요일은 소고기 먹는 날 날날날날날날</h1>
-					<div class="heart-common">
-						<img class="img-heart-filled"
-							src="/meet-a-bwa/resources/img/heart-filled.svg" alt="좋아요 이미지" />
-						<img class="img-heart-outlined blind"
-							src="/meet-a-bwa/resources/img/heart-outlined.svg"
-							alt="좋아요 테두리 이미지" /> <span>9789</span>
-					</div>
-				</div>
-				<div class="meet-summary-info">
-					<p>
-						<a href="./act-detail-member.html">멤버 22명</a>
-					</p>
-					<p>리더 팡근</p>
-				</div>
-
-				<div class="tagSection">
-					<div class="loca_tag tag">
-						<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" /> <span
-							class="location_name font_size_10">경안동</span>
-					</div>
-					<div class="cate_tag tag">
-						<span class="category_name font_size_10">자전거</span>
-					</div>
-				</div>
-
-				<!-- 로그인 전 -->
-				<!-- <button type="button" class="btn-meet join"> -->
-				<button type="button" class="blind">
-					<a href="#">모임 가입하기</a>
-				</button>
-
-				<!-- 로그인 후 -->
-				<button type="button" class="btn-meet join" onclick="popupShow()">
-					글쓰기</button>
-				<!-- <input type="button" onclick="popupShow()" value="글쓰기" /> -->
-				<button type="button" class="btn-meet join">
-					<a href="">액티비티 개설</a>
-				</button>
-
-				<!-- <button type="button" class="btn-meet wirte">
-            			<a href="#">글 쓰기</a>
-          		</button> -->
-
-				<a class="meet-detail-link" href="./meet-info-detail.html">모임
-					자세히 보기</a>
-			</aside>
+			<jsp:include page="../../views/common/meetLeftSideBar.jsp"></jsp:include>
 			
 			<c:choose>
 			<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
@@ -203,5 +159,104 @@
         </div>
         <!-- END LOGOUT POPUP -->
 	<!-- END bodyWrap  -->
+	
+	<!-- ==================================== -->
+<!-- 글쓰기 view 팝업 -->
+<!-- ==================================== -->
+<div class="write-popup-layer">
+	<div class="popup-box">
+		<div class="popup-top">
+			<h1>글쓰기</h1>
+		</div>
+		<div class="popup-writer">
+			<form action="b_insertOK.do" method="post" class="popup-writer">
+				<input name="board_title" type="text" placeholder="제목" />
+				<textarea name="board_content" id="content" placeholder="내용을 입력하세요."></textarea>
+				<input name="meet_no" value="${ mvo3.meet_no }" style="display: none">
+				<input name="user_no" value="${ list.user_no }" style="display: none">
+				
+				<div class="popup-btn-group">
+					<button type="button" class="btn-cancel" onclick="writePopupHide()">취소</button>
+					<button type="submit" class="btn-submit">게시</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- ==================================== -->
+<!-- 글 업데이트 view 팝업 -->
+<!-- ==================================== -->
+<div class="update-popup-layer" data-popup="update">
+	<div class="popup-box">
+		<div class="popup-top">
+			<h1>글 수정</h1>
+		</div>
+		<div class="popup-writer" id="popup-update">
+			<input name="update_title" id="update_title" type="text"
+				placeholder="제목" value="${ vo.board_title }" />
+			<textarea name="update_content" id="update_content"
+				placeholder="내용을 입력하세요.">${ vo.board_content }</textarea>
+
+			<div class="popup-btn-group">
+				<button type="button" class="btn-cancel" data-popup-close="update">취소</button>
+				<button type="submit" class="btn-submit-update">게시</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- START LOGIN POPUP -->
+<div class="login-layer blind">
+	<div class="login-popup-wrap">
+		<div class="login-top">
+			<img id="logo" src="resources/img/logo.svg" alt="login logo image" />
+		</div>
+
+		<div class="login-middle">
+			<form action="/meet-a-bwa/m_loginOK.do" class="login-form"
+				method="post" id="loginForm">
+				<label for="id">아이디</label> <input type="text" id="idInput"
+					name="id" placeholder="아이디 입력" /> <label for="pw">비밀번호</label> <input
+					type="password" id="pwInput" name="pw" placeholder="비밀번호 입력" /> <input
+					type="submit" onsubmit="check_length();" value="로그인"> <input
+					type="button" value="창닫기" id="login-popup-closeBtn">
+			</form>
+
+			<div class="login-bottom">
+				<div>
+					<a href="">ID 찾기</a>
+				</div>
+				<div>
+					<a href="">PW 찾기</a>
+				</div>
+				<div>
+					<a href="/meet-a-bwa/u_insert.do">회원가입</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END LOGIN POPUP -->
+
+<!-- START LOGOUT POPUP -->
+<div class="logout-layer blind">
+	<div class="logout-popup-wrap">
+		<img src="resources/img/worry.svg" alt="logout worry img" />
+		<h1>
+			정말 로그아웃 <br /> 하시겠습니까?
+		</h1>
+
+		<div class="btn-group">
+			<a href="/meet-a-bwa/logoutOK.do">
+				<button class="btn-logout">로그아웃</button>
+			</a>
+			<button class="btn-cancel">취소</button>
+		</div>
+	</div>
+</div>
+<!-- END LOGOUT POPUP -->
 </body>
+
+
 </html>

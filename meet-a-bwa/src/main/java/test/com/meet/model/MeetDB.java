@@ -42,6 +42,6 @@ public interface MeetDB {
 		= "SELECT REGISTERED_NO, MEET_NO, mr.USER_NO, USER_NICKNAME "
 		+ "FROM TEST_MEET_REGISTERED mr JOIN TEST_USER "
 		+ "ON mr.user_no = u.user_no "
-		+ "WHERE meet_no = ?";
+		+ "WHERE meet_no = 'M1001'";
 	
 }
