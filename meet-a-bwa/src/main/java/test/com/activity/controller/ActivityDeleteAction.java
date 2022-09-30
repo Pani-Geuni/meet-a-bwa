@@ -1,13 +1,9 @@
 package test.com.activity.controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -19,11 +15,10 @@ import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
 
-public class ActivityUpdateAction {
+public class ActivityDeleteAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("activity_no"));
+		//System.out.println(request.getParameter("activity_no"));
 		
-		//********************************헤더***********************************//
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -59,26 +54,20 @@ public class ActivityUpdateAction {
 			map.put("isLogin", false);
 			request.setAttribute("list", map);
 		}
-		//**********************************************************************//
-
 		
 		ActivityVO avo = new ActivityVO();
 		avo.setActivity_no(request.getParameter("activity_no"));
-		avo.setUser_no(request.getParameter("user_no"));
-		avo.setMeet_no(request.getParameter("meet_no"));
 		
-
-		System.out.println("activity_no:::::"+avo.getActivity_no());
+		System.out.println("ㅇㅇㅇㅇㅇㅇ:"+request.getParameter("meet_no"));
 		
 		ActivityDAO a_dao = new ActivityDAOImpl();
-		ActivityVO avo2 = a_dao.activity_selectOne(avo);
-		System.out.println("description:::::::::"+avo2.getActivity_description());
-
-		request.setAttribute("avo2", avo2);
-
-//		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp");
-//		rd.forward(request, response);
+		int result = a_dao.activity_delete(avo);
 		
-		request.getRequestDispatcher("/views/activity/ACTI04.jsp").forward(request, response);
-	}
+		System.out.println(result);
+		if(result==1) {
+			response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + request.getParameter("meet_no"));
+		}else
+			response.sendRedirect("/meet-a-bwa/views/activity/ACTI02.jsp");
+		}
+
 }

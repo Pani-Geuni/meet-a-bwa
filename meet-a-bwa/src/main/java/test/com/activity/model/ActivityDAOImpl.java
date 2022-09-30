@@ -294,4 +294,46 @@ public class ActivityDAOImpl implements ActivityDAO {
 		return list;
 	}
 
+	@Override
+	public int activity_delete(ActivityVO avo) {
+		System.out.println("delete()...");
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_DELETE);
+			pstmt.setString(1, avo.getActivity_no()); 
+			
+			flag=pstmt.executeUpdate();  // insert占쏙옙 executeUpdate占싱곤옙 占쏙옙占쏙옙타占쏙옙(flag)占쏙옙 占쌍억옙占� 占쏙옙
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return flag;
+	}
+
 }

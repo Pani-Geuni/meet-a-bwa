@@ -6,7 +6,7 @@ $(function() {
 		
 		idx = $(this).attr("idx");
 		
-		location.href = "a_insert.do?meet_no=?" + idx;
+		location.href = "a_insert.do?meet_no=" + idx;
 		// ajax_load(idx)
 	})
 	

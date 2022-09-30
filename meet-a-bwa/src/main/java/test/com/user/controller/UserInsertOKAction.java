@@ -149,7 +149,7 @@ public class UserInsertOKAction {
 
 			if(result==1) {
 //				if(result1==1&&result2==1) {
-				request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
+				response.sendRedirect("/views/main/MAIN01.jsp");
 				}else
 //					response.sendRedirect("u_insert.do");
 					request.getRequestDispatcher("/views/user/USER02.jsp").forward(request, response);
