@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import test.com.meet.model.MeetVO4;
 
 
 public class MemberDAOImpl implements MemberDAO {
@@ -186,5 +190,80 @@ public class MemberDAOImpl implements MemberDAO {
 		return vo;
 	}
 
+	@Override
+	public List<MeetVO4> selectAll_myMeet(String user_no) {
+		
+		System.out.println("my meet list selectAll()...");
+		
+		List<MeetVO4> mvos = new ArrayList<MeetVO4>();
+		
+		try {
+			conn = DriverManager.getConnection(MemberDB.URL, MemberDB.USER, MemberDB.PASSWORD);
+			pstmt = conn.prepareStatement(MemberDB.SQL_SELECT_ALL_M_REGISTERED);
+			pstmt.setString(1, user_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				System.out.print(rs.getString("REGISTERED_NO") + " ");
+				System.out.print(rs.getString("USER_NO") + " ");
+				System.out.print(rs.getString("MEET_NO") + " ");
+				System.out.print(rs.getString("MEET_NAME") + " ");
+				System.out.print(rs.getString("MEET_DESCRIPTION") + " ");
+				System.out.print(rs.getString("MEET_COUNTY") + " ");
+				System.out.print(rs.getString("MEET_INTEREST_NAME") + " ");
+				System.out.print(rs.getString("MEET_GENDER") + " ");
+				System.out.print(rs.getInt("MEET_NOP") + " ");
+				System.out.print(rs.getInt("MEET_AGE") + " ");
+				System.out.print(rs.getInt("LIKE_CNT") + " ");
+				System.out.println(rs.getInt("USER_CNT") + " ");
+				
+				MeetVO4 mvo = new MeetVO4();
+				
+				mvo.setRegistered_no(rs.getString("REGISTERED_NO"));
+				mvo.setUser_no(rs.getString("USER_NO"));
+				mvo.setMeet_no(rs.getString("MEET_NO"));
+				mvo.setMeet_name(rs.getString("MEET_NAME"));
+				mvo.setMeet_description(rs.getString("MEET_DESCRIPTION"));
+				mvo.setMeet_county(rs.getString("MEET_COUNTY"));
+				mvo.setMeet_interest_name(rs.getString("MEET_INTEREST_NAME"));
+				mvo.setMeet_gender(rs.getString("MEET_GENDER"));
+				mvo.setMeet_nop(rs.getInt("MEET_NOP"));
+				mvo.setMeet_age(rs.getInt("MEET_AGE"));
+				mvo.setLike_cnt(rs.getInt("LIKE_CNT"));
+				mvo.setUser_cnt(rs.getInt("USER_CNT"));
+				
+				mvos.add(mvo);
+			}
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		return mvos;
+	}
 
 }
