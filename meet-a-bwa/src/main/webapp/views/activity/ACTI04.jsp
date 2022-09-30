@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,11 @@
 	href="/meet-a-bwa/resources/css/activity/update.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
-
+ <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 
 <script>
 	$(function() {
@@ -48,14 +51,14 @@
 	});
 
 	function check() {
-		let activity_name = $("#activity_name").val().length;
-        let activity_description =$("#activity_description").val().length;
+		let activity_name = $("#activity_name").val().trim().length;
+        let activity_description =$("#activity_description").val().trim().length;
         let nop = $("#numberofpeople").val();
 
         console.log(activity_name);
         console.log(activity_description);
         console.log(nop);
-        console.log($("#ageBody").val());
+        console.log($("#age").val());
 
         if(activity_name>0&&activity_description>0&&nop!=0){
                 console.log("생성 가능");
@@ -105,7 +108,7 @@
 					<section class="img_body">
 						<div id="input-image">
 							<img src="${avo2.activity_image}" width=300px; height=200px;
-								id="image" />
+								id="image" name="image" />
 						</div>
 						<div class="img_btn_meet_activity">
 							<label class="input-file-btn" for="input-file"> <img
@@ -206,30 +209,30 @@
 								<option value="남">남</option>
 							</select>
 						</section>
+						
 						<section id="nop">
 							<section id="nopLa">
-								<label>인원 수</label>
+								<label>인원 수 (필수입력)</label>
 							</section>
-							<select id="numberofpeople" class="numberofpeople" name="nop"
-								value="${avo2.activity_nop}">
-								<optgroup id="num">
+							<select id="numberofpeople" class="numberofpeople" name="nop" value="${avo2.activity_nop}">
 									<option value="${avo2.activity_nop}">${avo2.activity_nop}</option>
-									<option value="">선택</option>
-								</optgroup>
-
-								<!-- <c:forEach  var="i" begin="1" end="20">
-                    <option>${i}</option>
-                  </c:forEach> -->
+									<option value="0">선택</option>
+									<c:forEach  var="i" begin="1" end="20">
+                    				<option>${i}</option>
+                  					</c:forEach> 
 							</select>
 						</section>
+						
 						<section id="ageWrap">
 							<section id="ageHeader">
 								<label>연령대</label>
 							</section>
-							<select id="ageBody" class="ageBody" name="age">
-								<optgroup id="ageRange">
-									<option value="">선택</option>
-								</optgroup>
+							<select id="ageBody" class="ageBody" name="age" value="${avo2.activity_age}">
+								<option value="${avo2.activity_age}">${avo2.activity_age}</option>
+								<option value="0">선택</option>
+									<c:forEach var="i" begin="10" end="100" step="10">
+                    				<option><span>${i}</span><span>대</span></option>
+                    				</c:forEach> 
 							</select>
 							<div id="tagWrap_age">
 								<input type="button" class="delete_age age_result blind">
@@ -243,17 +246,17 @@
 
 				<!-- ************************************************************* -->
 				<!-- 액티비티 개설자와 해당 모임 -->
-				<section class="blind">
+				<%-- <section class="blind">
 					<label for="user_no">user_no:</label>${avo2.user_no}<input
 						id="user_no" name="user_no" value="${avo2.user_no}">
 				</section>
 				<section class="blind">
 					<label for="user_no">meet_no:</label>${avo2.meet_no}<input
 						id="user_no" name="user_no" value="${avo2.meet_no}">
-				</section>
+				</section> --%>
 				<!-- ************************************************************* -->
 				
-				<input type="button" id="update_activity_information_btn"
+				<input type="submit" id="update_activity_information_btn"
 					value="액티비티정보수정" />
 
 			</div>

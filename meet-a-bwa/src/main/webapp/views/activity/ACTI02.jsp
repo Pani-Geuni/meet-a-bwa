@@ -4,14 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/header.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/searchBar.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/footer.css" />
+
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css" />
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
@@ -19,10 +16,33 @@
 	
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/activity/feed.css" />
 	
-	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
-	<script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
- <script src="/meet-a-bwa/resources/js/common/header.js"></script>
-	<script src="/meet-a-bwa/resources/js/activity/feed.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+<script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
+<script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+<script src="/meet-a-bwa/resources/js/activity/feed.js"></script>
+
+<script>
+	$(function() {
+		// 생성 버튼 클릭 (+)
+		$("#vote_create_btn").click(function() {
+			$(".vote-create-update-wrap").removeClass("blind"); // 투표 팝업
+			$("#event-create").removeClass("blind"); //////////////////////////////예동 여기이이~~~~~~~~~~~~~~~
+		});
+		$("#event_create_btn").click(function() {
+			$(".vote-create-update-wrap").removeClass("blind"); // 이벤트 팝업
+			$("#event-create").removeClass("blind");
+		});
+		$("#recruit_create_btn").click(function() {
+			$(".vote-create-update-wrap").removeClass("blind"); // 활동 신청 팝업
+			$("#event-create").removeClass("blind");
+		});
+
+	});
+</script>
+
 <title>액티비티 상세 페이지</title>
 </head>
 <body>
@@ -110,7 +130,19 @@
                     <!--intro end-->
 
                     <!--///////////////////////////////////////////////가입 전(이벤트, 투표, 모임신청 없을 때)/////////////////////////////////////////////-->
-
+<%--                     <c:set var="account_state" value="" scope="session"/>
+                    <c:choose>
+                    <c:when test="${account_state}==" 가입전, 비로그인>
+                    
+                    
+                    </c:when>
+                    <c:when test="${account_state}==" 가입후, 개설자>
+                    
+                    </c:when>
+                    </c:choose>
+                    
+                    <c:if test="${yangyag.name == 'yhm' && yangyag.nickname == 'yhm'}">...</c:if> --%>
+					
                     <div id="pheed_1">
                         <p id="defaultPheedText_1">액티비티에 가입해서 더 많은 정보를 찾아보세요!</p>
                     </div>
@@ -123,11 +155,13 @@
 
                     <!--///////////////////////////////////////////////가입 후(이벤트, 투표, 모임신청 없을 때)/////////////////////////////////////////////-->
 
-                    <section id="pheed" class="pheed blind">
+                    <section id="pheed" class="pheed">
                         <section class="pheedEvent">
                             <section class="pheedEventHeader">
                                 <h4 class="pheedEventHeaderText">이벤트</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn">
+                             	<button class="addBtn" id="event_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section>
                             <!--pheedEventHeader end-->
                             <section class="pheedEventBody">
@@ -140,7 +174,9 @@
                             <section class="pheedVote">
                                 <section class="pheedVoteHeader">
                                     <h4 class="pheedVoteHeaderText">투표</h4>
-                                    <input type="image" src="../img/add.png" class="addBtn">
+                                    <button class="addBtn" id="vote_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                                 </section>
                                 <!--pheedVoteHeader end-->
                                 <section class="pheedVoteBody">
@@ -152,7 +188,9 @@
                             <section class="pheedApplication">
                                 <section class="pheedApplicationHeader">
                                     <h4 class="pheedApplicationHeaderText">활동 신청</h4>
-                                    <input type="image" src="../img/add.png" class="addBtn">
+                                    <button class="addBtn" id="recruit_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                                 </section>
                                 <!--pheedApplicationHeader end-->
                                 <section class="pheedApplicationBody">
@@ -172,78 +210,53 @@
                         <section class="pheedEvent">
                             <section class="pheedEventHeader">
                                 <h4 class="pheedEventHeaderText">이벤트</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn">
+                                <button class="addBtn" id="event_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section><!--pheedEventHeader end-->
                             <section class="pheedEventBody">
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                </div>
+                            
+                            <%-- <c:forEach var="item" items="${items}"> --%>
+                            <div class="content_list event-list" idx="">
+		                        <div class="event-list-wrap">
+		                            <div class="listCommon">
+		                                <span class="content_title">11월 12일 모임</span>
+		                            </div>
+		                            <div class="description_list listCommon">
+		                                <span class="content_description">
+		                                    2022년 11월 12일의 모임 정보를 확인하세요!
+		                                </span>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!-- </c:forEach> -->
+                            
                             </section><!--pheedEventBody end-->
                         </section> <!--pheedEvent end-->
+                        
+                        
                         <section class="voteApplication">
                         <section class="pheedVote">
                             <section class="pheedVoteHeader">
                                 <h4 class="pheedVoteHeaderText">투표</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn">
+                                <button class="addBtn" id="vote_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section><!--pheedVoteHeader end-->
                             <section class="pheedVoteBody">
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
+                            
+                            <%-- <c:forEach var="item" items="${items}"> --%>
+                            <div class="content_list event-list" idx="">
+		                        <div class="vote-list-wrap">
+		                            <div class="listCommon">
+		                                <span class="content_title">11월 12일 모임</span>
+		                            </div>
+		                            <div class="description_list listCommon">
+		                                <span class="content_description">
+		                                    2022년 11월 12일의 모임 정보를 확인하세요!
+		                                </span>
+		                            </div>
+		                            <div class="meet_info">
                                         <div class="meet_member_info">
                                             <span class="member_cnt member_ment">19명</span>
                                             <span class="member_ment">참여 중</span>
@@ -254,96 +267,35 @@
                                             <span class="member_ment">2022년 9월 28일</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
-                                        <div class="meet_member_info">
-                                            <span class="member_cnt member_ment">19명</span>
-                                            <span class="member_ment">참여 중</span>
-                                        </div>
-                                        <img src="../img/smallLine.png" class="smallLine">
-                                        <div class="period_info">
-                                            <span class="member_ment">투표 마감 : </span>
-                                            <span class="member_ment">2022년 9월 28일</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
-                                        <div class="meet_member_info">
-                                            <span class="member_cnt member_ment">19명</span>
-                                            <span class="member_ment">참여 중</span>
-                                        </div>
-                                        <img src="/meet-a-bwa/resources/img/smallLine.png" class="smallLine">
-                                        <div class="period_info">
-                                            <span class="member_ment">투표 마감 : </span>
-                                            <span class="member_ment">2022년 9월 28일</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
-                                        <div class="meet_member_info">
-                                            <span class="member_cnt member_ment">19명</span>
-                                            <span class="member_ment">참여 중</span>
-                                        </div>
-                                        <img src="/meet-a-bwa/resources/img/smallLine.png" class="smallLine">
-                                        <div class="period_info">
-                                            <span class="member_ment">투표 마감 : </span>
-                                            <span class="member_ment">2022년 9월 28일</span>
-                                        </div>
-                                    </div>
-                                </div>
+		                        </div>
+		                    </div>
+		                    <!-- </c:forEach> -->
+		                    
                             </section><!--pheedVoteBody end -->
                         </section> <!--pheedVote end-->
+                        
+                        
                         <section class="pheedApplication">
                             <section class="pheedApplicationHeader">
                                 <h4 class="pheedApplicationHeaderText">활동 신청</h4>
-                                <input type="image" src="/meet-a-bwa/resources/img/add.png" class="addBtn">
+                                <button class="addBtn" id="recruit_create_btn">
+                            		<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png" alt="">
+                            	</button>
                             </section><!--pheedApplicationHeader end-->
                             <section class="pheedApplicationBody">
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
+                            
+                             <%-- <c:forEach var="item" items="${items}"> --%>
+                            <div class="content_list event-list" idx="">
+		                        <div class="recruit-list-wrap">
+		                            <div class="listCommon">
+		                                <span class="content_title">11월 12일 모임</span>
+		                            </div>
+		                            <div class="description_list listCommon">
+		                                <span class="content_description">
+		                                    2022년 11월 12일의 모임 정보를 확인하세요!
+		                                </span>
+		                            </div>
+		                            <div class="meet_info">
                                         <div class="meet_member_info">
                                             <span class="member_cnt member_ment">19명</span>
                                             <span class="member_ment">참여 중</span>
@@ -351,84 +303,18 @@
                                         <img src="/meet-a-bwa/resources/img/smallLine.png" class="smallLine">
                                         <div class="period_info">
                                             <span class="member_ment">신청 마감 : </span>
-                                            <span class="member_ment">2022년 10월 31일</span>
+                                            <span class="member_ment">2022년 9월 28일</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
-                                        <div class="meet_member_info">
-                                            <span class="member_cnt member_ment">19명</span>
-                                            <span class="member_ment">참여 중</span>
-                                        </div>
-                                        <img src="../img/smallLine.png" class="smallLine">
-                                        <div class="period_info">
-                                            <span class="member_ment">신청 마감 : </span>
-                                            <span class="member_ment">2022년 10월 31일</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
-                                        <div class="meet_member_info">
-                                            <span class="member_cnt member_ment">19명</span>
-                                            <span class="member_ment">참여 중</span>
-                                        </div>
-                                        <img src="/meet-a-bwa/resources/img/smallLine.png" class="smallLine">
-                                        <div class="period_info">
-                                            <span class="member_ment">신청 마감 : </span>
-                                            <span class="member_ment">2022년 10월 31일</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content_list"><!-- start content div-->
-                                    <table>
-                                        <tbody><tr>
-                                            <td class="content_title">11월 12일 모임</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content_description">
-                                                2022년 11월 12일의 모임 정보를 확인하세요!
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                                    <div class="meet_info">
-                                        <div class="meet_member_info">
-                                            <span class="member_cnt member_ment">19명</span>
-                                            <span class="member_ment">참여 중</span>
-                                        </div>
-                                        <img src="/meet-a-bwa/resources/img/smallLine.png" class="smallLine">
-                                        <div class="period_info">
-                                            <span class="member_ment">신청 마감 : </span>
-                                            <span class="member_ment">2022년 10월 31일</span>
-                                        </div>
-                                    </div>
-                                </div>
+		                        </div>
+		                    </div>
+		                    <!-- </c:forEach> -->
+		                    
+                                
                             </section><!--pheedApplicationBody end-->
                         </section> <!--pheedApplication end-->
                         </section> <!--voteApplication end-->
                     </section> <!--pheed end-->
-
 
 
 

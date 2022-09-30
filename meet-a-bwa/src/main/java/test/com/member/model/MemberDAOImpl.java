@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+
 public class MemberDAOImpl implements MemberDAO {
 	
 	private Connection conn = null;
@@ -81,6 +82,51 @@ public class MemberDAOImpl implements MemberDAO {
 		} // end finally
 		
 		return vo;
+	}
+
+	@Override
+	public String selectOne_name(String no) {
+		String name = "";
+
+		try {
+			conn = DriverManager.getConnection(MemberDB.URL, MemberDB.USER, MemberDB.PASSWORD);
+			pstmt = conn.prepareStatement(MemberDB.SQL_SELECT_ONE_NAME);
+			pstmt.setString(1, no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				name = rs.getString("user_name");
+			}
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return name;
 	}
 
 

@@ -2,6 +2,11 @@
  * 
  */
  $(function(){
+ 	let flag = true;
+ 
+ 	if($.cookie("login_result") == "fail" && !$(".login-layer").hasClass("blind")){
+ 		fade_in_out("로그인에 실패하였습니다.")
+ 	}
  
     // 로그인 팝업 - 창닫기 버튼 클릭
     $("#login-popup-closeBtn").click(function(){
@@ -31,5 +36,22 @@
       		return false;
       	}
       });
+      
+      // 토스트 함수
+    function fade_in_out(text){
+        if(flag){
+            flag = false;
+            $("#toast_txt").text(text);
+            $("#toastWrap").removeClass("hide");
+            $("#toastWrap").removeClass("fade-out");
+            $("#toastWrap").addClass("fade-in");
+        
+            setTimeout(function() {
+                flag = true; // 추후에 사용할 수 있도록 변수값 변경
+                $("#toastWrap").removeClass("fade-in");
+                $("#toastWrap").addClass("fade-out");
+            }, 2000);
+        }
+    }
       
  });

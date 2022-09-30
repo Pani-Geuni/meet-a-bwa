@@ -34,7 +34,7 @@ public class ActivityController extends HttpServlet {
 		if (sPath.equals("/a_insert.do")) {
 			new ActivityInsertAction().execute(request, response);
 		}else if (sPath.equals("/a_update.do")) {
-			new ActionUpdateAction().execute(request, response);
+			new ActivityUpdateAction().execute(request, response);
 		} 
 	}
 
@@ -50,7 +50,7 @@ public class ActivityController extends HttpServlet {
 		if (sPath.equals("/a_insertOK.do")) {
 			new ActivityInsertOKAction().execute(request, response);
 		}else if (sPath.equals("/a_updateOK.do")) {
-			new ActionUpdateOKAction().execute(request, response);
+			new ActivityUpdateOKAction().execute(request, response);
 		}
 	}
 

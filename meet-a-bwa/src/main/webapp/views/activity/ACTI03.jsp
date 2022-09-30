@@ -5,67 +5,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/header.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/searchBar.css" />
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/common/footer.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css" />
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/user/bin-popup.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/bin-popup.css" />
 
-
-<link rel="stylesheet"
-	href="/meet-a-bwa/resources/css/activity/create.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/activity/create.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+   
 
 <script src="/meet-a-bwa/resources/js/activity/create/create.js"></script>
-
-<script>
-	function check() {
-		let activity_name = $("#activity_name").val().length;
-		let activity_description = $("#activity_description").val().length;
-		let nop = $("#numberofpeople").val();
-
-		console.log(activity_name);
-		console.log(activity_description);
-		console.log(nop);
-		console.log($("#age").val());
-
-		if (activity_name > 0 && activity_description > 0 && nop != 0) {
-			console.log("생성 가능");
-			let user_id = $("#id").val();
-		} else {
-			console.log("생성 불가능");
-
-			if (activity_name <= 0 || activity_description <= 0 || nop <= 0) {
-
-				$(".bin-popup").removeClass("blind");
-				$(".ok").on("click", function() {
-					$(".bin-popup").addClass("blind");
-				});
-			}
-			return false;
-		}
-	}
-</script>
-
 <script src="/meet-a-bwa/resources/js/activity/create/textCondition.js"></script>
-<script src="/meet-a-bwa/resources/js/activity/create/region.js"></script>
-<script src="/meet-a-bwa/resources/js/activity/create/interest.js"></script>
-<script src="/meet-a-bwa/resources/js/activity/create/profileImage.js"></script>
-<script src="/meet-a-bwa/resources/js/activity/create/age.js"></script>
+
 
 
 <title>액티비티 생성</title>
@@ -75,8 +39,7 @@
 	<jsp:include page="/views/common/header.jsp"></jsp:include>
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
-		<form action="/meet-a-bwa/a_insertOK.do" method="post"
-			enctype="multipart/form-data" onsubmit="return check();">
+		<div class="innerBodyWrap">
 
 			<div class="activityCUDWrap">
 				<h2 id="activityTitle">액티비티 생성</h2>
@@ -88,7 +51,7 @@
 					<section class="img_body">
 						<div id="input-image">
 							<img src="/meet-a-bwa/resources/img/default-image2.png"
-								width=300px; height=200px; id="image" />
+								width=300px; height=200px; id="image" name="image"/>
 						</div>
 						<div class="img_btn_meet_activity">
 							<label class="input-file-btn" for="input-file"> <img
@@ -198,8 +161,8 @@
                     				<option>${i}</option>
                   					</c:forEach> 
 							</select>
-							
 						</section>
+						
 						<section id="ageWrap">
 							<section id="ageHeader">
 								<label>연령대</label>
@@ -207,7 +170,7 @@
 							<select id="ageBody" class="ageBody" name="age">
 									<option value="0">선택</option>
 									<c:forEach  var="i" begin="10" end="100" step="10">
-                    				<option>${i}</option>
+                    				<option><span>${i}</span><span>대</span></option>
                     				</c:forEach> 
 							</select>
 							<div id="tagWrap_age">
@@ -223,29 +186,24 @@
 				<!-- ************************************************************* -->
 				<!-- 액티비티 개설자와 해당 모임 -->
 				<section class="blind">
-					<label for="user_no">user_no:</label>${avo2.user_no}<input
-						id="user_no" name="user_no" value="${avo2.user_no}">
+					<label for="user_no">user_no:</label>
+					<input type="text" id="user_no" name="user_no" values="<c:out value='${user_no}'/>">
 				</section>
 				<section class="blind">
-					<label for="user_no">meet_no:</label>${avo2.meet_no}<input
-						id="user_no" name="user_no" value="${avo2.meet_no}">
+					<label for="user_no">meet_no:</label>
+					<input type="text" id="user_no" name="user_no" values="<c:out value='${meet_no}'/>">
 				</section>
 				<!-- ************************************************************* -->
 
-				<input type="submit" id="create_activity" value="액티비티 생성" />
-
-				<!-- 		<input type="hidden" values="user_no"> <input type="hidden"
-					values="meet_no"> -->
-
-				<!-- 			<input type="hidden" values="<c:out value='${user_no}'/>">
-			<input type="hidden" values="<c:out value='${meet_no}'/>"> -->
+				<input type="button" id="create_activity" value="액티비티 생성" />
+			
 
 			</div>
 
 			<!--  START HEADER INCLUDE -->
 			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
 			<!--  END HEADER INCLUDE -->
-		</form>
+		</div> <!-- innerBodyWrap end -->
 	</div>
 	<!-- 팝업 -->
 	<!-- not null -->

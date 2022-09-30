@@ -27,13 +27,12 @@
     height: 100%;
     border: none;
     font-size: 16px;
-    color : #B2B3B9;
+    background-color: transparent;
 }
 
 .optionCommon{
     width : 200px;
     height: 30px;
-    background-color: #EBE9E9;
     color : black;
 }
 
@@ -65,8 +64,6 @@
     border: 0px;
     font-size: 15px;
     color : #B2B3B9;
-}
-#searchWord::placeholder{
-    color : #B2B3B9;
+    background-color: transparent;
 }
 
