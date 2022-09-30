@@ -1,19 +1,18 @@
 $(function() {
-
 	let idx = "";
 
-	$(".meet-member-info").on('click', function() {
+	$("#btn-activity-create").on("click", function() {
+		console.log("activity create")
 		
-		idx = $(this).parent(".meet-summary-info").attr("idx");
-		console.log(idx)
-		console.log(typeof idx);
+		idx = $(this).attr("idx");
 		
-		ajax_load(idx);
+		location.href = "a_insert.do?meet_no=?" + idx;
+		// ajax_load(idx)
 	})
 	
 	function ajax_load(idx) {
 		$.ajax({
-			url : "/meet-a-bwa/meet-member.do",
+			url : "a_insert.do",
 			type : "GET",
 			data : {
 				meet_no : idx
@@ -24,16 +23,12 @@ $(function() {
 			success : function(res) {
 				console.log("succees")
 				console.log(res)
-				
-				location.replace("meet-member.do?meet_no=" + meet_no)
-				//location.reload()
 			},
 			
 			error : function(res, status, text) {
 				console.log("error")
-				console.log(res)
 				console.log(text)
 			}
-		})	
+		})
 	}
 })
