@@ -14,4 +14,6 @@ public interface MemberDB {
 		= "SELECT USER_NO, USER_IMAGE, USER_ID, USER_NAME, USER_NICKNAME, USER_EMAIL "
 		+ "FROM TEST_USER "
 		+ "WHERE USER_NO = ?";
+	
+	String SQL_SELECT_ALL_M_REGISTERED = "select * from reg_user_like_view where user_no=?";	
 }
