@@ -38,4 +38,10 @@ public interface MeetDB {
 	
 	String SQL_SELECT_ONE_MEET_INFO = "SELECT * from MEET_JOIN_USER_VIEW WHERE MEET_NO=?";
 	
+	String SQL_SELECT_ALL_MEET_REGISTERED 
+		= "SELECT REGISTERED_NO, MEET_NO, mr.USER_NO, USER_NICKNAME "
+		+ "FROM TEST_MEET_REGISTERED mr JOIN TEST_USER "
+		+ "ON mr.user_no = u.user_no "
+		+ "WHERE meet_no = ?";
+	
 }

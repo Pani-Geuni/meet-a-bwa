@@ -17,10 +17,8 @@
 			<span>${ mvo3.like_cnt }</span>
 		</div>
 	</div>
-	<div class="meet-summary-info">
-		<p>
-			<a href="/meet-a-bwa/meet-member.do">멤버 ${ mvo3.user_cnt }명</a>
-		</p>
+	<div class="meet-summary-info" idx="${ mvo3.meet_no }">
+		<p class="meet-member-info">멤버 ${ mvo3.user_cnt }명</p>
 		<p>리더 ${ mvo3.user_nickname }</p>
 	</div>
 
@@ -46,9 +44,7 @@
 
 		<c:when test="${list.isLogin eq true}">
 			<button type="button" id="btn-meet-write" class="btn-meet" onclick="writePopupShow()" idx="${ mvo3.meet_no }">글쓰기</button>
-			<button type="button" class="btn-meet">
-				<a href="">액티비티 개설</a>
-			</button>
+			<button type="button" id="btn-activity-create" class="btn-meet" idx="${ mvo3.meet_no }">액티비티 개설</button>
 
 			<a class="meet-detail-link" href="./meet-info-detail.html">모임 자세히
 				보기</a>

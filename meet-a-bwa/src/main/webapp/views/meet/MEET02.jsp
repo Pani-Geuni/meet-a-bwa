@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-writer.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-update.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/meet/post-delete.css" />
+
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 
@@ -41,9 +42,11 @@
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
 <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 
+<script src="/meet-a-bwa/resources/js/meet/meet-member-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
 
+<script src="/meet-a-bwa/resources/js/activity/create/insert.js"></script>
 
 <script src="/meet-a-bwa/resources/js/vote/vote_common.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
