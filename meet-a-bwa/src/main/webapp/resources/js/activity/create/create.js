@@ -324,12 +324,25 @@ $(function () {
       
     //***************************생성 버튼 누른 후 동작******************************//
 
-	$("#create_activity").click(function(){
+//	$("#create_activity").click(function(){
 	
     // 1. NOT NULL 충족 - alert Popup 
 
-		var user_id = '${user_id}'; //세션값 가져옴
-		console.log(user_id);
+//		var user_id = "${user_id}"; //세션값 가져옴
+//		console.log(user_id);
+//		check();
+//		insert_ajax();
+//		console.log($("#activity_name").val());
+//		console.log($("#activity_description").val());
+//		console.log($("#city").val());
+//		console.log($("#country").val());
+//		console.log($("#interest").val());
+//		console.log($("#gender").val());
+//		console.log($("#numberofpeople option:selected").val());
+//		console.log($("#ageBody option:selected").val());
+		//console.log($.cookie("user_no"));
+		//console.log(location.href.split("meet_no=")[1]);
+//		});
 		
 		function check() {
 			let activity_name = $("#activity_name").val().trim().length;
@@ -339,11 +352,12 @@ $(function () {
 			console.log(activity_name);
 			console.log(activity_description);
 			console.log(nop);
-			console.log($("#age").val());
+			//console.log($("#age").val());
 
 			if (activity_name > 0 && activity_description > 0 && nop != 0) {
 				console.log("생성 가능");
 				let user_id = $("#id").val();
+				//insert_ajax();
 			} else {
 				console.log("생성 불가능");
 
@@ -359,24 +373,33 @@ $(function () {
 		}
 	
 	// 2. 서버 전달
-		function insert_ajax(time, content_arr){
+		function insert_ajax(){ //사용 x 
+		
+		var form = $("#activity_create_form")[0];
+    	var formData = new FormData(form);
+		console.log(formData);
+		console.log("$.cookie : " + $.cookie("user_no"));
+ 
     	 	$.ajax({
         		url : "/meet-a-bwa/a_insertOK.do",
 				type : "POST",
+				enctype:'multipart/form-data',
+				//dataType:'json',
+    			processData:false,
+    			contentType:false,
+    			cache:false,
 				data : {
-					activity_image : $("#activity_image").val(),
-					activity_name : $("#activity_name").val(),
-					activity_description : $("#activity_description").val(),
-					activity_city : $("#city").val(),
-					activity_county : $("#county").val(),
-					activity_interest_name : $("#interest").val(),
-					activity_gender : $("#gender").val(),
-					activity_nop : $("#nop").val(),
-					activity_age : $("#age").val(),
 					user_no : $.cookie("user_no"),
 					meet_no : location.href.split("meet_no=")[1],
+					formData
 				},
+				dataType:'json',
+				
 				success : function(res) {
+					console.log($.cookie("user_no"));
+					console.log(location.href.split("meet_no=")[1]);
+					
+					console.log("res"+res);
 		        	if(res.result == "insert success"){
 		        		console.log("success");
 		        	}else if(res.result == "insert fail"){
@@ -390,7 +413,7 @@ $(function () {
     	}
    
 	
-	});
+	
    
    
 

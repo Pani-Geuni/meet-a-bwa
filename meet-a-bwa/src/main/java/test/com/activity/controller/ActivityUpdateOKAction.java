@@ -98,7 +98,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 					if (item.isFormField()) {
 						if(item.getFieldName().equals("activity_no")) {
 							activity_no = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("activity_image")) {
+						}else if(item.getFieldName().equals("image")) {
 							activity_image = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_name")) {
 							activity_name =  item.getString("UTF-8");
@@ -106,7 +106,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 							activity_description = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("city")) {
 							activity_city = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("county")) {
+						}else if(item.getFieldName().equals("country")) {
 							activity_county = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("interest")) {
 							activity_interest_name = item.getString("UTF-8");
@@ -159,7 +159,6 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			
 			ActivityVO avo = new ActivityVO();
 			avo.setActivity_no(activity_no);
-			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			avo.setActivity_name(activity_name);
 			avo.setActivity_description(activity_description);
 			avo.setActivity_city(activity_city);
@@ -171,19 +170,20 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			//avo.setUser_no(user_no);
 			//avo.setMeet_no(meet_no);
 			
+			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
 			
 			
 			ActivityDAO a_dao = new ActivityDAOImpl();
-			int result = a_dao.activity_insert(avo);
+			int result = a_dao.activity_update(avo);
 
 			System.out.println("result: "+result);
 
 			if(result==1) {
-//				if(result1==1&&result2==1) {
-				request.getRequestDispatcher("/views/activity/ACTI02.jsp").forward(request, response);
+					//response.sendRedirect(".do?activity_no="+activity_no);
+					response.sendRedirect("/meet-a-bwa/views/activity/ACTI02.jsp");
 				}else
-					response.sendRedirect("a_update.do");
+					response.sendRedirect("a_update.do?activity_no=" + activity_no);
 			}
 		} // end if << isMultipartContent
 }

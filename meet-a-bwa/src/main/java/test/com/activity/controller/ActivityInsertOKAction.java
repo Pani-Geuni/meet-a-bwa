@@ -30,10 +30,12 @@ public class ActivityInsertOKAction {
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
+		
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
 		String cookie_userNo = "";
+		
 		
 		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
@@ -55,6 +57,7 @@ public class ActivityInsertOKAction {
 			map.put("nick_name", cookie_nickName);
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
+			map.put("user_no",cookie_userNo);
 			
 			request.setAttribute("list", map);
 			
@@ -92,36 +95,38 @@ public class ActivityInsertOKAction {
 			Integer activity_age=0;
 //			String activity_date = "";
 			String user_no = "";
-			String meet_no="";
+			String meet_no = "";
 
 			try {
 				List<FileItem> items = sfu.parseRequest(request);
 				for (FileItem item : items) {
 
 					if (item.isFormField()) {
-						if(item.getFieldName().equals("activity_image")) {
+						if(item.getFieldName().equals("image")) {
 							activity_image = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_name")) {
 							activity_name =  item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_description")) {
 							activity_description = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("activity_city")) {
+						}else if(item.getFieldName().equals("city")) {
 							activity_city = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("activity_county")) {
+						}else if(item.getFieldName().equals("country")) {
 							activity_county = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("activity_interest_name")) {
+						}else if(item.getFieldName().equals("interest")) {
 							activity_interest_name = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("activity_gender")) {
+						}else if(item.getFieldName().equals("gender")) {
 							activity_gender = item.getString("UTF-8");
-						}else if(item.getFieldName().equals("activity_nop")) {
+						}else if(item.getFieldName().equals("nop")) {
 							activity_nop = Integer.parseInt(item.getString("UTF-8")); 
-						}else if(item.getFieldName().equals("activity_age")) {
+						}else if(item.getFieldName().equals("age")) {
 							String age_re = item.getString("UTF-8").replace("대", "");
 							activity_age = Integer.parseInt(age_re);
 						}else if(item.getFieldName().equals("user_no")) {
-							user_no = item.getString("UTF-8");
+							user_no = item.getString("UTF-8"); 
+							System.out.println("user_no:"+user_no);
 						}else if(item.getFieldName().equals("meet_no")) {
-							meet_no = item.getString("UTF-8");
+							meet_no = item.getString("UTF-8"); 
+							System.out.println("meet_no:"+meet_no);
 						}
 
 
@@ -181,11 +186,12 @@ public class ActivityInsertOKAction {
 			System.out.println("result: "+result);
 
 			if(result==1) {
-//				if(result1==1&&result2==1) {
-				request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
-				}else
-					//response.sendRedirect("a_insert.do");
-			request.getRequestDispatcher("/views/activity/ACTI03.jsp").forward(request, response);
+				response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
+			}else {
+				//response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
+				response.sendRedirect("a_insert.do?meet_no=" + meet_no);
+			}
+			
 			}
 		} // end if << isMultipartContent
 }

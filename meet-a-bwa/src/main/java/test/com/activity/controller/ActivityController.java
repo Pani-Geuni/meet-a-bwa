@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.com.user.controller.UserDeleteOKAction;
+
 /**
  * Servlet implementation class ActivityController
  */
-@WebServlet({ "/a_insert.do", "/a_insertOK.do", "/a_update.do", "/a_updateOK.do" })
+@WebServlet({ "/a_insert.do", "/a_insertOK.do", "/a_update.do", "/a_updateOK.do", "/a_delete.do" })
 public class ActivityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,7 +37,9 @@ public class ActivityController extends HttpServlet {
 			new ActivityInsertAction().execute(request, response);
 		}else if (sPath.equals("/a_update.do")) {
 			new ActivityUpdateAction().execute(request, response);
-		} 
+		}else if(sPath.equals("/a_delete.do")) {
+			new ActivityDeleteAction().execute(request, response);
+		}
 	}
 
 	/**
