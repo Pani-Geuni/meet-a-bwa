@@ -32,7 +32,7 @@ public class ActivityController extends HttpServlet {
 		System.out.println(sPath);
 
 		if (sPath.equals("/a_insert.do")) {
-			request.getRequestDispatcher("views/activity/ACT03.jsp").forward(request, response);
+			new ActivityInsertAction().execute(request, response);
 		}else if (sPath.equals("/a_update.do")) {
 			new ActionUpdateAction().execute(request, response);
 		} 
@@ -42,11 +42,11 @@ public class ActivityController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // ÇÑ±Û ±úÁü ¹æÁö
+		request.setCharacterEncoding("UTF-8"); // ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		// doGet(request, response);
 		String sPath = request.getServletPath();
 		System.out.print("doPost:");
-		System.out.println(sPath); // ¼­¹ö¿¡ ÇÁ¸°Æ®
+		System.out.println(sPath); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		if (sPath.equals("/a_insertOK.do")) {
 			new ActivityInsertOKAction().execute(request, response);
 		}else if (sPath.equals("/a_updateOK.do")) {
