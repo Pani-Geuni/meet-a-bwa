@@ -10,4 +10,8 @@ public interface MemberDB {
 		
 	String SQL_ID_CHECK = "select * from test_user where user_id=?";
 	String SQL_SELECT_ONE_NAME = "select user_name from test_user where user_no=?";
+	String SQL_SELECT_ONE_MYPAGE 
+		= "SELECT USER_NO, USER_IMAGE, USER_ID, USER_NAME, USER_NICKNAME, USER_EMAIL "
+		+ "FROM TEST_USER "
+		+ "WHERE USER_NO = ?";
 }

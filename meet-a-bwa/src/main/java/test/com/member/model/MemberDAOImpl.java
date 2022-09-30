@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 
 public class MemberDAOImpl implements MemberDAO {
@@ -127,6 +126,64 @@ public class MemberDAOImpl implements MemberDAO {
         }
 		
 		return name;
+	}
+
+	@Override
+	public MemberVO selectOne_mypage(String no) {
+
+		MemberVO vo = new MemberVO();
+		
+		try {
+			conn = DriverManager.getConnection(MemberDB.URL, MemberDB.USER, MemberDB.PASSWORD);
+			pstmt = conn.prepareStatement(MemberDB.SQL_SELECT_ONE_MYPAGE);
+			pstmt.setString(1, no);		// user_no 넣기
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				System.out.print(rs.getString("USER_NO") + " ");
+				System.out.print(rs.getString("USER_IMAGE") + " ");
+				System.out.print(rs.getString("USER_ID") + " ");
+				System.out.print(rs.getString("USER_NAME") + " ");
+				System.out.print(rs.getString("USER_NICKNAME") + " ");
+				System.out.println(rs.getString("USER_EMAIL"));
+				
+				vo.setUser_no(rs.getString("USER_NO"));
+				vo.setUser_image(rs.getString("USER_IMAGE"));
+				vo.setUser_id(rs.getString("USER_ID"));
+				vo.setUser_name(rs.getString("USER_NAME"));
+				vo.setUser_nickname(rs.getString("USER_NICKNAME"));
+				vo.setUser_email(rs.getString("USER_EMAIL"));
+			}
+			
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return vo;
 	}
 
 
