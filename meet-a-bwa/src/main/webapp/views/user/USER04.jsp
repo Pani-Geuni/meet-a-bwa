@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="test.com.meetboard.model.MeetBoardVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -37,8 +38,8 @@
 	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
 	            </div>
 	            <div id="user-contents">
-	              <p><span>${ list.nick_name }님,</span> 안녕하세요.</p>
-	              <p>golfzon@gmail.com</p>
+	              <p><span>${ vo.user_nickname }님,</span> 안녕하세요.</p>
+	              <p>${ vo.user_email }</p>
 	            </div>
 	          </div>
 	        </section>

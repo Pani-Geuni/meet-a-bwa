@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import test.com.member.model.MemberDAO;
+import test.com.member.model.MemberDAOImpl;
+import test.com.member.model.MemberVO;
+
 public class MyPageAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -19,6 +23,7 @@ public class MyPageAction {
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
+		String cookie_userNo = "";
 		
 		//로그인 O
 		if(session_user_id != null) {
@@ -30,6 +35,8 @@ public class MyPageAction {
 					cookie_county = cookie.getValue();
 				}else if(cookie.getName().equals("nick_name")) {
 					cookie_nickName = cookie.getValue();
+				}else if (cookie.getName().equals("user_no")) {
+					cookie_userNo = cookie.getValue();
 				}
 			}
 			
@@ -38,11 +45,14 @@ public class MyPageAction {
 			map.put("nick_name", cookie_nickName);
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
+			map.put("user_no", cookie_userNo);
 			
 			request.setAttribute("list", map);
 			
 			System.out.println("Headercontroller");
 			System.out.println(cookie_nickName);
+			System.out.println(cookie_userNo);
+			
 		}else {
 			Cookie[] cookies = request.getCookies();
 			if(cookies != null) { // NullPointerException 처리
@@ -58,7 +68,13 @@ public class MyPageAction {
 			request.setAttribute("list", map);
 		}
 		
-		
+		// 마이페이지 개인 정보(이름, 프로필사진, 이메일 가져오기)
+		MemberDAO dao = new MemberDAOImpl();
+					
+		MemberVO vo = dao.selectOne_mypage(cookie_userNo);
+					
+		request.setAttribute("vo", vo);
 		request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
+		
 	}
 }
