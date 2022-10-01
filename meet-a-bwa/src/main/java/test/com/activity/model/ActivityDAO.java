@@ -14,4 +14,5 @@ public interface ActivityDAO {
 	public int activity_delete(ActivityVO avo); 
 	
 	public List<ActivityVO2> activity_selectAll_main_feed(String meet_no);
+	public ActivityVO2 activity_selectOne_main_feed(ActivityVO2 avo);
 }

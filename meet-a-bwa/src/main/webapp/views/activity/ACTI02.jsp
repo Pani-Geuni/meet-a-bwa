@@ -131,11 +131,11 @@
 			<div id="innercontentWrap">
 				<div id="meetLeftWrap">
 					<div class="act-profile-img">
-						<img src="/meet-a-bwa/resources/img/default-image2.png"
+						<img src="${avo2.activity_image}"
 							alt="default 이미지" id="meetImg">
 					</div>
 					<div class="act-detail-aside-top">
-						<h1 class="act-deatil-aside-title">액티비티 이름</h1>
+						<h1 class="act-deatil-aside-title">${avo2.activity_name}</h1>
 						<div class="heart-common">
 							<button class="img-heart-outlined_btn">
 								<img class="img-heart-outlined"
@@ -145,29 +145,33 @@
 								<img class="img-heart-filled"
 									src="/meet-a-bwa/resources/img/heart-filled.svg" alt="">
 							</button>
-							<span id="like_cnt">0</span>
+							<span id="like_cnt">${avo2.like_cnt}</span>
 						</div>
 					</div>
 					<div class="act-summary-info">
 						<p>
-							<a href="/meet-a-bwa/resources/act-detail-member.html">멤버 22명</a>
+							<a href="/meet-a-bwa/resources/act-detail-member.html">${avo2.user_cnt}</a>
 						</p>
-						<p>리더 팡근</p>
+						<p>${avo2.user_no의 nickname}</p>
 					</div>
 
 					<div class="tagSection">
 						<div class="loca_tag tag">
 							<img src="/meet-a-bwa/resources/img/map.png" class="tag_img">
-							<span class="location_name font_size_10">경안동</span>
+							<span class="location_name font_size_10">${avo2.activity_city}</span>
+						</div>
+						<div class="loca_tag tag">
+							<img src="/meet-a-bwa/resources/img/map.png" class="tag_img">
+							<span class="location_name font_size_10">${avo2.activity_county}</span>
 						</div>
 						<div class="cate_tag tag">
-							<span class="category_name font_size_10">자전거</span>
+							<span class="category_name font_size_10">${avo2.activity_interest_name}</span>
 						</div>
 						<div class="age_tag tag">
-							<span class="category_name font_size_10">20대</span>
+							<span class="category_name font_size_10">${avo2.activity_age}대</span>
 						</div>
 						<div class="gen_tag tag">
-							<span class="category_name font_size_10">남여</span>
+							<span class="category_name font_size_10">${avo2.activity_gender}</span>
 						</div>
 					</div>
 
@@ -200,21 +204,21 @@
 								class="activityDeleteBtn font_size_10" value="삭제">
 							<!--user에게 보이는 탈퇴 버튼-->
 							<input type="image" src="/meet-a-bwa/resources/img/exit.svg"
-								class="activityExitBtn font_size_10" value="탈퇴" idx="${avo2.user_no}">
+								class="activityExitBtn font_size_10" value="탈퇴" idx="${avo2.가입된 회원번호}">
 						</section>
 						<hr class="firstLine">
 						<section id="innerIntro">
 							<section id="IntroInfo">
 								<h4 class="introInfo">액티비티 정보</h4>
 								<ul class="introInfoUl">
-									<li class="openDate">액티비티 개설일 : 2022년 9월</li>
-									<li class="nop">멤버 수 : 22명</li>
+									<li class="openDate">액티비티 개설일 : ${avo2.activity_date}</li>
+									<li class="nop">멤버 수 : ${avo2.activity_nop}명</li>
 								</ul>
 							</section>
 							<!--introInfo end-->
 							<hr class="secondLine">
 							<section id="IntroDescription">
-								<p class="IntroDescription">액티비티 자세한 설명</p>
+								<p class="IntroDescription">${avo2.activity_description}</p>
 							</section>
 							<!--IntroDescription end-->
 							<!-- <hr class="thirdLine"> -->
