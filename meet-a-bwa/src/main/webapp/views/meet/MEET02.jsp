@@ -47,6 +47,7 @@
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
 
 <script src="/meet-a-bwa/resources/js/activity/create/insert.js"></script>
+<script src="/meet-a-bwa/resources/js/activity/activity_select.js"></script>
 
 <script src="/meet-a-bwa/resources/js/vote/vote_select.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
@@ -185,7 +186,7 @@
 									<a href="#">+</a>
 								</p>
 							</div>
-							<ul class="right-summary-list-contents">
+							<ul class="right-summary-list-contents" id="activity-summary-list">
 								<c:forEach var="avo" items="${ avos }">
 									<li class="activity_list_item" idx="${ avo.activity_no }"><p>${ avo.activity_name }</p></li>
 								</c:forEach>
