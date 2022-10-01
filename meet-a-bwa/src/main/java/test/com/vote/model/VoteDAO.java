@@ -3,6 +3,7 @@ import java.util.List;
 
 public interface VoteDAO {
 	public int insert_meetVote(VoteVO vo);
+	public int insert_activityVote(VoteVO vo);
 	public int insert_voteContent(VoteContentVO vo);
 	public int insert_result(VoteResultVO vo);
 	public int update_vote(VoteVO vo);

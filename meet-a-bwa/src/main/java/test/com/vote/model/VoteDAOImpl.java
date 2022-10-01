@@ -72,6 +72,50 @@ public class VoteDAOImpl implements VoteDAO {
 	}
 	
 	@Override
+	public int insert_activityVote(VoteVO vvo) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
+			System.out.println("user insert db conn successed...");
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_INSERT_A);
+			
+			pstmt.setString(1, vvo.getVote_title());    
+			pstmt.setString(2, vvo.getVote_description());
+			pstmt.setTimestamp(3, vvo.getVote_eod());
+			pstmt.setString(4, vvo.getUser_no());
+			pstmt.setString(5, vvo.getActivity_no());
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	@Override
 	public int insert_voteContent(VoteContentVO vvo) {
 		int flag=0;
 		try {
@@ -576,7 +620,7 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_UPDATE_M);
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_UPDATE);
 			pstmt.setString(1, vo.getVote_title());
 			pstmt.setString(2, vo.getVote_description());
 			pstmt.setTimestamp(3, vo.getVote_eod());
