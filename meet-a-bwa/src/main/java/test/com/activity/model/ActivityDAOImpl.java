@@ -6,12 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import test.com.meet.model.MeetDB;
-import test.com.user.model.UserDB;
-import test.com.user.model.UserVO;
 
 public class ActivityDAOImpl implements ActivityDAO {
 
@@ -334,6 +331,66 @@ public class ActivityDAOImpl implements ActivityDAO {
 		}
 		
 		return flag;
+	}
+
+	@Override
+	public List<ActivityVO2> activity_selectAll_main_feed(String meet_no) {
+		
+		System.out.println("Activity selectAll() in meet main");
+		
+		List<ActivityVO2> vos = new ArrayList<ActivityVO2>();
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB2.URL, ActivityDB2.USER, ActivityDB2.PASSWORD);
+			System.out.println("Activity SelectAll conn succeed");
+			
+			pstmt = conn.prepareStatement(ActivityDB2.SQL_SELECT_ALL_FEED);
+			pstmt.setString(1, meet_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ActivityVO2 vo = new ActivityVO2();
+				System.out.print(rs.getString("ACTIVITY_NO") + " ");
+				System.out.print(rs.getString("ACTIVITY_NAME") + " ");
+				System.out.print(rs.getString("USER_NO") + " ");
+				System.out.println(rs.getString("MEET_NO") + " ");
+				
+				vo.setActivity_no(rs.getString("ACTIVITY_NO"));
+				vo.setActivity_name(rs.getString("ACTIVITY_NAME"));
+				vo.setUser_no(rs.getString("USER_NO"));
+				vo.setMeet_no(rs.getString("MEET_NO"));
+				
+				vos.add(vo);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return vos;
 	}
 
 }

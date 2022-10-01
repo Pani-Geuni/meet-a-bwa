@@ -12,4 +12,6 @@ public interface ActivityDAO {
 	public int activity_update(ActivityVO avo);
 	public List<String> select_all_activity_like(String user_no);
 	public int activity_delete(ActivityVO avo); 
+	
+	public List<ActivityVO2> activity_selectAll_main_feed(String meet_no);
 }
