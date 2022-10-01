@@ -25,7 +25,6 @@ public class M_VoteSelectOneAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String vote_no = request.getParameter("vote_no");
 		String user_no = request.getParameter("user_no");
-		System.out.println("SelectOne vote_no : " + vote_no);
 		
 		VoteVO vvo = new VoteVO();
 		vvo.setVote_no(vote_no);

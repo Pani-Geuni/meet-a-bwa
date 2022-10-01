@@ -539,12 +539,91 @@ public class VoteDAOImpl implements VoteDAO {
 			pstmt.setString(1, vo.getContent_no());
 			pstmt.setString(2, vo.getVote_no());
 			pstmt.setString(3, vo.getUser_no());
-			conn.commit();
 			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			flag = -1;
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	@Override
+	public int update_vote(VoteVO vo) {
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_UPDATE_M);
+			pstmt.setString(1, vo.getVote_title());
+			pstmt.setString(2, vo.getVote_description());
+			pstmt.setTimestamp(3, vo.getVote_eod());
+			pstmt.setString(4, vo.getVote_no());
+			flag = pstmt.executeUpdate(); 
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			flag = -1;
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	@Override
+	public int update_voteState(String vote_no) {
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_STATE_UPDATE);
+			pstmt.setString(1, vote_no);
+			flag = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 			flag = -1;
 		} finally {
 			if(rs!=null) {

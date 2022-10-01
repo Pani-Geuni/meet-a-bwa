@@ -234,3 +234,66 @@
     font-weight: bold;
     color: white;
 }
+
+/*******************************************/
+
+#confirmWrap * {
+    font-family: 'Pretendard';
+}
+#confirmWrap{
+	position: fixed;
+	top: 0;
+	  left: 50%;
+	  transform: translate(-50%, 50%);
+	  
+    width: 300px;
+    height: auto;
+    margin: auto;
+    margin-top: 300px;
+    z-index: 400;
+    border-radius: 13px;
+}
+#confirm_head{
+    box-sizing: border-box;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    height: 30px;
+    background-color: #FFB200;
+}
+#confirm_txt_wrap{
+    min-height: 80px;
+    background-color: #ffffff;
+    border-left: 3px solid #FFB200;
+    border-right: 3px solid #FFB200;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#confirm_btn_wrap{
+    height: 40px;
+    border: 3px solid #FFB200;
+    background-color: #FFB200;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+#more-horizontal{
+    margin-left: 15px;
+    margin-top: 3px;
+    width: 28px;
+    height: 25px;
+}
+.confirm_btn_common{
+    width: 50%;
+    border: none;
+    border-bottom-left-radius: 8px;
+}
+.yesBtn{
+    background-color: #ffffff;
+}
+.noBtn{
+    background-color: #FFB200;
+    color : white;
+}

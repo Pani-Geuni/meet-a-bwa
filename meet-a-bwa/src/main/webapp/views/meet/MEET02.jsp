@@ -349,11 +349,11 @@
 					src="/meet-a-bwa/resources/img/more-vertical.png" alt="더보기 세로 이미지"
 					id="more_vertival" />
 				<div id="dropdown" class="select_custom blind">
-					<img src="/meet-a-bwa/resources/img/vector.png"
-						alt="셀렉트 before 이미지" id="select_img" />
+					<img src="/meet-a-bwa/resources/img/vector.png" alt="셀렉트 before 이미지" id="select_img" />
 					<ul class="select_list_wrap">
 						<li class="select_list" id="update">수정</li>
 						<li class="select_list" id="delete">삭제</li>
+						<li class="select_list" id="end">투표종료</li>
 					</ul>
 				</div>
 			</div>
@@ -428,8 +428,8 @@
 				<span id="confirm_txt">삭제하시겠습니까?</span>
 			</div>
 			<div id="confirm_btn_wrap">
-				<input type="button" id="yesBtn" class="confirm_btn_common" value="예" />
-				<input type="button" id="noBtn" class="confirm_btn_common" value="아니오" />
+				<input type="button" id="yesBtn" class="yesBtn confirm_btn_common" value="예" />
+				<input type="button" id="noBtn" class="noBtn confirm_btn_common" value="아니오" />
 			</div>
 		</div>
 	</div>
@@ -552,7 +552,7 @@
 					<div class="pickerWrap">
 						<input type="text" id="u_vote_endDate" class="vote_endDate dateCommon"
 							autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
-						<div class="timepicker_box dateCommon">
+						<div id = "u_timepicker_box"class="timepicker_box dateCommon">
 							<section class ="timeSection">
 								<span id="u_timeValue">--:--:--</span>
 							</section>
@@ -592,7 +592,7 @@
 				</section>
 
 				<section class="voteSection section_common">
-					<h4 class="section_title">투표 항목</h4>
+					<h4 class="section_title">투표 항목 (* 수정 불가)</h4>
 
 					<div id="u_vote_list_Wrap">
 						<!-- SAMPLE VOTE LIST -->
@@ -614,6 +614,19 @@
 	</div>
 	<!-- END vote_popup -->
 
+</div>
+<div id="confirmWrap" class="update-confirm-wrap blind">
+	<div id="confirm_head">
+		<img src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
+			id="more-horizontal" />
+	</div>
+	<div id="confirm_txt_wrap">
+		<span id="confirm_txt">투표를 종기종료 하시겠습니까?</span>
+	</div>
+	<div id="confirm_btn_wrap">
+		<input type="button" id="end_yesBtn" class="yesBtn confirm_btn_common" value="예" />
+		<input type="button" id="end_noBtn" class="noBtn confirm_btn_common" value="아니오" />
+	</div>
 </div>
 <!-- END voteWrap -->
 

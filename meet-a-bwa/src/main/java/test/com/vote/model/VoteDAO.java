@@ -5,6 +5,8 @@ public interface VoteDAO {
 	public int insert_meetVote(VoteVO vo);
 	public int insert_voteContent(VoteContentVO vo);
 	public int insert_result(VoteResultVO vo);
+	public int update_vote(VoteVO vo);
+	public int update_voteState(String note_no);
 	public int update_result(VoteResultVO vo);
 	public int delete_result(String vote_no); 
 	public int delete_content(String vote_no); 

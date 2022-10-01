@@ -10,7 +10,7 @@ public interface VoteDB {
 	
 	String SQL_VOTE_INSERT_M
 		= "INSERT INTO TEST_VOTE(VOTE_NO, VOTE_TITLE, VOTE_DESCRIPTION, VOTE_EOD, VOTE_STATE, USER_NO, MEET_NO) "
-		+ "VALUES ('V'||SEQ_TEST_VOTE.NEXTVAL, ?, ?, ?, 'N', ?, ?)";
+		+ "VALUES ('V'||SEQ_TEST_VOTE.NEXTVAL, ?, ?, ?, 'Y', ?, ?)";
 	String SQL_V_CONTENT_INSERT
 		= "INSERT INTO TEST_VOTE_CONTENT(CONTENT_NO, VOTE_NO, VOTE_CONTENT) "
 		+ "VALUES ('VC'||SEQ_TEST_VOTE_CONTENT.NEXTVAL, ?, ?)";
@@ -18,7 +18,12 @@ public interface VoteDB {
 		= "INSERT INTO TEST_VOTE_RESULT(VOTE_RESULT_NO, VOTE_NO, USER_NO, CONTENT_NO) "
 		+ "VALUES ('VR'||SEQ_TEST_VOTE_RESULT.NEXTVAL, ?, ?, ?)";
 	
-	String SQL_VOTE_UPDATE_M = "update set ";
+	String SQL_VOTE_UPDATE_M 
+		= "UPDATE TEST_VOTE SET  VOTE_TITLE = ?, VOTE_DESCRIPTION = ?, VOTE_EOD = ?"
+		+ "WHERE VOTE_NO = ?";
+	String SQL_VOTE_STATE_UPDATE
+		= "UPDATE TEST_VOTE SET  VOTE_STATE = 'N'"
+			+ "WHERE VOTE_NO = ?";
 	String SQL_RESERT_UPDATE
 		= "update test_vote_result set content_no = ? "
 		+ "where vote_no = ? AND user_no = ? ";

@@ -26,14 +26,8 @@ public class M_VoteCreateAction {
 		String meet_no = request.getParameter("meet_no");
 		String[] contents = request.getParameterValues("contents");
 		
-//		System.out.println("vote_title : " + vote_title);
-//		System.out.println("vote_description : " + vote_description);
-//		System.out.println("vote_eod : " + vote_eod);
-//		System.out.println("user_no : " + user_no);
-//		System.out.println("meet_no : " + meet_no);
-		
 		// 포맷터        
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mi:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
 		// 문자열 -> Date       
 		Date date = null;
@@ -44,7 +38,6 @@ public class M_VoteCreateAction {
 			date = formatter.parse(vote_eod);
 			eod = new java.sql.Timestamp(date.getTime());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}         
 		
