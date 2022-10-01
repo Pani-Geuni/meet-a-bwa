@@ -20,6 +20,9 @@ import test.com.meet.model.MeetVO2;
 
 public class MainInitAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String like_meet = request.getParameter("like_meet");
+		String like_activity = request.getParameter("like_activity");
+		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		System.out.println("INIT session_user_id : " + session_user_id);
@@ -48,6 +51,14 @@ public class MainInitAction {
 			map.put("nick_name", cookie_nickName);
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
+			if(like_meet != null) {
+				Cookie cookie = new Cookie("like_meet", like_meet);
+				response.addCookie(cookie);
+			}
+			if(like_activity != null) {
+				Cookie cookie1 = new Cookie("like_activity", like_activity);
+				response.addCookie(cookie1);
+			}
 			
 			request.setAttribute("list", map);
 			
@@ -59,8 +70,8 @@ public class MainInitAction {
 				list = m_dao.select_county(cookie_county);
 			}else {
 				list = m_dao.select_interest(cookie_interest);
-				
 			}
+			System.out.println(list);
 			request.setAttribute("u_list", list);
 			
 		}else {
@@ -79,6 +90,7 @@ public class MainInitAction {
 			
 			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list = m_dao.select_like();
+			System.out.println(list);
 			request.setAttribute("u_list", list);
 		}
 		

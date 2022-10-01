@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MeetDAOImpl implements MeetDAO {
 	
 	private Connection conn = null;
@@ -24,6 +25,85 @@ public class MeetDAOImpl implements MeetDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public int insert_meet_like(String meet_no, String user_no) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			pstmt = conn.prepareStatement(MeetDB.SQL_INSERT_LIKE);
+			pstmt.setString(1, meet_no);    
+			pstmt.setString(2, user_no);
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	@Override
+	public int delete_meet_like(String meet_no, String user_no) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			pstmt = conn.prepareStatement(MeetDB.SQL_DELETE_LIKE);
+			pstmt.setString(1, meet_no);    
+			pstmt.setString(2, user_no);
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+
 
 	@Override
 	public List<MeetVO2> select_like() {
@@ -40,7 +120,7 @@ public class MeetDAOImpl implements MeetDAO {
 				mvo.setMeet_no(rs.getString("meet_no"));
 				mvo.setMeet_image(rs.getString("meet_image"));
 				mvo.setMeet_name(rs.getString("meet_name"));
-				mvo.setMeet_description(rs.getString("meet_name"));
+				mvo.setMeet_description(rs.getString("meet_description"));
 				mvo.setMeet_county(rs.getString("meet_county"));
 				mvo.setMeet_interest_name(rs.getString("meet_interest_name"));
 				mvo.setMeet_gender(rs.getString("meet_gender"));
@@ -77,7 +157,7 @@ public class MeetDAOImpl implements MeetDAO {
 				mvo.setMeet_no(rs.getString("meet_no"));
 				mvo.setMeet_image(rs.getString("meet_image"));
 				mvo.setMeet_name(rs.getString("meet_name"));
-				mvo.setMeet_description(rs.getString("meet_name"));
+				mvo.setMeet_description(rs.getString("meet_description"));
 				mvo.setMeet_county(rs.getString("meet_county"));
 				mvo.setMeet_interest_name(rs.getString("meet_interest_name"));
 				mvo.setMeet_gender(rs.getString("meet_gender"));
@@ -114,7 +194,7 @@ public class MeetDAOImpl implements MeetDAO {
 				mvo.setMeet_no(rs.getString("meet_no"));
 				mvo.setMeet_image(rs.getString("meet_image"));
 				mvo.setMeet_name(rs.getString("meet_name"));
-				mvo.setMeet_description(rs.getString("meet_name"));
+				mvo.setMeet_description(rs.getString("meet_description"));
 				mvo.setMeet_county(rs.getString("meet_county"));
 				mvo.setMeet_interest_name(rs.getString("meet_interest_name"));
 				mvo.setMeet_gender(rs.getString("meet_gender"));
