@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import test.com.meet.model.MeetVO4;
+import test.com.activity.model.ActivityVO2;
 import test.com.member.model.MemberDAO;
 import test.com.member.model.MemberDAOImpl;
 
-public class MyMeetListAction {
+public class MyActivityListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		System.out.println("session_user_id : " + session_user_id);
@@ -71,12 +73,10 @@ public class MyMeetListAction {
 		
 		MemberDAO dao = new MemberDAOImpl();
 		
-		List<MeetVO4> mvos = dao.selectAll_myMeet(cookie_userNo);
+		List<ActivityVO2> avos = dao.selectAll_myActivity(cookie_userNo);
 		
-		request.setAttribute("mvos", mvos);
+		request.setAttribute("avos", avos);
 		
-		request.getRequestDispatcher("/views/user/USER05.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("/views/user/USER06.jsp").forward(request, response);
 	}
 }
