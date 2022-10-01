@@ -367,6 +367,198 @@ public class MeetDAOImpl implements MeetDAO {
 		
 		return uvos;
 	}
+
+	@Override
+	public List<MeetVO2> select_all_more_like(String searchWord) {
+		
+		List<MeetVO2> mlvos = new ArrayList<MeetVO2>();
+		
+		try {
+			
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			
+			System.out.println(searchWord);
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_MORE_LIKE);
+			pstmt.setString(1, "%" + searchWord + "%");
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MeetVO2 mvo = new MeetVO2();				
+				mvo.setMeet_no(rs.getString("meet_no"));
+				mvo.setMeet_image(rs.getString("meet_image"));
+				mvo.setMeet_name(rs.getString("meet_name"));
+				mvo.setMeet_description(rs.getString("meet_name"));
+				mvo.setMeet_county(rs.getString("meet_county"));
+				mvo.setMeet_interest_name(rs.getString("meet_interest_name"));
+				mvo.setMeet_gender(rs.getString("meet_gender"));
+				mvo.setMeet_nop(rs.getInt("meet_nop"));
+				mvo.setMeet_age(rs.getInt("meet_age"));
+				mvo.setMeet_date(rs.getDate("meet_date"));
+				mvo.setUser_no(rs.getString("user_no"));
+				mvo.setLike_cnt(rs.getInt("like_cnt"));
+				mvo.setUser_cnt(rs.getInt("user_cnt"));
+				
+				mlvos.add(mvo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return mlvos;
+		
+	}
+
+	@Override
+	public List<MeetVO2> select_all_more_interest(String interest, String searchWord) {
+		List<MeetVO2> mlvos = new ArrayList<MeetVO2>();
+		
+		try {
+			
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_MORE_INTEREST);
+			pstmt.setString(1, interest);
+			pstmt.setString(2, "%" + searchWord + "%");
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				System.out.println(rs.getString("MEET_NAME"));
+				
+				MeetVO2 mvo = new MeetVO2();				
+				mvo.setMeet_no(rs.getString("meet_no"));
+				mvo.setMeet_image(rs.getString("meet_image"));
+				mvo.setMeet_name(rs.getString("meet_name"));
+				mvo.setMeet_description(rs.getString("meet_name"));
+				mvo.setMeet_county(rs.getString("meet_county"));
+				mvo.setMeet_interest_name(rs.getString("meet_interest_name"));
+				mvo.setMeet_gender(rs.getString("meet_gender"));
+				mvo.setMeet_nop(rs.getInt("meet_nop"));
+				mvo.setMeet_age(rs.getInt("meet_age"));
+				mvo.setMeet_date(rs.getDate("meet_date"));
+				mvo.setUser_no(rs.getString("user_no"));
+				mvo.setLike_cnt(rs.getInt("like_cnt"));
+				mvo.setUser_cnt(rs.getInt("user_cnt"));
+				
+				mlvos.add(mvo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return mlvos;
+	}
+
+	@Override
+	public List<MeetVO2> select_all_more_county(String county, String searchWord) {
+		List<MeetVO2> mlvos = new ArrayList<MeetVO2>();
+		
+		try {
+			
+			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_SELECT_ALL_MORE_COUNTY);
+			pstmt.setString(1, county);
+			pstmt.setString(2, "%" + searchWord + "%");
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				System.out.println(rs.getString("MEET_NAME"));
+				
+				MeetVO2 mvo = new MeetVO2();				
+				mvo.setMeet_no(rs.getString("meet_no"));
+				mvo.setMeet_image(rs.getString("meet_image"));
+				mvo.setMeet_name(rs.getString("meet_name"));
+				mvo.setMeet_description(rs.getString("meet_name"));
+				mvo.setMeet_county(rs.getString("meet_county"));
+				mvo.setMeet_interest_name(rs.getString("meet_interest_name"));
+				mvo.setMeet_gender(rs.getString("meet_gender"));
+				mvo.setMeet_nop(rs.getInt("meet_nop"));
+				mvo.setMeet_age(rs.getInt("meet_age"));
+				mvo.setMeet_date(rs.getDate("meet_date"));
+				mvo.setUser_no(rs.getString("user_no"));
+				mvo.setLike_cnt(rs.getInt("like_cnt"));
+				mvo.setUser_cnt(rs.getInt("user_cnt"));
+				
+				mlvos.add(mvo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return mlvos;
+	}
 	
 
 }
