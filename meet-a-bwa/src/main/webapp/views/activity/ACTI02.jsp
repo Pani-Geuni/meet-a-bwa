@@ -152,7 +152,7 @@
 						<p>
 							<a href="/meet-a-bwa/resources/act-detail-member.html">${avo2.user_cnt}</a>
 						</p>
-						<p>${avo2.user_no의 nickname}</p>
+						<p>${avo2.user_no}</p>
 					</div>
 
 					<div class="tagSection">
@@ -192,7 +192,7 @@
 					<section id="intro">
 					<section class="blind">
 					<label for="activity_no">activity_no:</label>${avo2.activity_no}<input
-						id="activity_no" name="activity_no" value="A1096">
+						id="activity_no" name="activity_no" value="${avo2.activity_no}">
 					</section>
 						<!-- 연결되면 아래 idx 없애고 ${avo2.activity_no} 따로 하나 넣으면됨. -->
 						<section id="introHeader">
@@ -204,7 +204,7 @@
 								class="activityDeleteBtn font_size_10" value="삭제">
 							<!--user에게 보이는 탈퇴 버튼-->
 							<input type="image" src="/meet-a-bwa/resources/img/exit.svg"
-								class="activityExitBtn font_size_10" value="탈퇴" idx="${avo2.가입된 회원번호}">
+								class="activityExitBtn font_size_10" value="탈퇴" idx="${avo2.user_no}">
 						</section>
 						<hr class="firstLine">
 						<section id="innerIntro">
