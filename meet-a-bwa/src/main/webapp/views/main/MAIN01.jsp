@@ -78,6 +78,7 @@
 	    	 });
 	    	 $(".content_list.activity-list").click(function(){
 	    		 let idx = $(this).attr("idx");
+	    		 location.href = "/meet-a-bwa/activity-main.do?idx="+idx;
 	    	 });
 	    	 
 	    	 

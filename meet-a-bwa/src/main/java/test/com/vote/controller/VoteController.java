@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class VoteController
  */
-@WebServlet({ "/voteOK.do", "/re_voteOK.do", "/m_vote_create.do", "/m_vote_update.do", "/m_vote_view.do", "/m_vote_delete.do", "/m_vote_stateUpdate.do" })
+@WebServlet({ "/voteOK.do", "/re_voteOK.do", "/m_vote_create.do", "/m_vote_update.do", "/m_vote_view.do", "/m_vote_delete.do", "/m_vote_stateUpdate.do",
+			"/a_voteOK.do", "/a_re_voteOK.do",})
 public class VoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

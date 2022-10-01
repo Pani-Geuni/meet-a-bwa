@@ -88,8 +88,6 @@ $(function() {
 	// 투표 종료 리스트 선택
 	$("#end").click(function(){
 		vote_idx = $(this).attr("voteIdx");
-		console.log(vote_idx);
-		
 		$(".update-confirm-wrap").removeClass("blind");
     });
 	// 커스텀 셀렉트 선택 시 커스텀 셀렉트 닫고 삭제 여부 묻는 삭제 컨펌창 띄움
@@ -127,7 +125,7 @@ $(function() {
     	$("#u_vote_endDate").val(vote_date);
     	$("#u_timeValue").text(vote_time);
     	$("#u_vote_description").val(description);
-    	console.log(vote_contents);
+
     	for(content of vote_contents){
     		let sample = $("#u_vote_list_Wrap").find(".sample").clone();
     		sample.removeClass("sample");
@@ -168,7 +166,6 @@ $(function() {
 			
 			dataType: "JSON",
 			success: function(res) {
-				console.log(res);
 				vote_no =  res.vote_no;
 				title = res.vote_title;
 				description = res.vote_description;
@@ -340,6 +337,7 @@ $(function() {
         $("#u_vote_list_Wrap").empty().append(sample);
         
 		$(".vote-create-update-wrap").addClass("blind");
+		$("#event-update").addClass("blind");
     });
     $("#vote_updateBtn").click(function(){
     	let title_length = $("#u_vote_title").val().trim().length;
@@ -356,7 +354,6 @@ $(function() {
         		if(Number(arr[1]) != 12){
         			tmp_time = (Number(arr[1]) + 12) + ":" + arr[2] + ":59";
         		}else{
-        			console.log("dd");
         			tmp_time = arr[1] + ":" + arr[2] + ":59";
         		}
         	}else if(ampm == "오전"){
@@ -472,10 +469,7 @@ $(function() {
     /************************************************ */
     $("#u_vote_endDate").datepicker({
         changeYear:true,
-        changeMonth:true,
-        onSelect:function(dateText) {
-            // console.log(dateText);/
-        }
+        changeMonth:true
     });
     
     /************************************************ */
