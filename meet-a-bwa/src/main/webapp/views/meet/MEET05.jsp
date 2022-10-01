@@ -94,7 +94,7 @@
 			<div class="meetingCUDWrap">
 				<section class="blind">
 					<label for="user_no">user_no:</label>${mvo.user_no}<input
-						id="user_no" name="user_no" value="U1003">
+						id="user_no" name="user_no" value="${ mvo.user_no }">
 				</section>
 				<h2 id="meetTitle">모임 생성</h2>
 				<hr class="StartLine">
@@ -105,7 +105,7 @@
 					<section class="img_body">
 						<div id="input-image">
 							<img src="/meet-a-bwa/resources/img/default-image2.png"
-								width=300px; height=200px; id="image" />
+								width=300px; height=200px; id="image" name="image"/>
 						</div>
 						<div class="img_btn_meet_activity">
 							<label class="input-file-btn" for="input-file"> <img

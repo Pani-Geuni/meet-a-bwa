@@ -23,13 +23,18 @@
 	</div>
 
 	<div class="tagSection">
-		<div class="loca_tag tag">
-			<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" /> <span
-				class="location_name font_size_10">${ mvo3.meet_county }</span>
-		</div>
-		<div class="cate_tag tag">
-			<span class="category_name font_size_10">${ mvo3.meet_interest_name }</span>
-		</div>
+		<c:if test="${ mvo3.meet_county ne null }">
+			<div class="loca_tag tag">
+				<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" /> 
+				<span class="location_name font_size_10">${ mvo3.meet_county }</span>
+			</div>
+		</c:if>
+		
+	 	<c:if test="${mvo3.meet_interest_name }">
+			<div class="cate_tag tag">
+				<span class="category_name font_size_10">${ mvo3.meet_interest_name }</span>
+			</div>
+		</c:if>
 	</div>
 
 	<!-- 로그인 전 -->

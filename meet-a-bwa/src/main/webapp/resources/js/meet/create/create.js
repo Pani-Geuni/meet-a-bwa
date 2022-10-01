@@ -31,4 +31,10 @@ $(function () {
 //    $("#create_meeting").click(function(){
 
 //    });
+
+	$(".btn-create-meet").on("click", function() {
+		console.log("create meet click")
+		
+		location.href = "m_insert.do";
+	});
 });
