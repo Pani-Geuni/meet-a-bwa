@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.com.user.controller.UserDeleteOKAction;
+
 /**
  * Servlet implementation class ActivityController
  */
-@WebServlet({ "/a_insert.do", "/a_insertOK.do", "/a_update.do", "/a_updateOK.do" })
+@WebServlet({ "/a_insert.do", "/a_insertOK.do", "/a_update.do", "/a_updateOK.do", "/a_delete.do" })
 public class ActivityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,25 +34,27 @@ public class ActivityController extends HttpServlet {
 		System.out.println(sPath);
 
 		if (sPath.equals("/a_insert.do")) {
-			request.getRequestDispatcher("views/activity/ACT03.jsp").forward(request, response);
+			new ActivityInsertAction().execute(request, response);
 		}else if (sPath.equals("/a_update.do")) {
-			new ActionUpdateAction().execute(request, response);
-		} 
+			new ActivityUpdateAction().execute(request, response);
+		}else if(sPath.equals("/a_delete.do")) {
+			new ActivityDeleteAction().execute(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // ÇÑ±Û ±úÁü ¹æÁö
+		request.setCharacterEncoding("UTF-8"); // ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		// doGet(request, response);
 		String sPath = request.getServletPath();
 		System.out.print("doPost:");
-		System.out.println(sPath); // ¼­¹ö¿¡ ÇÁ¸°Æ®
+		System.out.println(sPath); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		if (sPath.equals("/a_insertOK.do")) {
 			new ActivityInsertOKAction().execute(request, response);
 		}else if (sPath.equals("/a_updateOK.do")) {
-			new ActionUpdateOKAction().execute(request, response);
+			new ActivityUpdateOKAction().execute(request, response);
 		}
 	}
 

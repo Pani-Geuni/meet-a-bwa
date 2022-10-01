@@ -22,7 +22,10 @@
 
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
-   <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+   
 
 <script src="/meet-a-bwa/resources/js/activity/create/create.js"></script>
 <script src="/meet-a-bwa/resources/js/activity/create/textCondition.js"></script>
@@ -33,11 +36,15 @@
 </head>
 <body>
 	<!--  START HEADER INCLUDE -->
-	<jsp:include page="/views/common/header.jsp"></jsp:include>
+	<jsp:include page="../../views/common/header.jsp">
+		<jsp:param name="list" value="${list}" />
+	</jsp:include>
+	
 	<!--  END HEADER INCLUDE -->
 	<div id="bodyWrap">
-		<div class="innerBodyWrap">
-
+		<!-- <div class="innerBodyWrap"> -->
+        <form class="innerBodyWrap" name="activity_create_form" action="/meet-a-bwa/a_insertOK.do" method="post"
+			enctype="multipart/form-data" onsubmit="return check();">
 			<div class="activityCUDWrap">
 				<h2 id="activityTitle">액티비티 생성</h2>
 				<hr class="StartLine">
@@ -184,15 +191,15 @@
 				<!-- 액티비티 개설자와 해당 모임 -->
 				<section class="blind">
 					<label for="user_no">user_no:</label>
-					<input type="text" id="user_no" name="user_no" values="<c:out value='${user_no}'/>">
+					<input type="text" id="user_no" name="user_no" value="${avo.user_no}">
 				</section>
 				<section class="blind">
-					<label for="user_no">meet_no:</label>
-					<input type="text" id="user_no" name="user_no" values="<c:out value='${meet_no}'/>">
+					<label for="meet_no">meet_no:</label>
+					<input type="text" id="meet_no" name="meet_no" value="${ avo.meet_no }">
 				</section>
 				<!-- ************************************************************* -->
 
-				<input type="button" id="create_activity" value="액티비티 생성" />
+				<input type="submit" id="create_activity" value="액티비티 생성" />
 			
 
 			</div>
@@ -200,7 +207,7 @@
 			<!--  START HEADER INCLUDE -->
 			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
 			<!--  END HEADER INCLUDE -->
-		</div> <!-- innerBodyWrap end -->
+		</form> <!-- innerBodyWrap end -->
 	</div>
 	<!-- 팝업 -->
 	<!-- not null -->

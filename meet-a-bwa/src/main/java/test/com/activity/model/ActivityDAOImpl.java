@@ -49,8 +49,8 @@ public class ActivityDAOImpl implements ActivityDAO {
 			pstmt.setInt(8, avo.getActivity_nop());
 			pstmt.setInt(9, avo.getActivity_age());
 //			pstmt.setDate(9, (java.sql.Date) new Date());
-//			pstmt.setString(10, avo.getUser_no()); 
-//			pstmt.setString(11, avo.getMeet_no()); 
+			pstmt.setString(10, avo.getUser_no()); 
+			pstmt.setString(11, avo.getMeet_no()); 
 			
 			
 			flag=pstmt.executeUpdate(); 
@@ -185,7 +185,7 @@ public class ActivityDAOImpl implements ActivityDAO {
 				avo2.setActivity_gender(rs.getString("activity_gender"));
 				avo2.setActivity_nop(rs.getInt("activity_nop"));
 				avo2.setActivity_age(rs.getInt("activity_age"));
-				avo2.setActivity_date(rs.getDate("activity_date"));
+				//avo2.setActivity_date(rs.getDate("activity_date"));
 				//avo2.setUser_no(rs.getString("user_no"));
 				//avo2.setMeet_no(rs.getString("meet_no"));
 			}
@@ -235,8 +235,9 @@ public class ActivityDAOImpl implements ActivityDAO {
 			pstmt.setInt(8, avo.getActivity_nop());
 			pstmt.setInt(9, avo.getActivity_age());
 //			pstmt.setDate(9, (java.sql.Date) new Date());
-			pstmt.setString(10, avo.getUser_no()); 
-			pstmt.setString(11, avo.getMeet_no()); 
+//			pstmt.setString(10, avo.getUser_no()); 
+//			pstmt.setString(11, avo.getMeet_no()); 
+			pstmt.setString(10, avo.getActivity_no()); 
 			
 			
 			flag=pstmt.executeUpdate(); 
@@ -291,6 +292,48 @@ public class ActivityDAOImpl implements ActivityDAO {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public int activity_delete(ActivityVO avo) {
+		System.out.println("delete()...");
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn Successed...");
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_DELETE);
+			pstmt.setString(1, avo.getActivity_no()); 
+			
+			flag=pstmt.executeUpdate();  // insert占쏙옙 executeUpdate占싱곤옙 占쏙옙占쏙옙타占쏙옙(flag)占쏙옙 占쌍억옙占� 占쏙옙
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return flag;
 	}
 
 }

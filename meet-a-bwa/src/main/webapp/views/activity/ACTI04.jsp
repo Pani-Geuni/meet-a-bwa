@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/bin-popup.css" />
+
 <link rel="stylesheet"
 	href="/meet-a-bwa/resources/css/activity/update.css" />
 
@@ -25,12 +27,14 @@
  <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
+<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 
 <script>
-	$(function() {
+	//$(function() {
 
-		var user_id = '${user_id}'; //세션값 가져옴
-		console.log(user_id);
+		//var user_id = '${user_id}'; //세션값 가져옴
+		//console.log(user_id);
 
 		/* $("#membership_withdrawal_btn").on("click", function() {
 			$(".withdrawal-popup").removeClass("blind");
@@ -46,17 +50,17 @@
 				$(".withdrawal-popup").addClass("blind");
 			}); *//* 탈퇴는 액티비티 피드에서 구현 */
 
-	});
+//	});
 
 	function check() {
-		let activity_name = $("#activity_name").val().length;
-        let activity_description =$("#activity_description").val().length;
+		let activity_name = $("#activity_name").val().trim().length;
+        let activity_description =$("#activity_description").val().trim().length;
         let nop = $("#numberofpeople").val();
 
         console.log(activity_name);
         console.log(activity_description);
         console.log(nop);
-        console.log($("#age").val());
+        //console.log($("#age").val());
 
         if(activity_name>0&&activity_description>0&&nop!=0){
                 console.log("생성 가능");
@@ -81,7 +85,7 @@
 <script src="/meet-a-bwa/resources/js/activity/update/interest.js"></script>
 <script src="/meet-a-bwa/resources/js/activity/update/textCondition.js"></script>
 <script src="/meet-a-bwa/resources/js/activity/update/profileImage.js"></script>
-<script src="/meet-a-bwa/resources/js/activity/update/update.js"></script>
+<script src="/meet-a-bwa/resources/js/activity/update/updateOK.js"></script>
 <title>액티비티 수정</title>
 </head>
 <body>
@@ -142,7 +146,7 @@
 					<section class="textLengthWrap">
 						<textarea rows="8" cols="36" maxlength="500"
 							placeholder="액티비티에 대해서 자세하게 설명해주세요." id="activity_description"
-							name="activity_description" value="${avo2.activity_description}"></textarea>
+							name="activity_description" value="${avo2.activity_description}">${avo2.activity_description}</textarea>
 						<section class="textLength">
 							<p class="textCount">0자</p>
 							<p class="textTotal">/500자</p>
@@ -178,8 +182,8 @@
 					<div id="interestLa">
 						<label>활동 카테고리</label>
 					</div>
-					<select id="interest" value="${avo2.activity_interest}" name="interest">
-						<option value="${avo2.activity_interest}" class="interest_opt">${avo2.activity_interest}</option>
+					<select id="interest" value="${avo2.activity_interest_name}" name="interest">
+						<option value="${avo2.activity_interest_name}" class="interest_opt">${avo2.activity_interest_name}</option>
 						<option value="" class="interest_opt">선택</option>
 					</select>
 				</div>
@@ -226,7 +230,7 @@
 								<label>연령대</label>
 							</section>
 							<select id="ageBody" class="ageBody" name="age" value="${avo2.activity_age}">
-								<option value="${avo2.activity_age}">${avo2.activity_age}</option>
+								<option value="${avo2.activity_age}">${avo2.activity_age}<span>대</span></option>
 								<option value="0">선택</option>
 									<c:forEach var="i" begin="10" end="100" step="10">
                     				<option><span>${i}</span><span>대</span></option>
@@ -244,15 +248,16 @@
 
 				<!-- ************************************************************* -->
 				<!-- 액티비티 개설자와 해당 모임 -->
-				<%-- <section class="blind">
-					<label for="user_no">user_no:</label>${avo2.user_no}<input
-						id="user_no" name="user_no" value="${avo2.user_no}">
+				<section class="blind">
+					<label for="user_no">user_no:</label>
+					<input type="text" id="user_no" name="user_no" value="${avo2.user_no}">
 				</section>
 				<section class="blind">
-					<label for="user_no">meet_no:</label>${avo2.meet_no}<input
-						id="user_no" name="user_no" value="${avo2.meet_no}">
-				</section> --%>
+					<label for="meet_no">meet_no:</label>
+					<input type="text" id="meet_no" name="meet_no" value="${avo2.meet_no }">
+				</section>
 				<!-- ************************************************************* -->
+
 				
 				<input type="submit" id="update_activity_information_btn"
 					value="액티비티정보수정" />

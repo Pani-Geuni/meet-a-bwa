@@ -187,21 +187,21 @@ $(function () {
       
       
     //*******************************연령대 태그********************************//
-    let tag = $(".age_result:eq(0)").clone();
-    let cnt=0;
+    let age_tag = $(".age_result:eq(0)").clone();
+    let age_cnt=0;
     var arr = [];
     var arr_x = [];
     $("#ageBody").on("change", function (e) {
-        tag = tag.clone();
-        tag.removeClass("blind"); // 초기에 자동 생성된 버튼 숨기기
+        age_tag = age_tag.clone();
+        age_tag.removeClass("blind"); // 초기에 자동 생성된 버튼 숨기기
         let select_value = $("#ageBody option:selected").val();
         //let select_value = $("#ageBody option:selected").text();
         if (!arr.includes(select_value)&&select_value!='') {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
-            tag.val(select_value + " X");
+            age_tag.val(select_value + " X");
             arr.push(select_value);
-            tag.attr("idx",++cnt);
-            $("#tagWrap_age").append(tag);
+            age_tag.attr("idx",++age_cnt);
+            $("#tagWrap_age").append(age_tag);
             console.log(select_value);
             arr_x.push(select_value+" X");
             console.log(arr);
@@ -324,12 +324,25 @@ $(function () {
       
     //***************************생성 버튼 누른 후 동작******************************//
 
-	$("#create_activity").click(function(){
+//	$("#create_activity").click(function(){
 	
     // 1. NOT NULL 충족 - alert Popup 
 
-		var user_id = '${user_id}'; //세션값 가져옴
-		console.log(user_id);
+//		var user_id = "${user_id}"; //세션값 가져옴
+//		console.log(user_id);
+//		check();
+//		insert_ajax();
+//		console.log($("#activity_name").val());
+//		console.log($("#activity_description").val());
+//		console.log($("#city").val());
+//		console.log($("#country").val());
+//		console.log($("#interest").val());
+//		console.log($("#gender").val());
+//		console.log($("#numberofpeople option:selected").val());
+//		console.log($("#ageBody option:selected").val());
+		//console.log($.cookie("user_no"));
+		//console.log(location.href.split("meet_no=")[1]);
+//		});
 		
 		function check() {
 			let activity_name = $("#activity_name").val().trim().length;
@@ -339,11 +352,12 @@ $(function () {
 			console.log(activity_name);
 			console.log(activity_description);
 			console.log(nop);
-			console.log($("#age").val());
+			//console.log($("#age").val());
 
 			if (activity_name > 0 && activity_description > 0 && nop != 0) {
 				console.log("생성 가능");
 				let user_id = $("#id").val();
+				//insert_ajax();
 			} else {
 				console.log("생성 불가능");
 
@@ -359,24 +373,33 @@ $(function () {
 		}
 	
 	// 2. 서버 전달
-		function insert_ajax(time, content_arr){
+		function insert_ajax(){ //사용 x 
+		
+		var form = $("#activity_create_form")[0];
+    	var formData = new FormData(form);
+		console.log(formData);
+		console.log("$.cookie : " + $.cookie("user_no"));
+ 
     	 	$.ajax({
         		url : "/meet-a-bwa/a_insertOK.do",
 				type : "POST",
+				enctype:'multipart/form-data',
+				//dataType:'json',
+    			processData:false,
+    			contentType:false,
+    			cache:false,
 				data : {
-					activity_image : $("#activity_image").val().trim(),
-					activity_name : $("#activity_name").val().trim(),
-					activity_description : $("#activity_description").val().trim(),
-					activity_city : $("#city").val().trim(),
-					activity_county : $("#county").val().trim(),
-					activity_interest_name : $("#interest").val().trim,
-					activity_gender : $("#gender").val().trim,
-					activity_nop : $("#nop").val().trim,
-					activity_age : $("#age").val().trim,
 					user_no : $.cookie("user_no"),
 					meet_no : location.href.split("meet_no=")[1],
+					formData
 				},
+				dataType:'json',
+				
 				success : function(res) {
+					console.log($.cookie("user_no"));
+					console.log(location.href.split("meet_no=")[1]);
+					
+					console.log("res"+res);
 		        	if(res.result == "insert success"){
 		        		console.log("success");
 		        	}else if(res.result == "insert fail"){
@@ -390,7 +413,7 @@ $(function () {
     	}
    
 	
-	});
+	
    
    
 

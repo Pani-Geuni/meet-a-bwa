@@ -19,7 +19,7 @@ import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
 
-public class ActionUpdateAction {
+public class ActivityUpdateAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getParameter("activity_no"));
 		
@@ -61,19 +61,24 @@ public class ActionUpdateAction {
 		}
 		//**********************************************************************//
 
+		
 		ActivityVO avo = new ActivityVO();
 		avo.setActivity_no(request.getParameter("activity_no"));
+		avo.setUser_no(request.getParameter("user_no"));
+		avo.setMeet_no(request.getParameter("meet_no"));
+		
 
-		System.out.println(avo);
+		System.out.println("activity_no:::::"+avo.getActivity_no());
 		
 		ActivityDAO a_dao = new ActivityDAOImpl();
 		ActivityVO avo2 = a_dao.activity_selectOne(avo);
+		System.out.println("description:::::::::"+avo2.getActivity_description());
 
 		request.setAttribute("avo2", avo2);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp?Activity_no="+request.getParameter("activity_no"));
-		rd.forward(request, response);
+//		RequestDispatcher rd = request.getRequestDispatcher("/views/activity/ACTI04.jsp");
+//		rd.forward(request, response);
 		
-//		request.getRequestDispatcher("/views/activity/ACTI04.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/activity/ACTI04.jsp").forward(request, response);
 	}
 }

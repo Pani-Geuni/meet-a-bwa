@@ -2,12 +2,12 @@ $(function () {
 
 	
 	//nop : 인원 수
-	let num = $("#num");
-    $("#nop").each(function () {
-        for (let i = 1; i <= 20; i++) {
-            $("#numberofpeople").append("<option>" + i + "</option>");
-        }
-    });
+//	let num = $("#num");
+//    $("#nop").each(function () {
+//        for (let i = 1; i <= 20; i++) {
+//            $("#numberofpeople").append("<option>" + i + "</option>");
+//        }
+//    });
 
     $("#numberofpeople").on("change", function () {
         console.log($(this).val());
@@ -25,22 +25,7 @@ $(function () {
 
     // 1. NOT NULL 충족 
 
-    $("#update_meet_information_btn").click(function(){
-        let activity_name = $("#meet_name").val().length;
-        let activity_description =$("#meet_description").val().length;
-
-        console.log(activity_name);
-        console.log(activity_description);
-
-        if(activity_name>0&&activity_description>0){
-                console.log("가입 가능");
-        }else {
-            console.log("가입 불가능");
-            if(activity_name>0&&activity_description>0&&pw_check>0&&name>0&&nickname>0
-                &&email>0&&tel>0&&bitrh>0&&gender>0){
-
-            }
-            
-        }
-    });
+//    $("#update_meet_information_btn").click(function(){
+       
+//    });
 });

@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.com.user.controller.MyMeetListAction;
 import test.com.user.controller.MyPageAction;
 
 /**
  * Servlet implementation class HeaderController
  */
-@WebServlet({"/mypage.do"})
+@WebServlet({"/mypage.do", "/my-meet.do"})
 public class HeaderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,6 +35,8 @@ public class HeaderController extends HttpServlet {
 		
 		if(sPath.equals("/mypage.do")) {
 			new MyPageAction().execute(request, response);
+		} else if(sPath.equals("/my-meet.do")) {
+			new MyMeetListAction().execute(request, response);
 		}
 	}
 
