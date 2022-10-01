@@ -27,8 +27,8 @@
     function category_load(arr){
         let cnt = 1;
         let sample = $(".detailCate_list:eq(0)").clone();
+        $("#detailCategory").empty().append(".detailCate_list:eq(0)");
 
-        /* prop-flag */
         for(x of arr){
             let list = sample.clone();
             list.text(x);

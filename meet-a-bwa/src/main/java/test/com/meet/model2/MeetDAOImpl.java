@@ -26,10 +26,12 @@ public class MeetDAOImpl implements MeetDAO {
 	@Override
 	public int meet_insert(MeetVO mvo) {
 		int flag=0;
+		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
 			System.out.println("conn successed...");
-			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_INSERT);
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_INSERT);	
 			
 			pstmt.setString(1, mvo.getMeet_image()); 
 			pstmt.setString(2, mvo.getMeet_name());
@@ -44,7 +46,7 @@ public class MeetDAOImpl implements MeetDAO {
 			pstmt.setString(10, mvo.getUser_no()); 
 			
 			
-			flag=pstmt.executeUpdate(); 
+			flag = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,6 +75,100 @@ public class MeetDAOImpl implements MeetDAO {
 		}
 		return flag;
 	}
+	
+	@Override
+	public String select_meet_lastNo() {
+
+		String meet_no = "";
+		
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
+			System.out.println("conn successed...");
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_SELECT_LAST_NO);	
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				meet_no = rs.getString("meet_no");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return meet_no;
+	}
+
+	
+
+	@Override
+	public int meet_registered(String user_no, String meet_no) {
+		int flag = 0;
+		
+		
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
+			System.out.println("conn successed...");
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_REGISTERED);	
+			
+			pstmt.setString(1, meet_no); 
+			pstmt.setString(2, user_no);
+			
+			flag = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return flag;
+	}
+	
 
 	@Override
 	public MeetVO meet_selectOne(MeetVO mvo) {
@@ -225,9 +321,5 @@ public class MeetDAOImpl implements MeetDAO {
 		return flag;
 	}
 
-	
-
-	
-	
 
 }

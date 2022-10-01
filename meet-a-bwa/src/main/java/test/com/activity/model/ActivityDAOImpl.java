@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.com.meet.model.MeetDB;
 
 public class ActivityDAOImpl implements ActivityDAO {
 
@@ -24,6 +23,84 @@ public class ActivityDAOImpl implements ActivityDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public int insert_activity_like(String activity_no, String user_no) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(ActivityDB2.URL, ActivityDB2.USER, ActivityDB2.PASSWORD);
+			pstmt = conn.prepareStatement(ActivityDB2.SQL_INSERT_LIKE);
+			pstmt.setString(1, activity_no);    
+			pstmt.setString(2, user_no);
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	@Override
+	public int delete_activity_like(String activity_no, String user_no) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(ActivityDB2.URL, ActivityDB2.USER, ActivityDB2.PASSWORD);
+			pstmt = conn.prepareStatement(ActivityDB2.SQL_DELETE_LIKE);
+			pstmt.setString(1, activity_no);    
+			pstmt.setString(2, user_no);
+			
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
 	}
 	
 	@Override
@@ -272,7 +349,7 @@ public class ActivityDAOImpl implements ActivityDAO {
 		List<String> list = new ArrayList<String>();
 		
 		try {
-			conn = DriverManager.getConnection(MeetDB.URL, MeetDB.TEST_USER, MeetDB.TEST_PASSWORD);
+			conn = DriverManager.getConnection(ActivityDB2.URL, ActivityDB2.USER, ActivityDB2.PASSWORD);
 			System.out.println("conn Successed...");
 			pstmt = conn.prepareStatement(ActivityDB2.SQL_SELECT_ALL_LIKE_ACTIVITY_NO);
 			pstmt.setString(1, user_no);
