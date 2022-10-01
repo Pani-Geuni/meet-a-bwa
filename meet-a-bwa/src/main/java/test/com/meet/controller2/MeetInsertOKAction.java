@@ -157,6 +157,11 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 				e.printStackTrace();
 			}
 			
+			System.out.println("*******************");
+			System.out.println(meet_name + " " + meet_description + " " + meet_city + " " + meet_county);
+			System.out.println(meet_interest_name + " " + meet_gender + " " + meet_nop + " " + meet_age + " " + user_no);
+			System.out.println("*******************");
+			
 
 			
 			MeetVO mvo = new MeetVO();
@@ -173,17 +178,21 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			
 			
 			
-			mvo.setMeet_image(meet_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+meet_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
+			mvo.setMeet_image(meet_image=="" ? "/meet-a-bwa/resources/img/default-image2" : "/meet-a-bwa/resources/img/"+meet_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
+			
+			System.out.println("mvo : " + mvo);
 			
 			MeetDAO m_dao = new MeetDAOImpl();
 			int result = m_dao.meet_insert(mvo);
 
-			System.out.println("result: "+result);
+			String meet_no = m_dao.select_meet_lastNo();
+			
+			int resultRegistered = m_dao.meet_registered(user_no, meet_no);
+			
 
-			if(result==1) {
-				response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + mvo.getMeet_no());
+			if(result == 1 && resultRegistered == 1) {
+				response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
 			}else {
-				//response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
 				response.sendRedirect("a_insert.do");
 			}
 			

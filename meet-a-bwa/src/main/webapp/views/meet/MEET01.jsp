@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/searchBar.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css"/>
     
-    <!-- <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css"/> -->
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/list/meet-list.css"/>
     
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css"/>
@@ -23,6 +22,8 @@
     <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
+    
+    <script src="/meet-a-bwa/resources/js/meet/create/create.js"></script>
     
     
 <title>모임 리스트</title>
