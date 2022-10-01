@@ -393,4 +393,63 @@ public class ActivityDAOImpl implements ActivityDAO {
 		return vos;
 	}
 
+	@Override
+	public ActivityVO2 activity_selectOne_main_feed(ActivityVO2 avo) {
+		ActivityVO2 avo2 = null;
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn successed...");
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_SELECT_ONE_MAIN_FEED);
+			
+		    pstmt.setString(1, avo.getActivity_no());    
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				avo2 = new ActivityVO2();
+				avo2.setActivity_no(rs.getString("activity_no"));
+				avo2.setActivity_image(rs.getString("activity_image"));
+				avo2.setActivity_name(rs.getString("activity_name"));
+				avo2.setActivity_description(rs.getString("activity_description"));
+				avo2.setActivity_city(rs.getString("activity_city"));
+				avo2.setActivity_county(rs.getString("activity_county"));
+				avo2.setActivity_interest_name(rs.getString("activity_interest_name"));
+				avo2.setActivity_gender(rs.getString("activity_gender"));
+				avo2.setActivity_nop(rs.getInt("activity_nop"));
+				avo2.setActivity_age(rs.getInt("activity_age"));
+				avo2.setActivity_date(rs.getDate("activity_date"));
+				avo2.setUser_no(rs.getString("user_no"));
+				avo2.setMeet_no(rs.getString("meet_no"));
+				avo2.setMeet_no(rs.getString("like_cnt"));
+				avo2.setMeet_no(rs.getString("user_cnt"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return avo2;
+	}
+
 }
