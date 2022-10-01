@@ -37,9 +37,10 @@ public class UserDAOImpl implements UserDAO {
 			System.out.println("user insert db conn successed...");
 			pstmt = conn.prepareStatement(UserDB.SQL_USER_INSERT);
 			
-			 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		        String formattedDate = simpleDateFormat.format(uvo.getUser_birth());
-		        java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        String formattedDate = simpleDateFormat.format(uvo.getUser_birth());
+	        java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
+	        
 		    pstmt.setString(1, uvo.getUser_image());    
 			pstmt.setString(2, uvo.getUser_id());
 			pstmt.setString(3, uvo.getUser_pw());

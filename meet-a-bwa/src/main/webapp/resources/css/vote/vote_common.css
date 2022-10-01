@@ -77,15 +77,12 @@
     text-align: right;
     font-size: 12px;
 }
-#vote_description{
+.vote_description{
     height: 5.5em;
     /** outline-color 속성을 추가하면 
     focus될 때 테두리 색상을 지정할 수 있다.**/
     outline-color: #3DA5F5;
     resize: none;
-}
-#vote_title:focus{
-    border: 2px solid #3DA5F5;
 }
 
 
@@ -93,12 +90,15 @@
 /* 투표 마감 날짜 설정 CSS */
 /*******************************/
 
-#endDateSection{
+.endDateSection{
     margin-bottom: 25px;
 }
-#pickerWrap{
+.pickerWrap{
     display: flex;
     align-items: center;
+    justify-content:space-between;
+    box-sizing : border-box;
+    padding-right : 33px;
 }
 .dateCommon{
     display: inline-block;
@@ -113,10 +113,10 @@
 
     cursor: pointer;
 }
-#vote_endDate::placeholder{
+.vote_endDate::placeholder{
     color : #B2B3B9;
 }
-#vote_endDate{
+.vote_endDate{
     margin-right: 10px;
 }
 
@@ -126,25 +126,25 @@
 /* 커스텀 타임피커 */
 /*********************************************/
 
-#timepicker_box{
+.timepicker_box{
     position: relative;
 
     display: flex;
     align-items: center;
 }
-#timeSection{
+.timeSection{
     width: 85%;
     height: 100%;
 
     box-sizing: border-box;
     padding-left: 9px;
 }
-#timeImgSection{
+.timeImgSection{
     width: 15%;
     height: 100%;
 }
 
-#customTimePicker{
+.customTimePicker{
     position: absolute;
     top: 38.5px;
     left: 0;
@@ -160,7 +160,7 @@
     border-radius: 5px;
     background-color: rgba(180, 180, 180, 0.62);
 }
-#ampm_choice{
+.ampm_choice{
     width: 40px;
     height: 106px;
 
@@ -185,7 +185,7 @@
 /* 투표 항목 CSS */
 /*********************************************/
 
-#voteSection{
+.voteSection{
     margin-bottom: 10px;
 }
 .vote_list{
@@ -208,34 +208,20 @@
     height: 12px;
     margin-left: 10px;
 }
-
-#vote_list_plusBtn{
-    width: 150px;
-    height: 25px;
-    background-color: #3DA5F5;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    margin-left: 25px;
-    margin-bottom: 30px;
-    margin-top: 10px;
-}
 .focus{
     border: 2px solid #3DA5F5;
 }
 
 /**************************/
 
-#btnWrap{
+.btnWrap{
     display: flex;
     justify-content: center;
     width: 500px;
     margin: auto;
     margin-top: 30px;
 }
-#btnWrap * {
+.btnWrap * {
     font-family: 'Pretendard';
 }
 .btnCommon{

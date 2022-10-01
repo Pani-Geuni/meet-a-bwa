@@ -2,11 +2,10 @@ package test.com.user.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 //import java.util.Date;
 import java.util.List;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
-
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 import test.com.user.model.UserVO;
@@ -26,20 +24,20 @@ import test.com.user.model.UserVO;
 public class UserInsertOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // ½Ç°æ·Î(=½Ç¼­¹ö)¿¡ ÀúÀå
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // ï¿½Ç°ï¿½ï¿½(=ï¿½Ç¼ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		System.out.println(dir_path);
 		
 		int fileSizeMax = 1024 * 1024 * 100;
 
-		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ¸ÖÆ¼ÆÄÆ®ÇüÀÎÁö ¹°À½.
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ï¿½ï¿½Æ¼ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-		// Multipart ¿äÃ»ÀÌ¸é true, ÀÏ¹Ý¿äÃ»ÀÌ¸é false
+		// Multipart ï¿½ï¿½Ã»ï¿½Ì¸ï¿½ true, ï¿½Ï¹Ý¿ï¿½Ã»ï¿½Ì¸ï¿½ false
 		if (isMultipartContent) {
 
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(fileSizeMax);
 			ServletFileUpload sfu = new ServletFileUpload(factory);
-			sfu.setFileSizeMax(fileSizeMax);// ÆÄÀÏ »çÀÌÁî Á¦ÇÑ
+			sfu.setFileSizeMax(fileSizeMax);// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			String user_image = null;
 			
@@ -78,7 +76,7 @@ public class UserInsertOKAction {
 							user_tel = item.getString("UTF-8");
 						}
 						else if(item.getFieldName().equals("birth")) {
-							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate ÇØº¸±â
+							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate ï¿½Øºï¿½ï¿½ï¿½
 							System.out.println("insertOKAction:" + (user_birth instanceof Date));
 						}
 						else if(item.getFieldName().equals("gender")) {
@@ -92,23 +90,23 @@ public class UserInsertOKAction {
 						}
 
 
-						//System.out.println("ÆûÇÊµå Å° : " + item.getFieldName());
+						//System.out.println("ï¿½ï¿½ï¿½Êµï¿½ Å° : " + item.getFieldName());
 
-						//System.out.println("ÆûÇÊµå °ª : " + item.getString("UTF-8"));
+						//System.out.println("ï¿½ï¿½ï¿½Êµï¿½ ï¿½ï¿½ : " + item.getString("UTF-8"));
 
-					} else {// upFile¹Þ±â
+					} else {// upFileï¿½Þ±ï¿½
 
-						System.out.println("ÆÄÀÏÀÇ Å° : " + item.getFieldName());
-						System.out.println("ÆÄÀÏ ÆÄÀÏ¸í : " + item.getName());
-						System.out.println("ÆÄÀÏ ÄÁÅÙÃ÷ Å¸ÀÔ : " + item.getContentType());
-						System.out.println("ÆÄÀÏ »çÀÌÁî  : " + item.getSize());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å° : " + item.getFieldName());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ : " + item.getName());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ : " + item.getContentType());
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  : " + item.getSize());
 
-						if(item.getSize()!=0) { // »çÀÌÁî°¡ 0ÀÌ ¾Æ´Ò¶§ ½ÇÇà 
+						if(item.getSize()!=0) { // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 0ï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 						user_image = FilenameUtils.getName(item.getName());
 							
 						
 						System.out.println("ddddddddddddddddd:"+user_image);
-						File saveFile = new File(dir_path, user_image); // dir_path: ¾÷·Îµå °æ·Î
+						File saveFile = new File(dir_path, user_image); // dir_path: ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½
 
 						try {
 							item.write(saveFile);
@@ -141,7 +139,7 @@ public class UserInsertOKAction {
 			
 //			System.out.println("please:"+user_image.length());
 			System.out.println("please:"+user_image);
-			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image); // 0ÀÌ¸é img_001.jpgÀÇ ÀÌ¹ÌÁö¸¦, 0ÀÌ ¾Æ´Ï¸é img
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image); // 0ï¿½Ì¸ï¿½ img_001.jpgï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½, 0ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ img
 			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_insert(uvo);

@@ -1,7 +1,6 @@
 $(function(){
     let cnt = 1;
     let cnt2 = 1;
-    let flag = true;
     let ajax_flag = true;
     
     plus_list();

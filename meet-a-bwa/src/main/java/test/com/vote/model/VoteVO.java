@@ -1,13 +1,13 @@
 package test.com.vote.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class VoteVO {
 	private String vote_no;
 	private String vote_title; 
 	private String vote_description;
-	private Date vote_eod; 
+	private Timestamp vote_eod; 
 	private String vote_state; 
 	private String user_no; 
 	private String meet_no; 
@@ -17,7 +17,7 @@ public class VoteVO {
 		
 	}
 
-	public VoteVO(String vote_no, String vote_title, String vote_description, Date vote_eod, String vote_state,
+	public VoteVO(String vote_no, String vote_title, String vote_description, Timestamp vote_eod, String vote_state,
 			String user_no, String meet_no, String activity_no) {
 		super();
 		this.vote_no = vote_no;
@@ -54,11 +54,11 @@ public class VoteVO {
 		this.vote_description = vote_description;
 	}
 
-	public Date getVote_eod() {
+	public Timestamp getVote_eod() {
 		return vote_eod;
 	}
 
-	public void setVote_eod(Date vote_eod) {
+	public void setVote_eod(Timestamp vote_eod) {
 		this.vote_eod = vote_eod;
 	}
 
@@ -120,5 +120,7 @@ public class VoteVO {
 				+ ", vote_eod=" + vote_eod + ", vote_state=" + vote_state + ", user_no=" + user_no + ", meet_no="
 				+ meet_no + ", activity_no=" + activity_no + "]";
 	}
+
+	
 
 }

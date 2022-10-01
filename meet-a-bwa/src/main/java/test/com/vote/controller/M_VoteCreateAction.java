@@ -33,16 +33,16 @@ public class M_VoteCreateAction {
 //		System.out.println("meet_no : " + meet_no);
 		
 		// 포맷터        
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mi:ss");
 		
 		// 문자열 -> Date       
 		Date date = null;
 		
 		// java.util.Date to java.sql.Date
-		java.sql.Date eod = null ;
+		java.sql.Timestamp eod = null ;
 		try {
 			date = formatter.parse(vote_eod);
-			eod = new java.sql.Date(date.getTime());
+			eod = new java.sql.Timestamp(date.getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

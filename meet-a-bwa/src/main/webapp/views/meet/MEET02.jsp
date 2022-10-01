@@ -48,11 +48,8 @@
 
 <script src="/meet-a-bwa/resources/js/activity/create/insert.js"></script>
 
-<script src="/meet-a-bwa/resources/js/vote/vote_common.js"></script>
-<script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
-<script src="/meet-a-bwa/resources/js/vote/vote_update.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_select.js"></script>
-<script src="/meet-a-bwa/resources/js/vote/vote_view.js"></script>
+<script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
 
 <title>모임 피드</title>
 </head>
@@ -338,13 +335,12 @@
 
 
 
-<!-- *******************  -->
-<!--  투표 확인 -->
-<!-- *******************  -->
+	<!-- *******************  -->
+	<!--  투표 확인 -->
+	<!-- *******************  -->
 
-<div id="vote-view-wrap" class="blind">
 	<!-- START voteWrap -->
-	<div id="voteWrap">
+	<div id="voteWrap" class = "vote-view-wrap blind">
 		<div id="divWrap" class="vote_section">
 			<div id="header_wrap" class="wrap_common">
 				<span id="view-title">투표 제목 부분입니다.</span> <img
@@ -375,12 +371,12 @@
 				<!-- START 투표 선택란 -->
 				<div id="choice_wrap">
 					<!-- START choiceList-->
-					<div class="choiceList">
+					<div class="choiceList blind">
 						<section class="txt_wrap_section">
 							<section class="txt_section">
 								<span class="txt">항목 타이틀 자리</span>
 								<!-- 결과보여줄 때, blind 제거 -->
-								<span class="choice_mem_cnt blind"></span>
+								<span class="choice_mem_cnt blind">0명</span>
 							</section>
 
 							<!-- 결과보여줄 때, blind 제거해서 -->
@@ -396,68 +392,47 @@
 						</div>
 					</div>
 					<!-- END choiceList -->
-					<!-- START choiceList-->
-					<div class="choiceList">
-						<section class="txt_wrap_section">
-							<section class="txt_section">
-								<span class="txt">항목 타이틀 자리</span>
-								<!-- 결과보여줄 때, blind 제거 -->
-								<span class="choice_mem_cnt blind"></span>
-							</section>
-
-							<!-- 결과보여줄 때, blind 제거해서 -->
-							<span class="list_percentage_wrap blind"> <!-- 해당 항목이 선택받은 퍼센테이지를 width로 대입해 보이게 하기-->
-								<span class="list_percentage"></span>
-							</span>
-						</section>
-
-						<div class="out_circle">
-							<div class="in_circle"></div>
-						</div>
-					</div>
-					<!-- END choiceList -->
 				</div>
 				<!-- END 투표 선택란 -->
 			</div>
 
 			<div id="footer_wrap" class="wrap_common">
 				<section id="footer_info">
-					<span class="info_common">작성자 정상윤</span> <span class="info_common"
-						id="end_date">투표마감:2022-09-01 오전10:00</span>
+					<span class="info_common" id = "vote_writer">작성자 정상윤</span> 
+					<span class="info_common" id="end_date">투표마감:2022-09-01 오전10:00</span>
 				</section>
 
-				<section class="btn_section blind">
+				<section class="voteBtn btn_section blind">
 					<input type="button" id="voteBtn" class="btnCommon" value="투표하기" />
+					<input type="button" class="btnCommon vote_closeBtn" value="창닫기" />
 				</section>
-				<section class="btn_section">
-					<input type="button" id="re_voteBtn" class="btnCommon"
-						value="재투표하기" />
+				<section class="reVoteBtn btn_section blind">
+					<input type="button" id="re_voteBtn" class="btnCommon" value="재투표하기" />
+					<input type="button" class="btnCommon vote_closeBtn" value="창닫기" />
 				</section>
-				<section class="btn_section blind">
-					<input type="button" id="re_voteBtn" class="btnCommon" value="닫기" />
+				<section class="view_closeBtn btn_section blind">
+					<input type="button" id="view_closeBtn2" class="btnCommon" value="닫기" />
 				</section>
 			</div>
 		</div>
 
+		<div id="confirmWrap" class="blind">
+			<div id="confirm_head">
+				<img
+					src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
+					id="more-horizontal" />
+			</div>
+			<div id="confirm_txt_wrap">
+				<span id="confirm_txt">삭제하시겠습니까?</span>
+			</div>
+			<div id="confirm_btn_wrap">
+				<input type="button" id="yesBtn" class="confirm_btn_common" value="예" />
+				<input type="button" id="noBtn" class="confirm_btn_common" value="아니오" />
+			</div>
+		</div>
 	</div>
 	<!-- END voteWrap -->
 
-	<div id="confirmWrap" class="blind">
-		<div id="confirm_head">
-			<img
-				src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
-				id="more-horizontal" />
-		</div>
-		<div id="confirm_txt_wrap">
-			<span id="confirm_txt">삭제하시겠습니까?</span>
-		</div>
-		<div id="confirm_btn_wrap">
-			<input type="button" id="yesBtn" class="confirm_btn_common" value="예" />
-			<input type="button" id="noBtn" class="confirm_btn_common"
-				value="아니오" />
-		</div>
-	</div>
-</div>
 
 
 
@@ -479,30 +454,28 @@
 				<section id="titleSection" class="section_common">
 					<h4 class="section_title">투표 제목</h4>
 					<section id="title_section">
-						<input type="text" id="vote_title" class="common"
-							placeholder="투표 제목"> <span id="title_text_length"
-							class="text_length">0/15</span>
+						<input type="text" id="vote_title" class="common" placeholder="투표 제목"> 
+						<span id="title_text_length" class="text_length">0/15</span>
 					</section>
 				</section>
 
-				<section id="endDateSection" class="section_common">
-					<h4 class="section_title">투표 마감 날짜 설정</h4>
-					<div id="pickerWrap">
-						<input type="text" id="vote_endDate" class="dateCommon"
-							autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
+				<section id = "endDateSection" class = "section_common">
+					<h4 class = "section_title">투표 마감 날짜 설정</h4>
+					<div class = "pickerWrap">
+						<input type="text" id="vote_endDate" class="dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
 						<!-- START TIMEPICKER -->
-						<div id="timepicker_box" class="dateCommon">
-							<section id="timeSection">
+						<div id = "timepicker_box" class="timepicker_box dateCommon">
+							<section class = "timeSection">
 								<span id="timeValue">--:--:--</span>
 							</section>
 
-							<section id="timeImgSection">
+							<section class = "timeImgSection">
 								<img src="/meet-a-bwa/resources/img/clock.svg" id="timeImg"
 									alt="시계이미지" />
 							</section>
 
-							<div id="customTimePicker" class="blind">
-								<div id="ampm_choice">
+							<div id="customTimePicker" class="customTimePicker blind">
+								<div id="ampm_choice" class = "ampm_choice">
 									<ul id="ampm_listWrap">
 										<li class="sample ampm-list"></li>
 									</ul>
@@ -526,21 +499,20 @@
 				<section class="section_common">
 					<h4 class="section_title">투표 내용</h4>
 					<section>
-						<textarea id="vote_description" class="common" placeholder="투표 내용"></textarea>
+						<textarea id="vote_description" class="vote_description common" placeholder="투표 내용"></textarea>
 						<span id="description_text_length" class="text_length">0/150</span>
 					</section>
 				</section>
 
-				<section id="voteSection" class="section_common">
+				<section class="voteSection section_common">
 					<h4 class="section_title">투표 항목</h4>
 
 					<div id="vote_list_Wrap">
 						<!-- SAMPLE VOTE LIST -->
 						<div class="vote_list sample blind">
-							<label class="list_title"></label> <input type="text"
-								class="list_text" /> <img
-								src="/meet-a-bwa/resources/img/close.svg" alt="항목 삭제 이미지"
-								class="removeBtn" />
+							<label class="list_title"></label>
+							<input type="text" class="list_text" /> 
+							<img src="/meet-a-bwa/resources/img/close.svg" alt="항목 삭제 이미지" class="removeBtn" />
 						</div>
 					</div>
 				</section>
@@ -548,10 +520,10 @@
 			</div>
 			<!-- END sectionWrap -->
 
-			<div id="btnWrap">
+			<div class="btnWrap">
 				<input type="button" id="vote_createBtn" class="btnCommon"
-					value="투표 만들기"> <input type="button" id="vote_cancleBtn"
-					class="btnCommon" value="취소">
+					value="투표 만들기"> 
+				<input type="button" id="vote_cancleBtn" class="btnCommon" value="취소">
 			</div>
 		</div>
 		<!-- END 투표 생성 -->
@@ -560,8 +532,7 @@
 		<div id="event-update" class="blind">
 			<div id="topSection">
 				<h1 id="update-title">투표 수정</h1>
-				<img src="/meet-a-bwa/resources/img/close.svg" alt="close이미지"
-					id="closeBtn" />
+				<img src="/meet-a-bwa/resources/img/close.svg" alt="close이미지" id="closeBtn" />
 			</div>
 
 			<!-- Start sectionWrap -->
@@ -569,40 +540,39 @@
 				<section id="titleSection" class="section_common">
 					<h4 class="section_title">투표 제목</h4>
 					<section id="title_section">
-						<input type="text" id="vote_title" class="common"
-							placeholder="투표 제목" value=""> <span
-							id="title_text_length" class="text_length">0/15</span>
+						<input type="text" id="u_vote_title" class="common" placeholder="투표 제목"> 
+						<span id="u_title_text_length" class="text_length">0/15</span>
 					</section>
 				</section>
 
-				<section id="endDateSection" class="section_common">
+				<section id="endDateSection" class="endDateSection section_common">
 					<h4 class="section_title">투표 마감 시간/날짜 설정</h4>
-					<div id="pickerWrap">
-						<input type="text" id="vote_endDate" class="dateCommon"
+					<div class="pickerWrap">
+						<input type="text" id="u_vote_endDate" class="vote_endDate dateCommon"
 							autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
-						<div id="timepicker_box" class="dateCommon">
-							<section id="timeSection">
-								<span id="timeValue">--:--:--</span>
+						<div class="timepicker_box dateCommon">
+							<section class ="timeSection">
+								<span id="u_timeValue">--:--:--</span>
 							</section>
 
-							<section id="timeImgSection">
+							<section class = "timeImgSection">
 								<img src="/meet-a-bwa/resources/img/clock.svg" id="timeImg"
 									alt="시계이미지" />
 							</section>
 
-							<div id="customTimePicker" class="blind">
-								<div id="ampm_choice">
-									<ul id="ampm_listWrap">
+							<div id="u_customTimePicker" class="customTimePicker blind">
+								<div id="u_ampm_choice" class = "ampm_choice">
+									<ul id="u_ampm_listWrap">
 										<li class="sample ampm-list"></li>
 									</ul>
 								</div>
-								<div id="time_choice" class="choiceCommon">
-									<ul id="time_listWrap">
+								<div id="u_time_choice" class="choiceCommon">
+									<ul id="u_time_listWrap">
 										<li class="sample time-list"></li>
 									</ul>
 								</div>
-								<div id="minute_choice" class="choiceCommon">
-									<ul id="minute_listWrap">
+								<div id="u_minute_choice" class="choiceCommon">
+									<ul id="u_minute_listWrap">
 										<li class="sample minute-list"></li>
 									</ul>
 								</div>
@@ -614,32 +584,28 @@
 				<section class="section_common">
 					<h4 class="section_title">투표 내용</h4>
 					<section>
-						<textarea id="vote_description" class="common" placeholder="투표 내용"></textarea>
-						<span id="description_text_length" class="text_length">0/150</span>
+						<textarea id="u_vote_description" class="vote_description common" placeholder="투표 내용"></textarea>
+						<span id="u_description_text_length" class="text_length">0/150</span>
 					</section>
 				</section>
 
-				<section id="voteSection" class="section_common">
+				<section class="voteSection section_common">
 					<h4 class="section_title">투표 항목</h4>
 
-					<div id="vote_list_Wrap">
+					<div id="u_vote_list_Wrap">
 						<!-- SAMPLE VOTE LIST -->
 						<div class="vote_list sample blind">
-							<label class="list_title"></label> <input type="text"
-								class="list_text" value="" /> <img
-								src="/meet-a-bwa/resources/img/close.svg" alt="항목 삭제 이미지"
-								class="removeBtn" />
+							<label class="list_title"></label> 
+							<input type="text" class="list_text" readonly/> 
 						</div>
 					</div>
 				</section>
-				<input type="button" id="vote_list_plusBtn" value="투표 항목 추가" />
 
 			</div>
 			<!-- END sectionWrap -->
 
-			<div id="btnWrap">
-				<input type="button" id="vote_updateBtn" class="btnCommon"
-					value="투표 수정">
+			<div class="btnWrap">
+				<input type="button" id="vote_updateBtn" class="btnCommon" value="투표 수정">
 			</div>
 		</div>
 		<!-- END 투표 수정 -->
