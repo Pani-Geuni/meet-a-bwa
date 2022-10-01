@@ -425,8 +425,9 @@
     height: 530px;
     padding-top : 15px;
     overflow-x:hidden; overflow-y:scroll; height:463px;
+    padding-left: 18px;
 }
-.content_list{
+.content_list_activity{
     display: inline-block;
     width: 320px;
     height: 100px;
@@ -436,6 +437,7 @@
     padding: 15px;
     box-shadow: 0 3px 6px #E4E4E4, 0 3px 8px #E4E4E4;
     cursor: pointer;
+        position: relative;
 }
 .content_title{
     font-size: 20px;

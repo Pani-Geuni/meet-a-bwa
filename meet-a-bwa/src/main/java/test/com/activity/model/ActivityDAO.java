@@ -2,6 +2,8 @@ package test.com.activity.model;
 
 import java.util.List;
 
+import test.com.user.model.UserVO;
+
 
 public interface ActivityDAO {
 
@@ -14,5 +16,6 @@ public interface ActivityDAO {
 	public int activity_delete(ActivityVO avo); 
 	
 	public List<ActivityVO2> activity_selectAll_main_feed(String meet_no);
-	public ActivityVO2 activity_selectOne_main_feed(ActivityVO2 avo);
+	public ActivityVO3 activity_selectOne_main_feed(ActivityVO3 avo);
+	public List<RegisteredVO> activity_select_registered(String activity_no);
 }

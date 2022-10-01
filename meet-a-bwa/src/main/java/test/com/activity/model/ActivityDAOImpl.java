@@ -394,19 +394,19 @@ public class ActivityDAOImpl implements ActivityDAO {
 	}
 
 	@Override
-	public ActivityVO2 activity_selectOne_main_feed(ActivityVO2 avo) {
-		ActivityVO2 avo2 = null;
+	public ActivityVO3 activity_selectOne_main_feed(ActivityVO3 avo) {
+		ActivityVO3 avo2 = null;
 		try {
 			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
 			System.out.println("conn successed...");
 			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_SELECT_ONE_MAIN_FEED);
 			
-		    pstmt.setString(1, avo.getActivity_no());    
+		    pstmt.setString(1, avo.getActivity_no()); 
 			
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				avo2 = new ActivityVO2();
+				avo2 = new ActivityVO3();
 				avo2.setActivity_no(rs.getString("activity_no"));
 				avo2.setActivity_image(rs.getString("activity_image"));
 				avo2.setActivity_name(rs.getString("activity_name"));
@@ -422,6 +422,8 @@ public class ActivityDAOImpl implements ActivityDAO {
 				avo2.setMeet_no(rs.getString("meet_no"));
 				avo2.setMeet_no(rs.getString("like_cnt"));
 				avo2.setMeet_no(rs.getString("user_cnt"));
+				avo2.setUser_nickname(rs.getString("user_nickname"));
+				
 			}
 			
 		} catch (SQLException e) {
@@ -450,6 +452,58 @@ public class ActivityDAOImpl implements ActivityDAO {
 			}
 		}
 		return avo2;
+	}
+
+	@Override
+	public List<RegisteredVO> activity_select_registered(String activity_no) {
+		System.out.println("Activity Leader()..");
+		
+		List<RegisteredVO> rvos = new ArrayList<RegisteredVO>();
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL, ActivityDB.USER, ActivityDB.PASSWORD);
+			System.out.println("Activity SelectAll conn succeed");
+			
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_SELECT_REGISTERED);
+			pstmt.setString(1, activity_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				RegisteredVO rvo = new RegisteredVO();
+				
+				rvo.setUser_no(rs.getString("user_no"));
+				
+				rvos.add(rvo);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return rvos;
 	}
 
 }
