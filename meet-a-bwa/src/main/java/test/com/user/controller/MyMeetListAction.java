@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import test.com.meet.model.MeetVO;
 import test.com.meet.model.MeetVO4;
 import test.com.member.model.MemberDAO;
 import test.com.member.model.MemberDAOImpl;

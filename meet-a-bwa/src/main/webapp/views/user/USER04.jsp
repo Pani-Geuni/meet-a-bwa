@@ -52,10 +52,10 @@
             <p class="edit-user-info">개인 정보 수정</p>
           </li>
           <li>
-            <a href="/meet-a-bwa/my-meet.do">나의 모임</a>
+            <p class="my-meet">나의 모임</p>
           </li>
           <li>
-            <a href="#">나의 액티비티</a>
+            <p class="my-activity">나의 액티비티</p>
           </li>
         </ul>
         <!-- end my-meeting contentSection -->
