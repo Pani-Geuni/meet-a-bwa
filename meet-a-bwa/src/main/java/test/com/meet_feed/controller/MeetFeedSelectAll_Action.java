@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import test.com.activity.model.ActivityDAO;
+import test.com.activity.model.ActivityDAOImpl;
+import test.com.activity.model.ActivityVO2;
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
 import test.com.meet.model.MeetVO3;
@@ -78,6 +81,12 @@ public class MeetFeedSelectAll_Action {
 		MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
 		
 		request.setAttribute("mvo3", mvo3);
+		
+		// 액티비티 불러오기
+		ActivityDAO adao = new ActivityDAOImpl();
+		List<ActivityVO2> avos = adao.activity_selectAll_main_feed(idx);
+		
+		request.setAttribute("avos", avos);
 		
 		// 투표 불러오기
 		VoteDAO vdao = new VoteDAOImpl();
