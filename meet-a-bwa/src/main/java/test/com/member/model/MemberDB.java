@@ -15,5 +15,6 @@ public interface MemberDB {
 		+ "FROM TEST_USER "
 		+ "WHERE USER_NO = ?";
 	
-	String SQL_SELECT_ALL_M_REGISTERED = "select * from reg_user_like_view where user_no=?";	
+	String SQL_SELECT_ALL_M_REGISTERED = "select * from reg_user_like_view where user_no=?";
+	String SQL_SELECT_ALL_A_REGISTERED = "SELECT * FROM ACTI_REG_USER_LIKE_VIEW WHERE USER_NO=?";
 }

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.com.activity.model.ActivityVO2;
 import test.com.meet.model.MeetVO4;
 
 
@@ -264,6 +265,87 @@ public class MemberDAOImpl implements MemberDAO {
             }
         }
 		return mvos;
+	}
+
+	@Override
+	public List<ActivityVO2> selectAll_myActivity(String user_no) {
+		
+		System.out.println("my activity list selectAll()...");
+		
+		List<ActivityVO2> avos = new ArrayList<ActivityVO2>();
+		
+		try {
+			conn = DriverManager.getConnection(MemberDB.URL, MemberDB.USER, MemberDB.PASSWORD);
+			pstmt = conn.prepareStatement(MemberDB.SQL_SELECT_ALL_A_REGISTERED);
+			pstmt.setString(1, user_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				System.out.print(rs.getString("MEET_NO") + " ");
+				System.out.print(rs.getString("REGISTERED_NO") + " ");
+				System.out.print(rs.getString("ACTIVITY_NO") + " ");
+				System.out.print(rs.getString("USER_NO") + " ");
+				System.out.print(rs.getString("ACTIVITY_IMAGE") + " ");
+				System.out.print(rs.getString("ACTIVITY_NAME") + " ");
+				System.out.print(rs.getString("ACTIVITY_DESCRIPTION") + " ");
+				System.out.print(rs.getString("ACTIVITY_CITY") + " ");
+				System.out.print(rs.getString("ACTIVITY_INTEREST_NAME") + " ");
+				System.out.print(rs.getString("ACTIVITY_GENDER") + " ");
+				System.out.print(rs.getString("ACTIVITY_NOP") + " ");
+				System.out.print(rs.getString("ACTIVITY_AGE") + " ");
+				System.out.print(rs.getString("ACTIVITY_DATE") + " ");
+				System.out.print(rs.getString("LIKE_CNT") + " ");
+				System.out.println(rs.getString("USER_CNT") + " ");
+				
+				ActivityVO2 avo = new ActivityVO2();
+				
+				avo.setMeet_no(rs.getString("MEET_NO"));
+				avo.setActivity_no(rs.getString("ACTIVITY_NO"));
+				avo.setUser_no(rs.getString("USER_NO"));
+				avo.setActivity_image(rs.getString("ACTIVITY_IMAGE"));
+				avo.setActivity_name(rs.getString("ACTIVITY_NAME"));
+				avo.setActivity_description(rs.getString("ACTIVITY_DESCRIPTION"));
+				avo.setActivity_city(rs.getString("ACTIVITY_CITY"));
+				avo.setActivity_interest_name(rs.getString("ACTIVITY_INTEREST_NAME"));
+				avo.setActivity_gender(rs.getString("ACTIVITY_GENDER"));
+				avo.setActivity_nop(rs.getInt("ACTIVITY_NOP"));
+				avo.setActivity_age(rs.getInt("ACTIVITY_AGE"));
+				avo.setActivity_date(rs.getDate("ACTIVITY_DATE"));
+				avo.setLike_cnt(rs.getInt("LIKE_CNT"));
+				avo.setUser_cnt(rs.getInt("USER_CNT"));
+				
+				avos.add(avo);
+			}
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return avos;
 	}
 
 }
