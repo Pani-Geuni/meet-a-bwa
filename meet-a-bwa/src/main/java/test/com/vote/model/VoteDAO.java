@@ -19,4 +19,6 @@ public interface VoteDAO {
 	public List<VoteJOIN_VO> vote_selectOne(VoteVO vvo);
 	public List<VoteVO> vote_selectAll();
 	public List<VoteResultVO> vr_selectOne(String vote_no);
+	public List<VoteListVO> vote_list_selectAll(String activity_no);
+	
 }

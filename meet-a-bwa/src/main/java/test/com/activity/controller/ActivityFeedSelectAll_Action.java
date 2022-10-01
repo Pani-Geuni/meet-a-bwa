@@ -14,9 +14,11 @@ import javax.servlet.http.HttpSession;
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO2;
+import test.com.activity.model.ActivityVO3;
+import test.com.activity.model.RegisteredVO;
 import test.com.vote.model.VoteDAO;
 import test.com.vote.model.VoteDAOImpl;
-import test.com.vote.model.VoteVO;
+import test.com.vote.model.VoteListVO;
 
 public class ActivityFeedSelectAll_Action {
 public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,12 +66,16 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		
 		// activity-cnt(user)-cnt(like)
 		ActivityDAO a_dao = new ActivityDAOImpl();
-		ActivityVO2 avo = new ActivityVO2();
-		avo.setActivity_no(idx);
+		ActivityVO3 avo = new ActivityVO3();
+		avo.setActivity_no(idx); //수정해야함
 		
-		ActivityVO2 avo2 = a_dao.activity_selectOne_main_feed(avo);
+		ActivityVO3 avo2 = a_dao.activity_selectOne_main_feed(avo);
 		
 		request.setAttribute("avo2", avo2);
+		
+		//registered user
+		List<RegisteredVO> rvos = a_dao.activity_select_registered(idx);
+		request.setAttribute("rvos", rvos);
 		
 		// event
 //		EventDAO e_dao = new EventDAOImpl();
@@ -79,7 +85,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		
 		// vote
 		VoteDAO v_dao = new VoteDAOImpl();
-		List<VoteVO> vvos = v_dao.vote_selectAll(); 
+		List<VoteListVO> vvos = v_dao.vote_list_selectAll(idx); 
 		
 		request.setAttribute("vvos", vvos);
 		

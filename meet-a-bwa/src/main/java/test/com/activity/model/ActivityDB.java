@@ -21,6 +21,8 @@ public interface ActivityDB {
 	String SQL_ACTIVITY_SELECT_ONE = "select activity_no, activity_image, activity_name, activity_description, activity_city, activity_county, activity_interest_name, activity_gender, activity_nop, activity_age  from test_activity where activity_no=?";
 	
 	String SQL_ACTIVITY_DELETE = "delete from test_activity where activity_no=?";
-	String SQL_ACTIVITY_SELECT_ONE_MAIN_FEED = "SELECT * FROM ACTIVITY_JOIN_VIEW WHERE ACTIVITY_NO = ?";;
 	
+	String SQL_ACTIVITY_SELECT_ONE_MAIN_FEED = "SELECT * FROM ACTI_REG_LIKE_NICK_VIEW WHERE ACTIVITY_NO = ?";
+//	String SQL_ACTIVITY_SELECT_USERNICKNAME ="select user_nickname from test_activity a join test_user u using(user_no) where activity_no=? ";
+	String SQL_ACTIVITY_SELECT_REGISTERED ="select user_no from test_activity_registered where activity_no=?";
 }

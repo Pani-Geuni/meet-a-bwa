@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/common/common.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/common/header.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/common/footer.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/toast.css" />
 
 
@@ -17,17 +21,23 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_common.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_create.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_update.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_view.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/vote/vote_common.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/vote/vote_create.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/vote/vote_update.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/vote/vote_view.css" />
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/activity/feed.css" />
+<link rel="stylesheet"
+	href="/meet-a-bwa/resources/css/activity/feed.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 
 <!-- DATE PICKER -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/meet-a-bwa/resources/js/common/datePicker_ko.js"></script>
@@ -55,77 +65,84 @@
 			$(".vote-create-update-wrap").removeClass("blind"); // 활동 신청 팝업
 			$("#event-create").removeClass("blind");
 		});
-		
-		
+
 		let idx = "";
-		$(".activityUpdateBtn").click(function() {
+		$(".activityUpdateBtn").click(
+				function() {
 
 					console.log("activity update");
-					
+
 					//idx = $(this).attr("idx");
-					
+
 					//location.href = "/meet-a-bwa/a_update.do?activity_no=" + idx;
-					location.href = "/meet-a-bwa/a_update.do?activity_no=" + $("#activity_no").val();
-					
+					location.href = "/meet-a-bwa/a_update.do?activity_no="
+							+ $("#activity_no").val();
+
 					//location.href = "ACTI04.jsp?activity_no=" + idx;
-				 	//ajax_load(idx);
-				
-		});
-				function ajax_load(idx) {
-					$.ajax({
-						url : "/meet-a-bwa/a_update.do",
-						type : "GET",
-						data : {
-							activity_no : idx
-						},
-						
-						dataType: "json",
-						
-						success : function(res) {
-							console.log("succees")
-							console.log(res)
-						},
-						
-						error : function(res, status, text) {
-							console.log("error")
-							console.log(text)
-						}
-					});
+					//ajax_load(idx);
+
+				});
+		function ajax_load(idx) {
+			$.ajax({
+				url : "/meet-a-bwa/a_update.do",
+				type : "GET",
+				data : {
+					activity_no : idx
+				},
+
+				dataType : "json",
+
+				success : function(res) {
+					console.log("succees")
+					console.log(res)
+				},
+
+				error : function(res, status, text) {
+					console.log("error")
+					console.log(text)
 				}
+			});
+		}
 
-		$(".activityDeleteBtn").click(function() {
+		$(".activityDeleteBtn")
+				.click(
+						function() {
 
-				console.log("activity delete");
-				
-				$(".activityDelete-popup").removeClass("blind");
-					$(".delete").click(function(){
-						$(".activityDelete-popup").addClass("blind");
-						
-						//idx = $(this).attr("idx");
-						location.href = "/meet-a-bwa/a_delete.do?activity_no=" + $("#activity_no").val();
-					
-					});
-					$(".cancle").click(function(){
-						$(".activityDelete-popup").addClass("blind");
-					});
-		});
-		
+							console.log("activity delete");
+
+							$(".activityDelete-popup").removeClass("blind");
+							$(".delete")
+									.click(
+											function() {
+												$(".activityDelete-popup")
+														.addClass("blind");
+
+												//idx = $(this).attr("idx");
+												location.href = "/meet-a-bwa/a_delete.do?activity_no="
+														+ $("#activity_no")
+																.val();
+
+											});
+							$(".cancle").click(function() {
+								$(".activityDelete-popup").addClass("blind");
+							});
+						});
+
 		$(".activityExitBtn").click(function() {
 
-				$(".activityExit-popup").removeClass("blind");
-					$(".withdrawal").click(function(){
-						$(".activityExit-popup").addClass("blind");
-						
-						//idx = $(this).attr("idx");
-						//location.href = "/meet-a-bwa/a_delete.do?activity_no=" + idx;
-					
-					});
-					$(".cancle").click(function(){
-						$(".activityExit-popup").addClass("blind");
-					});
+			$(".activityExit-popup").removeClass("blind");
+			$(".withdrawal").click(function() {
+				$(".activityExit-popup").addClass("blind");
+
+				//idx = $(this).attr("idx");
+				//location.href = "/meet-a-bwa/a_delete.do?activity_no=" + idx;
+
+			});
+			$(".cancle").click(function() {
+				$(".activityExit-popup").addClass("blind");
+			});
 		});
-		
-		
+
 	});
 </script>
 
@@ -141,8 +158,7 @@
 			<div id="innercontentWrap">
 				<div id="meetLeftWrap">
 					<div class="act-profile-img">
-						<img src="${avo2.activity_image}"
-							alt="default 이미지" id="meetImg">
+						<img src="${avo2.activity_image}" alt="default 이미지" id="meetImg">
 					</div>
 					<div class="act-detail-aside-top">
 						<h1 class="act-deatil-aside-title">${avo2.activity_name}</h1>
@@ -162,7 +178,7 @@
 						<p>
 							<a href="/meet-a-bwa/resources/act-detail-member.html">${avo2.user_cnt}</a>
 						</p>
-						<p>${avo2.user_no}</p>
+						<p>${avo2.user_nickname}</p>
 					</div>
 
 					<div class="tagSection">
@@ -185,25 +201,23 @@
 						</div>
 					</div>
 
-					<!-- 가입 전 -->
+
+					<!-- 가입 전 --><!-- 가입후, 개설자 -->
 					<button type="button" id="join_activity_btn">
 						<a href="#">액티비티 가입하기</a>
 					</button>
+					
 
-					<!-- 가입후, 개설자 -->
-					<!-- <button type="button"  id="join_activity_btn"  class="hide">
-                    <a href="#">액티비티 가입하기</a>
-                  </button> -->
 
 				</div>
 				<!--meetLeftWrap end-->
 
 				<div id="innerbodyWrap">
 					<section id="intro">
-					<section class="blind">
-					<label for="activity_no">activity_no:</label>${avo2.activity_no}<input
-						id="activity_no" name="activity_no" value="${avo2.activity_no}">
-					</section>
+						<section class="blind">
+							<label for="activity_no">activity_no:</label>${avo2.activity_no}<input
+								id="activity_no" name="activity_no" value="${avo2.activity_no}">
+						</section>
 						<!-- 연결되면 아래 idx 없애고 ${avo2.activity_no} 따로 하나 넣으면됨. -->
 						<section id="introHeader">
 							<h3 id="introTitle">액티비티 소개</h3>
@@ -214,7 +228,8 @@
 								class="activityDeleteBtn font_size_10" value="삭제">
 							<!--user에게 보이는 탈퇴 버튼-->
 							<input type="image" src="/meet-a-bwa/resources/img/exit.svg"
-								class="activityExitBtn font_size_10" value="탈퇴" idx="${avo2.user_no}">
+								class="activityExitBtn font_size_10" value="탈퇴"
+								idx="${avo2.user_no}">
 						</section>
 						<hr class="firstLine">
 						<section id="innerIntro">
@@ -238,7 +253,8 @@
 					<!--intro end-->
 
 					<!--///////////////////////////////////////////////가입 전(이벤트, 투표, 모임신청 없을 때)/////////////////////////////////////////////-->
-                    
+
+
 
 					<div id="pheed_1">
 						<p id="defaultPheedText_1">액티비티에 가입해서 더 많은 정보를 찾아보세요!</p>
@@ -250,8 +266,9 @@
                     </div> -->
 					<!--pheed_1 end-->
 
-					<!--///////////////////////////////////////////////가입 후(이벤트, 투표, 모임신청 없을 때)/////////////////////////////////////////////-->
 
+					<!--///////////////////////////////////////////////가입 후(이벤트, 투표, 모임신청 없을 때)/////////////////////////////////////////////-->
+					<!--///////////////////////////////////////////////가입 후(이벤트, 투표, 모임신청 있을 때)//////////////////////////////////////////////-->
 					<section id="pheed" class="pheed">
 						<section class="pheedEvent">
 							<section class="pheedEventHeader">
@@ -262,74 +279,23 @@
 								</button>
 							</section>
 							<!--pheedEventHeader end-->
-							<section class="pheedEventBody">
-								<p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
-							</section>
-							<!--pheedEventBody end-->
-						</section>
-						<!--pheedEvent end-->
-						<section class="voteApplication">
-							<section class="pheedVote">
-								<section class="pheedVoteHeader">
-									<h4 class="pheedVoteHeaderText">투표</h4>
-									<button class="addBtn" id="vote_create_btn">
-										<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png"
-											alt="">
-									</button>
-								</section>
-								<!--pheedVoteHeader end-->
-								<section class="pheedVoteBody">
-									<p id="VotedefaultPheedText">생성된 투표가 없습니다.</p>
-								</section>
-								<!--pheedVoteBody end -->
-							</section>
-							<!--pheedVote end-->
-							<section class="pheedApplication">
-								<section class="pheedApplicationHeader">
-									<h4 class="pheedApplicationHeaderText">활동 신청</h4>
-									<button class="addBtn" id="recruit_create_btn">
-										<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png"
-											alt="">
-									</button>
-								</section>
-								<!--pheedApplicationHeader end-->
-								<section class="pheedApplicationBody">
-									<p id="AppplictiondefaultPheedText">생성된 활동이 없습니다.</p>
-								</section>
-								<!--pheedApplicationBody end-->
-							</section>
-							<!--pheedApplication end-->
-						</section>
-						<!--voteApplication end-->
-					</section>
-					<!--pheed end-->
 
-
-					<!--///////////////////////////////////////////////가입 후(이벤트, 투표, 모임신청 있을 때)//////////////////////////////////////////////-->
-					<section id="pheed" class="pheed blind">
-						<section class="pheedEvent">
-							<section class="pheedEventHeader">
-								<h4 class="pheedEventHeaderText">이벤트</h4>
-								<button class="addBtn" id="event_create_btn">
-									<img class="imgBtn" src="/meet-a-bwa/resources/img/add.png"
-										alt="">
-								</button>
-							</section>
-							<!--pheedEventHeader end-->
-							<section class="pheedEventBody">
-
-								<div class="content_list event-list" idx="">
-									<div class="event-list-wrap">
-										<div class="listCommon">
-											<span class="content_title">11월 12일 모임</span>
+								<section>
+									<section class="pheedEventBody blind">
+										<p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
+									</section>
+								
+										<div class="content_list_activity event-list" idx="">
+											<div class="event-list-wrap">
+												<div class="listCommon">
+													<span class="content_title">11월 12일 모임</span>
+												</div>
+												<div class="description_list listCommon">
+													<span class="content_description"> 2022년 11월 12일의 모임
+														정보를 확인하세요! </span>
+												</div>
+											</div>
 										</div>
-										<div class="description_list listCommon">
-											<span class="content_description"> 2022년 11월 12일의 모임
-												정보를 확인하세요! </span>
-										</div>
-									</div>
-								</div>
-
 							</section>
 							<!--pheedEventBody end-->
 						</section>
@@ -346,32 +312,54 @@
 									</button>
 								</section>
 								<!--pheedVoteHeader end-->
-								<section class="pheedVoteBody">
-
-									<div class="content_list event-list" idx="">
-										<div class="vote-list-wrap">
-											<div class="listCommon">
-												<span class="content_title">11월 12일 모임</span>
-											</div>
-											<div class="description_list listCommon">
-												<span class="content_description"> 2022년 11월 12일의 모임
-													정보를 확인하세요! </span>
-											</div>
-											<div class="meet_info">
-												<div class="meet_member_info">
-													<span class="member_cnt member_ment">19명</span> <span
-														class="member_ment">참여 중</span>
+								
+								<section>
+										<section class="pheedVoteBody blind">
+											<p id="VotedefaultPheedText">생성된 투표가 없습니다.</p>
+										</section>
+									
+											<div class="content_list_activity event-list"
+												idx="${vvos.activity_no}">
+												<section class="blind">
+													<label for="vote_no">vote_no:</label>${vvos.vote_no}<input
+														id="vote_no" name="vote_no" value="${vvos.vote_no}">
+												</section>
+												<section class="blind">
+													<label for="vote_state">vote_state:</label>${vvos.vote_state}<input
+														id="vote_state" name="vote_state"
+														value="${vvos.vote_state}">
+												</section>
+												<section class="blind">
+													<label for="user_no">user_no:</label>${vvos.user_no}<input
+														id="usre_no" name="user_no" value="${vvos.user_no}">
+												</section>
+												<section class="blind">
+													<label for="activity_no">vote_no:</label>${vvos.activity_no}<input
+														id="activity_no" name="activity_no"
+														value="${vvos.activity_no}">
+												</section>
+												<div class="vote-list-wrap">
+													<div class="listCommon">
+														<span class="content_title">${vvos.vote_title}</span>
+													</div>
+													<div class="description_list listCommon">
+														<span class="content_description">
+															${vvos.vote_content}</span>
+													</div>
+													<div class="meet_info">
+														<div class="meet_member_info">
+															<span class="member_cnt member_ment">${vvos.user_cnt}명</span>
+															<span class="member_ment">참여 중</span>
+														</div>
+														<img src="/meet-a-bwa/resources/img/smallLine.png"
+															class="smallLine">
+														<div class="period_info">
+															<span class="member_ment">투표 마감 : </span> <span
+																class="member_ment">${vvos.vote_eod}</span>
+														</div>
+													</div>
 												</div>
-												<img src="/meet-a-bwa/resources/img/smallLine.png"
-													class="smallLine">
-												<div class="period_info">
-													<span class="member_ment">투표 마감 : </span> <span
-														class="member_ment">2022년 9월 28일</span>
-												</div>
 											</div>
-										</div>
-									</div>
-
 								</section>
 								<!--pheedVoteBody end -->
 							</section>
@@ -387,32 +375,36 @@
 									</button>
 								</section>
 								<!--pheedApplicationHeader end-->
-								<section class="pheedApplicationBody">
+								<section>
+								
+										<section class="pheedApplicationBody blind">
+											<p id="AppplictiondefaultPheedText">생성된 활동이 없습니다.</p>
+										</section>
+									<!--pheedApplicationBody end-->
 
-									<div class="content_list event-list" idx="">
-										<div class="recruit-list-wrap">
-											<div class="listCommon">
-												<span class="content_title">11월 12일 모임</span>
-											</div>
-											<div class="description_list listCommon">
-												<span class="content_description"> 2022년 11월 12일의 모임
-													정보를 확인하세요! </span>
-											</div>
-											<div class="meet_info">
-												<div class="meet_member_info">
-													<span class="member_cnt member_ment">19명</span> <span
-														class="member_ment">참여 중</span>
+											<div class="content_list_activity event-list" idx="">
+												<div class="recruit-list-wrap">
+													<div class="listCommon">
+														<span class="content_title">11월 12일 모임</span>
+													</div>
+													<div class="description_list listCommon">
+														<span class="content_description"> 2022년 11월 12일의
+															모임 정보를 확인하세요! </span>
+													</div>
+													<div class="meet_info">
+														<div class="meet_member_info">
+															<span class="member_cnt member_ment">19명</span> <span
+																class="member_ment">참여 중</span>
+														</div>
+														<img src="/meet-a-bwa/resources/img/smallLine.png"
+															class="smallLine">
+														<div class="period_info">
+															<span class="member_ment">신청 마감 : </span> <span
+																class="member_ment">2022년 9월 28일</span>
+														</div>
+													</div>
 												</div>
-												<img src="/meet-a-bwa/resources/img/smallLine.png"
-													class="smallLine">
-												<div class="period_info">
-													<span class="member_ment">신청 마감 : </span> <span
-														class="member_ment">2022년 9월 28일</span>
-												</div>
 											</div>
-										</div>
-									</div>
-
 
 								</section>
 								<!--pheedApplicationBody end-->
@@ -422,18 +414,19 @@
 						<!--voteApplication end-->
 					</section>
 					<!--pheed end-->
-
-				<!-- ************************************************************* -->
-				<!-- 액티비티 개설자와 해당 모임 -->
-				<section class="blind">
-					<label for="user_no">user_no:</label>
-					<input type="text" id="user_no" name="user_no" value="${avo2.user_no}">
-				</section>
-				<section class="blind">
-					<label for="meet_no">meet_no:</label>
-					<input type="text" id="meet_no" name="meet_no" value="M1001">
-				</section>
-				<!-- ************************************************************* -->
+					
+					
+					<!-- ************************************************************* -->
+					<!-- 액티비티 개설자와 해당 모임 -->
+					<section class="blind">
+						<label for="user_no">user_no:</label> <input type="text"
+							id="user_no" name="user_no" value="${avo2.user_no}">
+					</section>
+					<section class="blind">
+						<label for="meet_no">meet_no:</label> <input type="text"
+							id="meet_no" name="meet_no" value="M1001">
+					</section>
+					<!-- ************************************************************* -->
 
 				</div>
 				<!--innerbodywrap end-->
@@ -448,91 +441,116 @@
 
 	</div>
 	<!--bodyWrap end-->
-	
-	
+
+
 	<!-- popup -->
-	
+
 	<!-- 액티비티 삭제 재확인 -->
 	<section class="activityDelete-popup blind">
-	 <div class="modal-bg">
-    <div class="modal-wrap">
-        <div class="modal-content-wrap">
-        <section class="modal-content">
-            <img src="/meet-a-bwa/resources//img/exitwar.svg" class="popupIcon">
-        </section><!--modal-content1-->
-        <section class="modal-content-inner-delete">
-            <section class="modal-content-delete1">
-                <p>정말 액티비티를 삭제하시겠습니까?</p>
-                <p>삭제한 액티비티는 복구하실 수 없습니다.</p>
-             </section><!--modal-content2-->
-            <section class="modal-content-delete2">
-                <button class="delete">액티비티 삭제</button>
-                <button class="cancle">취소</button>
-            </section><!--modal-content3-->
-        </section><!--modal-content-inner end-->
-        </div><!--modal-content-wrap end-->
-    </div><!--modal-wrap end-->
-    </div> <!--model-bg end-->
-    </section>
-    
-    <!-- 액티비티 탈퇴 재확인 -->
-    <section class="activityExit-popup blind">
-    <div class="modal-bg">
-    <div class="modal-wrap">
-        <div class="modal-content-wrap">
-        <section class="modal-content">
-            <img src="/meet-a-bwa/resources/img/exitwar.svg" class="popupIcon">
-        </section><!--modal-content1-->
-        <section class="modal-content-inner-withdrawal">
-            <section class="modal-content-withdrawal1">
-                <p>정말 액티비티를 탈퇴하시겠습니까?</p>
-            </section><!--modal-content2-->
-            <section class="modal-content-withdrawal2">
-                <button class="withdrawal">액티비티 탈퇴</button>
-                <button class="cancle">취소</button>
-            </section><!--modal-content3-->
-        </section><!--modal-content-inner end-->
-        </div><!--modal-content-wrap end-->
-    </div><!--modal-wrap end-->
-    </div> <!--model-bg end-->
-    </section>
-    
-    <!-- 액티비티 가입 성공 -->
-    <section class="joinSuccess-popup blind">
-    <div class="modal-bg">
-    <div class="modal-wrap">
-        <div class="modal-content-wrap">
-        <section class="modal-content">
-            <img src="/meet-a-bwa/resources/img/meetApplicationSuccess.svg" class="popupIcon">
-        </section><!--modal-content1-->
-        <section class="modal-content-inner-join">
-            <section class="modal-content-join1">
-                <p>축하합니다!</p>
-                <p>액티비티에 가입되었습니다.</p>
-                <p>즐거운 활동 되세요.</p>
-            </section><!--modal-content2-->
-            <section class="modal-content-join2">
-                <button class="go">확인</button>
-            </section><!--modal-content3-->
-        </section><!--modal-content-inner end-->
-        </div><!--modal-content-wrap end-->
-    </div><!--modal-wrap end-->
-    </div><!--model-bg end-->
-    </section>
-    
-    
-    <!-- *******************  -->
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content">
+						<img src="/meet-a-bwa/resources//img/exitwar.svg"
+							class="popupIcon">
+					</section>
+					<!--modal-content1-->
+					<section class="modal-content-inner-delete">
+						<section class="modal-content-delete1">
+							<p>정말 액티비티를 삭제하시겠습니까?</p>
+							<p>삭제한 액티비티는 복구하실 수 없습니다.</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content-delete2">
+							<button class="delete">액티비티 삭제</button>
+							<button class="cancle">취소</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+
+	<!-- 액티비티 탈퇴 재확인 -->
+	<section class="activityExit-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content">
+						<img src="/meet-a-bwa/resources/img/exitwar.svg" class="popupIcon">
+					</section>
+					<!--modal-content1-->
+					<section class="modal-content-inner-withdrawal">
+						<section class="modal-content-withdrawal1">
+							<p>정말 액티비티를 탈퇴하시겠습니까?</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content-withdrawal2">
+							<button class="withdrawal">액티비티 탈퇴</button>
+							<button class="cancle">취소</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+
+	<!-- 액티비티 가입 성공 -->
+	<section class="joinSuccess-popup blind">
+		<div class="modal-bg">
+			<div class="modal-wrap">
+				<div class="modal-content-wrap">
+					<section class="modal-content">
+						<img src="/meet-a-bwa/resources/img/meetApplicationSuccess.svg"
+							class="popupIcon">
+					</section>
+					<!--modal-content1-->
+					<section class="modal-content-inner-join">
+						<section class="modal-content-join1">
+							<p>축하합니다!</p>
+							<p>액티비티에 가입되었습니다.</p>
+							<p>즐거운 활동 되세요.</p>
+						</section>
+						<!--modal-content2-->
+						<section class="modal-content-join2">
+							<button class="go">확인</button>
+						</section>
+						<!--modal-content3-->
+					</section>
+					<!--modal-content-inner end-->
+				</div>
+				<!--modal-content-wrap end-->
+			</div>
+			<!--modal-wrap end-->
+		</div>
+		<!--model-bg end-->
+	</section>
+
+
+	<!-- *******************  -->
 	<!--  투표 확인 -->
 	<!-- *******************  -->
 
 	<!-- START voteWrap -->
-	<div id="voteWrap" class = "vote-view-wrap blind">
+	<div id="voteWrap" class="vote-view-wrap blind">
 		<div id="divWrap" class="vote_section">
 			<div id="header_wrap" class="wrap_common">
-				<span id="view-title"><!-- 투표 제목 텍스트 자리 --></span> 
-				<img src="/meet-a-bwa/resources/img/more-vertical.png" alt="더보기 세로 이미지" id="more_vertival" />
+				<span id="view-title"> <!-- 투표 제목 텍스트 자리 -->
+				</span> <img src="/meet-a-bwa/resources/img/more-vertical.png"
+					alt="더보기 세로 이미지" id="more_vertival" />
 				<div id="dropdown" class="select_custom blind">
-					<img src="/meet-a-bwa/resources/img/vector.png" alt="셀렉트 before 이미지" id="select_img" />
+					<img src="/meet-a-bwa/resources/img/vector.png"
+						alt="셀렉트 before 이미지" id="select_img" />
 					<ul class="select_list_wrap">
 						<li class="select_list" id="update">수정</li>
 						<li class="select_list" id="delete">삭제</li>
@@ -544,7 +562,9 @@
 				<fieldset id="description_field">
 					<legend class="field_title">투표 설명</legend>
 					<div id="vote_view_description">
-						<p id="text_area"><!-- 투표 설명 텍스트 자리 --></p>
+						<p id="text_area">
+							<!-- 투표 설명 텍스트 자리 -->
+						</p>
 					</div>
 				</fieldset>
 				<!-- END 투표 설명란 -->
@@ -579,8 +599,8 @@
 
 			<div id="footer_wrap" class="wrap_common">
 				<section id="footer_info">
-					<span class="info_common" id = "vote_writer">작성자 정상윤</span> 
-					<span class="info_common" id="end_date">투표마감:2022-09-01 오전10:00</span>
+					<span class="info_common" id="vote_writer">작성자 정상윤</span> <span
+						class="info_common" id="end_date">투표마감:2022-09-01 오전10:00</span>
 				</section>
 
 				<section class="voteBtn btn_section blind">
@@ -588,11 +608,13 @@
 					<input type="button" class="btnCommon vote_closeBtn" value="창닫기" />
 				</section>
 				<section class="reVoteBtn btn_section blind">
-					<input type="button" id="re_voteBtn" class="btnCommon" value="재투표하기" />
-					<input type="button" class="btnCommon vote_closeBtn" value="창닫기" />
+					<input type="button" id="re_voteBtn" class="btnCommon"
+						value="재투표하기" /> <input type="button"
+						class="btnCommon vote_closeBtn" value="창닫기" />
 				</section>
 				<section class="view_closeBtn btn_section blind">
-					<input type="button" id="view_closeBtn2" class="btnCommon" value="닫기" />
+					<input type="button" id="view_closeBtn2" class="btnCommon"
+						value="닫기" />
 				</section>
 			</div>
 		</div>
@@ -607,8 +629,9 @@
 				<span id="confirm_txt">삭제하시겠습니까?</span>
 			</div>
 			<div id="confirm_btn_wrap">
-				<input type="button" id="yesBtn" class="yesBtn confirm_btn_common" value="예" />
-				<input type="button" id="noBtn" class="noBtn confirm_btn_common" value="아니오" />
+				<input type="button" id="yesBtn" class="yesBtn confirm_btn_common"
+					value="예" /> <input type="button" id="noBtn"
+					class="noBtn confirm_btn_common" value="아니오" />
 			</div>
 		</div>
 	</div>
@@ -618,43 +641,45 @@
 	<!-- *******************  -->
 	<!-- 투표 생성 / 수정 -->
 	<!-- *******************  -->
-	
+
 	<!-- Start voteWrap -->
 	<div id="voteWrap" class="vote-create-update-wrap blind">
 		<!-- Start vote_popup -->
 		<div id="vote_popup">
-	
+
 			<!-- 이벤트 생성일 때 SHOW -->
 			<div id="event-create" class="blind">
 				<h1 id="title">투표 생성</h1>
-	
+
 				<!-- Start sectionWrap -->
 				<div id='sectionWrap'>
 					<section id="titleSection" class="section_common">
 						<h4 class="section_title">투표 제목</h4>
 						<section id="title_section">
-							<input type="text" id="vote_title" class="common" placeholder="투표 제목"> 
-							<span id="title_text_length" class="text_length">0/15</span>
+							<input type="text" id="vote_title" class="common"
+								placeholder="투표 제목"> <span id="title_text_length"
+								class="text_length">0/15</span>
 						</section>
 					</section>
-	
-					<section id = "endDateSection" class = "section_common">
-						<h4 class = "section_title">투표 마감 날짜 설정</h4>
-						<div class = "pickerWrap">
-							<input type="text" id="vote_endDate" class="dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
+
+					<section id="endDateSection" class="section_common">
+						<h4 class="section_title">투표 마감 날짜 설정</h4>
+						<div class="pickerWrap">
+							<input type="text" id="vote_endDate" class="dateCommon"
+								autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
 							<!-- START TIMEPICKER -->
-							<div id = "timepicker_box" class="timepicker_box dateCommon">
-								<section class = "timeSection">
+							<div id="timepicker_box" class="timepicker_box dateCommon">
+								<section class="timeSection">
 									<span id="timeValue">--:--:--</span>
 								</section>
-	
-								<section class = "timeImgSection">
+
+								<section class="timeImgSection">
 									<img src="/meet-a-bwa/resources/img/clock.svg" id="timeImg"
 										alt="시계이미지" />
 								</section>
-	
+
 								<div id="customTimePicker" class="customTimePicker blind">
-									<div id="ampm_choice" class = "ampm_choice">
+									<div id="ampm_choice" class="ampm_choice">
 										<ul id="ampm_listWrap">
 											<li class="sample ampm-list"></li>
 										</ul>
@@ -674,73 +699,78 @@
 							<!-- END TIMEPICKER -->
 						</div>
 					</section>
-	
+
 					<section class="section_common">
 						<h4 class="section_title">투표 내용</h4>
 						<section>
-							<textarea id="vote_description" class="vote_description common" placeholder="투표 내용"></textarea>
+							<textarea id="vote_description" class="vote_description common"
+								placeholder="투표 내용"></textarea>
 							<span id="description_text_length" class="text_length">0/150</span>
 						</section>
 					</section>
-	
+
 					<section class="voteSection section_common">
 						<h4 class="section_title">투표 항목</h4>
-	
+
 						<div id="vote_list_Wrap">
 							<!-- SAMPLE VOTE LIST -->
 							<div class="vote_list sample blind">
-								<label class="list_title"></label>
-								<input type="text" class="list_text" /> 
-								<img src="/meet-a-bwa/resources/img/close.svg" alt="항목 삭제 이미지" class="removeBtn" />
+								<label class="list_title"></label> <input type="text"
+									class="list_text" /> <img
+									src="/meet-a-bwa/resources/img/close.svg" alt="항목 삭제 이미지"
+									class="removeBtn" />
 							</div>
 						</div>
 					</section>
 					<input type="button" id="vote_list_plusBtn" value="투표 항목 추가" />
 				</div>
 				<!-- END sectionWrap -->
-	
+
 				<div class="btnWrap">
 					<input type="button" id="vote_createBtn" class="btnCommon"
-						value="투표 만들기"> 
-					<input type="button" id="vote_cancleBtn" class="btnCommon" value="취소">
+						value="투표 만들기"> <input type="button" id="vote_cancleBtn"
+						class="btnCommon" value="취소">
 				</div>
 			</div>
 			<!-- END 투표 생성 -->
-	
+
 			<!--  투표 수정일 때 SHOW -->
 			<div id="event-update" class="blind">
 				<div id="topSection">
 					<h1 id="update-title">투표 수정</h1>
-					<img src="/meet-a-bwa/resources/img/close.svg" alt="close이미지" id="closeBtn" />
+					<img src="/meet-a-bwa/resources/img/close.svg" alt="close이미지"
+						id="closeBtn" />
 				</div>
-	
+
 				<!-- Start sectionWrap -->
 				<div id='sectionWrap'>
 					<section id="titleSection" class="section_common">
 						<h4 class="section_title">투표 제목</h4>
 						<section id="title_section">
-							<input type="text" id="u_vote_title" class="common" placeholder="투표 제목"> 
-							<span id="u_title_text_length" class="text_length">0/15</span>
+							<input type="text" id="u_vote_title" class="common"
+								placeholder="투표 제목"> <span id="u_title_text_length"
+								class="text_length">0/15</span>
 						</section>
 					</section>
-	
+
 					<section id="endDateSection" class="endDateSection section_common">
 						<h4 class="section_title">투표 마감 시간/날짜 설정</h4>
 						<div class="pickerWrap">
-							<input type="text" id="u_vote_endDate" class="vote_endDate dateCommon"
-								autocomplete="off" placeholder="날짜를 선택해주세요." readonly>
-							<div id = "u_timepicker_box"class="timepicker_box dateCommon">
-								<section class ="timeSection">
+							<input type="text" id="u_vote_endDate"
+								class="vote_endDate dateCommon" autocomplete="off"
+								placeholder="날짜를 선택해주세요." readonly>
+							<div id="u_timepicker_box" class="timepicker_box dateCommon">
+								<section class="timeSection">
 									<span id="u_timeValue">--:--:--</span>
 								</section>
-	
-								<section class = "timeImgSection">
+
+								<section class="timeImgSection">
 									<img src="/meet-a-bwa/resources/img/clock.svg" id="timeImg"
 										alt="시계이미지" />
 								</section>
-	
+
 								<div id="u_customTimePicker" class="customTimePicker blind">
-									<div id="u_ampm_choice" class = "ampm_choice">
+									<div id="u_ampm_choice" class="ampm_choice">
 										<ul id="u_ampm_listWrap">
 											<li class="sample ampm-list"></li>
 										</ul>
@@ -759,50 +789,54 @@
 							</div>
 						</div>
 					</section>
-	
+
 					<section class="section_common">
 						<h4 class="section_title">투표 내용</h4>
 						<section>
-							<textarea id="u_vote_description" class="vote_description common" placeholder="투표 내용"></textarea>
+							<textarea id="u_vote_description" class="vote_description common"
+								placeholder="투표 내용"></textarea>
 							<span id="u_description_text_length" class="text_length">0/150</span>
 						</section>
 					</section>
-	
+
 					<section class="voteSection section_common">
 						<h4 class="section_title">투표 항목 (* 수정 불가)</h4>
-	
+
 						<div id="u_vote_list_Wrap">
 							<!-- SAMPLE VOTE LIST -->
 							<div class="vote_list sample blind">
-								<label class="list_title"></label> 
-								<input type="text" class="list_text" readonly/> 
+								<label class="list_title"></label> <input type="text"
+									class="list_text" readonly />
 							</div>
 						</div>
 					</section>
-	
+
 				</div>
 				<!-- END sectionWrap -->
-	
+
 				<div class="btnWrap">
-					<input type="button" id="vote_updateBtn" class="btnCommon" value="투표 수정">
+					<input type="button" id="vote_updateBtn" class="btnCommon"
+						value="투표 수정">
 				</div>
 			</div>
 			<!-- END 투표 수정 -->
 		</div>
 		<!-- END vote_popup -->
-	
+
 	</div>
 	<div id="confirmWrap" class="update-confirm-wrap blind">
 		<div id="confirm_head">
-			<img src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
+			<img
+				src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
 				id="more-horizontal" />
 		</div>
 		<div id="confirm_txt_wrap">
 			<span id="confirm_txt">투표를 종기종료 하시겠습니까?</span>
 		</div>
 		<div id="confirm_btn_wrap">
-			<input type="button" id="end_yesBtn" class="yesBtn confirm_btn_common" value="예" />
-			<input type="button" id="end_noBtn" class="noBtn confirm_btn_common" value="아니오" />
+			<input type="button" id="end_yesBtn"
+				class="yesBtn confirm_btn_common" value="예" /> <input type="button"
+				id="end_noBtn" class="noBtn confirm_btn_common" value="아니오" />
 		</div>
 	</div>
 	<!-- END voteWrap -->
@@ -814,6 +848,6 @@
 		<span id="toast_txt"></span>
 	</div>
 	<!-- END toastWrap -->
-    
+
 </body>
 </html>

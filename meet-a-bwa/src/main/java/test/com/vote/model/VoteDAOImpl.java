@@ -694,4 +694,62 @@ public class VoteDAOImpl implements VoteDAO {
 		}
 		return flag;
 	}
+
+
+	@Override
+	public List<VoteListVO> vote_list_selectAll(String activity_no) {
+System.out.println("vote selectAll()..");
+		
+		List<VoteListVO> vvos = new ArrayList<VoteListVO>();
+		
+		try {
+			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
+			System.out.println("Vote List SelectAll conn secceed");
+			
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ALL_A);
+			pstmt.setString(1, activity_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				VoteListVO vvo = new VoteListVO();
+				vvo.setVote_no(rs.getString("VOTE_NO"));
+				vvo.setVote_title(rs.getString("VOTE_TITLE"));
+				vvo.setVote_description(rs.getString("VOTE_DESCRIPTION"));
+				vvo.setVote_eod(rs.getString("VOTE_EOD"));
+				vvo.setVote_state(rs.getString("VOTE_STATE"));
+				vvo.setUser_no(rs.getString("USER_NO"));
+				vvo.setActivity_no(rs.getString("ACTIVITY_NO"));
+				vvo.setUser_cnt(rs.getInt("USER_CNT"));
+				
+				vvos.add(vvo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return vvos;
+	}
 }
