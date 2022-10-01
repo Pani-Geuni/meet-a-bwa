@@ -10,7 +10,7 @@ import test.com.vote.model.VoteDAO;
 import test.com.vote.model.VoteDAOImpl;
 import test.com.vote.model.VoteResultVO;
 
-public class VoteResult_InsertAction {
+public class M_VoteResult_InsertAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String vote_no = request.getParameter("vote_no");
 		String user_no = request.getParameter("user_no");

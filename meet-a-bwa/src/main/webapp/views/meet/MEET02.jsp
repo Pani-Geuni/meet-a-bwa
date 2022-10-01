@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/common/toast.css" />
 
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
