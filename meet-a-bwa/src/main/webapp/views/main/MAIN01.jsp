@@ -83,30 +83,34 @@
 	    	 
 	    	 // 모임 좋아요 처리
 	    	 let like_meet_arr = $.cookie('like_meet');
-	    	 like_meet_arr = like_meet_arr.split("/");
-	    	 
-    		 let meet_elements = $(".content_list.meet-list").slice();
-	    	 for(like_meet of like_meet_arr){
-	    		 for(list of meet_elements){
-		    		 if($(list).attr("idx") == like_meet) {
-			    		 $(list).find(".beforeLike_heart").addClass("blind");
-			    		 $(list).find(".afterLike_heart").removeClass("blind");
+	    	 if(like_meet_arr != undefined){
+	   	 		like_meet_arr = like_meet_arr.split("/");
+		    	 
+	    		 let meet_elements = $(".content_list.meet-list").slice();
+		    	 for(like_meet of like_meet_arr){
+		    		 for(list of meet_elements){
+			    		 if($(list).attr("idx") == like_meet) {
+				    		 $(list).find(".beforeLike_heart").addClass("blind");
+				    		 $(list).find(".afterLike_heart").removeClass("blind");
+			    		 }
 		    		 }
-	    		 }
+		    	 }
 	    	 }
 	    	 
 	    	// 액티비티 좋아요 처리
 	    	 let like_activity_arr = $.cookie('like_activity');
-	    	 like_activity_arr = like_activity_arr.split("/");
-	    	 
-    		 let activity_elements = $(".content_list.activity-list").slice();
-	    	 for(like_activity of like_activity_arr){
-	    		 for(list of activity_elements){
-		    		 if($(list).attr("idx") == like_activity) {
-			    		 $(list).find(".beforeLike_heart").addClass("blind");
-			    		 $(list).find(".afterLike_heart").removeClass("blind");
+	    	 if(like_activity_arr != undefined){
+		    	 like_activity_arr = like_activity_arr.split("/");
+		    	 
+	    		 let activity_elements = $(".content_list.activity-list").slice();
+		    	 for(like_activity of like_activity_arr){
+		    		 for(list of activity_elements){
+			    		 if($(list).attr("idx") == like_activity) {
+				    		 $(list).find(".beforeLike_heart").addClass("blind");
+				    		 $(list).find(".afterLike_heart").removeClass("blind");
+			    		 }
 		    		 }
-	    		 }
+		    	 }
 	    	 }
 	   
     	});

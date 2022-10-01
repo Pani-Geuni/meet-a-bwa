@@ -9,7 +9,6 @@
     letter-spacing: 4px; /* 글자간격 조정 */
 }
 #closeBtn{
-    width: 20%;
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
 }

@@ -1,8 +1,5 @@
 package test.com.user.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 public interface UserDB {
 	String DRIVER_NAME = "oracle.jdbc.OracleDriver";
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";

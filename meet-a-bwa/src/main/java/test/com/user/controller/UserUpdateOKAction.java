@@ -2,13 +2,12 @@ package test.com.user.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 //import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -21,7 +20,6 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
-
 
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
