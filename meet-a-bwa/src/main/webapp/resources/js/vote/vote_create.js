@@ -7,7 +7,6 @@ $(function(){
     
     plus_list();
 	
-	
     
     
     /************************************************ */
@@ -30,7 +29,7 @@ $(function(){
 		$("#vote_endDate").val("");
 		$("#vote_description").val("");
 		
-		$("#timeValue").text("");
+		$("#timeValue").text("--:--:--");
 		$(".ampm-list").removeClass("time_choice");
 		$(".time-list").removeClass("time_choice");
 		$(".minute-list").removeClass("time_choice");

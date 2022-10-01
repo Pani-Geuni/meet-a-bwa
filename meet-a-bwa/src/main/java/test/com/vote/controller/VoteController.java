@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class VoteController
  */
-@WebServlet({ "/voteOK.do", "/re_voteOK.do", "/m_vote_create.do", "/m_vote_update.do", "/m_vote_view.do", "/m_vote_delete.do" })
+@WebServlet({ "/voteOK.do", "/re_voteOK.do", "/m_vote_create.do", "/m_vote_update.do", "/m_vote_view.do", "/m_vote_delete.do", "/m_vote_stateUpdate.do" })
 public class VoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,11 +27,9 @@ public class VoteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sPath = request.getServletPath();
-		System.out.println("doGet : " + sPath);
+		System.out.println("doGet() : " + sPath);
 		
-		if (sPath.equals("/m_vote_create.do")) {
-			new M_VoteCreateAction().execute(request, response);
-		} else if (sPath.equals("/m_vote_view.do")) {
+		if (sPath.equals("/m_vote_view.do")) {
 			new M_VoteSelectOneAction().execute(request, response);
 		} else if (sPath.equals("/m_vote_delete.do")) {
 			new M_VoteDeleteAction().execute(request, response);
@@ -39,15 +37,23 @@ public class VoteController extends HttpServlet {
 			new VoteResult_InsertAction().execute(request, response);
 		} else if (sPath.equals("/re_voteOK.do")) {
 			new VoteResult_updateAction().execute(request, response);
-		}
+		} else if(sPath.equals("/m_vote_stateUpdate.do")){
+			new M_VoteStateUpdateAction().execute(request, response);
+		} 
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String sPath = request.getServletPath();
+		System.out.println("doPost() : " + sPath);
+		
+		if(sPath.equals("/m_vote_update.do")) {
+			new M_VoteUpdateAction().execute(request, response);
+		}else if (sPath.equals("/m_vote_create.do")) {
+			new M_VoteCreateAction().execute(request, response);
+		}
 	}
 
 }
