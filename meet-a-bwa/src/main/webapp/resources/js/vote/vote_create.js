@@ -28,6 +28,8 @@ $(function(){
 		$("#vote_title").val("");
 		$("#vote_endDate").val("");
 		$("#vote_description").val("");
+		$("#title_text_length").text("0/15");
+		$("#description_text_length").text("0/15");
 		
 		$("#timeValue").text("--:--:--");
 		$(".ampm-list").removeClass("time_choice");
