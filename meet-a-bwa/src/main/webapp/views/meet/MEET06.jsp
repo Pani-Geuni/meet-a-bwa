@@ -45,8 +45,8 @@
 		console.log(user_id);
 		
 		window.check = function() {
-			let meet_name = $("#meet_name").val().trim().length;
-			let meet_description = $("#meet_description").val().trim().length;
+			let meet_name = $.trim($("#meet_name").val()).length;
+			let meet_description = $.trim($("#meet_description").val()).length;
 			let nop = $("#numberofpeople").val();
 			
 			console.log(meet_name);

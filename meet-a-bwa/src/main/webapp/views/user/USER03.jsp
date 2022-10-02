@@ -72,12 +72,12 @@
 	function check() {
 
 		console.log($("#id").val());
-
-		let pw = $("#pw").val().trim().length;
-		let pw_check = $("#pw_check").val().trim().length;
-		let nickname = $("#nickname").val().trim().length;
-		let email = $("#email").val().trim().length;
-		let tel = $("#tel").val().trim().length;
+		
+		let pw = $.trim($("#pw").val()).length;
+		let pw_check = $.trim($("#pw_check").val()).length;
+		let u_nickname = $.trim($("#u_nickname").val()).length;
+		let email = $.trim($("#email").val()).length;
+		let tel = $.trim($("#tel").val()).length;
 
 		console.log(pw_check);
 		console.log(nickname);
