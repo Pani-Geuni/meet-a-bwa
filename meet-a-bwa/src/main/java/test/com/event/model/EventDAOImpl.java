@@ -5,6 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import test.com.vote.model.VoteDB;
+import test.com.vote.model.VoteListVO;
+import test.com.vote.model.VoteVO;
 
 public class EventDAOImpl implements EventDAO{
 	private Connection conn = null;
@@ -63,5 +69,61 @@ public class EventDAOImpl implements EventDAO{
 			}
 		}
 		return flag;
+	}
+
+	@Override
+	public List<EventVO> event_list_selectAll(String activity_no) {
+		System.out.println("event selectAll()..");
+		
+		List<EventVO> evos = new ArrayList<EventVO>();
+		
+		try {
+			conn = DriverManager.getConnection(EventDB.URL, EventDB.USER, EventDB.PASSWORD);
+			System.out.println("Event List SelectAll conn secceed");
+			
+			pstmt = conn.prepareStatement(EventDB.SQL_EVENT_SELECT_ALL_A);
+			pstmt.setString(1, activity_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				EventVO evo = new EventVO();
+				evo.setEvent_no(rs.getString("EVENT_NO"));
+				evo.setEvent_title(rs.getString("EVENT_TITLE"));
+				evo.setEvent_description(rs.getString("EVENT_DESCRIPTION"));
+				evo.setEvent_date(rs.getTimestamp("EVENT_DATE"));
+				evo.setEvent_d_day(rs.getTimestamp("EVENT_D_DAY"));
+				evo.setActivity_no(rs.getString("ACTIVITY_NO"));
+				evo.setUser_no(rs.getString("USER_NO"));
+				
+				evos.add(evo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return evos;
 	}
 }

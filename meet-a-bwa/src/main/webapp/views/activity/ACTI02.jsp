@@ -216,7 +216,7 @@
                <!-- 가입 전 -->
                <!-- 가입후, 개설자 -->
                <c:choose>
-				<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(rvos, list.user_no)) }">
+				<c:when test="${(list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(rvos, list.user_no))}">
                <button type="button" id="join_activity_btn" idx="${list.user_no}">
                   <a>액티비티 가입하기</a>
                </button>
@@ -232,20 +232,19 @@
                      <label for="activity_no">activity_no:</label>${avo2.activity_no}<input
                         id="activity_no" name="activity_no" value="${avo2.activity_no}">
                   </section>
-                  <!-- 연결되면 아래 idx 없애고 ${avo2.activity_no} 따로 하나 넣으면됨. -->
                   <section id="introHeader">
                      <h3 id="introTitle">액티비티 소개</h3>
                      <!--액티비티 개설자만 보이는 수정/삭제 버튼-->
                      <!--user에게 보이는 탈퇴 버튼-->
                      <c:choose>
-					<c:when test="${(list.isLogin eq true) || (avo2.user_no eq list.user_no)}">
+					<c:when test="${(list.isLogin eq true) && (avo2.user_no eq list.user_no)}">
                      <input type="image" src="/meet-a-bwa/resources/img/edit.svg"
                         class="activityUpdateBtn font_size_10" value="수정"> <input
                         type="image" src="/meet-a-bwa/resources/img/remove.svg"
                         class="activityDeleteBtn font_size_10" value="삭제">
                     </c:when>
                         
-                     <c:when test="${(list.isLogin eq true) || (fn:containsIgnoreCase(rvos, list.user_no))}">
+                     <c:when test="${(list.isLogin eq true) && (fn:containsIgnoreCase(rvos, list.user_no))}">
                      <input type="image" src="/meet-a-bwa/resources/img/exit.svg"
                         class="activityExitBtn font_size_10" value="탈퇴"
                         idx="${list.user_no}">
@@ -278,7 +277,7 @@
 
 
 				<c:choose>
-				<c:when test="${ (not fn:containsIgnoreCase(rvos, list.user_no)) }">
+				<c:when test="${(not fn:containsIgnoreCase(rvos, list.user_no))}">
                <div id="pheed_1">
                   <p id="defaultPheedText_1">액티비티에 가입해서 더 많은 정보를 찾아보세요!</p>
                </div>
@@ -301,21 +300,44 @@
                      <!--pheedEventHeader end-->
 					
                      <section>
+                     <c:forEach var="evos" items="${evos}">
+                     <section class="blind">
+                              <label for="activity_no">activity_no:</label>${evos.activity_no}<input
+                                 id="activity_no" name="activity_no"
+                                 value="${evos.activity_no}">
+                     </section>
+                     
+                         <c:if test="${evos eq null}">
                         <section class="pheedEventBody blind">
                            <p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
                         </section>
-					
-                        <div class="content_list_activity event-list" idx="">
+						</c:if>
+						 <c:if test="${evos ne null}">
+                        <div class="content_list_activity event-list" idx="${evos.event_no}">
+                         <section class="blind">
+                                 <label for="event_no">vote_no:</label>${evos.event_no}<input
+                                    id="event_no" name="event_no" value="${evos.event_no}">
+                              </section>
+                              <section class="blind">
+                                 <label for="user_no">user_no:</label>${evos.user_no}<input
+                                    id="usre_no" name="user_no" value="${evos.user_no}">
+                              </section>
+                              <section class="blind">
+                                 <label for="activity_no">event_no:</label>${evos.activity_no}<input
+                                    id="activity_no" name="activity_no"
+                                    value="${evos.activity_no}" idx="${evos.vote_no}">
+                              </section>
                            <div class="event-list-wrap">
                               <div class="listCommon">
-                                 <span class="content_title">11월 12일 모임</span>
+                                 <span class="content_title">${evos.vote_title}</span>
                               </div>
                               <div class="description_list listCommon">
-                                 <span class="content_description"> 2022년 11월 12일의 모임
-                                    정보를 확인하세요! </span>
+                                 <span class="content_description"> ${vvos.vote_description}</span>
                               </div>
                            </div>
                         </div>
+                        </c:if>
+                        </c:forEach>
                      </section>
                      <!--pheedEventBody end-->
                   </section>
@@ -334,7 +356,7 @@
                         <!--pheedVoteHeader end-->
 
                         <section>
-                         <c:forEach var="vvos" items="${vvos}" >
+                         <c:forEach var="vvos" items="${vvos}">
                         <section class="blind">
                               <label for="activity_no">activity_no:</label>${vvos.activity_no}<input
                                  id="activity_no" name="activity_no"
@@ -453,7 +475,7 @@
                </section>
                <section class="blind">
                   <label for="meet_no">meet_no:</label> <input type="text"
-                     id="meet_no" name="meet_no" value="M1001">
+                     id="meet_no" name="meet_no" value="${avo2.meet_no}">
                </section>
                <!-- ************************************************************* -->
 
