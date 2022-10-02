@@ -949,6 +949,55 @@
                     </ul>
                 </section>
                 <!-- END info_section -->
+
+                <!-- START team_section -->
+                <section id = "team_section">
+                    <fieldset id = "team_field">
+                        <legend class = "field_title">조 편성(* 이벤트 생성 이후에 수정 불가)</legend>
+                        <div id = "field_content" class = "blind">
+                            <ul id = "team_list_wrap">
+                                <li class = "team_list">
+                                    <span class = "team_num">1조</span>
+                                    <p class = "memberWrap">
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                    </p>
+                                </li>
+                                <li class = "team_list">
+                                    <span class = "team_num">2조</span>
+                                    <p class = "memberWrap">
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </section>
+                <!-- END team_section -->
             </div>
             <!-- END sectionWrap -->
 
@@ -997,7 +1046,7 @@
 	
 	                <section id = ""  class = "choice_date event-section_common">
 	                    <h4 class = "section_title">이벤트 시간/날짜 설정</h4>
-	                    <div id = "" class = "e_pickerWrap">
+	                    <div id = "" class = "pickerWrap">
 	                        <input type = "text" id = "eventDate" class = "eventDate dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요.">
 	
 	                        <!-- START TIMEPICKER -->
@@ -1011,18 +1060,18 @@
 	                            </section>
 	    
 	                            <div id = "" class = "customTimePicker blind">
-	                                <div id = "e_ampm_choice" class = "ampm_choice">
-	                                    <ul id = "e_ampm_listWrap">
+	                                <div id = "ampm_choice" class = "ampm_choice">
+	                                    <ul id = "ampm_listWrap">
 	                                        <li class = "sample ampm-list"></li>
 	                                    </ul>
 	                                </div>
-	                                <div id = "e_time_choice" class = "choiceCommon">
-	                                    <ul id = "e_time_listWrap">
+	                                <div id = "time_choice" class = "choiceCommon">
+	                                    <ul id = "time_listWrap">
 	                                        <li class = "sample time-list"></li>
 	                                    </ul>
 	                                </div>
-	                                <div id = "e_minute_choice" class = "choiceCommon">
-	                                    <ul id = "e_minute_listWrap">
+	                                <div id = "minute_choice" class = "choiceCommon">
+	                                    <ul id = "minute_listWrap">
 	                                        <li class = "sample minute-list"></li>
 	                                    </ul>
 	                                </div>
@@ -1039,6 +1088,47 @@
 	                        <span id = "event_description_text_length" class = "text_length">0/200</span>
 	                    </section>
 	                </section>
+	
+	                <section id = "teamSection"  class = "event-section_common">
+	                    <h4 id = "team_title" class = "section_title">조 편성(*생성 이후 수정 불가)</h4>
+	
+	                    <!-- START selectWrap -->
+	                    <div class = "selectWrap sample blind">
+	                        <div class = "select_custom_wrap">
+	                            <div class = "e_select_custom">
+	                                <div class = "selectedWrap">
+	                                    <div class = "selected_value">
+	                                        <section class = "before_choice event-section_common">
+	                                            <span>+ 조원 선택</span>
+	                                        </section>
+	    
+	                                        <section class = "after_choice blind">
+	                                            <span class = "team_mem_tag event-section_common sample_tag blind"></span>
+	                                        </section>
+	                                    </div>
+	                                    <img src = "/meet-a-bwa/resources/img/dropdown.svg" alt = "dropdown img" class = "dropdown_img2" />                     
+	                                </div>
+	
+	                                <div class = "imgWrap">
+	                                    <img src = "/meet-a-bwa/resources/img/close.png" alt = "항목 삭제 이미지" class = "removeBtn" />
+	                                </div>
+	                            </div>
+	
+	                            <div class = "selectFlag blind">
+	                                <img src = "/meet-a-bwa/resources/img/select_down.png" class = "dropDown_img">
+	                                <ul class = "optionWrap">
+	                                    <li class = "li_common">김예은</li>
+	                                    <li class = "li_common">최진실</li>
+	                                    <li class = "li_common">전판근</li>
+	                                </ul>
+	                            </div>
+	                        </div>
+	                        <!-- END select_custom -->
+	                    </div>
+	                    <!-- END selectWrap -->
+	                </section>
+	                <!-- END teamSection -->
+	                <input type ="button" id = "team_plus_btn" value="조편성 추가"/>
             	</div>
 	            <div class = "btnWrap">
 	                <input type ="button" id = "event_createBtn" class = "btnCommon" value="이벤트 생성">
@@ -1060,15 +1150,15 @@
                 <section id = "" class = "e_titleSection event-section_common">
                     <h4 class = "section_title">이벤트 제목</h4>
                     <section id = "title_section">
-                        <input type = "text" id = "event_u_title" class = "event_title common" placeholder="이벤트 제목">
+                        <input type = "text" id = "event_u_event_title" class = "event_title common" placeholder="이벤트 제목">
                         <span id = "event_u_title_text_length" class = "text_length">0/15</span>
                     </section>
                 </section>
 
                 <section id = ""  class = "choice_date event-section_common">
                     <h4 class = "section_title">이벤트 시간/날짜 설정</h4>
-                    <div id = "" class = "e_pickerWrap">
-                        <input type = "text" id = u_eventDate" class = "eventDate dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요.">
+                    <div id = "" class = "pickerWrap">
+                        <input type = "text" id = "event_u_eventDate" class = "eventDate dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요.">
 
                         <!-- START TIMEPICKER -->
                         <div id = "" class = "e_timepicker_box dateCommon">
@@ -1108,6 +1198,27 @@
                         <textarea id = "event_u_event_description" class = "event_description common" placeholder="이벤트 내용"></textarea>
                         <span id = "event_u_description_text_length" class = "text_length">0/150</span>
                     </section>
+                </section>
+
+                <section id = "u_teamSection"  class = "event-section_common">
+                    <h4 class = "section_title">조 편성(* 수정 불가)</h4>
+
+                    <!-- START SAMPLE selectWrap -->
+                    <div class = "selectWrap sample blind">
+                        <div class = "select_custom_wrap">
+                            <div class = "e_select_custom">
+                                <div class = "selectedWrap">
+                                    <div class = "selected_value">    
+                                        <section class = "after_choice blind">
+                                            <span class = "team_mem_tag section_common sample_tag blind"></span>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END select_custom -->
+                    </div>
+                    <!-- END SAMPLE selectWrap -->
                 </section>
                     
             </div>

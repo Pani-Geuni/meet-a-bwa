@@ -129,7 +129,7 @@
 .timepicker_box{
     position: relative;
 
-    display: flex;
+    display: flex !important;
     align-items: center;
 }
 .timeSection{
