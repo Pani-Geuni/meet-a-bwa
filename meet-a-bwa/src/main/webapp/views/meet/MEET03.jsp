@@ -144,10 +144,11 @@
 							<a href="#">+</a>
 						</p>
 					</div>
-					<ul class="right-summary-list-contents">
-						<li><p>액티비티1</p></li>
-						<li><p>액티비티2</p></li>
-					</ul>
+					<ul class="right-summary-list-contents" id="activity-summary-list">
+								<c:forEach var="avo" items="${ avos }">
+									<li class="activity_list_item" idx="${ avo.activity_no }"><p>${ avo.activity_name }</p></li>
+								</c:forEach>
+							</ul>
 				</div>
 				<div class="right-summary-list" id="vote-summary-list">
 					<div class="right-summary-list-top">
