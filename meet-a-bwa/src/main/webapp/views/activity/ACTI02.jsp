@@ -143,7 +143,6 @@
 			});
 		});
 
-		
 	});
 </script>
 
@@ -203,11 +202,12 @@
 					</div>
 
 
-					<!-- 가입 전 --><!-- 가입후, 개설자 -->
+					<!-- 가입 전 -->
+					<!-- 가입후, 개설자 -->
 					<button type="button" id="join_activity_btn">
 						<a href="#">액티비티 가입하기</a>
 					</button>
-					
+
 
 
 				</div>
@@ -281,22 +281,22 @@
 							</section>
 							<!--pheedEventHeader end-->
 
-								<section>
-									<section class="pheedEventBody blind">
-										<p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
-									</section>
-								
-										<div class="content_list_activity event-list" idx="">
-											<div class="event-list-wrap">
-												<div class="listCommon">
-													<span class="content_title">11월 12일 모임</span>
-												</div>
-												<div class="description_list listCommon">
-													<span class="content_description"> 2022년 11월 12일의 모임
-														정보를 확인하세요! </span>
-												</div>
-											</div>
+							<section>
+								<section class="pheedEventBody blind">
+									<p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
+								</section>
+
+								<div class="content_list_activity event-list" idx="">
+									<div class="event-list-wrap">
+										<div class="listCommon">
+											<span class="content_title">11월 12일 모임</span>
 										</div>
+										<div class="description_list listCommon">
+											<span class="content_description"> 2022년 11월 12일의 모임
+												정보를 확인하세요! </span>
+										</div>
+									</div>
+								</div>
 							</section>
 							<!--pheedEventBody end-->
 						</section>
@@ -313,54 +313,60 @@
 									</button>
 								</section>
 								<!--pheedVoteHeader end-->
-								
+
 								<section>
-										<section class="pheedVoteBody blind">
-											<p id="VotedefaultPheedText">생성된 투표가 없습니다.</p>
-										</section>
+								 <c:forEach var="vvos" items="${vvos}" >
+								<section class="blind">
+										<label for="activity_no">activity_no:</label>${vvos.activity_no}<input
+											id="activity_no" name="activity_no"
+											value="${vvos.activity_no}">
+									</section>
+									<section class="pheedVoteBody blind">
+										<p id="VotedefaultPheedText">생성된 투표가 없습니다.</p>
+									</section>
 									
-											<div class="content_list_activity event-list vote_action"
-												 idx="V1001">
-												<section class="blind">
-													<label for="vote_no">vote_no:</label>${vvos.vote_no}<input
-														id="vote_no" name="vote_no" value="${vvos.vote_no}">
-												</section>
-												<section class="blind">
-													<label for="vote_state">vote_state:</label>${vvos.vote_state}<input
-														id="vote_state" name="vote_state"
-														value="${vvos.vote_state}">
-												</section>
-												<section class="blind">
-													<label for="user_no">user_no:</label>${vvos.user_no}<input
-														id="usre_no" name="user_no" value="${vvos.user_no}">
-												</section>
-												<section class="blind">
-													<label for="activity_no">vote_no:</label>${vvos.activity_no}<input
-														id="activity_no" name="activity_no"
-														value="${vvos.activity_no}">
-												</section>
-												<div class="vote-list-wrap" idx="${vvos.vote_no}">
-													<div class="listCommon">
-														<span class="content_title">${vvos.vote_title}</span>
-													</div>
-													<div class="description_list listCommon">
-														<span class="content_description">
-															${vvos.vote_content}</span>
-													</div>
-													<div class="meet_info">
-														<div class="meet_member_info">
-															<span class="member_cnt member_ment">${vvos.user_cnt}명</span>
-															<span class="member_ment">참여 중</span>
-														</div>
-														<img src="/meet-a-bwa/resources/img/smallLine.png"
-															class="smallLine">
-														<div class="period_info">
-															<span class="member_ment">투표 마감 : </span> <span
-																class="member_ment">${vvos.vote_eod}</span>
-														</div>
-													</div>
+									<div class="content_list_activity event-list vote_action"
+										idx="${vvos.vote_no}">
+										<section class="blind">
+											<label for="vote_no">vote_no:</label>${vvos.vote_no}<input
+												id="vote_no" name="vote_no" value="${vvos.vote_no}">
+										</section>
+										<section class="blind">
+											<label for="vote_state">vote_state:</label>${vvos.vote_state}<input
+												id="vote_state" name="vote_state" value="${vvos.vote_state}">
+										</section>
+										<section class="blind">
+											<label for="user_no">user_no:</label>${vvos.user_no}<input
+												id="usre_no" name="user_no" value="${vvos.user_no}">
+										</section>
+										<section class="blind">
+											<label for="activity_no">vote_no:</label>${vvos.activity_no}<input
+												id="activity_no" name="activity_no"
+												value="${vvos.activity_no}">
+										</section>
+										<div class="vote-list-wrap" idx="${vvos.vote_no}">
+											<div class="listCommon">
+												<span class="content_title">${vvos.vote_title}</span>
+											</div>
+											<div class="description_list listCommon">
+												<span class="content_description">
+													${vvos.vote_description}</span>
+											</div>
+											<div class="meet_info">
+												<div class="meet_member_info">
+													<span class="member_cnt member_ment">${vvos.user_cnt}명</span>
+													<span class="member_ment">참여 중</span>
+												</div>
+												<img src="/meet-a-bwa/resources/img/smallLine.png"
+													class="smallLine">
+												<div class="period_info">
+													<span class="member_ment">투표 마감 : </span> <span
+														class="member_ment">${vvos.vote_eod}</span>
 												</div>
 											</div>
+										</div>
+									</div>
+									</c:forEach>
 								</section>
 								<!--pheedVoteBody end -->
 							</section>
@@ -377,35 +383,35 @@
 								</section>
 								<!--pheedApplicationHeader end-->
 								<section>
-								
-										<section class="pheedApplicationBody blind">
-											<p id="AppplictiondefaultPheedText">생성된 활동이 없습니다.</p>
-										</section>
+
+									<section class="pheedApplicationBody blind">
+										<p id="AppplictiondefaultPheedText">생성된 활동이 없습니다.</p>
+									</section>
 									<!--pheedApplicationBody end-->
 
-											<div class="content_list_activity event-list" idx="">
-												<div class="recruit-list-wrap">
-													<div class="listCommon">
-														<span class="content_title">11월 12일 모임</span>
-													</div>
-													<div class="description_list listCommon">
-														<span class="content_description"> 2022년 11월 12일의
-															모임 정보를 확인하세요! </span>
-													</div>
-													<div class="meet_info">
-														<div class="meet_member_info">
-															<span class="member_cnt member_ment">19명</span> <span
-																class="member_ment">참여 중</span>
-														</div>
-														<img src="/meet-a-bwa/resources/img/smallLine.png"
-															class="smallLine">
-														<div class="period_info">
-															<span class="member_ment">신청 마감 : </span> <span
-																class="member_ment">2022년 9월 28일</span>
-														</div>
-													</div>
+									<div class="content_list_activity event-list" idx="">
+										<div class="recruit-list-wrap">
+											<div class="listCommon">
+												<span class="content_title">11월 12일 모임</span>
+											</div>
+											<div class="description_list listCommon">
+												<span class="content_description"> 2022년 11월 12일의 모임
+													정보를 확인하세요! </span>
+											</div>
+											<div class="meet_info">
+												<div class="meet_member_info">
+													<span class="member_cnt member_ment">19명</span> <span
+														class="member_ment">참여 중</span>
+												</div>
+												<img src="/meet-a-bwa/resources/img/smallLine.png"
+													class="smallLine">
+												<div class="period_info">
+													<span class="member_ment">신청 마감 : </span> <span
+														class="member_ment">2022년 9월 28일</span>
 												</div>
 											</div>
+										</div>
+									</div>
 
 								</section>
 								<!--pheedApplicationBody end-->
@@ -415,8 +421,8 @@
 						<!--voteApplication end-->
 					</section>
 					<!--pheed end-->
-					
-					
+
+
 					<!-- ************************************************************* -->
 					<!-- 액티비티 개설자와 해당 모임 -->
 					<section class="blind">
@@ -443,6 +449,56 @@
 	</div>
 	<!--bodyWrap end-->
 
+<!-- START LOGIN POPUP -->
+<div class="login-layer blind">
+	<div class="login-popup-wrap">
+		<div class="login-top">
+			<img id="logo" src="resources/img/logo.svg" alt="login logo image" />
+		</div>
+
+		<div class="login-middle">
+			<form action="/meet-a-bwa/m_loginOK.do" class="login-form"
+				method="post" id="loginForm">
+				<label for="id">아이디</label> <input type="text" id="idInput"
+					name="id" placeholder="아이디 입력" /> <label for="pw">비밀번호</label> <input
+					type="password" id="pwInput" name="pw" placeholder="비밀번호 입력" /> <input
+					type="submit" onsubmit="check_length();" value="로그인"> <input
+					type="button" value="창닫기" id="login-popup-closeBtn">
+			</form>
+
+			<div class="login-bottom">
+				<div>
+					<a href="">ID 찾기</a>
+				</div>
+				<div>
+					<a href="">PW 찾기</a>
+				</div>
+				<div>
+					<a href="/meet-a-bwa/u_insert.do">회원가입</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END LOGIN POPUP -->
+
+<!-- START LOGOUT POPUP -->
+<div class="logout-layer blind">
+	<div class="logout-popup-wrap">
+		<img src="resources/img/worry.svg" alt="logout worry img" />
+		<h1>
+			정말 로그아웃 <br /> 하시겠습니까?
+		</h1>
+
+		<div class="btn-group">
+			<a href="/meet-a-bwa/logoutOK.do">
+				<button class="btn-logout">로그아웃</button>
+			</a>
+			<button class="btn-cancel">취소</button>
+		</div>
+	</div>
+</div>
+<!-- END LOGOUT POPUP -->
 
 	<!-- popup -->
 

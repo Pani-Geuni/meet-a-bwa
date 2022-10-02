@@ -715,7 +715,7 @@ System.out.println("vote selectAll()..");
 				vvo.setVote_no(rs.getString("VOTE_NO"));
 				vvo.setVote_title(rs.getString("VOTE_TITLE"));
 				vvo.setVote_description(rs.getString("VOTE_DESCRIPTION"));
-				vvo.setVote_eod(rs.getString("VOTE_EOD"));
+				vvo.setVote_eod(rs.getTimestamp("VOTE_EOD"));
 				vvo.setVote_state(rs.getString("VOTE_STATE"));
 				vvo.setUser_no(rs.getString("USER_NO"));
 				vvo.setActivity_no(rs.getString("ACTIVITY_NO"));
