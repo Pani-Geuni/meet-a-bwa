@@ -22,6 +22,7 @@
 	<script src="/meet-a-bwa/resources/js/common/header.js"></script>
 	<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 	
+	<script src="/meet-a-bwa/resources/js/meet/meet-registered.js"></script>
 	<script src="/meet-a-bwa/resources/js/meet/meet-detail.js"></script>
 	<script src="/meet-a-bwa/resources/js/meet/meet-member-list.js"></script>
 	<title>모임 자세히 보기</title>
@@ -43,11 +44,11 @@
 							<h1 class="meet-info-title">모임소개</h1>
 							<c:choose>
 								<c:when test="${ mvo3.user_no eq list.user_no }">
-									<button class="btn-meet-info-edit"></button>
-									<button class="btn-meet-info-remove"></button>
+									<button class="btn-meet-info-edit" idx="${ mvo3.meet_no }"></button>
+									<button class="btn-meet-info-remove" idx="${ mvo3.meet_no }"></button>
 								</c:when>
 								<c:when test="${ fn:contains(m_list, list.user_no) }">
-									<button class="btn-meet-info-exit"></button>
+									<button class="btn-meet-info-exit" idx="${ mvo3.meet_no }"></button>
 								</c:when>
 							</c:choose>
 						</div>
