@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <aside class="meet-detail-aside">
 	<div class="meet-profile-img">
@@ -37,10 +38,10 @@
 		</c:if>
 	</div>
 
-	<!-- 로그인 전 -->
+	<!-- 로그인 전 혹은 가입 전-->
 	<!-- <button type="button" class="btn-meet join"> -->
 	<c:choose>
-		<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
+		<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(m_list, list.user_no)) }">
 			<button type="button" class="btn-meet join">
 				<a href="#">모임 가입하기</a>
 			</button>
@@ -51,8 +52,7 @@
 			<button type="button" id="btn-meet-write" class="btn-meet" onclick="writePopupShow()" idx="${ mvo3.meet_no }">글쓰기</button>
 			<button type="button" id="btn-activity-create" class="btn-meet" idx="${ mvo3.meet_no }">액티비티 개설</button>
 
-			<a class="meet-detail-link" href="./meet-info-detail.html">모임 자세히
-				보기</a>
+			<p class="meet-detail-link" idx="${ mvo3.meet_no }">모임 자세히 보기</p>
 		</c:when>
 	</c:choose>
 </aside>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="test.com.meetboard.model.MeetBoardVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +44,7 @@
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
 <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 
+<script src="/meet-a-bwa/resources/js/meet/meet-detail.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/meet-member-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
@@ -67,24 +69,30 @@
 			<jsp:include page="../../views/common/meetLeftSideBar.jsp"></jsp:include>
 
 			<c:choose>
-				<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
+				<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(m_list, list.user_no)) }">
 					<section class="meet-info-wrap">
 						<div class="meet-info-top">
 							<h1 class="meet-info-title">모임소개</h1>
+							<c:if test="${ mvo3.user_no eq list.user_no }">
 							<button class="btn-meet-info-edit"></button>
 							<button class="btn-meet-info-remove"></button>
+							</c:if>
 						</div>
 
 						<div class="meet-info-tag">
 							<h3>모임 정보</h3>
 							<div class="tagSection">
-								<div class="loca_tag tag">
-									<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" />
-									<span class="location_name font_size_10">${ mvo3.meet_county }</span>
-								</div>
-								<div class="cate_tag tag">
-									<span class="category_name font_size_10">${ mvo3.meet_interest_name }</span>
-								</div>
+								<c:if test="${ mvo3.meet_county ne null }">
+									<div class="loca_tag tag">
+										<img src="/meet-a-bwa/resources/img/map.png" class="tag_img" />
+										<span class="location_name font_size_10">${ mvo3.meet_county }</span>
+									</div>
+								</c:if>
+								<c:if test="${ mvo3.meet_interest_name ne null }">
+									<div class="cate_tag tag">
+										<span class="category_name font_size_10">${ mvo3.meet_interest_name }</span>
+									</div>
+								</c:if>
 							</div>
 						</div>
 
