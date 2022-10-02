@@ -83,14 +83,6 @@ public class CommentDAOImpl implements CommentDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				System.out.print(rs.getString("COMMENT_NO") + " ");
-				System.out.print(rs.getString("MOTHER_NO") + " ");
-				System.out.print(rs.getDate("COMMENT_DATE") + " ");
-				System.out.print(rs.getString("COMMENT_CONTENT") + " ");
-				System.out.print(rs.getString("BOARD_NO") + " ");
-				System.out.print(rs.getString("USER_NO") + " ");
-				System.out.println(rs.getString("USER_NICKNAME") + " ");
-				
 				CommentVO vo = new CommentVO();
 				vo.setComment_no(rs.getString("COMMENT_NO"));
 				vo.setMother_no(rs.getString("MOTHER_NO"));
@@ -130,6 +122,54 @@ public class CommentDAOImpl implements CommentDAO {
 		}
 		
 		return cvos;
+	}
+
+	@Override
+	public int comment_delete(CommentVO cvo) {
+		System.out.println("comment delete()...");
+		
+		int flag = 0;
+		
+		try {
+			conn = DriverManager.getConnection(CommentDB.URL, CommentDB.TEST_USER, CommentDB.TEST_PASSWORD);
+			System.out.println("Comment Delete conn succeed");
+			
+			pstmt = conn.prepareStatement(CommentDB.SQL_COMMENT_DELETE);
+			
+			pstmt.setString(1, cvo.getComment_no());
+			
+			flag = pstmt.executeUpdate();
+		} catch (SQLException e) {
+            System.out.println("SQLException1 : " + e);
+        } catch (Exception e) {
+            System.out.println("Exception1 : " + e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException2 : " + e);
+                }
+            }
+
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException3 : " + e);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("SQLException4 : " + e);
+                }
+            }
+        }
+		
+		return flag;
 	}
 
 }

@@ -40,6 +40,8 @@
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
 
+<script src="/meet-a-bwa/resources/js/meet/comment/comment.js"></script>
+
 <script src="/meet-a-bwa/resources/js/vote/vote_common.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_update.js"></script>
@@ -99,7 +101,7 @@
 
           <pre class="post-detail-content">${ bvo2.board_content }</pre>
 
-          <div class="coment-wrap">
+          <div class="comment-wrap">
             <form action="c_insertOK.do" method="post" class="form-comment">
               <input name="mother_no" type="text" value="${ NULL }" style="display: none" />
               <textarea name="comment_content" placeholder="댓글을 남겨주세요."></textarea>

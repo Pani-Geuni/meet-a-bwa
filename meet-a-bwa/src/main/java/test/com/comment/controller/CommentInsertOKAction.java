@@ -19,13 +19,6 @@ public class CommentInsertOKAction {
 		String board_no = request.getParameter("board_no");
 		String user_no = request.getParameter("user_no");
 		
-		System.out.println("=================");
-		System.out.println(mother_no);
-		System.out.println(comment_content);
-		System.out.println(board_no);
-		System.out.println(user_no);
-		System.out.println("=================");
-		
 		CommentVO cvo = new CommentVO();
 		
 		cvo.setMother_no(mother_no);

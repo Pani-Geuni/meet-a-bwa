@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CommentController
  */
-@WebServlet({"/c_insertOK.do"})
+@WebServlet({"/c_insertOK.do", "/c_deleteOK.do"})
 public class CommentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,6 +28,8 @@ public class CommentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
 	}
 
 	/**
@@ -42,6 +44,8 @@ public class CommentController extends HttpServlet {
 		
 		if (sPath.equals("/c_insertOK.do")) {
 			new CommentInsertOKAction().execute(request, response);
+		} else if (sPath.equals("/c_deleteOK.do")) {
+			new CommentDeleteOKAction().execute(request, response);
 		}
 	}
 
