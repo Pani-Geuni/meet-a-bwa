@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.com.meet.model2.MeetDB;
+
 
 public class ActivityDAOImpl implements ActivityDAO {
 
@@ -61,6 +63,96 @@ public class ActivityDAOImpl implements ActivityDAO {
 				}
 			}
 		}
+		return flag;
+	}
+	
+	@Override
+	public String select_activity_lastNo() {
+		String activity_no = "";
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn successed...");
+			
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_SELECT_LAST_NO);	
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				activity_no = rs.getString("activity_no");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return activity_no;
+	}
+
+	@Override
+	public int activity_registered(String user_no, String activity_no) {
+		int flag = 0;
+		
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL,ActivityDB.USER,ActivityDB.PASSWORD);
+			System.out.println("conn successed...");
+			
+			pstmt = conn.prepareStatement(ActivityDB.SQL_ACTIVITY_REGISTERED);		
+			
+			pstmt.setString(1, activity_no); 
+			pstmt.setString(2, user_no);
+			
+			flag = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		return flag;
 	}
 	
@@ -582,5 +674,6 @@ public class ActivityDAOImpl implements ActivityDAO {
 		
 		return rvos;
 	}
+
 
 }

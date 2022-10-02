@@ -176,17 +176,20 @@ public class ActivityInsertOKAction {
 			//avo.setUser_no(cookie_userNo);
 			avo.setMeet_no(meet_no);
 			
-			
-			
 			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
 			ActivityDAO a_dao = new ActivityDAOImpl();
 			int result = a_dao.activity_insert(avo);
 
 			System.out.println("result: "+result);
+			
+			String activity_no = a_dao.select_activity_lastNo();
+			
+			int resultRegistered = a_dao.activity_registered(user_no, activity_no);
+			
 
-			if(result==1) {
-				response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
+			if(result==1&& resultRegistered == 1) {
+				response.sendRedirect("/meet-a-bwa/activity-main.do?idx=" + activity_no);
 			}else {
 				//response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
 				response.sendRedirect("a_insert.do?meet_no=" + meet_no);

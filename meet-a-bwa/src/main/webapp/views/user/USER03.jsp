@@ -146,7 +146,7 @@
 				<div id="imgWrap">
 					<section class="img_body">
 						<label id="input-image" for="input-file"> <img
-							src="${uvo2.user_image}" width=150px; height=150px; id="image" />
+							src="${uvo2.user_image}" width=150px; height=150px; id="image" name="image"/>
 						</label>
 						<div class="img_btn">
 

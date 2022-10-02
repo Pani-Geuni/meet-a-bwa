@@ -35,8 +35,9 @@ public class UserUpdateOKAction {
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
+		String cookie_userno="";
 		
-		//濡쒓렇�씤 O
+		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -46,7 +47,7 @@ public class UserUpdateOKAction {
 					cookie_county = cookie.getValue();
 				}else if(cookie.getName().equals("nick_name")) {
 					cookie_nickName = cookie.getValue();
-				}
+				}else if (cookie.getName().equals("user_no"));
 			}
 			
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -67,20 +68,20 @@ public class UserUpdateOKAction {
 		
 		
 		
-		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 실경로(=실서버)에 저장
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // �떎寃쎈줈(=�떎�꽌踰�)�뿉 ���옣
 		System.out.println(dir_path);
 
 		int fileSizeMax = 1024 * 1024 * 100;
 
-		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > 멀티파트형인지 물음.
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > 硫��떚�뙆�듃�삎�씤吏� 臾쇱쓬.
 
-		// Multipart 요청이면 true, 일반요청이면 false
+		// Multipart �슂泥��씠硫� true, �씪諛섏슂泥��씠硫� false
 		if (isMultipartContent) {
 
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(fileSizeMax);
 			ServletFileUpload sfu = new ServletFileUpload(factory);
-			sfu.setFileSizeMax(fileSizeMax);// 파일 사이즈 제한
+			sfu.setFileSizeMax(fileSizeMax);// �뙆�씪 �궗�씠利� �젣�븳
 
 			String user_no =null;
 			String user_image = null;
@@ -99,7 +100,7 @@ public class UserUpdateOKAction {
 			
 //			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			
-			//long checkFileSize = 0;
+//			long checkFileSize = 0;
 
 			try {
 				List<FileItem> items = sfu.parseRequest(request);
@@ -108,6 +109,8 @@ public class UserUpdateOKAction {
 					if (item.isFormField()) {
 						if(item.getFieldName().equals("user_no")) {
 							user_no = item.getString("UTF-8");
+						}else if(item.getFieldName().equals("image")) {
+							user_image = item.getString("UTF-8");
 						}
 						else if(item.getFieldName().equals("id")) {
 							user_id = item.getString("UTF-8");
@@ -123,7 +126,7 @@ public class UserUpdateOKAction {
 							user_tel = item.getString("UTF-8");
 						}
 						else if(item.getFieldName().equals("birth")) {
-							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate 해보기
+							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate �빐蹂닿린
 							System.out.println("insertOKAction:" + (user_birth instanceof Date));
 						}
 						else if(item.getFieldName().equals("gender")) {
@@ -137,23 +140,24 @@ public class UserUpdateOKAction {
 						}
 
 
-						//System.out.println("폼필드 키 : " + item.getFieldName());
+						//System.out.println("�뤌�븘�뱶 �궎 : " + item.getFieldName());
 
-						//System.out.println("폼필드 값 : " + item.getString("UTF-8"));
+						//System.out.println("�뤌�븘�뱶 媛� : " + item.getString("UTF-8"));
 
-					} else {// upFile받기
+					} else {// upFile諛쏄린
 
-						System.out.println("파일의 키 : " + item.getFieldName());
-						System.out.println("파일 파일명 : " + item.getName());
-						System.out.println("파일 컨텐츠 타입 : " + item.getContentType());
-						System.out.println("파일 사이즈  : " + item.getSize());
-						//checkFileSize = item.getSize();
+						System.out.println("�뙆�씪�쓽 �궎 : " + item.getFieldName());
+						System.out.println("�뙆�씪 �뙆�씪紐� : " + item.getName());
+						System.out.println("�뙆�씪 而⑦뀗痢� ���엯 : " + item.getContentType());
+						System.out.println("�뙆�씪 �궗�씠利�  : " + item.getSize());
+//						checkFileSize = item.getSize();
+//						if (checkFileSize == 0) {
 						if (item.getSize() != 0) {
-//							response.sendRedirect("u_update.do?user_no=" + user_no);
+//							response.sendRedirect("u_update.do" + cookie_userno);}
 //						else {
 							user_image = FilenameUtils.getName(item.getName());
 
-							File saveFile = new File(dir_path, user_image); // dir_path: �뾽濡쒕뱶 寃쎈줈
+							File saveFile = new File(dir_path, user_image); // dir_path: 占쎈씜嚥≪뮆諭� 野껋럥以�
 
 							try {
 								item.write(saveFile);
@@ -169,7 +173,7 @@ public class UserUpdateOKAction {
 			}
 			
 
-//			if(checkFileSize!=0) { // 사이즈가 0이 아닐때 실행 
+//			if(checkFileSize!=0) { // �궗�씠利덇� 0�씠 �븘�땺�븣 �떎�뻾 
 			UserVO uvo = new UserVO();
 			uvo.setUser_no(user_no);
 //			uvo.setUser_id(user_id);
@@ -188,7 +192,7 @@ public class UserUpdateOKAction {
 			uvo.setUser_county(user_county);
 			
 //			System.out.println("please:"+user_image);
-//			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0이면 img_001.jpg의 이미지를, 0이 아니면 img
+//			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0�씠硫� img_001.jpg�쓽 �씠誘몄�瑜�, 0�씠 �븘�땲硫� img
 			
 			System.out.println(user_image);
 			System.out.println(user_pw);
@@ -207,11 +211,12 @@ public class UserUpdateOKAction {
 
 			if(result==1) {
 				//request.getRequestDispatcher("/views/main/USER04.jsp?user_no"+user_no).forward(request, response);
-				request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
 				//request.getRequestDispatcher("/u_deleteOK.do?user_id"+session_user_id).forward(request, response);
+				//request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
+				response.sendRedirect("/meet-a-bwa/mypage.do");
 				}else
 //					request.getRequestDispatcher("/views/user/u_update.do?user_no"+user_no).forward(request, response);
-			request.getRequestDispatcher("/views/user/USER03.jsp?user_no"+user_no).forward(request, response);
+					response.sendRedirect("u_update.do" + cookie_userno);
 			}
 //		 }// end if
 		
