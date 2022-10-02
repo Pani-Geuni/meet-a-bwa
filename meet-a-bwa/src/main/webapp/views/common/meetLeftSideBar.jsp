@@ -52,8 +52,7 @@
 			<button type="button" id="btn-meet-write" class="btn-meet" onclick="writePopupShow()" idx="${ mvo3.meet_no }">글쓰기</button>
 			<button type="button" id="btn-activity-create" class="btn-meet" idx="${ mvo3.meet_no }">액티비티 개설</button>
 
-			<a class="meet-detail-link" href="./meet-info-detail.html">모임 자세히
-				보기</a>
+			<p class="meet-detail-link" idx="${ mvo3.meet_no }">모임 자세히 보기</p>
 		</c:when>
 	</c:choose>
 </aside>

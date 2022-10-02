@@ -92,8 +92,6 @@ public class MeetFeedSelectAll_Action {
 			System.out.println(uvo.getUser_no());
 			m_list.add(uvo.getUser_no());
 		}
-			
-		request.setAttribute("uvos", uvos);
 		request.setAttribute("m_list", m_list);
 		
 		// 액티비티 불러오기

@@ -17,7 +17,7 @@ import test.com.activity.controller.ActivityUpdateOKAction;
 /**
  * Servlet implementation class MeemController
  */
-@WebServlet({"/m_insert.do", "/m_insertOK.do", "/m_update.do", "/m_updateOK.do", "/m_delete.do" })
+@WebServlet({"/m_insert.do", "/m_insertOK.do", "/m_update.do", "/m_updateOK.do", "/m_delete.do", "/meet-detail.do" })
 public class MeetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,6 +43,8 @@ public class MeetController extends HttpServlet {
 			new MeetUpdateAction().execute(request, response);
 		}else if(sPath.equals("/m_delete.do")) {
 			new MeetyDeleteAction().execute(request, response);
+		} else if (sPath.equals("/meet-detail.do")) {
+			new MeetDetailAction().execute(request, response);
 		}
 	}
 
