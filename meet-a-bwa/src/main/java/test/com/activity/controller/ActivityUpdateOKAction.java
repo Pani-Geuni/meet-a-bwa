@@ -171,7 +171,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			//avo.setUser_no(user_no);
 			//avo.setMeet_no(meet_no);
 			
-			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
+			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2.png":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
 			
 			

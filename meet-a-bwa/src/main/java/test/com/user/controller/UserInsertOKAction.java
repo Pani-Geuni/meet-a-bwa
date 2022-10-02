@@ -24,20 +24,20 @@ import test.com.user.model.UserVO;
 public class UserInsertOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // �ǰ��(=�Ǽ���)�� ����
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 占실곤옙占�(=占실쇽옙占쏙옙)占쏙옙 占쏙옙占쏙옙
 		System.out.println(dir_path);
 		
 		int fileSizeMax = 1024 * 1024 * 100;
 
-		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > ��Ƽ��Ʈ������ ����.
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > 占쏙옙티占쏙옙트占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙.
 
-		// Multipart ��û�̸� true, �Ϲݿ�û�̸� false
+		// Multipart 占쏙옙청占싱몌옙 true, 占싹반울옙청占싱몌옙 false
 		if (isMultipartContent) {
 
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(fileSizeMax);
 			ServletFileUpload sfu = new ServletFileUpload(factory);
-			sfu.setFileSizeMax(fileSizeMax);// ���� ������ ����
+			sfu.setFileSizeMax(fileSizeMax);// 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
 			String user_image = null;
 			
@@ -76,7 +76,7 @@ public class UserInsertOKAction {
 							user_tel = item.getString("UTF-8");
 						}
 						else if(item.getFieldName().equals("birth")) {
-							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate �غ���
+							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate 占쌔븝옙占쏙옙
 							System.out.println("insertOKAction:" + (user_birth instanceof Date));
 						}
 						else if(item.getFieldName().equals("gender")) {
@@ -90,23 +90,23 @@ public class UserInsertOKAction {
 						}
 
 
-						//System.out.println("���ʵ� Ű : " + item.getFieldName());
+						//System.out.println("占쏙옙占십듸옙 키 : " + item.getFieldName());
 
-						//System.out.println("���ʵ� �� : " + item.getString("UTF-8"));
+						//System.out.println("占쏙옙占십듸옙 占쏙옙 : " + item.getString("UTF-8"));
 
-					} else {// upFile�ޱ�
+					} else {// upFile占쌨깍옙
 
-						System.out.println("������ Ű : " + item.getFieldName());
-						System.out.println("���� ���ϸ� : " + item.getName());
-						System.out.println("���� ������ Ÿ�� : " + item.getContentType());
-						System.out.println("���� ������  : " + item.getSize());
+						System.out.println("占쏙옙占쏙옙占쏙옙 키 : " + item.getFieldName());
+						System.out.println("占쏙옙占쏙옙 占쏙옙占싹몌옙 : " + item.getName());
+						System.out.println("占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 타占쏙옙 : " + item.getContentType());
+						System.out.println("占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙  : " + item.getSize());
 
-						if(item.getSize()!=0) { // ����� 0�� �ƴҶ� ���� 
+						if(item.getSize()!=0) { // 占쏙옙占쏙옙占쏘가 0占쏙옙 占싣닐띰옙 占쏙옙占쏙옙 
 						user_image = FilenameUtils.getName(item.getName());
 							
 						
 						System.out.println("ddddddddddddddddd:"+user_image);
-						File saveFile = new File(dir_path, user_image); // dir_path: ���ε� ���
+						File saveFile = new File(dir_path, user_image); // dir_path: 占쏙옙占싸듸옙 占쏙옙占�
 
 						try {
 							item.write(saveFile);
@@ -139,7 +139,7 @@ public class UserInsertOKAction {
 			
 //			System.out.println("please:"+user_image.length());
 			System.out.println("please:"+user_image);
-			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image); // 0�̸� img_001.jpg�� �̹�����, 0�� �ƴϸ� img
+			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_insert(uvo);
@@ -147,7 +147,7 @@ public class UserInsertOKAction {
 
 			if(result==1) {
 //				if(result1==1&&result2==1) {
-				response.sendRedirect("/views/main/MAIN01.jsp");
+				response.sendRedirect("/meet-a-bwa/index.do");
 				}else
 //					response.sendRedirect("u_insert.do");
 					request.getRequestDispatcher("/views/user/USER02.jsp").forward(request, response);

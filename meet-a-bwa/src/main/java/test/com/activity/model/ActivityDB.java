@@ -25,4 +25,6 @@ public interface ActivityDB {
 	String SQL_ACTIVITY_SELECT_ONE_MAIN_FEED = "SELECT * FROM ACTI_REG_LIKE_NICK_VIEW WHERE ACTIVITY_NO = ?";
 //	String SQL_ACTIVITY_SELECT_USERNICKNAME ="select user_nickname from test_activity a join test_user u using(user_no) where activity_no=? ";
 	String SQL_ACTIVITY_SELECT_REGISTERED ="select user_no from test_activity_registered where activity_no=?";
+	String SQL_ACTIVITY_SELECT_LAST_NO = "SELECT * FROM (SELECT ACTIVITY_NO FROM TEST_ACTIVITY ORDER BY ACTIVITY_NO DESC) WHERE ROWNUM = 1";
+	String SQL_ACTIVITY_REGISTERED = "INSERT INTO TEST_ACTIVITY_REGISTERED(registered_no, activity_no, user_no) values ('AR'||SEQ_TEST_ACTIVITY_R.nextval, ?, ?)";
 }

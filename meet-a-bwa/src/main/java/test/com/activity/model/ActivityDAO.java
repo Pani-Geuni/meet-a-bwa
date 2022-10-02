@@ -21,4 +21,6 @@ public interface ActivityDAO {
 	public List<ActivityVO2> activity_selectAll_main_feed(String meet_no);
 	public ActivityVO3 activity_selectOne_main_feed(ActivityVO3 avo);
 	public List<RegisteredVO> activity_select_registered(String activity_no);
+	public String select_activity_lastNo();
+	public int activity_registered(String user_no, String activity_no);
 }
