@@ -25,6 +25,7 @@ public class MeetUpdateAction {
 	String cookie_interest = "";
 	String cookie_county = "";
 	String cookie_nickName = "";
+	String cookie_userNo = "";
 	
 	//嚥≪뮄�젃占쎌뵥 O
 	if(session_user_id != null) {
@@ -36,6 +37,8 @@ public class MeetUpdateAction {
 				cookie_county = cookie.getValue();
 			}else if(cookie.getName().equals("nick_name")) {
 				cookie_nickName = cookie.getValue();
+			}else if(cookie.getName().equals("user_no")) {
+				cookie_userNo = cookie.getValue();
 			}
 		}
 		
@@ -44,6 +47,7 @@ public class MeetUpdateAction {
 		map.put("nick_name", cookie_nickName);
 		map.put("interest", cookie_interest);
 		map.put("county", cookie_county);
+		map.put("user_no", cookie_userNo);
 		
 		request.setAttribute("list", map);
 		
@@ -62,10 +66,15 @@ public class MeetUpdateAction {
 	mvo.setUser_no(request.getParameter("user_no"));
 	
 
-	System.out.println("meet_no:::::"+mvo.getMeet_no());
+	System.out.println("meet_no:::::" + mvo.getMeet_no());
+	System.out.println("user_no:::::" + cookie_userNo);
 	
 	MeetDAO m_dao = new MeetDAOImpl();
 	MeetVO mvo2 = m_dao.meet_selectOne(mvo);
+	
+	System.out.println("+============== update check");
+	System.out.println(mvo2.getMeet_image());
+	System.out.println("+==============");
 
 	request.setAttribute("mvo2", mvo2);
 

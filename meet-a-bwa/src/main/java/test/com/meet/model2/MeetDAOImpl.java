@@ -226,6 +226,20 @@ public class MeetDAOImpl implements MeetDAO {
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
+				
+				System.out.println("==================");
+				System.out.print(rs.getString("meet_no") + " ");
+				System.out.print(rs.getString("meet_image") + " ");
+				System.out.print(rs.getString("meet_name") + " ");
+				System.out.print(rs.getString("meet_description") + " ");
+				System.out.print(rs.getString("meet_city") + " ");
+				System.out.print(rs.getString("meet_county") + " ");
+				System.out.print(rs.getString("meet_interest_name") + " ");
+				System.out.print(rs.getString("meet_gender") + " ");
+				System.out.print(rs.getString("meet_nop") + " ");
+				System.out.println(rs.getString("meet_age") + " ");
+				
+				
 				mvo2 = new MeetVO();
 				mvo2.setMeet_no(rs.getString("meet_no"));
 				mvo2.setMeet_image(rs.getString("meet_image"));

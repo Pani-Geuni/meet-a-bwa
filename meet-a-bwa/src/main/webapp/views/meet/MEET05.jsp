@@ -40,8 +40,6 @@
 <script src="/meet-a-bwa/resources/js/meet/create/age.js"></script>
 
 <script>
-	$(function() {
-
 		//$("#create_meeting").click(function(){
 
 		// 1. NOT NULL 충족 - alert Popup 
@@ -49,13 +47,13 @@
 		var user_id = '${user_id}'; //세션값 가져옴
 		console.log(user_id);
 
-		function check() {
+		window.check = function() {
 			let meet_name = $("#meet_name").val().trim().length;
 			let meet_description = $("#meet_description").val().trim().length;
 			let nop = $("#numberofpeople").val();
 
-			console.log(activity_name);
-			console.log(activity_description);
+			console.log(meet_name);
+			console.log(meet_description);
 			console.log(nop);
 			//console.log($("#age").val());
 
@@ -75,8 +73,6 @@
 				return false;
 			}
 		}
-		//	});
-	});
 </script>
 
 <title>모임 생성</title>

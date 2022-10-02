@@ -5,7 +5,7 @@
 
 <aside class="meet-detail-aside">
 	<div class="meet-profile-img">
-		<img src="/meet-a-bwa/resources/img/sample/sample-img-01.png"
+		<img src="${ mvo3.meet_image }"
 			alt="샘플 대표 이미지" />
 	</div>
 	<div class="meet-detail-aside-top">

@@ -63,4 +63,12 @@ $(function() {
 			}
 		})
 	}
+	
+	$(".btn-meet-info-edit").on("click", function() {
+		console.log("edit click");
+		
+		idx = $(this).attr("idx");
+		
+		location.href = "m_update.do?meet_no=" + idx;
+	})
 })
