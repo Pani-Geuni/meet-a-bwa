@@ -135,8 +135,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 						if(item.getSize()!=0) { 
 						meet_image = FilenameUtils.getName(item.getName());
 							
-						
-						
+
 						File saveFile = new File(dir_path, meet_image); // dir_path: 占쏙옙占싸듸옙 占쏙옙占�
 
 						try {
@@ -164,23 +163,36 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			mvo.setMeet_gender(meet_gender);
 			mvo.setMeet_nop(meet_nop);
 			mvo.setMeet_age(meet_age);
-			//mvo.setUser_no(user_no);
-			//mvo.setMeet_no(meet_no);
 			
-			mvo.setMeet_image(meet_image==""?"/meet-a-bwa/resources/img/default-image2":"/meet-a-bwa/resources/img/"+meet_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
+			MeetDAO test_dao = new MeetDAOImpl();
 			
+			MeetVO mvo2 = test_dao.meet_selectOne(mvo);
 			
+			if (meet_image.equals("")) {
+				// 이전의 이미지가 없을 때
+				meet_image = "/meet-a-bwa/resources/img/default-image2.png";
+				
+				// 기존의 이미지가 있는데, 모임 수정 시 이미지는 변경하지 않을 때.
+				if (!mvo2.getMeet_image().equals(meet_image)) {
+					meet_image = mvo2.getMeet_image();
+				}
+			} else {
+				// 변경 된 이미지가 있을 때 
+				meet_image = "/meet-a-bwa/resources/img/" + meet_image;
+			}
+			
+			mvo.setMeet_image(meet_image);
 			
 			MeetDAO m_dao = new MeetDAOImpl();
 			int result = m_dao.meet_update(mvo);
 
-			System.out.println("result: "+result);
+			System.out.println("result: " + result);
 
 			if(result==1) {
-					//response.sendRedirect(".do?meet_no="+meet_no);
 					response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
-				}else
+				} else {
 					response.sendRedirect("a_update.do?meet_no=" + meet_no);
+				}
 			}
 		} // end if << isMultipartContent
 }

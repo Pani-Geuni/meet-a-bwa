@@ -169,6 +169,49 @@ public class MeetDAOImpl implements MeetDAO {
 		return flag;
 	}
 	
+	@Override
+	public int meet_leave(String user_no, String meet_no) {
+		int flag = 0;
+		try {
+			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
+			System.out.println("leave conn successed...");
+			
+			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_LEAVE);
+			
+			pstmt.setString(1, user_no);
+			pstmt.setString(2, meet_no);
+			
+			flag = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return flag;
+	}
+	
 
 	@Override
 	public MeetVO meet_selectOne(MeetVO mvo) {
@@ -183,6 +226,20 @@ public class MeetDAOImpl implements MeetDAO {
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
+				
+				System.out.println("==================");
+				System.out.print(rs.getString("meet_no") + " ");
+				System.out.print(rs.getString("meet_image") + " ");
+				System.out.print(rs.getString("meet_name") + " ");
+				System.out.print(rs.getString("meet_description") + " ");
+				System.out.print(rs.getString("meet_city") + " ");
+				System.out.print(rs.getString("meet_county") + " ");
+				System.out.print(rs.getString("meet_interest_name") + " ");
+				System.out.print(rs.getString("meet_gender") + " ");
+				System.out.print(rs.getString("meet_nop") + " ");
+				System.out.println(rs.getString("meet_age") + " ");
+				
+				
 				mvo2 = new MeetVO();
 				mvo2.setMeet_no(rs.getString("meet_no"));
 				mvo2.setMeet_image(rs.getString("meet_image"));
@@ -320,6 +377,8 @@ public class MeetDAOImpl implements MeetDAO {
 		
 		return flag;
 	}
+
+
 
 
 }

@@ -40,44 +40,36 @@
 <script src="/meet-a-bwa/resources/js/meet/update/profileImage.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/update/age.js"></script>
 
-<script>
-	$(function() {
-
-		//$("#create_meeting").click(function(){
-
-		// 1. NOT NULL 충족 - alert Popup 
-
-		var user_id = '${user_id}'; //세션값 가져옴
+<script>	
+		var user_id = '${user_id}'; // 세션 값 가져옴
 		console.log(user_id);
-
-		function check() {
+		
+		window.check = function() {
 			let meet_name = $("#meet_name").val().trim().length;
 			let meet_description = $("#meet_description").val().trim().length;
 			let nop = $("#numberofpeople").val();
-
-			console.log(activity_name);
-			console.log(activity_description);
+			
+			console.log(meet_name);
+			console.log(meet_description);
 			console.log(nop);
 			console.log($("#age").val());
-
+			
 			if (meet_name > 0 && meet_description > 0 && nop != 0) {
 				console.log("생성 가능");
 				let user_id = $("#id").val();
 			} else {
 				console.log("생성 불가능");
-
+				
 				if (meet_name <= 0 || meet_description <= 0 || nop <= 0) {
-
-					$(".bin-popup").removeClass("blind");
+					$(".btn-popup").removeClass("blind");
 					$(".ok").on("click", function() {
-						$(".bin-popup").addClass("blind");
+						$(".bin-popup").addClass("blind")
 					});
 				}
+				
 				return false;
 			}
 		}
-		//	});
-	});
 </script>
 
 <title>모임 수정</title>
@@ -256,11 +248,12 @@
 		<div class="login-middle">
 			<form action="/meet-a-bwa/m_loginOK.do" class="login-form"
 				method="post" id="loginForm">
-				<label for="id">아이디</label> <input type="text" id="idInput"
-					name="id" placeholder="아이디 입력" /> <label for="pw">비밀번호</label> <input
-					type="password" id="pwInput" name="pw" placeholder="비밀번호 입력" /> <input
-					type="submit" onsubmit="check_length();" value="로그인"> <input
-					type="button" value="창닫기" id="login-popup-closeBtn">
+				<label for="id">아이디</label>
+				<input type="text" id="idInput" name="id" placeholder="아이디 입력" /> 
+				<label for="pw">비밀번호</label> 
+				<input type="password" id="pwInput" name="pw" placeholder="비밀번호 입력" /> 
+				<input type="submit" onsubmit="check_length();" value="로그인"> 
+				<input type="button" value="창닫기" id="login-popup-closeBtn">
 			</form>
 
 			<div class="login-bottom">

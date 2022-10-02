@@ -21,6 +21,9 @@ public interface MeetDB {
 	String SQL_MEET_REGISTERED
 		= "INSERT INTO TEST_MEET_REGISTERED(registered_no, meet_no, user_no) values ('MR'||SEQ_TEST_MEET_R.nextval, ?, ?)";
 	
+	String SQL_MEET_LEAVE
+		= "DELETE FROM TEST_MEET_REGISTERED WHERE USER_NO = ? AND MEET_NO = ?";
+	
 	String SQL_MEET_SELECT_ONE = "select meet_no, meet_image, meet_name, meet_description, meet_city, meet_county, meet_interest_name, meet_gender, meet_nop, meet_age  from test_meet where meet_no=?";
 	
 	String SQL_MEET_UPDATE = "update test_meet set meet_image=?, meet_name=?, meet_description=?,"

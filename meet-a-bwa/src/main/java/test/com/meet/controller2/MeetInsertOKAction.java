@@ -178,7 +178,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			
 			
 			
-			mvo.setMeet_image(meet_image=="" ? "/meet-a-bwa/resources/img/default-image2" : "/meet-a-bwa/resources/img/"+meet_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
+			mvo.setMeet_image(meet_image=="" ? "/meet-a-bwa/resources/img/default-image2.png" : "/meet-a-bwa/resources/img/"+meet_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
 			System.out.println("mvo : " + mvo);
 			

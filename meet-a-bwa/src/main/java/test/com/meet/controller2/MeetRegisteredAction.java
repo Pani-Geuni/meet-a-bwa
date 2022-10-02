@@ -1,9 +1,7 @@
 package test.com.meet.controller2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import test.com.meet.model.MeetDAO;
-import test.com.meet.model.MeetDAOImpl;
-import test.com.meet.model.MeetUserVO;
-import test.com.meet.model.MeetVO3;
+import org.json.simple.JSONObject;
 
-public class MeetDetailAction {
+import test.com.meet.model2.MeetDAO;
+import test.com.meet.model2.MeetDAOImpl;
+
+public class MeetRegisteredAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
@@ -28,7 +26,7 @@ public class MeetDetailAction {
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		//로그인 O
+		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -57,28 +55,19 @@ public class MeetDetailAction {
 			request.setAttribute("list", map);
 		}
 		
-		
-		String idx = request.getParameter("idx");
-		
-		// 모임 정보 불러오기
+		// 모임 가입
+		String meet_no = request.getParameter("meet_no");
 		MeetDAO mdao = new MeetDAOImpl();
-		MeetVO3 mvo = new MeetVO3();
-		mvo.setMeet_no(idx);
-				
-		MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
-				
-		request.setAttribute("mvo3", mvo3);
 		
-		// 모임 가입한 유저 정보 불러오기 - 유저 리스트
-		List<MeetUserVO> uvos = mdao.meetUser_selectAll(idx);
-		List<String> m_list = new ArrayList<String>();
-				
-		for (MeetUserVO uvo : uvos) {
-			System.out.println(uvo.getUser_no());
-				m_list.add(uvo.getUser_no());
+		int result = mdao.meet_registered(cookie_userNo, meet_no);
+		
+		if (result == 1) {
+			JSONObject obj = new JSONObject();
+			
+			obj.put("result", meet_no);
+			
+			response.setContentType("application/x-json; charset=UTF-8");
+			response.getWriter().print(obj);
 		}
-		request.setAttribute("m_list", m_list);
-		
-		request.getRequestDispatcher("views/meet/MEET07.jsp").forward(request, response);
 	}
 }
