@@ -19,6 +19,15 @@
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
 <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script>
+	$(function() {
+		$("#recommend_list_wrap").on("click", ".content_list.activity-list",  function(){
+			 let idx = $(this).attr("idx");
+			 console.log(idx)
+			 location.href = "/meet-a-bwa/activity-main.do?idx="+idx;
+		});
+	})
+</script>
 
 <title>나의 액티비티 리스트</title>
 </head>
@@ -34,10 +43,10 @@
         <div class="mainContent">
           <h1 class="titleSection">나의 액티비티</h1>
 
-          <div id="meet_recommendSection">
+          <div id="recommend_list_wrap">
 					<c:forEach var="avo" items="${avos}">
 						<!-- start content_list div-->
-						<div class="content_list meet-list" idx="${avo.activity_no}">
+						<div class="content_list activity-list" idx="${avo.activity_no}">
 							<div class="info-list-wrap">
 								<div class="listCommon">
 									<span class="content_title">${avo.activity_name}</span>
