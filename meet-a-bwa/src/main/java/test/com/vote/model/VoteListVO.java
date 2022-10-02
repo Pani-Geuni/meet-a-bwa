@@ -1,12 +1,13 @@
 package test.com.vote.model;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class VoteListVO {
 	private String vote_no;
 	private String vote_title; 
 	private String vote_description;
-	private String vote_eod; 
+	private Timestamp vote_eod; 
 	private String vote_state; 
 	private String user_no; 
 	private String activity_no;
@@ -16,7 +17,7 @@ public class VoteListVO {
 		
 	}
 
-	public VoteListVO(String vote_no, String vote_title, String vote_description, String vote_eod, String vote_state,
+	public VoteListVO(String vote_no, String vote_title, String vote_description, Timestamp vote_eod, String vote_state,
 			String user_no, String activity_no, Integer user_cnt) {
 		super();
 		this.vote_no = vote_no;
@@ -53,11 +54,11 @@ public class VoteListVO {
 		this.vote_description = vote_description;
 	}
 
-	public String getVote_eod() {
+	public Timestamp getVote_eod() {
 		return vote_eod;
 	}
 
-	public void setVote_eod(String vote_eod) {
+	public void setVote_eod(Timestamp vote_eod) {
 		this.vote_eod = vote_eod;
 	}
 
@@ -116,11 +117,10 @@ public class VoteListVO {
 
 	@Override
 	public String toString() {
-		return "VoteVO2 [vote_no=" + vote_no + ", vote_title=" + vote_title + ", vote_description=" + vote_description
-				+ ", vote_eod=" + vote_eod + ", vote_state=" + vote_state + ", user_no=" + user_no + ", activity_no="
-				+ activity_no + ", user_cnt=" + user_cnt + "]";
+		return "VoteListVO [vote_no=" + vote_no + ", vote_title=" + vote_title + ", vote_description="
+				+ vote_description + ", vote_eod=" + vote_eod + ", vote_state=" + vote_state + ", user_no=" + user_no
+				+ ", activity_no=" + activity_no + ", user_cnt=" + user_cnt + "]";
 	}
 
 	
-
 }

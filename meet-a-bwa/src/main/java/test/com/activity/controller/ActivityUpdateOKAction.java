@@ -98,6 +98,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 					if (item.isFormField()) {
 						if(item.getFieldName().equals("activity_no")) {
 							activity_no = item.getString("UTF-8");
+							System.out.println("ddddddddddddddd"+activity_no);
 						}else if(item.getFieldName().equals("image")) {
 							activity_image = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_name")) {
@@ -181,7 +182,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 
 			if(result==1) {
 					//response.sendRedirect(".do?activity_no="+activity_no);
-					response.sendRedirect("/meet-a-bwa/views/activity/ACTI02.jsp");
+					response.sendRedirect("/meet-a-bwa/activity-main.do?activity_no="+activity_no);
 				}else
 					response.sendRedirect("a_update.do?activity_no=" + activity_no);
 			}
