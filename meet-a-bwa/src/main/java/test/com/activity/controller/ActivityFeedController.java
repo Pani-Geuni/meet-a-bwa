@@ -12,7 +12,7 @@ import test.com.meet_feed.controller.MeetFeedSelectAll_Action;
 /**
  * Servlet implementation class ActivityFeedController
  */
-@WebServlet("/activity-main.do")
+@WebServlet({"/activity-main.do", "/a_registered.do", "/a_withdrawal.do"})
 public class ActivityFeedController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,6 +34,10 @@ public class ActivityFeedController extends HttpServlet {
 
 		if (sPath.equals("/activity-main.do")) {
 			new ActivityFeedSelectAll_Action().execute(request, response);
+		}else if (sPath.equals("/a_registered.do")) {
+			new ActivityFeedRegistered_Action().execute(request, response);
+		}else if (sPath.equals("/a_withdrawal.do")) {
+			new ActivityFeedWithdrawal_Action().execute(request, response);
 		}
 	}
 
