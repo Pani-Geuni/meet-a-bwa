@@ -23,7 +23,7 @@ import test.com.user.model.UserVO;
 
 public class UserInsertOKAction {
 
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 占실곤옙占�(=占실쇽옙占쏙옙)占쏙옙 占쏙옙占쏙옙
 		System.out.println(dir_path);
 		

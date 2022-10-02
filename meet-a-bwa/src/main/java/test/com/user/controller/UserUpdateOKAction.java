@@ -27,7 +27,7 @@ import test.com.user.model.UserVO;
 
 public class UserUpdateOKAction {
 
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");

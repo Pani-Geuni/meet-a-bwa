@@ -63,27 +63,17 @@ public class UserController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); // �ѱ� ���� ����
 		// doGet(request, response);
 		String sPath = request.getServletPath();
 		System.out.print("doPost:");
 		System.out.println(sPath); // ������ ����Ʈ
+		
 		if (sPath.equals("/u_insertOK.do")) {
-			try {
-				new UserInsertOKAction().execute(request, response);
-			} catch (ServletException | IOException | ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			new UserInsertOKAction().execute(request, response);
 		}else if (sPath.equals("/u_updateOK.do")) {
-			try {
-				new UserUpdateOKAction().execute(request, response);
-			} catch (ServletException | IOException | ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			new UserUpdateOKAction().execute(request, response);
 		}
 	}
 
