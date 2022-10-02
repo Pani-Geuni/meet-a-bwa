@@ -13,9 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
-import test.com.activity.model.ActivityVO2;
 import test.com.activity.model.ActivityVO3;
 import test.com.activity.model.RegisteredVO;
+import test.com.event.model.EventDAO;
+import test.com.event.model.EventDAOImpl;
+import test.com.event.model.EventVO;
 import test.com.vote.model.VoteDAO;
 import test.com.vote.model.VoteDAOImpl;
 import test.com.vote.model.VoteListVO;
@@ -78,10 +80,10 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		request.setAttribute("rvos", rvos);
 		
 		// event
-//		EventDAO e_dao = new EventDAOImpl();
-//		List<EventVO> evos = e_dao.event_selectAll(idx);
-//		
-//		request.setAttribute("evos", evos);
+		EventDAO e_dao = new EventDAOImpl();
+		List<EventVO> evos = e_dao.event_list_selectAll(idx);
+		
+		request.setAttribute("evos", evos);
 		
 		// vote
 		VoteDAO v_dao = new VoteDAOImpl();
