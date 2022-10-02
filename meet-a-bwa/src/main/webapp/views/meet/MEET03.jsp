@@ -40,6 +40,8 @@
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
 
+<script src="/meet-a-bwa/resources/js/meet/comment/comment.js"></script>
+
 <script src="/meet-a-bwa/resources/js/vote/vote_common.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_create.js"></script>
 <script src="/meet-a-bwa/resources/js/vote/vote_update.js"></script>
@@ -78,10 +80,10 @@
             </h1>
             <div class="post-user-info">
               <div class="user-info">
-                <div class="user-info-profile">
-                  <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
-                </div>
-                <p class="user-nickname">${ bvo2.user_name }</p>
+	            <div class="user-info-profile">
+	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
+	            </div>
+	            <p class="user-nickname">${ bvo2.user_name }</p>
                 <p class="write-date">${ bvo2.board_date }</p>
               </div>
               
@@ -99,40 +101,34 @@
 
           <pre class="post-detail-content">${ bvo2.board_content }</pre>
 
-          <div class="coment-wrap">
-            <form action="#" class="form-comment">
-              <textarea placeholder="댓글을 남겨주세요."></textarea>
+          <div class="comment-wrap">
+            <form action="c_insertOK.do" method="post" class="form-comment">
+              <input name="mother_no" type="text" value="${ NULL }" style="display: none" />
+              <textarea name="comment_content" placeholder="댓글을 남겨주세요."></textarea>
+              <input name="board_no" value="${ bvo2.board_no }" style="display: none" >
+              <input name="user_no" value="${ list.user_no }" style="display: none" >
               <button type="submit">등록</button>
             </form>
 
-            <div class="user-comments">
-              <div class="user-comment">
-                <div class="comment-user-info">
-                  <div class="comment-user-info-profile">
-                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
-                  </div>
-                  <p class="comment-user-nickname">트루</p>
-                  <p class="comment-write-date">2022.09.12</p>
-                </div>
-                <pre class="post-detail-comment">
-댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</pre
-                >
-              </div>
-            </div>
-            <div class="user-comments">
-              <div class="user-comment">
-                <div class="comment-user-info">
-                  <div class="comment-user-info-profile">
-                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
-                  </div>
-                  <p class="comment-user-nickname">옌두목</p>
-                  <p class="comment-write-date">2022.09.12</p>
-                </div>
-                <pre class="post-detail-comment">
-댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</pre
-                >
-              </div>
-            </div>
+			<c:forEach var="cvo" items="${ cvos }">
+	            <div class="user-comments">
+	              <div class="user-comment">
+	                <div class="comment-user-info-top">
+	               	  <div class="comment-user-info">
+	                    <div class="comment-user-info-profile">
+	                      <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
+	                    </div>
+	                    <p class="comment-user-nickname">${ cvo.user_nickname }</p>
+	                    <p class="comment-write-date">${ cvo.comment_date }</p>
+	                  </div>
+	                  <c:if test="${ cvo.user_no eq list.user_no }">
+	                  	<button class="btn-comment-delete" idx="${ cvo.comment_no }">삭제</button>
+	                  </c:if>
+	                </div>
+	                <pre class="post-detail-comment">${ cvo.comment_content }</pre>
+	              </div>
+	            </div>
+            </c:forEach>
           </div>
         </section>
         
@@ -144,10 +140,11 @@
 							<a href="#">+</a>
 						</p>
 					</div>
-					<ul class="right-summary-list-contents">
-						<li><p>액티비티1</p></li>
-						<li><p>액티비티2</p></li>
-					</ul>
+					<ul class="right-summary-list-contents" id="activity-summary-list">
+								<c:forEach var="avo" items="${ avos }">
+									<li class="activity_list_item" idx="${ avo.activity_no }"><p>${ avo.activity_name }</p></li>
+								</c:forEach>
+							</ul>
 				</div>
 				<div class="right-summary-list" id="vote-summary-list">
 					<div class="right-summary-list-top">
