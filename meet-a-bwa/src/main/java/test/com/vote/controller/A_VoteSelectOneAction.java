@@ -23,7 +23,7 @@ import test.com.vote.model.VoteVO;
 public class A_VoteSelectOneAction {
 	@SuppressWarnings({ "unchecked"})
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String vote_no = request.getParameter("vote_no");
+		String vote_no = request.getParameter("idxx");
 		String user_no = request.getParameter("user_no");
 		
 		VoteVO vvo = new VoteVO();

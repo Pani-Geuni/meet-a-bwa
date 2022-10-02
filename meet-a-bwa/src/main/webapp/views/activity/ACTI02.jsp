@@ -144,12 +144,6 @@
 		});
 
 		
-		$(".vote_action").click(function(){
-			idx = $(this).attr("idxx");
-			console.log(idx);
-			location.href = "/meet-a-bwa/a_vote_view.do?vote_no="+idx;
-		});
-		
 	});
 </script>
 
@@ -326,7 +320,7 @@
 										</section>
 									
 											<div class="content_list_activity event-list vote_action"
-												idx="${vvos.activity_no}" idxx="V1001">
+												 idx="V1001">
 												<section class="blind">
 													<label for="vote_no">vote_no:</label>${vvos.vote_no}<input
 														id="vote_no" name="vote_no" value="${vvos.vote_no}">

@@ -155,6 +155,13 @@ $(function() {
         $("#confirmWrap").addClass("blind");
     });
 	
+	$(".vote_action").click(function(){
+			idx = $(this).attr("idx");
+			console.log("idx:::"+idx);
+			ajax_load(idx);
+			//location.href = "/meet-a-bwa/a_vote_view.do?vote_no="+idx;
+	});
+	
 	function ajax_load(idx) {
 		$.ajax({
 			url : "/meet-a-bwa/a_vote_view.do",
