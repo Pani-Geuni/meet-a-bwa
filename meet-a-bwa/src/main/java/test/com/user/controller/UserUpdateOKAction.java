@@ -21,6 +21,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import test.com.meet.model2.MeetDAO;
+import test.com.meet.model2.MeetDAOImpl;
+import test.com.meet.model2.MeetVO;
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 import test.com.user.model.UserVO;
@@ -84,7 +87,7 @@ public class UserUpdateOKAction {
 			sfu.setFileSizeMax(fileSizeMax);// �뙆�씪 �궗�씠利� �젣�븳
 
 			String user_no =null;
-			String user_image = null;
+			String user_image = "";
 			
 			String user_id = null;
 			String user_pw = null;
@@ -205,17 +208,34 @@ public class UserUpdateOKAction {
 			System.out.println(user_city);
 			System.out.println(user_county);
 			
+			//image 
+			UserDAO test_dao = new UserDAOImpl();
+			
+			UserVO uvo2 = test_dao.user_selectOne(uvo);
+			
+			if (user_image.equals("")) {
+				// 이전의 이미지가 없을 때
+				user_image = "/meet-a-bwa/resources/img/default-image2.png";
+				
+				// 기존의 이미지가 있는데, 모임 수정 시 이미지는 변경하지 않을 때.
+				if (!uvo2.getUser_image().equals(user_image)) {
+					user_image = uvo2.getUser_image();
+				}
+			} else {
+				// 변경 된 이미지가 있을 때 
+				user_image = "/meet-a-bwa/resources/img/" + user_image;
+			}
+			
+			uvo.setUser_image(user_image);
+			
+			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_update(uvo);
 			System.out.println("result: "+result);
 
 			if(result==1) {
-				//request.getRequestDispatcher("/views/main/USER04.jsp?user_no"+user_no).forward(request, response);
-				//request.getRequestDispatcher("/u_deleteOK.do?user_id"+session_user_id).forward(request, response);
-				//request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);
 				response.sendRedirect("/meet-a-bwa/mypage.do");
 				}else
-//					request.getRequestDispatcher("/views/user/u_update.do?user_no"+user_no).forward(request, response);
 					response.sendRedirect("u_update.do" + cookie_userno);
 			}
 //		 }// end if

@@ -345,8 +345,8 @@ $(function () {
 //		});
 		
 		function check() {
-			let activity_name = $("#activity_name").val().trim().length;
-			let activity_description = $("#activity_description").val().trim().length;
+			let activity_name = $.trim($("#activity_name").val()).length;
+			let activity_description = $.trim($("#activity_description").val()).length;
 			let nop = $("#numberofpeople").val();
 
 			console.log(activity_name);

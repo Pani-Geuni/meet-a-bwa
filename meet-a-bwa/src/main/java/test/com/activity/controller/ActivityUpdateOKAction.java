@@ -21,6 +21,9 @@ import org.apache.commons.io.FilenameUtils;
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
+import test.com.meet.model2.MeetDAO;
+import test.com.meet.model2.MeetDAOImpl;
+import test.com.meet.model2.MeetVO;
 
 public class ActivityUpdateOKAction {
 public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,7 +101,6 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 					if (item.isFormField()) {
 						if(item.getFieldName().equals("activity_no")) {
 							activity_no = item.getString("UTF-8");
-							System.out.println("ddddddddddddddd"+activity_no);
 						}else if(item.getFieldName().equals("image")) {
 							activity_image = item.getString("UTF-8");
 						}else if(item.getFieldName().equals("activity_name")) {
@@ -171,8 +173,26 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			//avo.setUser_no(user_no);
 			//avo.setMeet_no(meet_no);
 			
-			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2.png":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
+			//avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2.png":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
 			
+			ActivityDAO test_dao = new ActivityDAOImpl();
+			
+			ActivityVO avo2 = test_dao.activity_selectOne(avo);
+			
+			if (activity_image.equals("")) {
+				// 이전의 이미지가 없을 때
+				activity_image = "/meet-a-bwa/resources/img/default-image2.png";
+				
+				// 기존의 이미지가 있는데, 모임 수정 시 이미지는 변경하지 않을 때.
+				if (!avo2.getActivity_image().equals(activity_image)) {
+					activity_image = avo2.getActivity_image();
+				}
+			} else {
+				// 변경 된 이미지가 있을 때 
+				activity_image = "/meet-a-bwa/resources/img/" + activity_image;
+			}
+			
+			avo.setActivity_image(activity_image);
 			
 			
 			ActivityDAO a_dao = new ActivityDAOImpl();
@@ -182,7 +202,7 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 
 			if(result==1) {
 					//response.sendRedirect(".do?activity_no="+activity_no);
-					response.sendRedirect("/meet-a-bwa/activity-main.do?activity_no="+activity_no);
+					response.sendRedirect("/meet-a-bwa/activity-main.do?idx="+activity_no);
 				}else
 					response.sendRedirect("a_update.do?activity_no=" + activity_no);
 			}
