@@ -70,14 +70,14 @@ public class MeetDetailAction {
 		request.setAttribute("mvo3", mvo3);
 		
 		// 모임 가입한 유저 정보 불러오기 - 유저 리스트
-				List<MeetUserVO> uvos = mdao.meetUser_selectAll(idx);
-				List<String> m_list = new ArrayList<String>();
+		List<MeetUserVO> uvos = mdao.meetUser_selectAll(idx);
+		List<String> m_list = new ArrayList<String>();
 				
-				for (MeetUserVO uvo : uvos) {
-					System.out.println(uvo.getUser_no());
-					m_list.add(uvo.getUser_no());
-				}
-				request.setAttribute("m_list", m_list);
+		for (MeetUserVO uvo : uvos) {
+			System.out.println(uvo.getUser_no());
+				m_list.add(uvo.getUser_no());
+		}
+		request.setAttribute("m_list", m_list);
 		
 		request.getRequestDispatcher("views/meet/MEET07.jsp").forward(request, response);
 	}
