@@ -42,9 +42,7 @@
 	<!-- <button type="button" class="btn-meet join"> -->
 	<c:choose>
 		<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(m_list, list.user_no)) }">
-			<button type="button" class="btn-meet join">
-				<a href="#">모임 가입하기</a>
-			</button>
+			<button type="button" class="btn-meet join" idx="${ mvo3.meet_no }">모임 가입하기</button>
 		</c:when>
 
 

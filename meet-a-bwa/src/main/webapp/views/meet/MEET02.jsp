@@ -44,6 +44,7 @@
 <script src="/meet-a-bwa/resources/js/common/header.js"></script>
 <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 
+<script src="/meet-a-bwa/resources/js/meet/meet-registered.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/meet-detail.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/meet-member-list.js"></script>
 <script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
