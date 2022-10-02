@@ -21,17 +21,17 @@
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 
-<link rel="stylesheet"
-   href="/meet-a-bwa/resources/css/vote/vote_common.css" />
-<link rel="stylesheet"
-   href="/meet-a-bwa/resources/css/vote/vote_create.css" />
-<link rel="stylesheet"
-   href="/meet-a-bwa/resources/css/vote/vote_update.css" />
-<link rel="stylesheet"
-   href="/meet-a-bwa/resources/css/vote/vote_view.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_common.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_create.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_update.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/vote/vote_view.css" />
 
-<link rel="stylesheet"
-   href="/meet-a-bwa/resources/css/activity/feed.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/event/event_common.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/event/event_create.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/event/event_update.css" />
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/event/event_view.css" />
+
+<link rel="stylesheet" href="/meet-a-bwa/resources/css/activity/feed.css" />
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 
@@ -52,15 +52,13 @@
 <script src="/meet-a-bwa/resources/js/vote/vote_create_a.js"></script>
 <script>
    $(function() {
-      // 생성 버튼 클릭 (+)
-      $("#vote_create_btn").click(function() {
-         $(".vote-create-update-wrap").removeClass("blind"); // 투표 팝업
-         $("#event-create").removeClass("blind"); //////////////////////////////예동 여기이이~~~~~~~~~~~~~~~ okok~
-      });
-      $("#event_create_btn").click(function() {
-         $(".vote-create-update-wrap").removeClass("blind"); // 이벤트 팝업
-         $("#event-create").removeClass("blind");
-      });
+	// 이벤트 생성 버튼 클릭 (+)
+		$("#event_create_btn").click(function() {
+			$("#event_cu-wrap").removeClass("blind");
+// 			$("#event-create-wrap").removeClass("blind");
+			$("#event-update-wrap").removeClass("blind");
+		});
+	
       $("#recruit_create_btn").click(function() {
          $(".vote-create-update-wrap").removeClass("blind"); // 활동 신청 팝업
          $("#event-create").removeClass("blind");
@@ -713,7 +711,8 @@
                   <h4 class="section_title">투표 제목</h4>
                   <section id="title_section">
                      <input type="text" id="vote_title" class="common"
-                        placeholder="투표 제목"> <span id="title_text_length"
+                        placeholder="투표 제목"> 
+                        <span id="title_text_length"
                         class="text_length">0/15</span>
                   </section>
                </section>
@@ -904,6 +903,337 @@
       <span id="toast_txt"></span>
    </div>
    <!-- END toastWrap -->
+   
+   
+   
+   <!-- ************************************************************ -->
+   <!-- ********************     EVENT SECTION     ***************** -->
+   <!-- ************************************************************ -->
+   
+   <!-- ******************************* EVENT VIEW ******************************* -->
+	<!-- START popupWrap-->
+    <div id = "event-view" class = "popupWrap blind">
+        <!-- START event_popup-->
+        <div id = "event_show_popup">
+            <!-- Start title_wrap -->
+            <div id = "title_wrap" class = "wrap_common">
+                <span id = "event-view-title">이벤트 제목 부분입니다.</span>
+                <img src = "/meet-a-bwa/resources/img/more-vertical.png" alt = "더보기 세로 이미지" id = "more_vertival"/>
+                <!-- 숨기고 싶을 때, select_custom제거 후 blind추가-->
+                <div id = "dropdown" class = "blind">
+                    <img src = "/meet-a-bwa/resources/img/vector.png" alt = "셀렉트 before 이미지" id = "select_img"/>
+                    <ul class = "select_list_wrap">
+                        <li class = "select_list" id = "update">수정</li>
+                        <li class = "select_list" id = "delete">삭제</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END title_wrap -->
 
+            <!-- Start sectionWrap -->
+            <div id = "section_wrap" class = "wrap_common">
+                <!-- START description_section -->
+                <section id = "description_section" class = "sectionCommon">
+                    <fieldset id = "description_field">
+                        <legend class = "field_title">이벤트 설명</legend>
+                        <div class = "field_content">
+                            씨부렁씨부렁<br>
+                        </div>
+                    </fieldset>
+                </section>
+                <!-- END description_section -->
+
+                <!-- START info_section -->
+                <section id = "info_section" class = "sectionCommon">
+                    <ul id = "listWrap">
+                        <li class = "list">
+                            <label class = "list_title">일정</label>
+                            <span id = "event_date" class = "list_content">2022년 08월 28일 12시00분</span>
+                        </li>
+                        <li class = "list">
+                            <label class = "list_title">장소</label>
+                            <span id = "location" class = "list_content">경기도 성남시 분당구 오리역 3번 출구</span>
+                        </li>
+                    </ul>
+                </section>
+                <!-- END info_section -->
+
+                <!-- START team_section -->
+                <section id = "team_section">
+                    <fieldset id = "team_field">
+                        <legend class = "field_title">조 편성(* 이벤트 생성 이후에 수정 불가)</legend>
+                        <div id = "field_content" class = "blind">
+                            <ul id = "team_list_wrap">
+                                <li class = "team_list">
+                                    <span class = "team_num">1조</span>
+                                    <p class = "memberWrap">
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                    </p>
+                                </li>
+                                <li class = "team_list">
+                                    <span class = "team_num">2조</span>
+                                    <p class = "memberWrap">
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                        <span class = "member_name">김예은</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                </section>
+                <!-- END team_section -->
+            </div>
+            <!-- END sectionWrap -->
+
+            <!-- Start bottom_wrap -->
+            <div id = "bottom_wrap">
+                <p id = "writer">작성자 : 김예은</p>
+                <input type = "button" id = "okBtn" class = "btnCommon" value = "확인"/>
+            </div>
+            <!-- END bottom_wrap -->
+        </div>
+        <!-- END event_popup-->
+    </div>
+    <!-- END EVENT VIEW WRAP-->
+
+    <div id = "confirmWrap" class = "blind"> 
+        <div id = "confirm_head">
+            <img src = "/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png" id = "more-horizontal" alt = "more-img"/>
+        </div>
+        <div id = "confirm_txt_wrap">
+            <span id = "confirm_txt">삭제하시겠습니까?</span>
+        </div>
+        <div id = "confirm_btn_wrap">
+            <input type = "button" id = "yesBtn" class = "confirm_btn_common" value = "예"/>
+            <input type = "button" id = "noBtn" class = "confirm_btn_common" value = "아니오"/>
+        </div>
+    </div>
+    
+    
+    
+    <!-- ******************************* EVENT CREATE_UPDATE ******************************* -->
+    <!-- Start popupWrap -->
+    <div id = "event_cu-wrap" class = "popupWrap blind">
+        <!-- Start event_popup -->
+        <div id = "" class = "event_popup">
+            <div id = "event-create-wrap" class = "blind">
+            	<h1 id = "event-create-title">이벤트 추가</h1>
+	            <!-- Start sectionWrap -->
+	            <div id = '' class = "sectionWrap">
+	                <section id = "" class = "e_titleSection event-section_common">
+	                    <h4 class = "section_title">이벤트 제목</h4>
+	                    <section>
+	                        <input type = "text" id = "event_title" class = "event_title common" placeholder="이벤트 제목">
+	                        <span id = "event_title_text_length" class = "text_length">0/15</span>
+	                    </section>
+	                </section>
+	
+	                <section id = ""  class = "choice_date event-section_common">
+	                    <h4 class = "section_title">이벤트 시간/날짜 설정</h4>
+	                    <div id = "" class = "pickerWrap">
+	                        <input type = "text" id = "eventDate" class = "eventDate dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요.">
+	
+	                        <!-- START TIMEPICKER -->
+	                        <div id = "" class = "e_timepicker_box dateCommon">
+	                            <section id = "" class = "timeSection">
+	                                <span id = "timeValue">--:--:--</span>
+	                            </section>
+	    
+	                            <section id = "" class = "timeImgSection">
+	                                <img src="/meet-a-bwa/resources/img/clock.svg" id = "timeImg" alt = "시계이미지" />
+	                            </section>
+	    
+	                            <div id = "" class = "customTimePicker blind">
+	                                <div id = "ampm_choice" class = "ampm_choice">
+	                                    <ul id = "ampm_listWrap">
+	                                        <li class = "sample ampm-list"></li>
+	                                    </ul>
+	                                </div>
+	                                <div id = "time_choice" class = "choiceCommon">
+	                                    <ul id = "time_listWrap">
+	                                        <li class = "sample time-list"></li>
+	                                    </ul>
+	                                </div>
+	                                <div id = "minute_choice" class = "choiceCommon">
+	                                    <ul id = "minute_listWrap">
+	                                        <li class = "sample minute-list"></li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <!-- END TIMEPICKER -->
+	                    </div>
+	                </section>
+	
+	                <section class = "event-section_common">
+	                    <h4 class = "section_title">이벤트 내용</h4>
+	                    <section>
+	                        <textarea id = "event_description" class = "event_description common" placeholder="이벤트 내용"></textarea>
+	                        <span id = "event_description_text_length" class = "text_length">0/200</span>
+	                    </section>
+	                </section>
+	
+	                <section id = "teamSection"  class = "event-section_common">
+	                    <h4 id = "team_title" class = "section_title">조 편성(*생성 이후 수정 불가)</h4>
+	
+	                    <!-- START selectWrap -->
+	                    <div class = "selectWrap sample blind">
+	                        <div class = "select_custom_wrap">
+	                            <div class = "select_custom">
+	                                <div class = "selectedWrap">
+	                                    <div class = "selected_value">
+	                                        <section class = "before_choice event-section_common">
+	                                            <span>+ 조원 선택</span>
+	                                        </section>
+	    
+	                                        <section class = "after_choice blind">
+	                                            <span class = "team_mem_tag event-section_common sample_tag blind"></span>
+	                                        </section>
+	                                    </div>
+	                                    <img src = "/meet-a-bwa/resources/img/dropdown.svg" alt = "dropdown img" class = "dropdown_img2" />                     
+	                                </div>
+	
+	                                <div class = "imgWrap">
+	                                    <img src = "/meet-a-bwa/resources/img/close.png" alt = "항목 삭제 이미지" class = "removeBtn" />
+	                                </div>
+	                            </div>
+	
+	                            <div class = "selectFlag blind">
+	                                <img src = "/meet-a-bwa/resources/img/select_down.png" class = "dropDown_img">
+	                                <ul class = "optionWrap">
+	                                    <li class = "li_common">김예은</li>
+	                                    <li class = "li_common">최진실</li>
+	                                    <li class = "li_common">전판근</li>
+	                                </ul>
+	                            </div>
+	                        </div>
+	                        <!-- END select_custom -->
+	                    </div>
+	                    <!-- END selectWrap -->
+	                </section>
+	                <!-- END teamSection -->
+	                <input type ="button" id = "event_team_plus_btn" value="조편성 추가"/>
+            	</div>
+	            <div class = "btnWrap">
+	                <input type ="button" id = "event_createBtn" class = "btnCommon" value="이벤트 생성">
+	                <input type ="button" id = "event_cancleBtn" class = "btnCommon" value="취소">
+	            </div>
+       </div>
+       <!--  END event-create-wrap -->
+            
+       <div id = "event-update-wrap" class = "blind">
+          <div id = "topSection">
+              <h1 class = "u_title">이벤트 수정</h1>
+              <img src = "/meet-a-bwa/resources/img/close.png" id = "e_u_closeBtn" alt = "이벤트 수정창 닫기 버튼 이미지"/>
+          </div>
+            
+            <!-- Start sectionWrap -->
+            <div id = '' class = "sectionWrap">
+                <section id = "" class = "e_titleSection event-section_common">
+                    <h4 class = "section_title">이벤트 제목</h4>
+                    <section id = "title_section">
+                        <input type = "text" id = "event_u_event_title" class = "event_title common" placeholder="이벤트 제목">
+                        <span id = "event_u_title_text_length" class = "text_length">0/15</span>
+                    </section>
+                </section>
+
+                <section id = ""  class = "choice_date event-section_common">
+                    <h4 class = "section_title">이벤트 시간/날짜 설정</h4>
+                    <div id = "" class = "pickerWrap">
+                        <input type = "text" id = "event_u_eventDate" class = "eventDate dateCommon" autocomplete="off" placeholder="날짜를 선택해주세요.">
+
+                        <!-- START TIMEPICKER -->
+                        <div id = "" class = "e_timepicker_box dateCommon">
+                            <section id = "" class = "timeSection">
+                                <span id = "event_u_timeValue">--:--:--</span>
+                            </section>
+    
+                            <section id = "" class = "timeImgSection">
+                                <img src="/meet-a-bwa/resources/img/clock.svg" id = "timeImg" alt = "시계이미지" />
+                            </section>
+    
+                            <div id = "" class = "customTimePicker blind">
+                                <div id = "u_ampm_choice" class = "ampm_choice">
+                                    <ul id = "ampm_listWrap">
+                                        <li class = "sample ampm-list"></li>
+                                    </ul>
+                                </div>
+                                <div id = "u_time_choice" class = "choiceCommon">
+                                    <ul id = "time_listWrap">
+                                        <li class = "sample time-list"></li>
+                                    </ul>
+                                </div>
+                                <div id = "u_minute_choice" class = "choiceCommon">
+                                    <ul id = "minute_listWrap">
+                                        <li class = "sample minute-list"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END TIMEPICKER -->
+                    </div>
+                </section>
+                
+                <section class = "event-section_common">
+                    <h4 class = "section_title">이벤트 내용</h4>
+                    <section>
+                        <textarea id = "event_u_event_description" class = "event_description common" placeholder="이벤트 내용"></textarea>
+                        <span id = "event_u_description_text_length" class = "text_length">0/150</span>
+                    </section>
+                </section>
+
+                <section id = "teamSection"  class = "event-section_common">
+                    <h4 class = "section_title">조 편성(* 수정 불가)</h4>
+
+                    <!-- START SAMPLE selectWrap -->
+                    <div class = "selectWrap sample blind">
+                        <div class = "select_custom_wrap">
+                            <div class = "select_custom">
+                                <div class = "selectedWrap">
+                                    <div class = "selected_value">    
+                                        <section class = "after_choice blind">
+                                            <span class = "team_mem_tag section_common sample_tag blind"></span>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END select_custom -->
+                    </div>
+                    <!-- END SAMPLE selectWrap -->
+                </section>
+                    
+            </div><!-- END sectionWrap -->
+            
+            <div class = "btnWrap">
+                <input type ="button" id = "event_updateBtn" class = "btnCommon" value="이벤트 수정">
+            </div>
+           </div>
+       </div><!-- END event_popup -->
+   </div><!-- END popupWrap -->
 </body>
 </html>

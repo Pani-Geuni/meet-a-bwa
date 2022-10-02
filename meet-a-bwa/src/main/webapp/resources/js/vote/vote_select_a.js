@@ -15,7 +15,7 @@ $(function() {
 	let ajax_flag = true;
 	
 	
-	// 오른쪽 섹션 - 투표 생성 버튼 클릭 (+)
+	// 투표 생성 버튼 클릭 (+)
 	$("#vote_create_btn").click(function() {
 		$(".vote-create-update-wrap").removeClass("blind");
 		$("#event-create").removeClass("blind");
@@ -23,8 +23,7 @@ $(function() {
 
 	// 투표 리스트 선택 - 투표 보기
 	$("#vote-wrap").on("click", ".content_list_activity", function(){
-		//idx = $(this).attr("idx");
-		idx = "V1035";
+		idx = $(this).attr("idx");
 		ajax_load(idx);
 		
 	});

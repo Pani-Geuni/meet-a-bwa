@@ -15,7 +15,7 @@ public class A_VoteResult_updateAction {
 		String vote_no = request.getParameter("vote_no");
 		String user_no = request.getParameter("user_no");
 		String content_no = request.getParameter("content_no");
-		String meet_no = request.getParameter("meet_no");
+		String activity_no = request.getParameter("activity_no");
 		
 		VoteResultVO vo = new VoteResultVO();
 		vo.setVote_no(vote_no);
@@ -31,7 +31,7 @@ public class A_VoteResult_updateAction {
 		int result = dao.update_result(vo);
 		
 		if(result == 1) {
-			response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
+			response.sendRedirect("/meet-a-bwa/activity-main.do?idx=" + activity_no);
 		}
 	}
 }

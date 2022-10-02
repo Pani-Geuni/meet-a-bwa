@@ -2,6 +2,12 @@ $(function(){
     let cnt = 0;
     let flag = true;
 
+	// 이벤트 생성 버튼 클릭 (+)
+	$("#event_create_btn").click(function() {
+		$("#event_cu-wrap").removeClass("blind");
+		$("#event-create-wrap").removeClass("blind");
+	});
+	
     plus_list();
 
     /************************************************************* */
