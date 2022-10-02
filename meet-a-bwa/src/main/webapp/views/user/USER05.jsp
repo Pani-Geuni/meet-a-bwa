@@ -4,21 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/common.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/header.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/common/footer.css" />
+	
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
+	
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-meet.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
+	
+	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
+	<script src="/meet-a-bwa/resources/js/common/header.js"></script>
+	<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+	<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css" />
-
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/my-meet.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
-<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
-
-<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
-<script src="/meet-a-bwa/resources/js/common/header.js"></script>
-<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
-<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+	<script>
+    	$(function() {
+    		// 상세 리스트 클릭 이벤트
+	    	 $("#meet_recommendSection").on("click", ".content_list.meet-list", function(){
+	    		 let idx = $(this).attr("idx");
+	    		 
+	    		 console.log(idx)
+	    		 location.href = "/meet-a-bwa/meet-main.do?idx="+idx;
+	    	 });	
+    	})
+    </script>
+    
 <title>나의 모임 리스트</title>
 </head>
 <body>

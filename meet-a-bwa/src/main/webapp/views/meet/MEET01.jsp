@@ -25,6 +25,18 @@
     
     <script src="/meet-a-bwa/resources/js/meet/create/create.js"></script>
     
+    <script>
+    	$(function() {
+    		// 상세 리스트 클릭 이벤트
+	    	 $("#meet-list-section").on("click", ".content-list.meet-list", function(){
+	    		 let idx = $(this).attr("idx");
+	    		 
+	    		 console.log(idx)
+	    		 location.href = "/meet-a-bwa/meet-main.do?idx="+idx;
+	    	 });	
+    	})
+    </script>
+    
     
 <title>모임 리스트</title>
 </head>
@@ -59,7 +71,7 @@
 		    	
 		    	<div id = "meet-list-section">
 		    		<c:forEach var="mlvo" items="${mlvos}">
-		    		<div class = "content-list">
+		    		<div class = "content-list meet-list" idx = "${ mlvo.meet_no }">
 		    			<div class = "info-list-wrap">
 	                            <div class = "listCommon">
 	                                <span class = "content_title">${mlvo.meet_name}</span>
