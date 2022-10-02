@@ -1,6 +1,7 @@
 package test.com.meetboard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
+import test.com.meet.model.MeetUserVO;
 import test.com.meet.model.MeetVO3;
 import test.com.meetboard.model.MeetBoardDAO;
 import test.com.meetboard.model.MeetBoardDAOImpl;
@@ -89,6 +91,16 @@ public class MeetBoardSelectOneAction {
 			MeetVO3 mvo3 = mdao.meet_selectOne(mvo);
 			
 			request.setAttribute("mvo3", mvo3);
+			
+			// 모임 가입한 유저 정보 불러오기 - 유저 리스트
+			List<MeetUserVO> uvos = mdao.meetUser_selectAll(mvo3.getMeet_no());
+			List<String> m_list = new ArrayList<String>();
+			
+			for (MeetUserVO uvo : uvos) {
+				System.out.println(uvo.getUser_no());
+				m_list.add(uvo.getUser_no());
+			}
+			request.setAttribute("m_list", m_list);
 			
 			// 투표 불러오기
 			VoteDAO vdao = new VoteDAOImpl();
