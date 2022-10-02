@@ -27,33 +27,43 @@
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
  <script src="/meet-a-bwa/resources/js/common/header.js"></script>
- <script src="/meet-a-bwa/resources/js/common/login.js"></script>
+ <!-- <script src="/meet-a-bwa/resources/js/common/login.js"></script> -->
 <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 <script src="/meet-a-bwa/resources/js/user/join/join.js"></script>
 <script>
 	function check() {
 		//			$("#join_btn").click(function(){
-		let id = $("#id").val().trim().length;
+		/* let id = $("#id").val().trim().length;
 		let pw = $("#pw").val().trim().length;
 		let pw_check = $("#pw_check").val().trim().length;
-		let name = $("#name").val().trim().length;
+		let name = $("#user_name").val().trim().length;
 		let nickname = $("#nickname").val().trim().length;
 		let email = $("#email").val().trim().length;
 		let tel = $("#tel").val().trim().length;
 		let bitrh = $("#birth").val().length;
-		let gender = $("#gender").val().length;
+		let gender = $("#gender").val().length; */
+		
+		let id = $.trim($("#id").val()).length;
+		let pw = $.trim($("#pw").val()).length;
+		let pw_check = $.trim($("#pw_check").val()).length;
+		let name = $.trim($("#name").val()).length;
+		let u_nickname = $.trim($("#u_nickname").val()).length;
+		let email = $.trim($("#email").val()).length;
+		let tel = $.trim($("#tel").val()).length;
+		let birth = $.trim($("#birth").val()).length;
+		let gender = $.trim($("#gender").val()).length;
 
 		console.log(id);
 		console.log(pw);
 		console.log(pw_check);
 		console.log(name);
-		console.log(nickname);
+		console.log(u_nickname);
 		console.log(email);
 		console.log(tel);
 		console.log(birth);
 		console.log(gender);
 
-		if (id > 0 && pw > 0 && pw_check > 0 && name > 0 && nickname > 0
+		if (id > 0 && pw > 0 && pw_check > 0 && name > 0 && u_nickname > 0
 				&& email > 0 && tel > 0 && bitrh > 0 && gender > 0 && pw > 7
 				&& ($("#pw").val() === $("#pw_check").val())
 				&& $("#id").attr("readonly") && $("#nickname").attr("readonly")
@@ -66,7 +76,7 @@
 
 			//let arr_result = [id, pw,pw_check, name, nicknam,email, tel, birth, gender];
 			
-			if (id <= 0 || pw<=0 ||pw_check <= 0 || name <= 0 || nickname <= 0
+			if (id <= 0 || pw<=0 ||pw_check <= 0 || name <= 0 || u_nickname <= 0
 					|| email <= 0 || tel <= 0 || birth <= 0 || gender <= 0) {
 			//for(let i=0; i<arr_result.length(); i++){
 				//$(".bin_obj").text([i].val()+"를 채워주세요!");
