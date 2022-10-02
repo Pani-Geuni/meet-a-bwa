@@ -22,9 +22,11 @@ $(function() {
 	});
 
 	// 투표 리스트 선택 - 투표 보기
-	$("#vote-summary-list").on("click", ".vote-list-item", function(){
-		idx = $(this).attr("idx");
+	$("#vote-wrap").on("click", ".content_list_activity", function(){
+		//idx = $(this).attr("idx");
+		idx = "V1035";
 		ajax_load(idx);
+		
 	});
 	
 	

@@ -75,7 +75,7 @@
 /* 댓글 부분 */
 /* ===================== */
 
-.coment-wrap {
+.comment-wrap {
   width: 100%;
 }
 
@@ -119,6 +119,12 @@
 }
 
 /* 각 유저의 개인 댓글 */
+.comment-user-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .comment-user-info {
   display: flex;
   align-items: center;
@@ -140,4 +146,15 @@
 .comment-write-date {
   font-size: 12px;
   color: #444444;
+}
+
+.btn-comment-delete {
+	color: #444444;
+	text-decoration-line: underline;
+	background-color: #ffffff;
+	border: none;
+	
+	height: 24px;
+	
+	cursor: pointer;
 }
