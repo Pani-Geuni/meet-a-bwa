@@ -100,39 +100,28 @@
           <pre class="post-detail-content">${ bvo2.board_content }</pre>
 
           <div class="coment-wrap">
-            <form action="#" class="form-comment">
-              <textarea placeholder="댓글을 남겨주세요."></textarea>
+            <form action="c_insertOK.do" method="post" class="form-comment">
+              <input name="mother_no" type="text" value="${ NULL }" style="display: none" />
+              <textarea name="comment_content" placeholder="댓글을 남겨주세요."></textarea>
+              <input name="board_no" value="${ bvo2.board_no }" style="display: none" >
+              <input name="user_no" value="${ list.user_no }" style="display: none" >
               <button type="submit">등록</button>
             </form>
 
-            <div class="user-comments">
-              <div class="user-comment">
-                <div class="comment-user-info">
-                  <div class="comment-user-info-profile">
-                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
-                  </div>
-                  <p class="comment-user-nickname">트루</p>
-                  <p class="comment-write-date">2022.09.12</p>
-                </div>
-                <pre class="post-detail-comment">
-댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</pre
-                >
-              </div>
-            </div>
-            <div class="user-comments">
-              <div class="user-comment">
-                <div class="comment-user-info">
-                  <div class="comment-user-info-profile">
-                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
-                  </div>
-                  <p class="comment-user-nickname">옌두목</p>
-                  <p class="comment-write-date">2022.09.12</p>
-                </div>
-                <pre class="post-detail-comment">
-댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</pre
-                >
-              </div>
-            </div>
+			<c:forEach var="cvo" items="${ cvos }">
+	            <div class="user-comments">
+	              <div class="user-comment">
+	                <div class="comment-user-info">
+	                  <div class="comment-user-info-profile">
+	                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
+	                  </div>
+	                  <p class="comment-user-nickname">${ cvo.user_nickname }</p>
+	                  <p class="comment-write-date">${ cvo.comment_date }</p>
+	                </div>
+	                <pre class="post-detail-comment">${ cvo.comment_content }</pre>
+	              </div>
+	            </div>
+            </c:forEach>
           </div>
         </section>
         

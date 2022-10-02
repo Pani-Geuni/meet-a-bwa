@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO2;
+import test.com.comment.model.CommentDAO;
+import test.com.comment.model.CommentDAOImpl;
+import test.com.comment.model.CommentVO;
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
 import test.com.meet.model.MeetUserVO;
@@ -104,6 +107,11 @@ public class MeetBoardSelectOneAction {
 				m_list.add(uvo.getUser_no());
 			}
 			request.setAttribute("m_list", m_list);
+			
+			// 해당 게시글의 댓글 불러오기
+			CommentDAO cdao = new CommentDAOImpl();
+			List<CommentVO> cvos = cdao.comment_selectAll(board_no);
+			request.setAttribute("cvos", cvos);
 			
 			// 액티비티 불러오기
 			ActivityDAO adao = new ActivityDAOImpl();
