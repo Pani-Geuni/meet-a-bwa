@@ -78,10 +78,10 @@
             </h1>
             <div class="post-user-info">
               <div class="user-info">
-                <div class="user-info-profile">
-                  <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
-                </div>
-                <p class="user-nickname">${ bvo2.user_name }</p>
+	            <div class="user-info-profile">
+	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
+	            </div>
+	            <p class="user-nickname">${ bvo2.user_name }</p>
                 <p class="write-date">${ bvo2.board_date }</p>
               </div>
               
@@ -111,12 +111,17 @@
 			<c:forEach var="cvo" items="${ cvos }">
 	            <div class="user-comments">
 	              <div class="user-comment">
-	                <div class="comment-user-info">
-	                  <div class="comment-user-info-profile">
-	                    <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
+	                <div class="comment-user-info-top">
+	               	  <div class="comment-user-info">
+	                    <div class="comment-user-info-profile">
+	                      <img src="/meet-a-bwa/resources/img/loopy.svg" alt="프로필 이미지" />
+	                    </div>
+	                    <p class="comment-user-nickname">${ cvo.user_nickname }</p>
+	                    <p class="comment-write-date">${ cvo.comment_date }</p>
 	                  </div>
-	                  <p class="comment-user-nickname">${ cvo.user_nickname }</p>
-	                  <p class="comment-write-date">${ cvo.comment_date }</p>
+	                  <c:if test="${ cvo.user_no eq list.user_no }">
+	                  	<button class="btn-comment-delete" idx="${ cvo.comment_no }">삭제</button>
+	                  </c:if>
 	                </div>
 	                <pre class="post-detail-comment">${ cvo.comment_content }</pre>
 	              </div>
