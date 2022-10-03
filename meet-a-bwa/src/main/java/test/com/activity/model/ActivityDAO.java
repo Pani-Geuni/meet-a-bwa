@@ -18,6 +18,8 @@ public interface ActivityDAO {
 	public ActivityVO activity_selectOne(ActivityVO avo);
 	public List<String> select_all_activity_like(String user_no);
 	
+	public List<ActivityVO2> select_all_more_like(String category, String searchWord);
+	
 	public List<ActivityVO2> activity_selectAll_main_feed(String meet_no);
 	public ActivityVO3 activity_selectOne_main_feed(ActivityVO3 avo);
 	public List<RegisteredVO> activity_select_registered(String activity_no);

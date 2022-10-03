@@ -232,6 +232,74 @@
     align-items: center;
 }
 
+/* ********************* */
+/** ACTIVITY SECTION */
+/* ********************* */
+#cate_tag_section{
+    width: 100%;
+    height: auto;
+    padding: 15px;
+}
+#unfold_tag{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.tagItem{
+    width: auto;
+    font-size: 13px;
+    padding: 4px 16px 5px 14px;
+    border: 2px solid #E4E4E4;
+    border-radius: 15px;
+    margin-right: 7px;
+    background-color: white;
+    cursor: pointer;
+}
+.check{
+    background-color: #E4E4E4;
+}
+.tag_plus{
+    margin-left: 25px;
+}
+#plusImg{
+    width: 59px;
+    cursor: pointer;
+}
+#foldImg{
+    height: 24px;
+    cursor: pointer;
+}
+
+#fold_tag{
+    margin-top: 8px;
+    width: 100%;
+    height: auto;
+}
+
+
+#tagUl{
+    width: 100%;
+    display: inline-block;
+}
+.tag_li{
+    display: inline-block;
+    height: 31px;
+    margin-top: 8px;
+}
+
+/***********************************************/
+
+#recommend_list_wrap{
+	display: flex;
+    align-items : center;
+    justify-content: space-between;
+    flex-wrap : wrap;
+
+    width: 985px;
+    box-sizing: border-box;
+    padding : 20px;
+}
 .no-list-wrap{
 	display: flex;
     align-items : center;
