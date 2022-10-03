@@ -15,6 +15,7 @@ public class ActivityListAction {
 		String searchWord = request.getParameter("searchWord");
 		System.out.println("category : " + category);
 		System.out.println("searchWord : " + searchWord);
-//		request.getRequestDispatcher("views/activity/ACTI01.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/activity/ACTI01.jsp").forward(request, response);
 	}
 }
