@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
 import test.com.activity.model.RegisteredDAO;
 import test.com.activity.model.RegisteredDAOImpl;
 import test.com.activity.model.RegisteredVO;
@@ -60,18 +62,24 @@ public class ActivityFeedRegistered_Action {
 	}
 	//**********************************************************************//
 	RegisteredVO rvo = new RegisteredVO();
-	rvo.setUser_no(request.getParameter("user_no"));
+	//rvo.setUser_no(request.getParameter("user_no"));
 	
-	System.out.println("ㅇㅇㅇㅇㅇㅇ:"+request.getParameter("activity_no"));
 	
+	String activity_no = request.getParameter("activity_no");
 	RegisteredDAO r_dao = new RegisteredDAOImpl();
-	int result = r_dao.activity_registered(rvo);
+	int result = r_dao.activity_registered(cookie_userNo, activity_no);
+	System.out.println("AAAAAAAAAAAAAAAAAa::::::"+activity_no);
 	
 	System.out.println(result);
-	if(result==1) {
-		response.sendRedirect("/meet-a-bwa/activity-main.do?idx=" + request.getParameter("meet_no"));
+	if (result == 1) {
+		JSONObject obj = new JSONObject();
+		
+		obj.put("result", activity_no);
+		
+		response.setContentType("application/x-json; charset=UTF-8");
+		response.getWriter().print(obj);
 	}else {
-		response.sendRedirect("/meet-a-bwa/views/activity/ACTI02.jsp");
+		response.sendRedirect("/meet-a-bwa/activity-main.do?idx="+activity_no);
 	}
 	
 		
