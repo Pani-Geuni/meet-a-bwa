@@ -64,15 +64,15 @@
 			
 			<c:choose>
 			<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(uvos, list.user_no)) }">
-				<section class="feed-member-list">
-					<div class="feed-not-login">
+				<section class="feed-not-login">
+					<div class="feed-member-list-not-login">
 						<img src="resources/img/worry.svg" alt="worry img" />
 						<h1>로그인 혹은 가입을 한 후에 이용해주세요!</h1>
 					</div>
 				</section>
 			</c:when>
 			
-			<c:when test="${list.isLogin eq true}">
+			<c:when test="${ list.isLogin eq true || (not fn:containsIgnoreCase(uvos, list.user_no)) }">
 				<section class="feed-member-list">
 		          <div class="member-list-title">
 		            <h1>멤버</h1>
