@@ -63,8 +63,13 @@
 			<jsp:include page="../../views/common/meetLeftSideBar.jsp"></jsp:include>
 			
 			<c:choose>
-			<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
-				<h1>로그인 하셈</h1>
+			<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(uvos, list.user_no)) }">
+				<section class="feed-member-list">
+					<div class="feed-not-login">
+						<img src="resources/img/worry.svg" alt="worry img" />
+						<h1>로그인 혹은 가입을 한 후에 이용해주세요!</h1>
+					</div>
+				</section>
 			</c:when>
 			
 			<c:when test="${list.isLogin eq true}">
