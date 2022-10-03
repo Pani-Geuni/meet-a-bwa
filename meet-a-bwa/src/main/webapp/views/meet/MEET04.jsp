@@ -63,12 +63,17 @@
 			<jsp:include page="../../views/common/meetLeftSideBar.jsp"></jsp:include>
 			
 			<c:choose>
-			<c:when test="${ list.isLogin eq false || list.isLogin eq null }">
-				<h1>로그인 하셈</h1>
+			<c:when test="${ (list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(uvos, list.user_no)) }">
+				<section class="feed-not-login">
+					<div class="feed-member-list-not-login">
+						<img src="resources/img/worry.svg" alt="worry img" />
+						<h1>로그인 혹은 가입을 한 후에 이용해주세요!</h1>
+					</div>
+				</section>
 			</c:when>
 			
-			<c:when test="${list.isLogin eq true}">
-				<section class="feedWrap feed-member-list">
+			<c:when test="${ list.isLogin eq true || (not fn:containsIgnoreCase(uvos, list.user_no)) }">
+				<section class="feed-member-list">
 		          <div class="member-list-title">
 		            <h1>멤버</h1>
 		            <p id="all-member-count">${ fn:length(uvos) }</p>
@@ -103,23 +108,34 @@
 								</p>
 							</div>
 							<ul class="right-summary-list-contents">
-								<li><p>액티비티1</p></li>
-								<li><p>액티비티2</p></li>
+								<c:if test="${ avos.size() == 0 }">
+									<div class="no-contents-item">
+										<p>생성된 액티비티가 없습니다.</p>
+									</div>
+								</c:if>
+								<c:if test="${ avos.size() > 0 }">
+									<c:forEach var="avo" items="${ avos }">
+										<li class="activity_list_item" idx="${ avo.activity_no }"><p>${ avo.activity_name }</p></li>
+									</c:forEach>
+								</c:if>	
 							</ul>
 						</div>
 						<div class="right-summary-list" id="vote-summary-list">
 							<div class="right-summary-list-top">
 								<h1>투표</h1>
-								<p id="vote_create_btn">
-									<!-- <a href="/meet-a-bwa/m_vote_create.do"> -->
-									+
-									<!-- </a> -->
-								</p>
+								<p id="vote_create_btn">+</p>
 							</div>
 							<ul class="right-summary-list-contents">
-								<c:forEach var="vvo" items="${ vvos }">
-									<li class="vote-list-item" idx= "${ vvo.vote_no }"><p>${ vvo.vote_title }<p></li>
-								</c:forEach>
+								<c:if test="${ vvos.size() == 0 }">
+									<div class="no-contents-item">
+										<p>생성된 투표가 없습니다.</p>
+									</div>
+								</c:if>
+								<c:if test="${ vvos.size() > 0 }">
+									<c:forEach var="vvo" items="${ vvos }">
+										<li class="vote-list-item" idx= "${ vvo.vote_no }"><p>${ vvo.vote_title }<p></li>
+									</c:forEach>
+								</c:if>
 							</ul>
 						</div>
 

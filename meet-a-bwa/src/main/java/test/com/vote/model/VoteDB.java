@@ -45,7 +45,7 @@ public interface VoteDB {
 	
 	String SQL_VOTE_SELECT_ALL_M
 		= "SELECT VOTE_NO, VOTE_TITLE, USER_NO, MEET_NO "
-		+ "FROM TEST_VOTE ORDER BY VOTE_NO DESC";
+		+ "FROM TEST_VOTE WHERE MEET_NO = ? ORDER BY VOTE_NO DESC";
 	
 	String SQL_VOTE_SELECT_ONE_M
 		= "select test_vote.vote_no, vote_title, vote_description, vote_eod, vote_state, user_no, meet_no, activity_no, content_no, vote_content "

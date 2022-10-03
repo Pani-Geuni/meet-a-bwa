@@ -102,7 +102,7 @@ public class MeetFeedSelectAll_Action {
 		
 		// 투표 불러오기
 		VoteDAO vdao = new VoteDAOImpl();
-		List<VoteVO> vvos = vdao.vote_selectAll(); 
+		List<VoteVO> vvos = vdao.vote_selectAll(idx); 
 		
 		request.setAttribute("vvos", vvos);
 		
