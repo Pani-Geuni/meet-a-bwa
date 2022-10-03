@@ -122,9 +122,11 @@ $(function() {
     	
     	$("#event-update").removeClass("blind");
     	$("#u_vote_title").val(title);
+    	$("#u_title_text_length").text(title.length + "/15");
     	$("#u_vote_endDate").val(vote_date);
     	$("#u_timeValue").text(vote_time);
     	$("#u_vote_description").val(description);
+    	$("#u_description_text_length").text(description.length + "/150");
 
     	for(content of vote_contents){
     		let sample = $("#u_vote_list_Wrap").find(".sample").clone();
@@ -405,6 +407,10 @@ $(function() {
         $("#u_timeValue").text(arr.join(":"));
         
         if($(".ampm-list").hasClass("time_choice") && $(".time-list").hasClass("time_choice") && $(".minute-list").hasClass("time_choice")){
+            $(".ampm-list").removeClass("time_choice");
+            $(".time-list").removeClass("time_choice");
+            $(".minute-list").removeClass("time_choice");
+            
             $("#u_customTimePicker").addClass("blind");
         }
     });
@@ -418,6 +424,10 @@ $(function() {
         $("#u_timeValue").text(arr.join(":"));
 
         if($(".ampm-list").hasClass("time_choice")&&$(".time-list").hasClass("time_choice")&&$(".minute-list").hasClass("time_choice")){
+            $(".ampm-list").removeClass("time_choice");
+            $(".time-list").removeClass("time_choice");
+            $(".minute-list").removeClass("time_choice");
+            
             $("#u_customTimePicker").addClass("blind");
         }
     });
@@ -431,6 +441,10 @@ $(function() {
         $("#u_timeValue").text(arr.join(":"));
         
         if($(".ampm-list").hasClass("time_choice")&&$(".time-list").hasClass("time_choice")&&$(".minute-list").hasClass("time_choice")){
+            $(".ampm-list").removeClass("time_choice");
+            $(".time-list").removeClass("time_choice");
+            $(".minute-list").removeClass("time_choice");
+            
             $("#u_customTimePicker").addClass("blind");
         }
     });
@@ -501,7 +515,7 @@ $(function() {
                 toast_flag = true; // 추후에 사용할 수 있도록 변수값 변경
                 $("#toastWrap").removeClass("fade-in");
                 $("#toastWrap").addClass("fade-out");
-            }, 2000);
+            }, 1000);
         }
     }
     
