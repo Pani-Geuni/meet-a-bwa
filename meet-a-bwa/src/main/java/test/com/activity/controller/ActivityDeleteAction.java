@@ -67,7 +67,7 @@ public class ActivityDeleteAction {
 		if(result==1) {
 			response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + request.getParameter("meet_no"));
 		}else
-			response.sendRedirect("/meet-a-bwa/views/activity/ACTI02.jsp");
+			response.sendRedirect("/meet-a-bwa/activity-main.do?idx="+request.getParameter("activity_no"));
 		}
 
 }
