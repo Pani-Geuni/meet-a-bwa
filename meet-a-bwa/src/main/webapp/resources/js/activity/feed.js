@@ -36,4 +36,69 @@ $(function () {
         $("#like_cnt").text(--cnt);
         
     });
+    
+    
+    // 액티비티 가입하기
+    let idx = "";
+	
+	$("#join_activity_btn").on("click", function() {
+		
+		idx = $(this).attr("idx");
+		
+		ajax_load(idx);
+	})
+	
+	function ajax_load(idx) {
+		$.ajax({
+			url : "/meet-a-bwa/a_registered.do",
+			type : "GET",
+			dataType : "json",
+			data : {
+				activity_no : idx
+			},
+			
+			success : function(res) {
+				console.log("succees")
+				
+				location.reload();
+			},
+			
+			error : function(res, status, text) {
+				console.log("error");
+				console.log(text);
+			}
+		})
+	}
+	
+	// 액티비티 탈퇴
+	$(".activityExitBtn").on("click", function() {
+		console.log($(this).attr("idx"));
+		
+		idx = $(this).attr("idx");
+		
+		ajax_load_exit(idx);
+	})
+	
+	function ajax_load_exit(idx) {
+		$.ajax({
+			url : "/meet-a-bwa/a_withdrawal.do",
+			type : "GET",
+			dataType : "json",
+			data : {
+				activity_no : idx
+			},
+			
+			success : function(res) {
+				console.log("success");
+				console.log(res)
+				
+				location.reload();
+			},
+			
+			error : function(res, status, text) {
+				console.log("error")
+				console.log(text)
+			}
+		})
+	}
 });
