@@ -78,7 +78,7 @@ public class MemberListAction {
 		
 		// 투표 불러오기
 		VoteDAO vdao = new VoteDAOImpl();
-		List<VoteVO> vvos = vdao.vote_selectAll(); 
+		List<VoteVO> vvos = vdao.vote_selectAll(meet_no); 
 				
 		request.setAttribute("vvos", vvos);
 		

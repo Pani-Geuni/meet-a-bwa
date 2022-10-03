@@ -322,7 +322,7 @@ public class VoteDAOImpl implements VoteDAO {
 
 
 	@Override
-	public List<VoteVO> vote_selectAll() {
+	public List<VoteVO> vote_selectAll(String meet_no) {
 		System.out.println("vote selectAll()..");
 		
 		List<VoteVO> vos = new ArrayList<VoteVO>();
@@ -332,6 +332,7 @@ public class VoteDAOImpl implements VoteDAO {
 			System.out.println("Vote SelectAll conn secceed");
 			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ALL_M);
+			pstmt.setString(1, meet_no);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
