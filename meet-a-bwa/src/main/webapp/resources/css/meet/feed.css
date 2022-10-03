@@ -188,8 +188,15 @@
 /* Member List */
 /* *********** */
 .feed-member-list {
-  height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
   overflow: scroll;
+  
+  background-color: #ffffff;
+  margin-top: 40px;
+  
+  padding: 24px
 }
 
 .member-list-title {

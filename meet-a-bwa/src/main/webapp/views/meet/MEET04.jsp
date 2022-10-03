@@ -68,7 +68,7 @@
 			</c:when>
 			
 			<c:when test="${list.isLogin eq true}">
-				<section class="feedWrap feed-member-list">
+				<section class="feed-member-list">
 		          <div class="member-list-title">
 		            <h1>멤버</h1>
 		            <p id="all-member-count">${ fn:length(uvos) }</p>
