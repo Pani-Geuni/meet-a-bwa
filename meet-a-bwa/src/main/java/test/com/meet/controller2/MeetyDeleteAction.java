@@ -66,6 +66,6 @@ public class MeetyDeleteAction {
 		if(result==1) {
 			response.sendRedirect("/meet-a-bwa/views/main/MAIN01.jsp");
 		}else
-			response.sendRedirect("/meet-a-bwa/views/meet/MEET06.jsp");
+			response.sendRedirect("/meet-a-bwa/meet-main.do?idx="+request.getParameter("meet_no"));
 		}
 }
