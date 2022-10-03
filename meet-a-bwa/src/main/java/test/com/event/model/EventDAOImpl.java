@@ -33,7 +33,7 @@ public class EventDAOImpl implements EventDAO{
 		int flag=0;
 		try {
 			conn = DriverManager.getConnection(EventDB.URL,EventDB.USER,EventDB.PASSWORD);
-			pstmt = conn.prepareStatement(EventDB.SQL_INSERT_ACTIVITY);
+			pstmt = conn.prepareStatement(EventDB.SQL_INSERT_EVENT);
 			
 		    pstmt.setString(1, vo.getEvent_title());    
 			pstmt.setString(2, vo.getEvent_description());
@@ -69,6 +69,133 @@ public class EventDAOImpl implements EventDAO{
 			}
 		}
 		return flag;
+	}
+	
+	@Override
+	public int delete_event(String event_no) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(EventDB.URL,EventDB.USER,EventDB.PASSWORD);
+			pstmt = conn.prepareStatement(EventDB.SQL_DELETE_EVENT);	
+			pstmt.setString(1, event_no);
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			flag = -1;
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	@Override
+	public int update_event(EventVO vo) {
+		int flag=0;
+		try {
+			conn = DriverManager.getConnection(EventDB.URL,EventDB.USER,EventDB.PASSWORD);
+			pstmt = conn.prepareStatement(EventDB.SQL_UPDATE_EVENT);	
+			pstmt.setString(1, vo.getEvent_title());
+			pstmt.setString(2, vo.getEvent_description());
+			pstmt.setTimestamp(3, vo.getEvent_d_day());
+			pstmt.setString(4, vo.getEvent_no());
+			flag=pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			flag = -1;
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return flag;
+	}
+	
+	public EventVO event_selectOne(String event_no) {
+		EventVO vo  = new EventVO();
+		
+		try {
+			conn = DriverManager.getConnection(EventDB.URL, EventDB.USER, EventDB.PASSWORD);
+			pstmt = conn.prepareStatement(EventDB.SQL_EVENT_SELECT_ONE);
+			pstmt.setString(1, event_no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				vo.setEvent_no(rs.getString("event_no"));
+				vo.setEvent_title(rs.getString("event_title"));
+				vo.setEvent_description(rs.getString("event_description"));
+				vo.setEvent_date(rs.getTimestamp("event_date"));
+				vo.setEvent_d_day(rs.getTimestamp("event_d_day"));
+				vo.setActivity_no(rs.getString("activity_no"));
+				vo.setUser_no(rs.getString("user_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return vo;
 	}
 
 	@Override

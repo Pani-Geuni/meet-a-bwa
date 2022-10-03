@@ -331,7 +331,7 @@
                            
                            <c:if test="${evos ne null}">
                            <section>
-                              <div class="content_list_activity event-list"
+                              <div class="content_list_activity event-list event_action"
                                  idx="${evos.event_no}">
                                  <section class="blind">
                                     <label for="event_no">event_no:</label>${evos.event_no}<input
@@ -985,16 +985,14 @@
       <div id="event_show_popup">
          <!-- Start title_wrap -->
          <div id="title_wrap" class="wrap_common">
-            <span id="event-view-title">이벤트 제목 부분입니다.</span> <img
-               src="/meet-a-bwa/resources/img/more-vertical.png" alt="더보기 세로 이미지"
-               id="more_vertival" />
-            <!-- 숨기고 싶을 때, select_custom제거 후 blind추가-->
-            <div id="dropdown" class="blind">
+            <span id="event-view-title">이벤트 제목 부분입니다.</span> 
+            <img src="/meet-a-bwa/resources/img/more-vertical.png" alt="더보기 세로 이미지" id="event_more_vertival" />
+            <div id="event_dropdown" class="select_custom blind">
                <img src="/meet-a-bwa/resources/img/vector.png"
-                  alt="셀렉트 before 이미지" id="select_img" />
+                  alt="셀렉트 before 이미지" id="event_select_img" />
                <ul class="select_list_wrap">
-                  <li class="select_list" id="update">수정</li>
-                  <li class="select_list" id="delete">삭제</li>
+                  <li class="select_list" id="event_update">수정</li>
+                  <li class="select_list" id="event_delete">삭제</li>
                </ul>
             </div>
          </div>
@@ -1002,57 +1000,56 @@
 
          <!-- Start sectionWrap -->
          <div id="section_wrap" class="wrap_common">
+            <!-- START info_section -->
+            <section id="info_section" class="sectionCommon">
+               <ul id="listWrap">
+                  <li class="list">
+                  	<label class="e_list_title">일정</label> 
+                  	<span id="event_date" class="list_content">2022년 08월 28일 12시00분</span>
+                  </li>
+               </ul>
+            </section>
+            <!-- END info_section -->
+            
             <!-- START description_section -->
             <section id="description_section" class="sectionCommon">
                <fieldset id="description_field">
                   <legend class="field_title">이벤트 설명</legend>
                   <div class="field_content">
-                     씨부렁씨부렁<br>
+                     <textarea id = "event_view_description" readonly></textarea>
                   </div>
                </fieldset>
             </section>
             <!-- END description_section -->
-
-            <!-- START info_section -->
-            <section id="info_section" class="sectionCommon">
-               <ul id="listWrap">
-                  <li class="list"><label class="e_list_title">일정</label> <span
-                     id="event_date" class="list_content">2022년 08월 28일 12시00분</span>
-                  </li>
-                  <li class="list"><label class="e_list_title">장소</label> <span
-                     id="location" class="list_content">경기도 성남시 분당구 오리역 3번 출구</span></li>
-               </ul>
-            </section>
-            <!-- END info_section -->
          </div>
          <!-- END sectionWrap -->
 
          <!-- Start bottom_wrap -->
          <div id="bottom_wrap">
-            <p id="writer">작성자 : 김예은</p>
-            <input type="button" id="okBtn" class="btnCommon" value="확인" />
+            <p id="event_writer">작성자 : 김예은</p>
+            <input type="button" id="event_okBtn" class="btnCommon" value="확인" />
          </div>
          <!-- END bottom_wrap -->
       </div>
       <!-- END event_popup-->
+	   <div id="event_confirmWrap" class="blind">
+	      <div id="confirm_head">
+	         <img
+	            src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
+	            alt="more-img" />
+	      </div>
+	      <div id="confirm_txt_wrap">
+	         <span id="confirm_txt">삭제하시겠습니까?</span>
+	      </div>
+	      <div id="confirm_btn_wrap">
+	         <input type="button" id="e_yesBtn" class="confirm_btn_common" value="예" />
+	         <input type="button" id="e_noBtn" class="confirm_btn_common"
+	            value="아니오" />
+	      </div>
+	   </div>
    </div>
    <!-- END EVENT VIEW WRAP-->
 
-   <div id="confirmWrap" class="blind">
-      <div id="confirm_head">
-         <img
-            src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
-            id="more-horizontal" alt="more-img" />
-      </div>
-      <div id="confirm_txt_wrap">
-         <span id="confirm_txt">삭제하시겠습니까?</span>
-      </div>
-      <div id="confirm_btn_wrap">
-         <input type="button" id="yesBtn" class="confirm_btn_common" value="예" />
-         <input type="button" id="noBtn" class="confirm_btn_common"
-            value="아니오" />
-      </div>
-   </div>
 
 
 
@@ -1135,8 +1132,7 @@
          <div id="event-update-wrap" class="blind">
             <div id="topSection">
                <h1 class="u_title">이벤트 수정</h1>
-               <img src="/meet-a-bwa/resources/img/close.png" id="e_u_closeBtn"
-                  alt="이벤트 수정창 닫기 버튼 이미지" />
+               <img src="/meet-a-bwa/resources/img/close.png" id="e_u_closeBtn" alt="이벤트 수정창 닫기 버튼 이미지" />
             </div>
 
             <!-- Start sectionWrap -->
@@ -1145,19 +1141,19 @@
                   <h4 class="section_title">이벤트 제목</h4>
                   <section id="title_section">
                      <input type="text" id="event_u_title" class="event_title common"
-                        placeholder="이벤트 제목"> <span
-                        id="event_u_title_text_length" class="text_length">0/15</span>
+                        placeholder="이벤트 제목"> 
+                     <span id="event_u_title_text_length" class="text_length">0/15</span>
                   </section>
                </section>
 
                <section id="" class="choice_date event-section_common">
                   <h4 class="section_title">이벤트 시간/날짜 설정</h4>
                   <div id="" class="e_pickerWrap">
-                     <input type="text" id=u_eventDate " class="eventDate dateCommon"
+                     <input type="text" id= "u_eventDate" class="eventDate dateCommon"
                         autocomplete="off" placeholder="날짜를 선택해주세요.">
 
                      <!-- START TIMEPICKER -->
-                     <div id="" class="e_timepicker_box dateCommon">
+                     <div id="eu_t_box" class="e_timepicker_box dateCommon">
                         <section id="" class="timeSection">
                            <span id="event_u_timeValue">--:--:--</span>
                         </section>
@@ -1167,19 +1163,19 @@
                               alt="시계이미지" />
                         </section>
 
-                        <div id="" class="customTimePicker blind">
-                           <div id="u_ampm_choice" class="ampm_choice">
-                              <ul id="ampm_listWrap">
+                        <div id="eu_customTimePicker" class="customTimePicker blind">
+                           <div id="eu_ampm_choice" class="ampm_choice">
+                              <ul id="eu_ampm_listWrap">
                                  <li class="sample ampm-list"></li>
                               </ul>
                            </div>
-                           <div id="u_time_choice" class="choiceCommon">
-                              <ul id="time_listWrap">
+                           <div id="eu_time_choice" class="choiceCommon">
+                              <ul id="eu_time_listWrap">
                                  <li class="sample time-list"></li>
                               </ul>
                            </div>
-                           <div id="u_minute_choice" class="choiceCommon">
-                              <ul id="minute_listWrap">
+                           <div id="eu_minute_choice" class="choiceCommon">
+                              <ul id="eu_minute_listWrap">
                                  <li class="sample minute-list"></li>
                               </ul>
                            </div>
@@ -1194,7 +1190,7 @@
                   <section>
                      <textarea id="event_u_event_description"
                         class="event_description common" placeholder="이벤트 내용"></textarea>
-                     <span id="event_u_description_text_length" class="text_length">0/150</span>
+                     <span id="event_u_description_text_length" class="text_length">0/200</span>
                   </section>
                </section>
 
@@ -1202,8 +1198,7 @@
             <!-- END sectionWrap -->
 
             <div class="btnWrap">
-               <input type="button" id="event_updateBtn" class="btnCommon"
-                  value="이벤트 수정">
+               <input type="button" id="event_updateBtn" class="btnCommon" value="이벤트 수정">
             </div>
          </div>
          <!--  END event-update-wrap -->

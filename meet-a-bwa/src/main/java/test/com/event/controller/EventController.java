@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet("/event_create.do")
+@WebServlet({"/event_create.do", "/event_delete.do", "/event_update.do",  "/event_view.do"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,6 +29,11 @@ public class EventController extends HttpServlet {
 		String sPath = request.getServletPath();
 		System.out.println("doGet() : " + sPath);
 		
+		if(sPath.equals("/event_view.do")) {
+			new EventSelectOneAction().execute(request, response);
+		} else if(sPath.equals("/event_delete.do")) {
+			new EventDeleteAction().execute(request, response);
+		}
 	}
 
 	/**
@@ -40,6 +45,8 @@ public class EventController extends HttpServlet {
 		
 		if(sPath.equals("/event_create.do")) {
 			new EventInsertAction().execute(request, response);
+		} else if(sPath.equals("/event_update.do")) {
+			new EventUpdateAction().execute(request, response);
 		}
 	}
 

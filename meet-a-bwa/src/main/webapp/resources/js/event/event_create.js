@@ -48,7 +48,7 @@ $(function(){
 		$("#eventDate").val("");
 		$("#event_description").val("");
 		$("#event_title_text_length").text("0/15");
-		$("#event_description_text_length").text("0/15");
+		$("#event_description_text_length").text("0/200");
 		
 		$("#event_timeValue").text("--:--:--");
 		$("#event-create-wrap").find(".ampm-list").removeClass("time_choice");
@@ -63,7 +63,7 @@ $(function(){
 		$("#event-create-wrap").addClass("blind");
 	});
 	
-	 /************************************************ */
+	/************************************************ */
     /** 커스텀 타임피커 SECTION */
     /************************************************ */
     // 시간 설정 SECTION

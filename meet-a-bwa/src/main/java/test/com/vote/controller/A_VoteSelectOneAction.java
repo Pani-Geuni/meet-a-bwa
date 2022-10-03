@@ -71,8 +71,6 @@ public class A_VoteSelectOneAction {
 		List<VoteResultVO> vr_list = null;
 		vr_list = vdao.vr_selectOne(vote_no);
 		String my_result = vdao.myVr_selectOne(vote_no, user_no);
-		System.out.println(my_result);
-		System.out.println(vr_list);
 		
 		List<String> tmp = new ArrayList<String>();
 		JSONArray result_arr = new JSONArray();

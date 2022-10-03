@@ -28,7 +28,7 @@
     font-weight: bold;
     letter-spacing: 4px; /* 글자간격 조정 */
 }
-#more_vertival{
+#event_more_vertival{
     width: 23px;
     height: 30px;
     cursor: pointer;
@@ -43,7 +43,7 @@
     flex-direction: column;
     justify-content: right;
 }
-#select_img{
+#event_select_img{
     width: 17px;
     height: 8px;
     margin-left: 60px;
@@ -84,8 +84,8 @@
     width: 100%;
     height: auto;
     padding-bottom: 15px;
-    border-bottom: 1px solid #C8C6C6;
-    margin-bottom: 15px;
+    border-top: 1px solid #C8C6C6;
+    padding-top:15px;
 }
 #description_field{
     max-height: 110px;
@@ -102,15 +102,25 @@
 #description_field::-webkit-scrollbar-track{
     background-color: #EEEEEE;
 }
+#event_view_description{
+	width:100%;
+	height: 100px;
+	resize: none;
+	border:none;
+	font-size : 15px;
+	overflow:hidden;
+	outline: none;
+}
+#event_view_description:focus{border:none;}
 
 /****************************/
 
 #info_section{
     width: 100%;
-    height: 80px;
+    height: 40px;
     background-color: rgba(252, 225, 83, 0.1);
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 #listWrap{
     display: flex;
@@ -193,15 +203,14 @@
     box-sizing: content-box;
     margin-bottom: 27px;
 }
-#writer{
+#event_writer{
     padding-right: 35px;
     margin-block-start: 0em;
     text-align: right;
 }
-#okBtn{
+#event_okBtn{
     margin: auto;
     background-color: #FFB200;;
-    /* background-color: #25316D; */
 }
 
 /**************************************/
@@ -213,15 +222,20 @@
 
 /****************************************/
 
-#confirmWrap * {
+#event_confirmWrap * {
     font-family: 'Pretendard';
 }
-#confirmWrap{
+#event_confirmWrap{
+	position: fixed;
+	top : 20px;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	
     width: 300px;
     height: auto;
     margin: auto;
     margin-top: 300px;
-    z-index: 3;
+    z-index: 400;
     border-radius: 13px;
 }
 #confirm_head{
@@ -261,10 +275,10 @@
     border: none;
     border-bottom-left-radius: 8px;
 }
-#yesBtn{
+#e_yesBtn{
     background-color: #ffffff;
 }
-#noBtn{
+#e_noBtn{
     background-color: #FFB200;
     color : white;
 }
