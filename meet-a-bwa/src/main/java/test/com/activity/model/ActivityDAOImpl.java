@@ -675,5 +675,75 @@ public class ActivityDAOImpl implements ActivityDAO {
 		return rvos;
 	}
 
-
+	@Override
+	public List<ActivityVO2> select_all_more_like(String category, String searchWord) {
+		List<ActivityVO2> a_list = new ArrayList<ActivityVO2>();
+		System.out.println("activity select all more like");
+		try {
+			conn = DriverManager.getConnection(ActivityDB2.URL, ActivityDB2.USER, ActivityDB2.PASSWORD);
+			System.out.println("activity select all conn succeed");
+			
+			
+			
+			
+			// 전체일 때와 카테고리를 골랐을 때 분기 처리 
+			if (category.equals("전체")) {
+				pstmt = conn.prepareStatement(ActivityDB2.SQL_SELECT_ALL_MORE_LIKE_ALL);
+				pstmt.setString(1, "%" + searchWord + "%");
+			} else {
+				pstmt = conn.prepareStatement(ActivityDB2.SQL_SELECT_ALL_MORE_LIKE);
+				pstmt.setString(1, "%" + searchWord + "%");
+				pstmt.setString(2, category);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				ActivityVO2 avo = new ActivityVO2();
+				
+				avo.setActivity_no(rs.getString("activity_no"));
+				avo.setActivity_image(rs.getString("activity_image"));
+				avo.setActivity_name(rs.getString("activity_name"));
+				avo.setActivity_description(rs.getString("activity_description"));
+				avo.setActivity_county(rs.getString("activity_county"));
+				avo.setActivity_interest_name(rs.getString("activity_interest_name"));
+				avo.setActivity_gender(rs.getString("activity_gender"));
+				avo.setActivity_nop(rs.getInt("activity_nop"));
+				avo.setActivity_age(rs.getInt("activity_age"));
+				avo.setActivity_date(rs.getDate("activity_date"));
+				avo.setUser_no(rs.getString("user_no"));
+				avo.setMeet_no(rs.getString("meet_no"));
+				avo.setLike_cnt(rs.getInt("like_cnt"));
+				avo.setUser_cnt(rs.getInt("user_cnt"));
+				
+				a_list.add(avo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return a_list;
+	}
 }
