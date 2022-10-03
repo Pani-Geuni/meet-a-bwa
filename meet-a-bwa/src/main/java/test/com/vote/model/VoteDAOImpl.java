@@ -698,8 +698,7 @@ public class VoteDAOImpl implements VoteDAO {
 
 	@Override
 	public List<VoteListVO> vote_list_selectAll(String activity_no) {
-System.out.println("vote selectAll()..");
-		
+		System.out.println("vote selectAll()..");
 		List<VoteListVO> vvos = new ArrayList<VoteListVO>();
 		
 		try {

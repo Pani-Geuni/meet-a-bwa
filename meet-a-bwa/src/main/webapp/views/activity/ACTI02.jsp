@@ -301,47 +301,48 @@
 					
                      <section>
                      <c:forEach var="evos" items="${evos}">
-                     <section class="blind">
-                              <label for="activity_no">activity_no:</label>${evos.activity_no}<input
-                                 id="activity_no" name="activity_no"
-                                 value="${evos.activity_no}">
-                     </section>
+	                     <section class="blind">
+	                              <label for="activity_no">activity_no:</label>${evos.activity_no}<input
+	                                 id="activity_no" name="activity_no"
+	                                 value="${evos.activity_no}">
+	                     </section>
                      
-                         <c:if test="${evos eq null}">
-                        <section class="pheedEventBody blind">
-                           <p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
-                        </section>
+                        <c:if test="${evos eq null}">
+	                        <section class="pheedEventBody blind">
+	                           <p id="EventdefaultPheedText">생성된 이벤트가 없습니다.</p>
+	                        </section>
 						</c:if>
+						
 						 <c:if test="${evos ne null}">
-                        <div class="content_list_activity event-list" idx="${evos.event_no}">
-                         <section class="blind">
-                                 <label for="event_no">vote_no:</label>${evos.event_no}<input
-                                    id="event_no" name="event_no" value="${evos.event_no}">
-                              </section>
-                              <section class="blind">
-                                 <label for="user_no">user_no:</label>${evos.user_no}<input
-                                    id="usre_no" name="user_no" value="${evos.user_no}">
-                              </section>
-                              <section class="blind">
-                                 <label for="activity_no">event_no:</label>${evos.activity_no}<input
-                                    id="activity_no" name="activity_no"
-                                    value="${evos.activity_no}" idx="${evos.vote_no}">
-                              </section>
-                           <div class="event-list-wrap">
-                              <div class="listCommon">
-                                 <span class="content_title">${evos.vote_title}</span>
-                              </div>
-                              <div class="description_list listCommon">
-                                 <span class="content_description"> ${vvos.vote_description}</span>
-                              </div>
-                           </div>
-                        </div>
+	                        <div class="content_list_activity event-list" idx="${evos.event_no}">
+	                         <section class="blind">
+	                                 <label for="event_no">vote_no:</label>${evos.event_no}<input
+	                                    id="event_no" name="event_no" value="${evos.event_no}">
+	                              </section>
+	                              <section class="blind">
+	                                 <label for="user_no">user_no:</label>${evos.user_no}<input
+	                                    id="usre_no" name="user_no" value="${evos.user_no}">
+	                              </section>
+	                              <section class="blind">
+	                                 <label for="activity_no">event_no:</label>${evos.activity_no}<input
+	                                    id="activity_no" name="activity_no"
+	                                    value="${evos.activity_no}" idx="${evos.activity_no}">
+	                              </section>
+	                           <div class="event-list-wrap">
+	                              <div class="listCommon">
+	                                 <span class="content_title">${evos.event_title}</span>
+	                              </div>
+	                              <div class="description_list listCommon">
+	                                 <span class="content_description"> ${vvos.vote_description}</span>
+	                              </div>
+	                           </div>
+	                        </div>
                         </c:if>
-                        </c:forEach>
-                     </section>
-                     <!--pheedEventBody end-->
+                     </c:forEach>
                   </section>
-                  <!--pheedEvent end-->
+                  <!--pheedEventBody end-->
+               </section>
+               <!--pheedEvent end-->
 
 
                   <section class="voteApplication">
