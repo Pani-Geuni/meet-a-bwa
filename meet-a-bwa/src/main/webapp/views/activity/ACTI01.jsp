@@ -56,6 +56,43 @@
 	    		 console.log("clic")
 	    		 location.href = "/meet-a-bwa/activity-main.do?idx="+idx;
 	    	 });
+    	    
+    	    $("#recommend_list_wrap").on("click", ".heartSection", function(event){
+	    		 event.stopPropagation();
+	    		 if($.cookie("isLogin") == 'true'){
+		    		 // 좋아요 추가
+		    		 if($(this).find(".afterLike_heart").hasClass("blind")){
+			    		 location.href = "/meet-a-bwa/main_activity_like_insert.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+		    		 }
+		    		 // 좋아요 삭제
+		    		 else{
+			    		 location.href = "/meet-a-bwa/main_activity_like_delete.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+		    		 }
+	    		 }else{
+	    			 $(".warning-layer").removeClass("blind");
+	    		 }
+	    	 });
+    	    
+    	 	// 액티비티 좋아요 처리
+	    	 let like_activity_arr = $.cookie('like_activity');
+	    	 if(like_activity_arr != undefined){
+		    	 like_activity_arr = like_activity_arr.split("/");
+		    	 
+	    		 let activity_elements = $(".content_list.activity-list").slice();
+		    	 for(like_activity of like_activity_arr){
+		    		 for(list of activity_elements){
+			    		 if($(list).attr("idx") == like_activity) {
+				    		 $(list).find(".beforeLike_heart").addClass("blind");
+				    		 $(list).find(".afterLike_heart").removeClass("blind");
+			    		 }
+		    		 }
+		    	 }
+	    	 }
+	    	 
+	    	 // 경고 팝업 닫기 버튼 클릭 이벤트
+	    	 $(".warning-close").click(function(){
+	    		 $(".warning-layer").addClass("blind");
+	    	 });
     	})	
     </script>
 </head>
@@ -279,6 +316,23 @@
        	  </div>
         </div>
         <!-- END LOGOUT POPUP -->
+        
+        <!-- START WARNING POPUP -->
+        <div class="warning-layer blind">
+         <div class="warning-popup-wrap">
+         	<div class = "warning-img-section">
+	            <img src="resources/img/warning.svg" alt="경고 이미지"/>
+         	</div>
+            <h1 id = "warning-text">
+             	로그인 후 이용가능한 기능입니다.
+            </h1>
+      
+            <div class="btn-group">
+              <button class="warning-close">취소</button>
+            </div>
+       	  </div>
+        </div>
+        <!-- END WARNING POPUP -->
 
 </body>
 </html>
