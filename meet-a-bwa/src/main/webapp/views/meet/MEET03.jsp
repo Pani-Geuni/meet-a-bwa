@@ -141,24 +141,34 @@
 						</p>
 					</div>
 					<ul class="right-summary-list-contents" id="activity-summary-list">
-								<c:forEach var="avo" items="${ avos }">
-									<li class="activity_list_item" idx="${ avo.activity_no }"><p>${ avo.activity_name }</p></li>
-								</c:forEach>
-							</ul>
+						<c:if test="${ avos.size() == 0 }">
+							<div class="no-contents-item">
+								<p>생성된 액티비티가 없습니다.</p>
+							</div>
+						</c:if>
+						<c:if test="${ avos.size() > 0 }">
+							<c:forEach var="avo" items="${ avos }">
+								<li class="activity_list_item" idx="${ avo.activity_no }"><p>${ avo.activity_name }</p></li>
+							</c:forEach>
+						</c:if>		
+					</ul>
 				</div>
 				<div class="right-summary-list" id="vote-summary-list">
 					<div class="right-summary-list-top">
 						<h1>투표</h1>
-						<p id="vote_create_btn">
-							<!-- <a href="/meet-a-bwa/m_vote_create.do"> -->
-							+
-							<!-- </a> -->
-						</p>
+						<p id="vote_create_btn">+</p>
 					</div>
 					<ul class="right-summary-list-contents">
-						<c:forEach var="vvo" items="${ vvos }">
-							<li class="vote-list-item" idx= "${ vvo.vote_no }"><p>${ vvo.vote_title }<p></li>
-						</c:forEach>
+						<c:if test="${ vvos.size() == 0 }">
+							<div class="no-contents-item">
+								<p>생성된 투표가 없습니다.</p>
+							</div>
+						</c:if>
+						<c:if test="${ vvos.size() > 0 }">
+							<c:forEach var="vvo" items="${ vvos }">
+								<li class="vote-list-item" idx= "${ vvo.vote_no }"><p>${ vvo.vote_title }<p></li>
+							</c:forEach>
+						</c:if>
 					</ul>
 				</div>
 			</aside>
