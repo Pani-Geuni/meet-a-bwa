@@ -652,7 +652,23 @@
       </div>
       <!--model-bg end-->
    </section>
+   
+<!-- START WARNING POPUP -->
+ <div class="warning-layer blind">
+  <div class="warning-popup-wrap">
+  	<div class = "warning-img-section">
+         <img src="/meet-a-bwa/resources/img/warning.svg" alt="경고 이미지"/>
+  	</div>
+     <h1 id = "warning-text">
+      	로그인 후 이용가능한 기능입니다.
+     </h1>
 
+     <div class="btn-group">
+       <button class="warning-close">취소</button>
+     </div>
+	  </div>
+ </div>
+        <!-- END WARNING POPUP -->
 
    <!-- *******************  -->
    <!--  투표 확인 -->
