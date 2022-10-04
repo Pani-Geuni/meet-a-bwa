@@ -71,34 +71,64 @@ public class A_VoteSelectOneAction {
 		List<VoteResultVO> vr_list = null;
 		vr_list = vdao.vr_selectOne(vote_no);
 		String my_result = vdao.myVr_selectOne(vote_no, user_no);
+		System.out.println(vr_list);
 		
 		List<String> tmp = new ArrayList<String>();
 		JSONArray result_arr = new JSONArray();
 		
 		int cnt = 0;
 		int cnt2 = 0;
-		for(VoteResultVO vr : vr_list) {
-			cnt2++;
-			if(tmp.indexOf(vr.getContent_no()) == -1) {
-				cnt++;
-				tmp.add(vr.getContent_no());
-				if(cnt2 == vr_list.size()) {
-					JSONObject obj2 = new JSONObject();
-					obj2.put("content_no", tmp.get(tmp.size() - 1));
-					obj2.put("cnt", cnt);
-					obj2.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
-					result_arr.add(obj2);
+		
+		if(vr_list.size() > 1) {
+			for(VoteResultVO vr : vr_list) {
+				cnt2++;
+				if(tmp.indexOf(vr.getContent_no()) == -1) {
+					if(tmp.size() == 0) {
+						tmp.add(vr.getContent_no());
+						cnt++;
+					}else {
+						JSONObject obj2 = new JSONObject();
+						obj2.put("content_no", tmp.get(tmp.size() - 1));
+						obj2.put("cnt", cnt);
+						obj2.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
+						result_arr.add(obj2);
+						cnt = 0;
+						
+						cnt++;
+						if(cnt2 == vr_list.size()) {
+							JSONObject obj3 = new JSONObject();
+							obj3.put("content_no", vr.getContent_no());
+							obj3.put("cnt", cnt);
+							obj3.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
+							System.out.println(obj3);
+							result_arr.add(obj3);
+							cnt = 0;
+						}
+					}
+					
+				}else {
+					cnt++;
+					if(cnt2 == vr_list.size()) {
+						JSONObject obj2 = new JSONObject();
+						obj2.put("content_no", tmp.get(tmp.size() - 1));
+						obj2.put("cnt", cnt);
+						obj2.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
+						System.out.println(obj2);
+						result_arr.add(obj2);
+						cnt = 0;
+					}
 				}
-			}else {
-				cnt++;
-				JSONObject obj2 = new JSONObject();
-				obj2.put("content_no", tmp.get(tmp.size() - 1));
-				obj2.put("cnt", cnt);
-				obj2.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
-				result_arr.add(obj2);
-				cnt = 0;
 			}
+		}else if(vr_list.size() == 1) {
+			JSONObject obj2 = new JSONObject();
+			obj2.put("content_no", vr_list.get(0).getContent_no());
+			obj2.put("cnt", 1);
+			obj2.put("percentage", 100);
+			System.out.println(obj2);
+			result_arr.add(obj2);
 		}
+		
+		System.out.println("result_arr : " + result_arr);
 		
 		obj_wrap.put("vote_result", result_arr);
 		obj_wrap.put("isVote", my_result);

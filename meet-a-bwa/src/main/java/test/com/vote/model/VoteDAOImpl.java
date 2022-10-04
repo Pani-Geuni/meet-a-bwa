@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class VoteDAOImpl implements VoteDAO {
@@ -433,8 +435,8 @@ public class VoteDAOImpl implements VoteDAO {
 	}
 	
 	@Override
-	public List<VoteResultVO> vr_selectOne(String vote_no) {
-		List<VoteResultVO> list = new ArrayList<VoteResultVO>();
+	public List<Object> vr_selectOne(String vote_no) {
+		List<Object> list = new ArrayList<Object>();
 		System.out.println("vr_selectOne()..");
 		
 		try {
@@ -444,13 +446,10 @@ public class VoteDAOImpl implements VoteDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				VoteResultVO vo = new VoteResultVO();
-				vo.setVote_result_no(rs.getString("vote_result_no"));
-				vo.setVote_no(rs.getString("vote_no"));
-				vo.setUser_no(rs.getString("user_no"));
-				vo.setContent_no(rs.getString("content_no"));
-				
-				list.add(vo);
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("content_no", rs.getString("content_no"));
+				map.put("cnt", rs.getString("cnt"));
+				list.add(map);
 			}
 			
 		} catch (SQLException e) {

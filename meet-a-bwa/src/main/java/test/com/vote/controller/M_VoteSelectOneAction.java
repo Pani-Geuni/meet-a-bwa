@@ -68,41 +68,14 @@ public class M_VoteSelectOneAction {
 			array.add(obj);
 		}
 		
-		List<VoteResultVO> vr_list = null;
+		List<Object> vr_list = null;
 		vr_list = vdao.vr_selectOne(vote_no);
 		String my_result = vdao.myVr_selectOne(vote_no, user_no);
-		System.out.println(my_result);
+
 		System.out.println(vr_list);
 		
-		List<String> tmp = new ArrayList<String>();
-		JSONArray result_arr = new JSONArray();
 		
-		int cnt = 0;
-		int cnt2 = 0;
-		for(VoteResultVO vr : vr_list) {
-			cnt2++;
-			if(tmp.indexOf(vr.getContent_no()) == -1) {
-				cnt++;
-				tmp.add(vr.getContent_no());
-				if(cnt2 == vr_list.size()) {
-					JSONObject obj2 = new JSONObject();
-					obj2.put("content_no", tmp.get(tmp.size() - 1));
-					obj2.put("cnt", cnt);
-					obj2.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
-					result_arr.add(obj2);
-				}
-			}else {
-				cnt++;
-				JSONObject obj2 = new JSONObject();
-				obj2.put("content_no", tmp.get(tmp.size() - 1));
-				obj2.put("cnt", cnt);
-				obj2.put("percentage", Math.round((double)cnt / vr_list.size()* 100));
-				result_arr.add(obj2);
-				cnt = 0;
-			}
-		}
-		
-		obj_wrap.put("vote_result", result_arr);
+		obj_wrap.put("vote_result", vr_list);
 		obj_wrap.put("isVote", my_result);
 		obj_wrap.put("content_arr", array);
 		obj_wrap.put("user_no", writer_no);
