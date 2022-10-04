@@ -22,7 +22,7 @@ $(function () {
     // 3. pw가 8글자 이상& 재확인과 일치할 때 수정되게
 
     $("#edit_member_information_btn").click(function(){
-        let pw =$("#pw").val().length;
+        let pw =$("#user_pw").val().length;
         let pw_check =$("#pw_check").val().length;
         let nickname = $("#nickname").val().length;
         let email = $("#email").val().length;

@@ -7,11 +7,11 @@ $(function () {
         if (flag) {
             flag = false;
             // $("#toast_txt").text("글자수를 초과하였습니다.")
-            if (element.attr("id") == 'id') {
+            if (element.attr("id") == 'user_id') {
                 $("#toastWrap_id").removeClass("hide");
                 $("#toastWrap_id").removeClass("fade-out");
                 $("#toastWrap_id").addClass("fade-in");
-            } else if (element.attr("id") == 'pw') {
+            } else if (element.attr("id") == 'user_pw') {
                 $(".toastText_min1").addClass("hide");
                 $("#toastWrap_pw").removeClass("hide");
                 $("#toastWrap_pw").removeClass("fade-out");
@@ -41,10 +41,10 @@ $(function () {
 
             setTimeout(function () {
                 flag = true; // 추후에 사용할 수 있도록 변수값 변경
-                if (element.attr("id") == 'id') {
+                if (element.attr("id") == 'user_id') {
                     $("#toastWrap_id").removeClass("fade-in");
                     $("#toastWrap_id").addClass("fade-out");
-                } else if (element.attr("id") == 'pw') {
+                } else if (element.attr("id") == 'user_pw') {
                     $("#toastWrap_pw").removeClass("fade-in");
                     $("#toastWrap_pw").addClass("fade-out");
                 } else if (element.attr("id") == 'pw_check') {
@@ -103,13 +103,13 @@ $(function () {
             fade_in_out(element);
         } 
         else if (element.val().length!=0 && element.val().length <= min_length) {
-            if(element.attr("id") == 'pw'){
+            if(element.attr("id") == 'user_pw'){
                 $(".toastText_min1").removeClass("hide");
             }else if(element.attr("id") == 'pw_check'){
                 $(".toastText_min2").removeClass("hide");
             }
         }else{
-            if(element.attr("id") == 'pw'){
+            if(element.attr("id") == 'user_pw'){
                 $(".toastText_min1").addClass("hide");
             }else if(element.attr("id") == 'pw_check'){
                 $(".toastText_min2").addClass("hide");
@@ -119,9 +119,9 @@ $(function () {
 
         //비밀번호 비교
         function texteq(){
-            if($('#pw').val().length!=0 && $('#pw_check').val().length!=0){
-                let result = $('#pw').val()===($('#pw_check').val());
-                // console.log($('#pw').val());
+            if($('#user_pw').val().length!=0 && $('#pw_check').val().length!=0){
+                let result = $('#user_pw').val()===($('#pw_check').val());
+                // console.log($('#user_pw').val());
                 // console.log($('#pw_check').val());
                 // console.log(result);
                 if(result){
@@ -131,7 +131,7 @@ $(function () {
                     $(".toastText_checkYes").addClass("blind");
                     $(".toastText_checkNo").removeClass("blind");
                 }
-                //$('#pw').val()=='' || $('#pw_check').val()==''
+                //$('#user_pw').val()=='' || $('#pw_check').val()==''
                 else {
                     $(".toastText_checkYes").addClass("blind");
                     $(".toastText_checkNo").addClass("blind");
@@ -142,14 +142,14 @@ $(function () {
 
     //***********글자 수 제한***************
     //아이디 글자수 제한
-    $('#id').keyup(function () {
+    $('#user_id').keyup(function () {
         textLengthCnt(10, $(this), $(".textCount_id"));
     });
-    $('#id').keydown(function () {
+    $('#user_id').keydown(function () {
         textLengthCnt(10, $(this), $(".textCount_id"));
     });
         //비밀번호 글자수 제한
-        $('#pw').keyup(function () {
+        $('#user_pw').keyup(function () {
             textLengthCnt2(7, 15, $(this), $('.textCount_pw'));
             if($('#pw_check').val().length>0){
                 texteq();
@@ -157,7 +157,7 @@ $(function () {
                 $(".toastText_checkNo").addClass("blind");
             }
         });
-        $('#pw').keydown(function () {
+        $('#user_pw').keydown(function () {
             textLengthCnt2(7, 15, $(this), $('.textCount_pw'));
         });
         //비밀번호 재입력 글자수 제한

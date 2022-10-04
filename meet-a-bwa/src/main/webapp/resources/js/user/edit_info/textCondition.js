@@ -11,7 +11,7 @@ $(function () {
                 $("#toastWrap_nick").removeClass("hide");
                 $("#toastWrap_nick").removeClass("fade-out");
                 $("#toastWrap_nick").addClass("fade-in");
-            } else if (element.attr("id") == 'pw') {
+            } else if (element.attr("id") == 'user_pw') {
                 $(".toastText_min1").addClass("hide");
                 $("#toastWrap_pw").removeClass("hide");
                 $("#toastWrap_pw").removeClass("fade-out");
@@ -37,7 +37,7 @@ $(function () {
                 if (element.attr("id") == 'nickname') {
                     $("#toastWrap_nick").removeClass("fade-in");
                     $("#toastWrap_nick").addClass("fade-out");
-                } else if (element.attr("id") == 'pw') {
+                } else if (element.attr("id") == 'user_pw') {
                     $("#toastWrap_pw").removeClass("fade-in");
                     $("#toastWrap_pw").addClass("fade-out");
                 } else if (element.attr("id") == 'pw_check') {
@@ -90,13 +90,13 @@ $(function () {
             fade_in_out(element);
         }//8글자 이하면 토스트 출력
         else if (element.val().length!=0 && element.val().length <= min_length) {
-            if(element.attr("id") == 'pw'){
+            if(element.attr("id") == 'user_pw'){
                 $(".toastText_min1").removeClass("hide");
             }else if(element.attr("id") == 'pw_check'){
                 $(".toastText_min2").removeClass("hide");
             }
         }else{
-            if(element.attr("id") == 'pw'){
+            if(element.attr("id") == 'user_pw'){
                 $(".toastText_min1").addClass("hide");
             }else if(element.attr("id") == 'pw_check'){
                 $(".toastText_min2").addClass("hide");
@@ -106,9 +106,9 @@ $(function () {
 
     //비밀번호 비교
     function texteq(){
-        if($('#pw').val().length!=0 && $('#pw_check').val().length!=0){
-            let result = $('#pw').val()===($('#pw_check').val());
-            // console.log($('#pw').val());
+        if($('#user_pw').val().length!=0 && $('#pw_check').val().length!=0){
+            let result = $('#user_pw').val()===($('#pw_check').val());
+            // console.log($('#user_pw').val());
             // console.log($('#pw_check').val());
             // console.log(result);
             if(result){
@@ -118,7 +118,7 @@ $(function () {
                 $(".toastText_checkYes").addClass("blind");
                 $(".toastText_checkNo").removeClass("blind");
             }
-            //$('#pw').val()=='' || $('#pw_check').val()==''
+            //$('#user_pw').val()=='' || $('#pw_check').val()==''
             else {
                 $(".toastText_checkYes").addClass("blind");
                 $(".toastText_checkNo").addClass("blind");
@@ -129,7 +129,7 @@ $(function () {
 
     //***********글자 수 제한***************
     //비밀번호 글자수 제한
-    $('#pw').keyup(function () {
+    $('#user_pw').keyup(function () {
         textLengthCnt2(7, 15, $(this), $('.textCount_pw'));
         if($('#pw_check').val().length>0){
             texteq();
@@ -137,7 +137,7 @@ $(function () {
             $(".toastText_checkNo").addClass("blind");
         }
     });
-    $('#pw').keydown(function () {
+    $('#user_pw').keydown(function () {
         textLengthCnt2(7, 15, $(this), $('.textCount_pw'));
     });
     //비밀번호 재입력 글자수 제한
