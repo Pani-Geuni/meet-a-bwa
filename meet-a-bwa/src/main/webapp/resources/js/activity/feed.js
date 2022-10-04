@@ -25,19 +25,20 @@ $(function () {
     // 액티비티 가입하기
     let idx = "";
 	
-	$("#join_activity_btn").on("click", function() {
-		idxx = $(this).attr("idxx");
-		if(idxx==null){
-			$(".login-layer").removeClass("blind");
-		}
-		else {
-		idx = $(this).attr("idx");
-		
-		ajax_load(idx);
-		}
-	});
+		 $("#join_activity_btn").click(function() {
+		 idxx = $(this).attr("idxx");
+		 //location.href = "/meet-a-bwa/a_registered.do?user_no=" + idx;
+		 if(idxx==null){
+				$(".login-layer").removeClass("blind");
+			}
+			else {
+				idx = $(this).attr("idx");
+				
+				ajax_load_join(idx);
+			}
+		 });
 	
-	function ajax_load(idx) {
+	function ajax_load_join(idx) {
 		$.ajax({
 			url : "/meet-a-bwa/a_registered.do",
 			type : "GET",
@@ -60,20 +61,21 @@ $(function () {
 	}
 	
 	// 액티비티 탈퇴
-	$(".activityExitBtn").on("click", function() {
-//		$(".activityExit-popup").removeClass("blind");
-//		$(".withdrawal").click(function() {
-//		$(".activityExit-popup").addClass("blind");
-		console.log($(this).attr("idx"));
-		
-		idx = $(this).attr("idx");
-		
-		ajax_load_exit(idx);
-//		});
-//		$(".cancle").click(function() {
-//				$(".activityExit-popup").addClass("blind");
-//		});
-	});
+ $(".activityExitBtn").click(function() {
+			 $(".activityExit-popup").removeClass("blind");
+				$(".withdrawal").click(function() {
+				$(".activityExit-popup").addClass("blind");
+				console.log($(this).attr("idx"));
+				
+				idx = $(this).attr("idx");
+				
+				ajax_load_exit(idx);
+				});
+				$(".cancle").click(function() {
+					$(".activityExit-popup").addClass("blind");
+				});
+		 //location.href = "/meet-a-bwa/a_withdrawal.do?user_no=" + idx;
+		 }); 
 	
 	function ajax_load_exit(idx) {
 		$.ajax({

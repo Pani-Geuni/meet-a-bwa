@@ -52,6 +52,9 @@
     margin-top: 8px;
     margin-bottom: 12px;
   }
+  .likeWrap{
+  cursor: pointer;
+  }
   
   .act-deatil-aside-title {
     font-size: 20px;
@@ -334,7 +337,8 @@
 .addBtn{
    
     border:none;
-   	background-color:transparent
+   	background-color:transparent;
+   	cursor: pointer;
 }
 
  .imgBtn{
@@ -485,7 +489,8 @@
     font-weight: bold;
     font-size: 15px;
     display: block; */
-
+    
+cursor: pointer;
 
 box-sizing: border-box;
 
@@ -610,6 +615,7 @@ box-sizing: border-box;
 	margin:auto;
 	/* margin-bottom: 20px; */
     display:block;
+    cursor: pointer;
 }
 
 .cancle {
