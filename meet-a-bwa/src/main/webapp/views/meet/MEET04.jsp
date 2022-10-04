@@ -36,6 +36,7 @@
 	<script src="/meet-a-bwa/resources/js/common/header.js"></script>
 	<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
 	
+	<script src="/meet-a-bwa/resources/js/meet/meet-detail.js"></script>
 	<script src="/meet-a-bwa/resources/js/meet/meet-member-list.js"></script>
 	<script src="/meet-a-bwa/resources/js/meet/delete-popup.js"></script>
 	<script src="/meet-a-bwa/resources/js/meet/post-write-popup.js"></script>
@@ -47,6 +48,53 @@
 	<script src="/meet-a-bwa/resources/js/vote/vote_update.js"></script>
 	<script src="/meet-a-bwa/resources/js/vote/vote_select.js"></script>
 	<script src="/meet-a-bwa/resources/js/vote/vote_view.js"></script>
+	
+	<script>
+		$(function() {
+			var user_id = '${user_id}'; //세션값 가져옴
+			$(".btn-meet.join").on("click", function(event) {
+				event.stopPropagation();
+				
+				if ($.cookie("isLogin") != "true") {
+					$(".warning-layer").removeClass("blind");
+				}
+			})
+			
+			$(".heartSection").on("click", function(event) {
+					event.stopPropagation();
+					
+					if($.cookie("isLogin") == "true") {
+						// 좋아요 추가
+						if ($(this).find(".afterLike_heart").hasClass("blind")) {
+							location.href = "/meet-a-bwa/main_meet_like_insert.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+						} else {
+							// 좋아요 삭제
+							location.href = "/meet-a-bwa/main_meet_like_delete.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+						}
+					} else {
+						$(".warning-layer").removeClass("blind");
+					}
+				})
+				
+				// 모임 좋아요 처리
+			   	 let like_meet_arr = $.cookie('like_meet');
+			   	 if(like_meet_arr != undefined){
+			  	 	like_meet_arr = like_meet_arr.split("/");
+			  	 		
+			  	 	for (like_meet of like_meet_arr) {
+						if($(".heartSection").attr("idx") == like_meet) {
+							$(".heartSection").find(".beforeLike_heart").addClass("blind");
+							$(".heartSection").find(".afterLike_heart").removeClass("blind");
+						}
+			  	 	}
+			   	 }
+			   	 
+			  // 경고 팝업 닫기 버튼 클릭 이벤트
+		    	 $(".warning-close").click(function(){
+		    		 $(".warning-layer").addClass("blind");
+		    	 });
+		})
+	</script>
 	
 	<title>모임 멤버 리스트</title>
 </head>
@@ -581,5 +629,22 @@
 		<span id="toast_txt"></span>
 	</div>
 	<!-- END toastWrap -->
+	
+	<!-- START WARNING POPUP -->
+ <div class="warning-layer blind">
+  <div class="warning-popup-wrap">
+  	<div class = "warning-img-section">
+         <img src="resources/img/warning.svg" alt="경고 이미지"/>
+  	</div>
+     <h1 id = "warning-text">
+      	로그인 후 이용가능한 기능입니다.
+     </h1>
+
+     <div class="btn-group">
+       <button class="warning-close">취소</button>
+     </div>
+	  </div>
+ </div>
+        <!-- END WARNING POPUP -->
 
 </html>
