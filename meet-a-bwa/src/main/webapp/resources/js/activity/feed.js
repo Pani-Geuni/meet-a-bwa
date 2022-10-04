@@ -26,10 +26,13 @@ $(function () {
     let idx = "";
 	
 		 $("#join_activity_btn").click(function() {
-		 idxx = $(this).attr("idxx");
+		 //idxx = $(this).attr("idxx");
 		 //location.href = "/meet-a-bwa/a_registered.do?user_no=" + idx;
-		 if(idxx==null){
-				$(".login-layer").removeClass("blind");
+		 if(($.cookie("isLogin") != "true")) {
+				$(".warning-layer").removeClass("blind");
+				 $(".warning-close").click(function(){
+    		 		$(".warning-layer").addClass("blind");
+    	 		});
 			}
 			else {
 				idx = $(this).attr("idx");
