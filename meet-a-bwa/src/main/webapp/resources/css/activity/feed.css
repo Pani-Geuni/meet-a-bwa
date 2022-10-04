@@ -52,6 +52,9 @@
     margin-top: 8px;
     margin-bottom: 12px;
   }
+  .likeWrap{
+  cursor: pointer;
+  }
   
   .act-deatil-aside-title {
     font-size: 20px;
@@ -306,13 +309,13 @@
     justify-content:space-between;
 }
 
-.pheedEvent{
+/* .pheedEvent{
     width : 100%;
     height : 300px;
     margin-bottom: 20px;
     background-color: #ffffff;
-}
-.pheedVote, .pheedApplication{
+} */
+.pheedVote, .pheedEvent{
     width : 48.9%;
     height : 550px;
     background-color: #ffffff;
@@ -334,7 +337,8 @@
 .addBtn{
    
     border:none;
-   	background-color:transparent
+   	background-color:transparent;
+   	cursor: pointer;
 }
 
  .imgBtn{
@@ -412,16 +416,16 @@
 }
 /* -------------------------------------------------------------- */
 /* 가입 후 피드 */
-.pheedEventBody{
+/* .pheedEventBody{
     height: 260px;
     padding-top : 15px;
     padding-left: 15px;
-    /* display: flex; */
-    /* justify-content: space-evenly; */
+    display: flex;
+    justify-content: space-evenly;
     overflow-x:hidden; overflow-y:scroll; height:223px;
-}
+} */
 
-.pheedVoteBody, .pheedApplicationBody {
+.pheedVoteBody, .pheedEventBody {
     height: 530px;
     padding-top : 15px;
     overflow-x:hidden; overflow-y:scroll; height:463px;
@@ -485,7 +489,8 @@
     font-weight: bold;
     font-size: 15px;
     display: block; */
-
+    
+cursor: pointer;
 
 box-sizing: border-box;
 
@@ -610,6 +615,7 @@ box-sizing: border-box;
 	margin:auto;
 	/* margin-bottom: 20px; */
     display:block;
+    cursor: pointer;
 }
 
 .cancle {

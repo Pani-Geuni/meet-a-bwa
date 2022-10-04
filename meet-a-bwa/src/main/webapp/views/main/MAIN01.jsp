@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -159,53 +160,55 @@
     </script>
 
 
-	<title>밋:어봐</title>
+<title>밋:어봐</title>
 </head>
 <body>
-    <!--  START HEADER INCLUDE -->
+	<!--  START HEADER INCLUDE -->
 	<jsp:include page="../../views/common/header.jsp">
 		<jsp:param name="list" value="${list}" />
 	</jsp:include>
-    <!--  END HEADER INCLUDE -->
-	
-	<div id = "bodyWrap">
-    	<!--  START SEARCHBAR INCLUDE -->
-		<jsp:include page="../../views/common/searchBar.jsp"></jsp:include>
-    	<!--  END SEARCHBAR INCLUDE -->
-    	
+	<!--  END HEADER INCLUDE -->
 
-        <!-- START contentWrap-->
-        <div id = "contentWrap">
-            <!-- 모임 추천-->
-            <div id = "recommendMeet" class = "mainContent">
-                <div class = "titleSection">
-                    <section class = "title titleLeft">
+	<div id="bodyWrap">
+		<!--  START SEARCHBAR INCLUDE -->
+		<jsp:include page="../../views/common/searchBar.jsp"></jsp:include>
+		<!--  END SEARCHBAR INCLUDE -->
+
+
+		<!-- START contentWrap-->
+		<div id="contentWrap">
+			<!-- 모임 추천-->
+			<div id="recommendMeet" class="mainContent">
+				<div class="titleSection">
+					<section class="title titleLeft">
 						<c:choose>
 							<c:when test="${list.isLogin eq false || list.isLogin eq null}">
-	                        	<!-- 로그인 전, 추천-->
-		                        <section id = "beforeLogin_recommend">
-		                            <span class = "comment">안녕하세요! 현재 가장 인기있는 모임 추천해드려요!</span>
-		                        </section>
-	                        </c:when>
+								<!-- 로그인 전, 추천-->
+								<section id="beforeLogin_recommend">
+									<span class="comment">안녕하세요! 현재 가장 인기있는 모임 추천해드려요!</span>
+								</section>
+							</c:when>
 
 							<c:when test="${list.isLogin eq true}">
-		                        <!-- 로그인 성공 후, 추천 -->
-		                        <section id = "afterLogin_recommend">
-		                            <span id = "nickname">"${list.nick_name}"님의 </span>
-		                            
-		                            <c:if test="${list.interest == null || list.interest eq ''}">
-		                            	<!-- 회원이 설정한 관심사 없을 때,-->
-			                            <span class = "region_comment comment">거주지 주변 모임 추천해드려요!</span>
-		                            </c:if>
-		                            
-		                            <c:if test="${list.interest ne null && list.interest ne ''}">
-			                            <!-- 회원이 설정한 관심사 있을 때,-->
-			                            <span class = "interest_comment comment">관심사인  <u>${list.interest}</u>와 관련된 모임 추천해드려요!</span>
-		                            </c:if>
-		                        </section>
+								<!-- 로그인 성공 후, 추천 -->
+								<section id="afterLogin_recommend">
+									<span id="nickname">"${list.nick_name}"님의 </span>
+
+									<c:if test="${list.interest == null || list.interest eq ''}">
+										<!-- 회원이 설정한 관심사 없을 때,-->
+										<span class="region_comment comment">거주지 주변 모임 추천해드려요!</span>
+									</c:if>
+
+									<c:if test="${list.interest ne null && list.interest ne ''}">
+										<!-- 회원이 설정한 관심사 있을 때,-->
+										<span class="interest_comment comment">관심사인 <u>${list.interest}</u>와
+											관련된 모임 추천해드려요!
+										</span>
+									</c:if>
+								</section>
 							</c:when>
 						</c:choose>
-                    </section>
+					</section>
 
                     <section class = "title titleRight">
                         <span id = "plusBtn_meet" class = "plusBtn">+더보기</span>
@@ -301,15 +304,16 @@
             </div>
             <!-- end Meet RECOMMEND -->
 
-            
-            <!-- 액티비티 추천-->
-            <div id = "recommendAct" class = "mainContent">
-                <div class = "titleSection">
-                    <section class = "title titleLeft">
-                        <section id = "beforeLogin_recommend" class = "">
-                            <span class = "comment">어떤 액티비티에 관심있으신가요?</span>
-                        </section>
-                    </section>
+				<!-- START Meet RECOMMEND SECTION -->
+				<div id="meet_recommendSection">
+					<c:if test="${u_list.size()!=0}">
+						<c:forEach var="mvo" items="${u_list}">
+							<!-- start content_list div-->
+							<div class="content_list meet-list" idx="${mvo.meet_no}">
+								<div class="info-list-wrap">
+									<div class="listCommon">
+										<span class="content_title">${mvo.meet_name}</span>
+									</div>
 
                     <section class = "title titleRight">
                         <span id = "plusBtn_act" class = "plusBtn">+더보기</span>
@@ -583,6 +587,6 @@
 		<span id="toast_txt"></span>
 	</div>
 	<!-- END toastWrap -->
-    
+
 </body>
 </html>

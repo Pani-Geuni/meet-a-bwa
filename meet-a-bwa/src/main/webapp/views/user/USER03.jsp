@@ -71,9 +71,9 @@
 	
 	function check() {
 
-		console.log($("#id").val());
+		console.log($("#u_id").val());
 		
-		let pw = $.trim($("#pw").val()).length;
+		let pw = $.trim($("#user_pw").val()).length;
 		let pw_check = $.trim($("#pw_check").val()).length;
 		let u_nickname = $.trim($("#u_nickname").val()).length;
 		let email = $.trim($("#email").val()).length;
@@ -86,7 +86,7 @@
 
 		//if 절에 이미지 사이즈 용량 초과 조건 넣기
 		if (pw_check > 0 && nickname > 0 && email > 0 && tel > 0
-				&& ($("#pw").val() === $("#pw_check").val())
+				&& ($("#user_pw").val() === $("#pw_check").val())
 				&& $("#nickname").attr("readonly")
 				&& $("#email").attr("readonly")) {
 			console.log("가입 가능");
@@ -99,7 +99,7 @@
 					$(".bin-popup").addClass("blind");
 				});
 			} else if (pw < 7 || pw_check < 7
-					|| ($("#pw").val() !== $("#pw_check").val())) {
+					|| ($("#user_pw").val() !== $("#pw_check").val())) {
 				$(".pwd-popup").removeClass("blind");
 				$(".ok").on("click", function() {
 					$(".pwd-popup").addClass("blind");
@@ -168,7 +168,7 @@
 					<div id="id_la">
 						<label><span class="noChange">*</span> 아이디</label>
 					</div>
-					<input type="text" placeholder="아이디를 입력해주세요 (최대 15자)" id="id" name="id"
+					<input type="text" placeholder="아이디를 입력해주세요 (최대 15자)" id="u_id" name="id"
 						value="${uvo2.user_id}" readonly />
 				</div>
 
@@ -178,7 +178,7 @@
 							<label>비밀번호</label>
 						</div>
 						<input type="password"
-							placeholder="비밀번호를 입력해주세요. (최소 8자 ~ 최대 15자)" id="pw" name="pw"
+							placeholder="비밀번호를 입력해주세요. (최소 8자 ~ 최대 15자)" id="user_pw" name="pw"
 							value="${uvo2.user_pw}" />
 						<div id="toastWrap_pw" class="hide">
 							<p class="textCount_pw blind">0자</p>

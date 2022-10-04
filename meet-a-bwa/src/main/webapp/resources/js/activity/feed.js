@@ -18,37 +18,27 @@ $(function () {
 
     //액티비티 좋아요 버튼
     
-     let cnt=0;
-    $(".heart-common").on("click",".img-heart-outlined_btn",function (){
-
-        $(".img-heart-outlined_btn").addClass("blind");
-        $(".img-heart-filled_btn").removeClass("blind");
-
-        $("#like_cnt").text(++cnt);
-        
-    });
-
-    $(".heart-common").on("click",".img-heart-filled_btn",function (){
-
-        $(".img-heart-filled_btn").addClass("blind");
-        $(".img-heart-outlined_btn").removeClass("blind");
-
-        $("#like_cnt").text(--cnt);
-        
-    });
     
+    
+	
     
     // 액티비티 가입하기
     let idx = "";
 	
-	$("#join_activity_btn").on("click", function() {
-		
-		idx = $(this).attr("idx");
-		
-		ajax_load(idx);
-	})
+		 $("#join_activity_btn").click(function() {
+		 idxx = $(this).attr("idxx");
+		 //location.href = "/meet-a-bwa/a_registered.do?user_no=" + idx;
+		 if(idxx==null){
+				$(".login-layer").removeClass("blind");
+			}
+			else {
+				idx = $(this).attr("idx");
+				
+				ajax_load_join(idx);
+			}
+		 });
 	
-	function ajax_load(idx) {
+	function ajax_load_join(idx) {
 		$.ajax({
 			url : "/meet-a-bwa/a_registered.do",
 			type : "GET",
@@ -67,17 +57,25 @@ $(function () {
 				console.log("error");
 				console.log(text);
 			}
-		})
+		});
 	}
 	
 	// 액티비티 탈퇴
-	$(".activityExitBtn").on("click", function() {
-		console.log($(this).attr("idx"));
-		
-		idx = $(this).attr("idx");
-		
-		ajax_load_exit(idx);
-	})
+ $(".activityExitBtn").click(function() {
+			 $(".activityExit-popup").removeClass("blind");
+				$(".withdrawal").click(function() {
+				$(".activityExit-popup").addClass("blind");
+				console.log($(this).attr("idx"));
+				
+				idx = $(this).attr("idx");
+				
+				ajax_load_exit(idx);
+				});
+				$(".cancle").click(function() {
+					$(".activityExit-popup").addClass("blind");
+				});
+		 //location.href = "/meet-a-bwa/a_withdrawal.do?user_no=" + idx;
+		 }); 
 	
 	function ajax_load_exit(idx) {
 		$.ajax({
@@ -99,6 +97,6 @@ $(function () {
 				console.log("error")
 				console.log(text)
 			}
-		})
+		});
 	}
 });

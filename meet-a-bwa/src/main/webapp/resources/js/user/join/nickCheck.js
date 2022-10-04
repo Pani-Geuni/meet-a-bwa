@@ -30,6 +30,7 @@ $(function() {
 							$(".toastText_nickCheck").text("사용중인 닉네임 입니다.");
 							$(".toastText_nickCheck").addClass("no");
 						} else {
+							$(".toastText_nickCheck").removeClass("no");
 							$(".toastText_nickCheck").removeClass("blind");
 							$(".toastText_nickCheck").text("사용가능한 닉네임 입니다.");
 							$(".toastText_nickCheck").addClass("yes");

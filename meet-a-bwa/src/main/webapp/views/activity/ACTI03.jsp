@@ -29,7 +29,36 @@
 
 <script src="/meet-a-bwa/resources/js/activity/create/create.js"></script>
 <script src="/meet-a-bwa/resources/js/activity/create/textCondition.js"></script>
+<script>
+function check() {
+	let activity_name = $.trim($("#activity_name").val()).length;
+	let activity_description = $.trim($("#activity_description").val()).length;
+	let nop = $("#numberofpeople").val();
 
+	console.log(activity_name);
+	console.log(activity_description);
+	console.log(nop);
+	//console.log($("#age").val());
+
+	if (activity_name > 0 && activity_description > 0 && nop != 0) {
+		console.log("생성 가능");
+		let user_id = $("#id").val();
+		//insert_ajax();
+	} else {
+		console.log("생성 불가능");
+
+		if (activity_name <= 0 || activity_description <= 0 || nop <= 0) {
+
+			$(".bin-popup").removeClass("blind");
+			$(".ok").on("click", function() {
+				$(".bin-popup").addClass("blind");
+			});
+		}
+		return false;
+	}
+}
+
+</script>
 
 
 <title>액티비티 생성</title>

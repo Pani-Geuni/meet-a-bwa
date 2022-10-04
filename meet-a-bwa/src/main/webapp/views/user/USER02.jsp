@@ -26,8 +26,9 @@
 
 <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
- <script src="/meet-a-bwa/resources/js/common/header.js"></script>
- <!-- <script src="/meet-a-bwa/resources/js/common/login.js"></script> -->
+<script src="/meet-a-bwa/resources/js/common/header.js"></script>
+<script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
+<script src="/meet-a-bwa/resources/js/common/login.js"></script>
 <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 <script src="/meet-a-bwa/resources/js/user/join/join.js"></script>
 <script>
@@ -43,8 +44,8 @@
 		let bitrh = $("#birth").val().length;
 		let gender = $("#gender").val().length; */
 		
-		let id = $.trim($("#id").val()).length;
-		let pw = $.trim($("#pw").val()).length;
+		let id = $.trim($("#user_id").val()).length;
+		let pw = $.trim($("#user_pw").val()).length;
 		let pw_check = $.trim($("#pw_check").val()).length;
 		let name = $.trim($("#name").val()).length;
 		let u_nickname = $.trim($("#u_nickname").val()).length;
@@ -65,11 +66,11 @@
 
 		if (id > 0 && pw > 0 && pw_check > 0 && name > 0 && u_nickname > 0
 				&& email > 0 && tel > 0 && bitrh > 0 && gender > 0 && pw > 7
-				&& ($("#pw").val() === $("#pw_check").val())
-				&& $("#id").attr("readonly") && $("#nickname").attr("readonly")
+				&& ($("#user_pw").val() === $("#pw_check").val())
+				&& $("#user_id").attr("readonly") && $("#nickname").attr("readonly")
 				&& $("#email").attr("readonly")) {
 
-			let user_id = $("#id").val();
+			let user_id = $("#user_id").val();
 			console.log("가입 가능");
 		} else {
 			console.log("가입 불가능");
@@ -85,12 +86,12 @@
 				  	$(".bin-popup").addClass("blind");
 				  });
 				//}//for
-			} else if (pw < 7 || pw_check<7 || ($("#pw").val() !== $("#pw_check").val())) {
+			} else if (pw < 7 || pw_check<7 || ($("#user_pw").val() !== $("#pw_check").val())) {
 				$(".pwd-popup").removeClass("blind");
 				$(".ok").on("click", function(){
 				  	$(".pwd-popup").addClass("blind");
 				  });
-			} else if (!$("#id").attr("readonly")) {
+			} else if (!$("#user_id").attr("readonly")) {
 				$(".id-popup").removeClass("blind");
 				$(".ok").on("click", function(){
 				  	$(".id-popup").addClass("blind");
@@ -158,7 +159,7 @@
 								class="input-file">
 
 							<button type="button" id="delete-file1" value="삭제">
-								<img src="/meet-a-bwa/resources//img/imageDropBtn2.svg"
+								<img src="/meet-a-bwa/resources/img/imageDropBtn2.svg"
 									width=50px; height=50px; alt="삭제">
 							</button>
 
@@ -166,10 +167,10 @@
 					</section>
 				</div>
 				<div id="id_div">
-					<div id="id_la">
+					<div id="user_id_la">
 						<label><span class="noChange">*</span> 아이디</label>
 					</div>
-					<input type="text" placeholder="아이디를 입력해주세요. (최대 10자)" id="id"
+					<input type="text" placeholder="아이디를 입력해주세요. (최대 10자)" id="user_id"
 						name="id" value="" /> <input type="button" id="btn_idCheck"
 						value="중복체크"> <input type="button" id="btn_idRe"
 						value="재입력" class="blind">
@@ -184,11 +185,11 @@
 
 				<div id="pwWrap">
 					<div id="pw_div">
-						<div id="pw_la">
+						<div id="user_pw_la">
 							<label>비밀번호</label>
 						</div>
 						<input type="password"
-							placeholder="비밀번호를 입력해주세요. (최소 8자 ~ 최대 15자)" id="pw" name="pw"
+							placeholder="비밀번호를 입력해주세요. (최소 8자 ~ 최대 15자)" id="user_pw" name="pw"
 							value="" />
 						<div id="toastWrap_pw" class="hide">
 							<p class="textCount_pw blind">0자</p>
