@@ -12,7 +12,7 @@ public interface ActivityDB {
 	public static final String SQL_ACTIVITY_INSERT = "insert into test_activity"
 			+ "(activity_no, activity_image, activity_name, activity_description, activity_city, activity_county, activity_interest_name, "
 			+ "activity_gender, activity_nop, activity_age, activity_date, user_no, meet_no)"
-			+ "values('A'||SEQ_TEST_ACTIVITY_NEW.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? , ?)";
+			+ "values('A'||SEQ_TEST_ACTIVITY.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? , ?)";
 	
 	String SQL_ACTIVITY_UPDATE = "update test_activity set activity_image=?, activity_name=?, activity_description=?,"
 			+ "activity_city=?, activity_county=?, activity_interest_name=?, activity_gender=?, activity_nop=?, activity_age=?"

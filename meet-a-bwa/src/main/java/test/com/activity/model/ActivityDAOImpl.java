@@ -590,9 +590,11 @@ public class ActivityDAOImpl implements ActivityDAO {
 				avo2.setActivity_date(rs.getDate("activity_date"));
 				avo2.setUser_no(rs.getString("user_no"));
 				avo2.setMeet_no(rs.getString("meet_no"));
-				avo2.setMeet_no(rs.getString("like_cnt"));
-				avo2.setMeet_no(rs.getString("user_cnt"));
+				avo2.setLike_cnt(rs.getInt("like_cnt"));
+				avo2.setUser_cnt(rs.getInt("user_cnt"));
 				avo2.setUser_nickname(rs.getString("user_nickname"));
+				System.out.println("sssssssssslike_cntssssssssss"+rs.getString("like_cnt"));
+				System.out.println("sssssssssssuser_cntsssssssss"+rs.getString("user_cnt"));
 				
 			}
 			
@@ -746,5 +748,52 @@ public class ActivityDAOImpl implements ActivityDAO {
 		}
 		
 		return a_list;
+	}
+
+	@Override
+	public String select_activity_like(String activity_no, String user_no) {
+		
+		try {
+			conn = DriverManager.getConnection(ActivityDB.URL, ActivityDB.USER, ActivityDB.PASSWORD);
+			System.out.println("Activity SelectAll conn succeed");
+			
+			pstmt = conn.prepareStatement(ActivityDB2.SQL_ACTIVITY_SELECT_LIKE);
+			pstmt.setString(1, activity_no);
+			pstmt.setString(2, user_no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return null;
 	}
 }
