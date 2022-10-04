@@ -183,17 +183,6 @@
 			});
 		});  */
 
-		/*       $("#join_activity_btn").click(function() {
-		 idx = $(this).attr("idx");
-		 location.href = "/meet-a-bwa/a_registered.do?user_no=" + idx;
-		 });
-
-		 $(".activityExitBtn").click(function() {
-		 idx = $(this).attr("idx");
-		 location.href = "/meet-a-bwa/a_withdrawal.do?user_no=" + idx;
-		 }); */
-		 
-
 	});
 </script>
 
