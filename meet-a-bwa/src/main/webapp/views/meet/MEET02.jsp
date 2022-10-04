@@ -175,7 +175,7 @@
 							<!--  START SEARCHBAR INCLUDE -->
 							<jsp:include page="/views/common/searchBar.jsp"></jsp:include>
 							<!--  END SEARCHBAR INCLUDE -->
-							<div class="meet-notification">
+							<div class="meet-notification blind">
 								<div class="notification-title">
 									<h3>공지</h3>
 									<a href="./post-detail.html">
