@@ -26,6 +26,13 @@ public class A_VoteCreateAction {
 		String activity_no = request.getParameter("activity_no");
 		String[] contents = request.getParameterValues("contents");
 		
+		System.out.println(vote_title);
+		System.out.println(vote_description);
+		System.out.println(vote_eod);
+		System.out.println(user_no);
+		System.out.println(activity_no);
+		System.out.println(contents);
+		
 		// 포맷터        
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
