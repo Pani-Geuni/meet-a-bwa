@@ -326,7 +326,7 @@
 
 
                <c:choose>
-                  <c:when test="${(not fn:containsIgnoreCase(rvos, list.user_no))}">
+                  <c:when test="${(list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(rvos, list.user_no))}">
                      <div id="pheed_1">
                         <p id="defaultPheedText_1">액티비티에 가입해서 더 많은 정보를 찾아보세요!</p>
                      </div>
@@ -334,7 +334,7 @@
                
 
 
-               <c:when test="${(fn:containsIgnoreCase(rvos, list.user_no))}">
+               <c:when test="${(list.isLogin eq true || list.isLogin ne null) && (fn:containsIgnoreCase(rvos, list.user_no))}">
                <section id="pheed" class="pheed">
                   
                   <section class="voteApplication">
