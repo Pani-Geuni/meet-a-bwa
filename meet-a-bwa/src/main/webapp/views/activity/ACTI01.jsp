@@ -204,7 +204,7 @@
 			                            </div>
 			
 			                            <div class = "content_img">
-			                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
+			                                <img src = "${ avo.activity_image }" class = "list_img">
 			                            </div>
 			                        </div>
 			
