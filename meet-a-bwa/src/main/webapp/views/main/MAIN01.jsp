@@ -50,7 +50,6 @@
     	    $(".tagItem").click(function(e){
     	        $(".tagItem").removeClass("check");
     	        $(e.target).addClass("check");
-    	        console.log($(this).text());
     	        let category = $(this).text();
     	        location.href = "/meet-a-bwa/a_selectOne.do?category="+category;
     	    });
@@ -445,13 +444,13 @@
                  	</div>
                  </c:if>
                </div>
-			<div>
-        </div>
+               <!-- END recommend_list_wrap -->
+			</div>
             <!-- end act recommend section -->
-   </div>
- <!-- end recommendAct -->
- </div>
-        <!-- end contentWrap -->
+ 		</div>
+		<!-- end recommendAct -->
+	 </div>
+     <!-- end contentWrap -->
         
         <!-- START LOGIN POPUP -->
         <c:choose>
@@ -488,7 +487,7 @@
 		      </div>
 		    </div>
 	      </div>
-	      
+      </div>
 	      
         <!-- END LOGIN POPUP -->
         
@@ -529,9 +528,9 @@
         <!-- END WARNING POPUP -->
         
         
-        <!--  START HEADER INCLUDE -->
-			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
-	    <!--  END HEADER INCLUDE -->
+      <!--  START HEADER INCLUDE -->
+		<jsp:include page="../../views/common/footer.jsp"></jsp:include>
+      <!--  END HEADER INCLUDE -->
 	    
      <!-- START ID - FIND POPUP --> 
      <div id = "id_find_wrap" class="find-popup-layer blind">
@@ -571,7 +570,7 @@
           type="text"
           placeholder="이메일을 입력해주세요"
         />
-        <p id ="pw_find_result" class = "resultCommon blind">dddddd</p>
+        <p id ="pw_find_result" class = "resultCommon blind"></p>
 
         <div class="btn-group">
           <button id ="pw_find_okBtn" class="btn-find-pw">확인</button>
@@ -581,7 +580,7 @@
     </div>
     <!-- END PW FIND POPUP --> 
     
-	  <!-- START toastWrap -->
+	<!-- START toastWrap -->
 	<!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
 	<div id="toastWrap" class="hide">
 		<span id="toast_txt"></span>

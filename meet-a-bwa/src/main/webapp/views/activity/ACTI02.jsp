@@ -668,7 +668,7 @@
             <div id="dropdown" class="select_custom blind">
                <img src="/meet-a-bwa/resources/img/vector.png"
                   alt="셀렉트 before 이미지" id="select_img" />
-               <ul class="select_list_wrap">
+               <ul class="v_select_list_wrap">
                   <li class="select_list" id="update">수정</li>
                   <li class="select_list" id="delete">삭제</li>
                   <li class="select_list" id="end">투표종료</li>

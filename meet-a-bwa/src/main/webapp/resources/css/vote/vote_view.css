@@ -53,7 +53,7 @@
     height: 8px;
     margin-left: 60px;
 }
-.select_list_wrap{
+.v_select_list_wrap{
     display: flex;
     flex-direction: column;
     justify-content: center;
