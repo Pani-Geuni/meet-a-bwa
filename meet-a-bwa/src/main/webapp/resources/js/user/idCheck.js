@@ -6,8 +6,8 @@ $(function() {
 
 		$("#btn_idCheck").click(function(event) {
 			console.log("onclick....");
-			//let id = document.querySelector("#id");
-			let id =$("#id");
+			//let id = document.querySelector("#user_id");
+			let id =$("#user_id");
 			//console.log(id);
 			console.log(id.val());
 			
@@ -30,16 +30,17 @@ $(function() {
 							$(".toastText_idCheck").text("사용중인 아이디 입니다.");
 							$(".toastText_idCheck").addClass("no");
 						} else {
+							$(".toastText_idCheck").removeClass("no");
 							$(".toastText_idCheck").removeClass("blind");
 							$(".toastText_idCheck").text("사용가능한 아이디 입니다.");
 							$(".toastText_idCheck").addClass("yes");
-							$("#id").attr("readonly",true);
+							$("#user_id").attr("readonly",true);
 							$("#btn_idCheck").addClass("blind");
 							$("#btn_idRe").removeClass("blind");
 							$("#btn_idRe").click(function(){
 								$("#btn_idCheck").removeClass("blind");
 								$("#btn_idRe").addClass("blind");
-								$("#id").removeAttr("readonly");
+								$("#user_id").removeAttr("readonly");
 								// '사용 가능한 아이디' 토스트 메시지 지우기
 								$(".toastText_idCheck").addClass("blind");
 							});

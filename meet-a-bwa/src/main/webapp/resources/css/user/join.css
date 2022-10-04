@@ -101,7 +101,7 @@ form{
 	border: 0px;
 }
 
-#id, #pw, #name, #u_nickname,#birth, #tel, #pw_check, #email, #interest, #city, #country {
+#user_id, #user_pw, #name, #u_nickname,#birth, #tel, #pw_check, #email, #interest, #city, #country {
 	padding-left: 10px;
 	margin: 5px;
 	border-radius: 4px;
@@ -125,7 +125,7 @@ form{
 	margin-left: 8px;
 	margin-bottom: 7px;
 }
-#id_la, #pw_la, #pw_check_la,#name_la, #nickname_la, #email_la, #gender_la, #birth_la, #city_la, #tel_la, #birth_div, #interest_la{
+#user_id_la, #user_pw_la, #pw_check_la,#name_la, #nickname_la, #email_la, #gender_la, #birth_la, #city_la, #tel_la, #birth_div, #interest_la{
 	font-weight: bold;
 	padding: 5px;
 }

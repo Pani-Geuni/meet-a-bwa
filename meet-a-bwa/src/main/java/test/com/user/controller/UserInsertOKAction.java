@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
+import java.util.HashMap;
 //import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -24,6 +28,44 @@ import test.com.user.model.UserVO;
 public class UserInsertOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String session_user_id = (String) session.getAttribute("user_id");
+		
+		String cookie_interest = "";
+		String cookie_county = "";
+		String cookie_nickName = "";
+		String cookie_userno="";
+		
+		//嚥≪뮄�젃占쎌뵥 O
+		if(session_user_id != null) {
+			Cookie[] cookies = request.getCookies();
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("user_interest")) {
+					cookie_interest = cookie.getValue();
+				}else if(cookie.getName().equals("user_county")) {
+					cookie_county = cookie.getValue();
+				}else if(cookie.getName().equals("nick_name")) {
+					cookie_nickName = cookie.getValue();
+				}else if (cookie.getName().equals("user_no"));
+			}
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("isLogin", true);
+			map.put("nick_name", cookie_nickName);
+			map.put("interest", cookie_interest);
+			map.put("county", cookie_county);
+			
+			request.setAttribute("list", map);
+			
+			System.out.println("Headercontroller");
+			System.out.println(cookie_nickName);
+		}else {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("isLogin", false);
+			request.setAttribute("list", map);
+		}
+		
 		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // 占실곤옙占�(=占실쇽옙占쏙옙)占쏙옙 占쏙옙占쏙옙
 		System.out.println(dir_path);
 		

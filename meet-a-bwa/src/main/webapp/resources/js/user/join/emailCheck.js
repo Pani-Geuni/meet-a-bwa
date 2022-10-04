@@ -29,6 +29,7 @@ $(function() {
 							$(".toastText_emailCheck").text("사용중인 이메일 입니다.");
 							$(".toastText_emailCheck").addClass("no");
 						} else {
+							$(".toastText_emailCheck").removeClass("no");
 							$(".toastText_emailCheck").removeClass("blind");
 							$(".toastText_emailCheck").text("사용가능한 이메일 입니다.");
 							$(".toastText_emailCheck").addClass("yes");
