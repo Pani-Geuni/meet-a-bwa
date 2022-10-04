@@ -35,6 +35,16 @@ $(function(){
 		$(".ampm-list").removeClass("time_choice");
 		$(".time-list").removeClass("time_choice");
 		$(".minute-list").removeClass("time_choice");
+		$("#customTimePicker").addClass("blind");
+		
+		let a_sample = $("#ampm_listWrap").find(".sample").clone();
+		$("#ampm_listWrap").empty().append(a_sample);
+		
+		let t_sample = $("#time_listWrap").find(".sample").clone();
+		$("#time_listWrap").empty().append(t_sample);
+		
+		let m_sample = $("#minute_listWrap").find(".sample").clone();
+		$("#minute_listWrap").empty().append(m_sample);
 		
 		let clone_element = $("#vote_list_Wrap>.sample").clone();
 		$("#vote_list_Wrap").empty().append(clone_element);

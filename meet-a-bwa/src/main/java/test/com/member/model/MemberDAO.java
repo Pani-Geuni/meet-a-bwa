@@ -8,6 +8,8 @@ import test.com.meet.model.MeetVO4;
 
 public interface MemberDAO {
 	public String selectOne_name(String no);
+	public String selectOne_id(String email);
+	public String selectOne_pw(String email);
 	public MemberVO login(MemberVO uvo);
 	
 	public MemberVO selectOne_mypage(String no);

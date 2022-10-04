@@ -16,11 +16,15 @@
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/main/main.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
+    <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/find-popup.css"/>
+<!--     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/find-pw.css"/> -->
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
     <script src="/meet-a-bwa/resources/js/common/login.js"></script>
     <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/id_find.js"></script>
+    <script src="/meet-a-bwa/resources/js/common/pw_find.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
     <script>    	
@@ -249,7 +253,7 @@
 		                            </div>
 		
 		                            <div class = "content_img">
-		                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
+		                                <img src = "${mvo.meet_image}" class = "list_img">
 		                            </div>
 		                        </div>
 		
@@ -394,7 +398,7 @@
 			                            </div>
 			
 			                            <div class = "content_img">
-			                                <img src = "/meet-a-bwa/resources/img/loopy.svg" class = "list_img">
+			                                <img src = "${avo.activity_image}" class = "list_img">
 			                            </div>
 			                        </div>
 			
@@ -472,14 +476,10 @@
 		      </form>
 		
 	        <div class="login-bottom">
-		        <div>
-		          <a href="">ID 찾기</a>
-		        </div>
-		        <div>
-		          <a href="">PW 찾기</a>
-	            </div>
+		        <div id = "id_find_btn" class = "findCommon">ID 찾기</div>
+		        <div id = "pw_find_btn" class = "findCommon">PW 찾기</div>
 	           	<div>
-		          <a href="/meet-a-bwa/u_insert.do">회원가입</a>
+		          <a href="/meet-a-bwa/u_insert.do" class = "findCommon">회원가입</a>
 		        </div>
 		      </div>
 		    </div>
@@ -525,10 +525,57 @@
         </div>
         <!-- END WARNING POPUP -->
         
-        
         <!--  START HEADER INCLUDE -->
 			<jsp:include page="../../views/common/footer.jsp"></jsp:include>
 	    <!--  END HEADER INCLUDE -->
+	    
+     <!-- START ID - FIND POPUP --> 
+     <div id = "id_find_wrap" class="find-popup-layer blind">
+      <div class="find-popup-wrap">
+        <div class="popup-header">
+          <h1>ID 찾기</h1>
+          <h3>가입 시 기입한 <br />이메일을 입력해주세요.</h3>
+        </div>
+
+        <input
+          id="id-email-input"
+          class = "email-input"
+          type="text"
+          placeholder="이메일을 입력해주세요"
+        />
+        <p id ="id_find_result" class = "resultCommon blind"></p>
+
+        <div class="btn-group">
+          <button id ="id_find_okBtn" class="btn-find">확인</button>
+          <button id ="id_find_cancleBtn" class="btn-cancel">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- END ID FIND POPUP --> 
+    
+    <!-- START PW - FIND POPUP --> 
+    <div id = "pw_find_wrap" class="find-popup-layer blind">
+      <div class="find-popup-wrap">
+        <div class="popup-header">
+          <h1>비밀번호를 잊어버리셨나요?</h1>
+          <h3>가입 시 기입한 <br />이메일을 입력해주세요.</h3>
+        </div>
+
+        <input
+          id="pw-email-input"
+          class = "email-input"
+          type="text"
+          placeholder="이메일을 입력해주세요"
+        />
+        <p id ="pw_find_result" class = "resultCommon blind">dddddd</p>
+
+        <div class="btn-group">
+          <button id ="pw_find_okBtn" class="btn-find-pw">확인</button>
+          <button id ="pw_find_cancleBtn" class="btn-cancel">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- END PW FIND POPUP --> 
     
 	  <!-- START toastWrap -->
 	<!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->

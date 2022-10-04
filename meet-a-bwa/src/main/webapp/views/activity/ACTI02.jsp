@@ -1026,7 +1026,10 @@
 
          <!-- Start bottom_wrap -->
          <div id="bottom_wrap">
-            <p id="event_writer">작성자 : 김예은</p>
+	         <div id = "event_w_intfo">
+	            <p id="event_w_date">작성일 : </p>
+	            <p id="event_writer">작성자 : 김예은</p>
+	         </div>
             <input type="button" id="event_okBtn" class="btnCommon" value="확인" />
          </div>
          <!-- END bottom_wrap -->
@@ -1078,7 +1081,7 @@
                         autocomplete="off" placeholder="날짜를 선택해주세요.">
 
                      <!-- START TIMEPICKER -->
-                     <div id="" class="e_timepicker_box dateCommon">
+                     <div id="e_timepicker_box" class="e_timepicker_box dateCommon">
                         <section id="" class="timeSection">
                            <span id="event_timeValue">--:--:--</span>
                         </section>
@@ -1088,7 +1091,7 @@
                               alt="시계이미지" />
                         </section>
 
-                        <div id="" class="customTimePicker blind">
+                        <div id="event-customTimePicker" class="customTimePicker blind">
                            <div id="e_ampm_choice" class="ampm_choice">
                               <ul id="e_ampm_listWrap">
                                  <li class="sample ampm-list"></li>

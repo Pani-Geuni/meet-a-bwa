@@ -83,7 +83,6 @@
 #description_section{
     width: 100%;
     height: auto;
-    padding-bottom: 15px;
     border-top: 1px solid #C8C6C6;
     padding-top:15px;
 }
@@ -203,10 +202,22 @@
     box-sizing: content-box;
     margin-bottom: 27px;
 }
-#event_writer{
-    padding-right: 35px;
+#event_w_intfo{
+	display: flex;
+	width : 512px;
+	height : auto;
+	margin : 15px 20px 0px 20px;
+	justify-content : space-between;
+	align-items : center;
+}
+#event_w_date{
+	width:auto;
     margin-block-start: 0em;
-    text-align: right;
+}
+#event_writer{
+	width:auto;
+	margin-right : 5px;
+    margin-block-start: 0em;
 }
 #event_okBtn{
     margin: auto;

@@ -115,7 +115,7 @@
   justify-content: space-between;
 }
 
-.login-bottom a {
+.findCommon {
   display: block;
   text-align: center;
   text-decoration: none;
@@ -125,9 +125,10 @@
   border-radius: 4px;
 
   padding: 4px 8px;
-  margin: 0 auto;
 
   width: 65px;
+  
+  cursor : pointer;
 }
 
 .length_error{
