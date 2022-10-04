@@ -33,11 +33,11 @@ public class M_LoginOKAction {
 		MemberDAO dao = new MemberDAOImpl();
 		MemberVO vo2 = dao.login(vo);
 		
-		if(vo2.getUser_no() != null) {
+		if(vo2.getUser_no() != null && vo2.getUser_state() != "N") {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", id);
 			
-			// 쿠키 생성
+			// 荑좏궎 �깮�꽦
 			Cookie cookie1 = new Cookie("isLogin", "true");
 			Cookie cookie2 = new Cookie("user_no", vo2.getUser_no());
 			Cookie cookie3 = new Cookie("user_interest", vo2.getUser_interest());
@@ -54,7 +54,7 @@ public class M_LoginOKAction {
 			String like_activityNo_str = String.join("/", like_activityNo);
 			Cookie cookie7 = new Cookie("like_activity", like_activityNo_str);
 
-			// 쿠키를 클라이언트로 전송
+			// 荑좏궎瑜� �겢�씪�씠�뼵�듃濡� �쟾�넚
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
 			response.addCookie(cookie3);
@@ -86,20 +86,20 @@ public class M_LoginOKAction {
 			session.removeAttribute("user_id");
 			
 			Cookie[] cookies = request.getCookies();
-			if(cookies != null) { // NullPointerException 처리
+			if(cookies != null) { // NullPointerException 泥섎━
 				for(int i = 0; i< cookies.length; i++){
-					// 유효시간을 0초 설정 삭제하는 효과
+					// �쑀�슚�떆媛꾩쓣 0珥� �꽕�젙 �궘�젣�븯�뒗 �슚怨�
 					cookies[i].setMaxAge(0);
 					response.addCookie(cookies[i]);
 				}
 			}
 			
-			// 쿠키 생성
+			// 荑좏궎 �깮�꽦
 			Cookie cookie1 = new Cookie("isLogin", "false");
 			Cookie cookie2 = new Cookie("login_result", "fail");
 			
 
-			// 쿠키를 클라이언트로 전송
+			// 荑좏궎瑜� �겢�씪�씠�뼵�듃濡� �쟾�넚
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
 			
@@ -119,7 +119,7 @@ public class M_LoginOKAction {
 		ActivityDAO dao2 = new ActivityDAOImpl();
 		List<ActivityVO2> list2 = dao2.selectAll10();
 		request.setAttribute("a_list", list2);
-		request.setAttribute("checkCategory", "전체");
+		request.setAttribute("checkCategory", "�쟾泥�");
 
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 	}

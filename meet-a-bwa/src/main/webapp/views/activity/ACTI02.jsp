@@ -76,11 +76,11 @@
           if($.cookie("isLogin") == 'true'){
               // 좋아요 추가
               if($(this).find(".afterLike_heart").hasClass("blind")){
-                 location.href = "/meet-a-bwa/main_activity_like_insert.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+                 location.href = "/meet-a-bwa/activity_like_insert_feed.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
               }
               // 좋아요 삭제
               else{
-                 location.href = "/meet-a-bwa/main_activity_like_delete.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+                 location.href = "/meet-a-bwa/activity_like_delete_feed.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
               }
           }else{
              $(".warning-layer").removeClass("blind");
@@ -216,10 +216,10 @@
                </div>
                <div class="act-summary-info">
                   <p>
-                     <span>멤버 : </span> <span>${avo2.user_cnt}</span>
+                     <span>멤버 : </span> <span>${avo2.user_cnt}</span> <span>명</span>
                   </p>
                   <p>
-                     <span>리더 : </span> <span>${avo2.user_nickname}</span>
+                     <span> 리더 : </span> <span>${avo2.user_nickname}</span>
                   </p>
                </div>
 
@@ -260,7 +260,7 @@
                   <c:when
                      test="${(list.isLogin eq false || list.isLogin eq null) || ((not fn:containsIgnoreCase(rvos, list.user_no) && (avo2.user_no ne list.user_no)))}">
                      <button type="button" id="join_activity_btn"
-                        idx="${avo2.activity_no}" idxx="${list.isLogin}">
+                        idx="${avo2.activity_no}">
                         <a>액티비티 가입하기</a>
                      </button>
                   </c:when>
