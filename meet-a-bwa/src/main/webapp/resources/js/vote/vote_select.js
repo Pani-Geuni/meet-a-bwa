@@ -55,10 +55,12 @@ $(function() {
     	if(!isChoice){
     		fade_in_out("투표 항목을 선택해주세요.");
     	}else{
+    		let c_idx = $("#choice_wrap").find(".in_circle.choice").attr("contentidx");
+    		
     		if(updateFlag){
-    			location.href = "/meet-a-bwa/re_voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + choice_idx + "&meet_no=" + location.href.split("idx=")[1];
+    			location.href = "/meet-a-bwa/re_voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + c_idx + "&meet_no=" + location.href.split("idx=")[1];
     		}else{
-    			location.href = "/meet-a-bwa/voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + choice_idx + "&meet_no=" + location.href.split("idx=")[1];
+    			location.href = "/meet-a-bwa/voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + c_idx + "&meet_no=" + location.href.split("idx=")[1];
     		}
     	}
     });
@@ -168,6 +170,7 @@ $(function() {
 			
 			dataType: "JSON",
 			success: function(res) {
+			console.log(res);
 				vote_no =  res.vote_no;
 				title = res.vote_title;
 				description = res.vote_description;
@@ -247,16 +250,20 @@ $(function() {
 							$("#choice_wrap").append(sample);
 						}
 						
-						
 						if(res.vote_result.length > 0){
-							let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)");
+							let total_cnt = 0;
+							for(var j = 0; j < res.vote_result.length; j++){
+								total_cnt += Number(res.vote_result[j].cnt);
+							}
+							
+							let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)").slice();
 							for(var i = 0; i < tmp_arr.length; i++){
 								let tmp = false;
 								for(var j = 0; j < res.vote_result.length; j++){
 									if($(tmp_arr[i]).find(".in_circle").attr("contentIdx") == res.vote_result[j].content_no){
 										tmp = true;
 										$(tmp_arr[i]).find(".choice_mem_cnt").text(res.vote_result[j].cnt + "명");
-				    					$(tmp_arr[i]).find(".list_percentage").css("width", res.vote_result[j].percentage+"%");		
+				    					$(tmp_arr[i]).find(".list_percentage").css("width", Math.round((res.vote_result[j].cnt / total_cnt) * 100)+"%");		
 									}
 								}
 								if(!tmp){
@@ -295,14 +302,19 @@ $(function() {
 					
 					
 					if(res.vote_result.length > 0){
-						let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)");
+						let total_cnt = 0;
+						for(var j = 0; j < res.vote_result.length; j++){
+							total_cnt += Number(res.vote_result[j].cnt);
+						}
+						
+						let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)").slice();
 						for(var i = 0; i < tmp_arr.length; i++){
 							let tmp = false;
 							for(var j = 0; j < res.vote_result.length; j++){
 								if($(tmp_arr[i]).find(".in_circle").attr("contentIdx") == res.vote_result[j].content_no){
 									tmp = true;
 									$(tmp_arr[i]).find(".choice_mem_cnt").text(res.vote_result[j].cnt + "명");
-			    					$(tmp_arr[i]).find(".list_percentage").css("width", res.vote_result[j].percentage+"%");		
+			    					$(tmp_arr[i]).find(".list_percentage").css("width", Math.round((res.vote_result[j].cnt / total_cnt) * 100)+"%");		
 								}
 							}
 							if(!tmp){

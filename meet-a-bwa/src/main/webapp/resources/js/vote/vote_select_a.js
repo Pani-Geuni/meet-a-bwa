@@ -22,7 +22,7 @@ $(function() {
 	});
 
 	// 투표 리스트 선택 - 투표 보기
-	$("#vote-wrap").on("click", ".content_list_activity", function(){
+	$(".pheedEventBody").on("click", ".content_list_activity", function(){
 		idx = $(this).attr("idx");
 		ajax_load(idx);
 		
@@ -56,10 +56,12 @@ $(function() {
     	if(!isChoice){
     		fade_in_out("투표 항목을 선택해주세요.");
     	}else{
+    		let c_idx = $("#choice_wrap").find(".in_circle.choice").attr("contentidx"); 
+
     		if(updateFlag){
-    			location.href = "/meet-a-bwa/a_re_voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + choice_idx + "&activity_no=" + location.href.split("idx=")[1];
+    			location.href = "/meet-a-bwa/a_re_voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + c_idx + "&activity_no=" + location.href.split("idx=")[1];
     		}else{
-    			location.href = "/meet-a-bwa/a_voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + choice_idx + "&activity_no=" + location.href.split("idx=")[1];
+    			location.href = "/meet-a-bwa/a_voteOK.do?vote_no=" + idx + "&user_no=" + $.cookie("user_no") + "&content_no=" + c_idx + "&activity_no=" + location.href.split("idx=")[1];
     		}
     	}
     });
@@ -176,6 +178,7 @@ $(function() {
 			
 			dataType: "JSON",
 			success: function(res) {
+			console.log(res)
 				vote_no =  res.vote_no;
 				title = res.vote_title;
 				description = res.vote_description;
@@ -248,23 +251,32 @@ $(function() {
 							sample.find(".choice_mem_cnt").removeClass("blind");
 	    					sample.find(".list_percentage_wrap").removeClass("blind");
 							sample.find(".txt").text(res.content_arr[i].content);
+							
+							// 내가 투표했던 항목 선택 처리
 							if(res.content_arr[i].content_no == res.isVote){
 								sample.find(".in_circle").addClass("choice");
 							}
+							
 							sample.find(".in_circle").attr("contentIdx", res.content_arr[i].content_no);
 							$("#choice_wrap").append(sample);
 						}
 						
 						
 						if(res.vote_result.length > 0){
-							let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)");
+							let total_cnt = 0;
+							for(var j = 0; j < res.vote_result.length; j++){
+								total_cnt += Number(res.vote_result[j].cnt);
+							}
+							console.log(total_cnt);
+							
+							let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)").slice();
 							for(var i = 0; i < tmp_arr.length; i++){
 								let tmp = false;
 								for(var j = 0; j < res.vote_result.length; j++){
 									if($(tmp_arr[i]).find(".in_circle").attr("contentIdx") == res.vote_result[j].content_no){
 										tmp = true;
 										$(tmp_arr[i]).find(".choice_mem_cnt").text(res.vote_result[j].cnt + "명");
-				    					$(tmp_arr[i]).find(".list_percentage").css("width", res.vote_result[j].percentage+"%");		
+				    					$(tmp_arr[i]).find(".list_percentage").css("width", Math.round((res.vote_result[j].cnt / total_cnt) * 100)+"%");		
 									}
 								}
 								if(!tmp){
@@ -303,14 +315,19 @@ $(function() {
 					
 					
 					if(res.vote_result.length > 0){
-						let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)");
+						let total_cnt = 0;
+						for(var j = 0; j < res.vote_result.length; j++){
+							total_cnt += Number(res.vote_result[j].cnt);
+						}
+						
+						let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)").slice();
 						for(var i = 0; i < tmp_arr.length; i++){
 							let tmp = false;
 							for(var j = 0; j < res.vote_result.length; j++){
 								if($(tmp_arr[i]).find(".in_circle").attr("contentIdx") == res.vote_result[j].content_no){
 									tmp = true;
 									$(tmp_arr[i]).find(".choice_mem_cnt").text(res.vote_result[j].cnt + "명");
-			    					$(tmp_arr[i]).find(".list_percentage").css("width", res.vote_result[j].percentage+"%");		
+			    					$(tmp_arr[i]).find(".list_percentage").css("width", Math.round((res.vote_result[j].cnt / total_cnt) * 100)+"%");		
 								}
 							}
 							if(!tmp){

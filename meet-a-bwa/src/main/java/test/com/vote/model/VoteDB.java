@@ -53,7 +53,7 @@ public interface VoteDB {
 		+ "where test_vote.vote_no = ? "
 		+ "order by content_no";
 	
-	String SQL_VOTE_ALL_RESULT_SELECT_ONE = "select * from (select * from test_vote_result order by content_no) where vote_no = ?";
+	String SQL_VOTE_ALL_RESULT_SELECT_ONE = "select content_no, count(*) as cnt from (select * from test_vote_result order by content_no) where vote_no = ? group by content_no";
 	String SQL_VOTE_MY_RESULT_SELECT_ONE = "select * from test_vote_result where vote_no = ? AND user_no = ?";
 	String SQL_VOTE_SELECT_ALL_A = "SELECT VOTE_NO, VOTE_TITLE, VOTE_DESCRIPTION, VOTE_EOD , VOTE_STATE, USER_NO, ACTIVITY_NO, USER_CNT FROM VOTE_USER_VIEW WHERE ACTIVITY_NO=? ORDER BY VOTE_NO DESC";
 }

@@ -25,11 +25,12 @@ public class A_VoteResult_updateAction {
 		System.out.println("vote_no : " + vote_no);
 		System.out.println("user_no : " + user_no);
 		System.out.println("content_no : " + content_no);
+		System.out.println("activity_no : " + activity_no);
 		
 		
 		VoteDAO dao = new VoteDAOImpl();
 		int result = dao.update_result(vo);
-		
+
 		if(result == 1) {
 			response.sendRedirect("/meet-a-bwa/activity-main.do?idx=" + activity_no);
 		}
