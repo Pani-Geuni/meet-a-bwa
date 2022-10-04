@@ -1044,6 +1044,34 @@
 	</div>
 	<!-- END EVENT VIEW WRAP-->
 
+         <!-- Start bottom_wrap -->
+         <div id="bottom_wrap">
+	         <div id = "event_w_intfo">
+	            <p id="event_w_date">작성일 : </p>
+	            <p id="event_writer">작성자 : 김예은</p>
+	         </div>
+            <input type="button" id="event_okBtn" class="btnCommon" value="확인" />
+         </div>
+         <!-- END bottom_wrap -->
+      </div>
+      <!-- END event_popup-->
+	   <div id="event_confirmWrap" class="blind">
+	      <div id="confirm_head">
+	         <img
+	            src="/meet-a-bwa/resources/img/fluent_more-horizontal-20-regular.png"
+	            alt="more-img" />
+	      </div>
+	      <div id="confirm_txt_wrap">
+	         <span id="confirm_txt">삭제하시겠습니까?</span>
+	      </div>
+	      <div id="confirm_btn_wrap">
+	         <input type="button" id="e_yesBtn" class="confirm_btn_common" value="예" />
+	         <input type="button" id="e_noBtn" class="confirm_btn_common"
+	            value="아니오" />
+	      </div>
+	   </div>
+   </div>
+   <!-- END EVENT VIEW WRAP-->
 
 
 
@@ -1077,10 +1105,11 @@
 									<span id="event_timeValue">--:--:--</span>
 								</section>
 
-								<section id="" class="timeImgSection">
-									<img src="/meet-a-bwa/resources/img/clock.svg" id="timeImg"
-										alt="시계이미지" />
-								</section>
+                     <!-- START TIMEPICKER -->
+                     <div id="e_timepicker_box" class="e_timepicker_box dateCommon">
+                        <section id="" class="timeSection">
+                           <span id="event_timeValue">--:--:--</span>
+                        </section>
 
 								<div id="" class="customTimePicker blind">
 									<div id="e_ampm_choice" class="ampm_choice">
@@ -1104,22 +1133,27 @@
 						</div>
 					</section>
 
-					<section class="event-section_common">
-						<h4 class="section_title">이벤트 내용</h4>
-						<section>
-							<textarea id="event_description" class="event_description common"
-								placeholder="이벤트 내용"></textarea>
-							<span id="event_description_text_length" class="text_length">0/200</span>
-						</section>
-					</section>
-				</div>
-				<div class="btnWrap">
-					<input type="button" id="event_createBtn" class="btnCommon"
-						value="이벤트 생성"> <input type="button" id="event_cancleBtn"
-						class="btnCommon" value="취소">
-				</div>
-			</div>
-			<!--  END event-create-wrap -->
+                        <div id="event-customTimePicker" class="customTimePicker blind">
+                           <div id="e_ampm_choice" class="ampm_choice">
+                              <ul id="e_ampm_listWrap">
+                                 <li class="sample ampm-list"></li>
+                              </ul>
+                           </div>
+                           <div id="e_time_choice" class="choiceCommon">
+                              <ul id="e_time_listWrap">
+                                 <li class="sample time-list"></li>
+                              </ul>
+                           </div>
+                           <div id="e_minute_choice" class="choiceCommon">
+                              <ul id="e_minute_listWrap">
+                                 <li class="sample minute-list"></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- END TIMEPICKER -->
+                  </div>
+               </section>
 
 
 			<!--  START event-update-wrap -->

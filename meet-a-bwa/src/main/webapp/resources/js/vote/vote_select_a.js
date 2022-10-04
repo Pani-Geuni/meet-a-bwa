@@ -343,6 +343,20 @@ $(function() {
 		toast_flag = true;
 		ajax_flag = true;
 		
+		$("#u_timepicker_box").addClass("blind");
+		
+		let a_sample = $("#u_ampm_listWrap").find(".sample").clone();
+		$("#u_ampm_listWrap").empty().append(a_sample);
+		
+		let t_sample = $("#u_time_listWrap").find(".sample").clone();
+		$("#u_time_listWrap").empty().append(t_sample);
+		
+		let m_sample = $("#u_minute_listWrap").find(".sample").clone();
+		$("#u_minute_listWrap").empty().append(m_sample);
+		
+		let clone_element = $("#vote_list_Wrap>.sample").clone();
+		$("#vote_list_Wrap").empty().append(clone_element);
+		
         sample = $("#u_vote_list_Wrap").find(".sample").clone();
         $("#u_vote_list_Wrap").empty().append(sample);
         

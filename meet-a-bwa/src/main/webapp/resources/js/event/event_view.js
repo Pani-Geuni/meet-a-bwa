@@ -51,6 +51,17 @@ $(function(){
 	    toast_flag = true;
 		ajax_flag2 = true;
 		
+		$("#eu_customTimePicker").addClass("blind");
+		
+		let a_sample = $("#eu_ampm_listWrap").find(".sample").clone();
+		$("#eu_ampm_listWrap").empty().append(a_sample);
+		
+		let t_sample = $("#eu_time_listWrap").find(".sample").clone();
+		$("#eu_time_listWrap").empty().append(t_sample);
+		
+		let m_sample = $("#eu_minute_listWrap").find(".sample").clone();
+		$("#eu_minute_listWrap").empty().append(m_sample);
+		
     	$("#event_cu-wrap").addClass("blind");
         $("#event-update-wrap").addClass("blind");
     });
@@ -88,10 +99,7 @@ $(function(){
     /************************************************ */
     // 시간 설정 SECTION
     $("#eu_t_box").click(function(){
-    	if($("#eu_customTimePicker").hasClass("blind"))
-        	$("#eu_customTimePicker").addClass("blind");
-    	else 
-        	$("#eu_customTimePicker").removeClass("blind");
+    	$("#eu_customTimePicker").toggleClass("blind");
 
         if(ajax_flag2){
             $.ajax({
@@ -273,6 +281,7 @@ $(function(){
 				$("#event-view-title").text(res.event_title);
 				$("#event_update").attr("idx", res.event_no);
 				$("#event_delete").attr("idx", res.event_no);
+				$("#event_w_date").text("작성일 : " + res.event_date);
 				$("#event_writer").text("작성자 : " + res.user_name);
 				
 				if(res.user_no != $.cookie("user_no")){

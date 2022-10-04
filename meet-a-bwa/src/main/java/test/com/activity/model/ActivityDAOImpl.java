@@ -262,6 +262,7 @@ public class ActivityDAOImpl implements ActivityDAO {
 			while(rs.next()) {
 				ActivityVO2 avo = new ActivityVO2();				
 				avo.setActivity_no(rs.getString("activity_no"));
+				avo.setActivity_image(rs.getString("activity_image"));
 				avo.setActivity_name(rs.getString("activity_name"));
 				avo.setActivity_description(rs.getString("activity_description"));
 				avo.setActivity_city(rs.getString("activity_city"));

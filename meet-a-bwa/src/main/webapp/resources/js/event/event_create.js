@@ -55,6 +55,8 @@ $(function(){
 		$("#event-create-wrap").find(".time-list").removeClass("time_choice");
 		$("#event-create-wrap").find(".minute-list").removeClass("time_choice");
 		
+		$("#event-customTimePicker").addClass("blind");
+		
 		let clone_title = $("#team_title").clone();
 		let clone_element = $("#teamSection>.sample").clone();
 		$("#vote_list_Wrap").empty().append(clone_title).append(clone_element);
@@ -67,8 +69,8 @@ $(function(){
     /** 커스텀 타임피커 SECTION */
     /************************************************ */
     // 시간 설정 SECTION
-    $(".e_timepicker_box").click(function(){
-        $(".customTimePicker").toggleClass("blind");
+    $("#e_timepicker_box").click(function(){
+        $("#event-customTimePicker").toggleClass("blind");
 
         if(ajax_flag){
             $.ajax({
@@ -84,7 +86,7 @@ $(function(){
     });
 
     
-    $(".customTimePicker").click(function(event){
+    $("#event-customTimePicker").click(function(event){
         event.stopPropagation();
     });
     

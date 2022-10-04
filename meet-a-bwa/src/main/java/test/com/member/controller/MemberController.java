@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberController
  */
-@WebServlet({"/m_loginOK.do", "/logoutOK.do"})
+@WebServlet({"/m_loginOK.do", "/logoutOK.do", "/pw_find.do", "/id_find.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,6 +43,10 @@ public class MemberController extends HttpServlet {
 		
 		if(sPath.equals("/m_loginOK.do")) {
 			new M_LoginOKAction().execute(request, response);
+		} else if(sPath.equals("/id_find.do")) {
+			new FindIdAction().execute(request, response);
+		} else if(sPath.equals("/pw_find.do")) {
+			new FindPwAction().execute(request, response);
 		}
 	}
 

@@ -15,6 +15,17 @@
     	$(".login-layer").addClass("blind");
     });
     
+    // ID 찾기 버튼 클릭
+    $("#id_find_btn").click(function(){
+    	$("#id_find_wrap").removeClass("blind");
+    });
+    // PW 찾기 버튼 클릭
+    $("#pw_find_btn").click(function(){
+    	$("#pw_find_wrap").removeClass("blind");
+    });
+    
+    
+    
  	// 로그인 버튼 클릭 시 제출 전에 아이디/비번 입력되었는지 확인
 	  $( '#loginForm' ).submit( function() {
 		$('#idInput').removeClass("length_error");
