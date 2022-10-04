@@ -25,7 +25,7 @@ $(function () {
                 $("#toastWrap_name").removeClass("hide");
                 $("#toastWrap_name").removeClass("fade-out");
                 $("#toastWrap_name").addClass("fade-in");
-            } else if (element.attr("id") == 'nickname') {
+            } else if (element.attr("id") == 'u_nickname') {
                 $("#toastWrap_nick").removeClass("hide");
                 $("#toastWrap_nick").removeClass("fade-out");
                 $("#toastWrap_nick").addClass("fade-in");
@@ -53,7 +53,7 @@ $(function () {
                 }else if (element.attr("id") == 'name') {
                     $("#toastWrap_name").removeClass("fade-in");
                     $("#toastWrap_name").addClass("fade-out");
-                }else if (element.attr("id") == 'nickname') {
+                }else if (element.attr("id") == 'u_nickname') {
                     $("#toastWrap_nick").removeClass("fade-in");
                     $("#toastWrap_nick").addClass("fade-out");
                 }else if (element.attr("id") == 'email') {
@@ -180,10 +180,10 @@ $(function () {
         textLengthCnt(10, $(this), $('.textCount_name'));
     });
     //닉네임 글자수 제한
-    $('#nickname').keyup(function () {
+    $('#u_nickname').keyup(function () {
         textLengthCnt(10, $(this), $('.textCount_nick'));
     });
-    $('#nickname').keydown(function () {
+    $('#u_nickname').keydown(function () {
         textLengthCnt(10, $(this), $('.textCount_nick'));
     });
     //이메일 글자수 제한

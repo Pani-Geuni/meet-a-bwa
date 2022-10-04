@@ -45,10 +45,10 @@
 		let gender = $("#gender").val().length; */
 		
 		let id = $.trim($("#user_id").val()).length;
-		let pw = $.trim($("#user_pw").val()).length;
-		let pw_check = $.trim($("#pw_check").val()).length;
+		let pw = $("#user_pw").val().length;
+		let pw_check = $("#pw_check").val().length;
 		let name = $.trim($("#name").val()).length;
-		let u_nickname = $.trim($("#u_nickname").val()).length;
+		let nickname = $.trim($("#u_nickname").val()).length;
 		let email = $.trim($("#email").val()).length;
 		let tel = $.trim($("#tel").val()).length;
 		let birth = $.trim($("#birth").val()).length;
@@ -67,7 +67,7 @@
 		if (id > 0 && pw > 0 && pw_check > 0 && name > 0 && u_nickname > 0
 				&& email > 0 && tel > 0 && bitrh > 0 && gender > 0 && pw > 7
 				&& ($("#user_pw").val() === $("#pw_check").val())
-				&& $("#user_id").attr("readonly") && $("#nickname").attr("readonly")
+				&& $("#user_id").attr("readonly") && $("#u_nickname").attr("readonly")
 				&& $("#email").attr("readonly")) {
 
 			let user_id = $("#user_id").val();
@@ -96,7 +96,7 @@
 				$(".ok").on("click", function(){
 				  	$(".id-popup").addClass("blind");
 				  });
-			} else if (!$("#nickname").attr("readonly")) {
+			} else if (!$("#u_nickname").attr("readonly")) {
 				$(".nickname-popup").removeClass("blind");
 				$(".ok").on("click", function(){
 				  	$(".nickname-popup").addClass("blind");
