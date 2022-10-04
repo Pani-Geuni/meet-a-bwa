@@ -25,5 +25,4 @@ public interface ActivityDAO {
 	public List<RegisteredVO> activity_select_registered(String activity_no);
 	public String select_activity_lastNo();
 	public int activity_registered(String user_no, String activity_no);
-	public String select_activity_like(String activity_no, String user_no);
 }

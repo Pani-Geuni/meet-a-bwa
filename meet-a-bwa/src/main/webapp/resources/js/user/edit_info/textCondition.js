@@ -7,7 +7,7 @@ $(function () {
         if (flag) {
             flag = false;
             // $("#toast_txt").text("글자수를 초과하였습니다.")
-            if (element.attr("id") == 'nickname') {
+            if (element.attr("id") == 'u_nickname') {
                 $("#toastWrap_nick").removeClass("hide");
                 $("#toastWrap_nick").removeClass("fade-out");
                 $("#toastWrap_nick").addClass("fade-in");
@@ -34,7 +34,7 @@ $(function () {
 
             setTimeout(function () {
                 flag = true; // 추후에 사용할 수 있도록 변수값 변경
-                if (element.attr("id") == 'nickname') {
+                if (element.attr("id") == 'u_nickname') {
                     $("#toastWrap_nick").removeClass("fade-in");
                     $("#toastWrap_nick").addClass("fade-out");
                 } else if (element.attr("id") == 'user_pw') {
@@ -153,10 +153,10 @@ $(function () {
         // texteq();
     });
     //닉네임 글자수 제한
-    $('#nickname').keyup(function () {
+    $('#u_nickname').keyup(function () {
         textLengthCnt(10, $(this), $('.textCount_nick'));
     });
-    $('#nickname').keydown(function () {
+    $('#u_nickname').keydown(function () {
         textLengthCnt(10, $(this), $('.textCount_nick'));
     });
     //이메일 글자수 제한

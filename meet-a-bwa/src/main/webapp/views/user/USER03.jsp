@@ -75,7 +75,7 @@
 		
 		let pw = $.trim($("#user_pw").val()).length;
 		let pw_check = $.trim($("#pw_check").val()).length;
-		let u_nickname = $.trim($("#u_nickname").val()).length;
+		let nickname = $.trim($("#u_nickname").val()).length;
 		let email = $.trim($("#email").val()).length;
 		let tel = $.trim($("#tel").val()).length;
 
@@ -87,7 +87,7 @@
 		//if 절에 이미지 사이즈 용량 초과 조건 넣기
 		if (pw_check > 0 && nickname > 0 && email > 0 && tel > 0
 				&& ($("#user_pw").val() === $("#pw_check").val())
-				&& $("#nickname").attr("readonly")
+				&& $("#u_nickname").attr("readonly")
 				&& $("#email").attr("readonly")) {
 			console.log("가입 가능");
 		} else {
@@ -104,7 +104,7 @@
 				$(".ok").on("click", function() {
 					$(".pwd-popup").addClass("blind");
 				});
-			} else if ($("#nickname").attr("readonly", false)) {
+			} else if ($("#u_nickname").attr("readonly", false)) {
 				$(".nickname-popup").removeClass("blind");
 				$(".ok").on("click", function() {
 					$(".nickname-popup").addClass("blind");
