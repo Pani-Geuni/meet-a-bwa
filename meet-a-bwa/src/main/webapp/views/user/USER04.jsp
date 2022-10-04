@@ -37,7 +37,7 @@
 	          <h1 class="sectionTitle">마이 페이지</h1>
 	          <div id="user-content">
 	            <div id="user-profile-img">
-	              <img src="/meet-a-bwa/resources/img/loopy.svg" alt="" />
+	              <img src="${ vo.user_image }" alt="프로필 사진" />
 	            </div>
 	            <div id="user-contents">
 	              <p><span>${ vo.user_nickname }님,</span> 안녕하세요.</p>
