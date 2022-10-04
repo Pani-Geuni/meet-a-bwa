@@ -258,7 +258,7 @@
                <!-- 가입후, 개설자 -->
                <c:choose>
                   <c:when
-                     test="${(list.isLogin eq false || list.isLogin eq null) || (not fn:containsIgnoreCase(rvos, list.user_no))}">
+                     test="${(list.isLogin eq false || list.isLogin eq null) || ((not fn:containsIgnoreCase(rvos, list.user_no) && (avo2.user_no ne list.user_no)))}">
                      <button type="button" id="join_activity_btn"
                         idx="${avo2.activity_no}" idxx="${list.isLogin}">
                         <a>액티비티 가입하기</a>
