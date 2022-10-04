@@ -28,6 +28,8 @@ import test.com.vote.model.VoteVO;
 
 public class MeetFeedSelectAll_Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String like_meet = request.getParameter("like_meet");
+		
 		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
@@ -58,6 +60,11 @@ public class MeetFeedSelectAll_Action {
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
 			map.put("user_no", cookie_userNo);
+			
+			if (like_meet != null) {
+				Cookie cookie = new Cookie("like_meet", like_meet);
+				response.addCookie(cookie);
+			}
 			
 			request.setAttribute("list", map);
 		}else {
@@ -105,7 +112,7 @@ public class MeetFeedSelectAll_Action {
 		List<VoteVO> vvos = vdao.vote_selectAll(idx); 
 		
 		request.setAttribute("vvos", vvos);
-		
+
 		request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
 	}
 }

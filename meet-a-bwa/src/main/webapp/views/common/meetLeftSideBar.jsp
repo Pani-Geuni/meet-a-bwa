@@ -10,12 +10,18 @@
 	</div>
 	<div class="meet-detail-aside-top">
 		<h1 class="meet-deatil-aside-title">${ mvo3.meet_name }</h1>
-		<div class="heart-common">
-			<img class="img-heart-filled"
-				src="/meet-a-bwa/resources/img/heart-filled.svg" alt="좋아요 이미지" /> <img
-				class="img-heart-outlined blind"
-				src="/meet-a-bwa/resources/img/heart-outlined.svg" alt="좋아요 테두리 이미지" />
+		<%-- <div class="heart-common">
+			<img class="img-heart-filled" src="/meet-a-bwa/resources/img/heart-filled.svg" alt="좋아요 이미지" />
+			<img class="img-heart-outlined blind" src="/meet-a-bwa/resources/img/heart-outlined.svg" alt="좋아요 테두리 이미지" />
 			<span>${ mvo3.like_cnt }</span>
+		</div> --%>
+		
+		<div class="likeWrapCol">
+			<section class="heartSection" idx="${ mvo3.meet_no }">
+				<img src="/meet-a-bwa/resources/img/heart-filled.svg" alt='풀하트이미지' class="afterLike_heart heartCommon blind" />
+				<img src="/meet-a-bwa/resources/img/heart-outlined.svg" alt='라인하트이미지' class="beforeLike_heart heartCommon" />
+			</section>
+			<span class="likeCnt">${mvo3.like_cnt}</span>
 		</div>
 	</div>
 	<div class="meet-summary-info" idx="${ mvo3.meet_no }">
