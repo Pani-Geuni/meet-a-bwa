@@ -9,9 +9,12 @@ $(function() {
 		
 		console.log("activity no : ", idx);
 		// ajax_load(idx);
+		
+		location.href = "/meet-a-bwa/activity-main.do?idx=" + idx;
 	})
 	
 	// TODO
 	// 10월 01일 액티비티 피드 서블릿 생성시
 	// ajax_load 함수 만들 것
+
 })
