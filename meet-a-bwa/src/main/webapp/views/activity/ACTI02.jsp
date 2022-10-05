@@ -967,7 +967,7 @@
 				id="more-horizontal" />
 		</div>
 		<div id="confirm_txt_wrap">
-			<span id="confirm_txt">투표를 종기종료 하시겠습니까?</span>
+			<span id="confirm_txt">투표를 조기종료 하시겠습니까?</span>
 		</div>
 		<div id="confirm_btn_wrap">
 			<input type="button" id="end_yesBtn"
