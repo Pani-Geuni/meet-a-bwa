@@ -1,24 +1,11 @@
-// $(document).ready(function popupShow() {
-//   $('.popup').show()
-// })
+/**
+ * @author 전판근
+ */
 
 function writePopupShow() {
-  $('.write-popup-layer').show()
+  $('.write-popup-layer').show();
 }
 
 function writePopupHide() {
-  $('.write-popup-layer').hide()
+  $('.write-popup-layer').hide();
 }
-
-
-$(function() {
-	let idx = '';
-	
-	$('#btn-meet-write').on('click', function() {
-		console.log("글쓰기 버튼 클릭");
-		
-		idx = $(this).attr('idx');
-		
-		console.log(idx)
-	})
-})

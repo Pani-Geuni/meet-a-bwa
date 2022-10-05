@@ -1,3 +1,8 @@
+/**
+ * @author 전판근
+ * 마이페이지 내에서 나의 모임 리스트 불러오는 로직
+ */
+
 package test.com.user.controller;
 
 import java.io.IOException;
@@ -12,14 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import test.com.meet.model.MeetVO4;
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
+import test.com.user.model.UserDAO;
+import test.com.user.model.UserDAOImpl;
 
 public class MyMeetListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
-		System.out.println("session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -69,14 +73,12 @@ public class MyMeetListAction {
 			request.setAttribute("list", map);
 		}
 		
-		MemberDAO dao = new MemberDAOImpl();
+		UserDAO dao = new UserDAOImpl();
 		
 		List<MeetVO4> mvos = dao.selectAll_myMeet(cookie_userNo);
 		
 		request.setAttribute("mvos", mvos);
-		
 		request.getRequestDispatcher("/views/user/USER05.jsp").forward(request, response);
-		
 		
 	}
 }

@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 메인페이지 로드 시 조건에 따른 DATA 처리
+ *
+ */
+
 package test.com.main.controller;
 
 import java.io.IOException;
@@ -25,7 +32,6 @@ public class MainInitAction {
 		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
-		System.out.println("INIT session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -51,6 +57,7 @@ public class MainInitAction {
 			map.put("nick_name", cookie_nickName);
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
+			
 			if(like_meet != null) {
 				Cookie cookie = new Cookie("like_meet", like_meet);
 				response.addCookie(cookie);
@@ -71,7 +78,7 @@ public class MainInitAction {
 			}else {
 				list = m_dao.select_interest(cookie_interest);
 			}
-			System.out.println(list);
+
 			request.setAttribute("u_list", list);
 			
 		}else {
@@ -90,7 +97,7 @@ public class MainInitAction {
 			
 			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list = m_dao.select_like();
-			System.out.println(list);
+
 			request.setAttribute("u_list", list);
 		}
 		

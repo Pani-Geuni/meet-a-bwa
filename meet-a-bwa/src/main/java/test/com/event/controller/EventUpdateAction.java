@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 이벤트 내용 수정
+ *
+ */
+
 package test.com.event.controller;
 
 import java.io.IOException;
@@ -9,14 +16,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.tribes.membership.MemberImpl;
 import org.json.simple.JSONObject;
 
 import test.com.event.model.EventDAO;
 import test.com.event.model.EventDAOImpl;
 import test.com.event.model.EventVO;
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
 
 public class EventUpdateAction {
 	@SuppressWarnings("unchecked")
@@ -26,14 +30,10 @@ public class EventUpdateAction {
 		String event_description = request.getParameter("event_description");
 		String event_d_day = request.getParameter("event_d_day");
 		
-		System.out.println(event_no);
-		System.out.println(event_title);
-		System.out.println(event_description);
-		System.out.println(event_d_day);
-		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = null;
 		java.sql.Timestamp d_day = null ;
+		
 		try {
 			date = formatter.parse(event_d_day);
 			d_day = new java.sql.Timestamp(date.getTime());

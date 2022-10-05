@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 모임 내에 투표 정보 수정
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;
@@ -23,20 +30,10 @@ public class M_VoteUpdateAction {
 		String vote_description = request.getParameter("vote_description");
 		String vote_eod = request.getParameter("vote_eod");
 		
-		System.out.println("update....");
-		System.out.println("vote_no...." + vote_no);
-		System.out.println("vote_title...."+vote_title);
-		System.out.println("vote_description...." + vote_description);
-		System.out.println("vote_eod...." + vote_eod);
-		
-		// 포맷터        
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		
-		// 문자열 -> Date       
 		Date date = null;
-		
-		// java.util.Date to java.sql.Date
 		java.sql.Timestamp eod = null ;
+		
 		try {
 			date = formatter.parse(vote_eod);
 			eod = new java.sql.Timestamp(date.getTime());

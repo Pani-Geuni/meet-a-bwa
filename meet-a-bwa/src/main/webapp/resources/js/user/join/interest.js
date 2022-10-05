@@ -1,3 +1,6 @@
+/**
+* @author 최진실
+*/
 $(function () {
 
     var interest = ["취미",
@@ -44,22 +47,19 @@ $(function () {
     let cnt=0;
 	var result = [];
 	var result_x = [];
+	
     $("#interest").on("change", function (e) {
-
         tag = tag.clone();
         tag.removeClass("blind");
         let select_value = $(this).val();
     		
-    		 if (!result.includes(select_value)&&select_value!='') {
+		if (!result.includes(select_value)&&select_value!='') {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
             tag.val(select_value + " X");
             result.push(select_value);
             tag.attr("idx",++cnt);
             $("#tagWrap").append(tag);
-            console.log(select_value);
             result_x.push(select_value+ " X");
-            console.log("result:"+result);
-            console.log("result_x:"+result_x);
         }
     });
 
@@ -70,10 +70,7 @@ $(function () {
     $("#tagWrap").on("click",".delete_interest",function () {
         let idx =$(this).attr("idx"); // 현재 배열 크기
         let arr = $(".delete_interest").slice(); // 태그 배열 전체 복시
-        //console.log(arr);
-
         let select_value = $(this).val();
-        //console.log($(this).val());
         
         $("#tagWrap").empty().append($(arr[0])); // 부모 비우고, 복사할 0번째 샘플 데이터만 붙임
 
@@ -83,19 +80,13 @@ $(function () {
            }
         }
         
-        //let filtered = result_x.filter((element) => element !== select_value);
-
         for(let i = 0; i < result_x.length; i++) {
-  			if(result_x[i]==select_value)  {
+  			if(result_x[i] == select_value)  {
     			result.splice(i, 1);
     			result_x.splice(i, 1);
     			i--;
   			}
 		}
-        
-        console.log("삭제 후 result:"+result);
-        console.log("삭제 후 result_x:"+result_x);
-
     });
 
 });

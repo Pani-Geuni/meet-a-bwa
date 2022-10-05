@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 모임 멤버 리스트 
+ *
+ */
+
 package test.com.meet.controller;
 
 import java.io.IOException;

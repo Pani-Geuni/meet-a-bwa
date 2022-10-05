@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 전판근
+ * 모임 탈퇴
+ *
+ */
 package test.com.meet.controller2;
 
 import java.io.IOException;
@@ -16,6 +22,7 @@ import test.com.meet.model2.MeetDAO;
 import test.com.meet.model2.MeetDAOImpl;
 
 public class MeetLeaveAction {
+	@SuppressWarnings("unchecked")
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
@@ -26,7 +33,6 @@ public class MeetLeaveAction {
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {

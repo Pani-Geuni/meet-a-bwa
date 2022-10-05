@@ -47,11 +47,12 @@ public class MeetController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // �ѱ� ���� ����
-		// doGet(request, response);
+		request.setCharacterEncoding("UTF-8"); 
+		
 		String sPath = request.getServletPath();
 		System.out.print("doPost:");
-		System.out.println(sPath); // ������ ����Ʈ
+		System.out.println(sPath);
+
 		if (sPath.equals("/m_insertOK.do")) {
 			new MeetInsertOKAction().execute(request, response);
 		} else if (sPath.equals("/m_updateOK.do")) {

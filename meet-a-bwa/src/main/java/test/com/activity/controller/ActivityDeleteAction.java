@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 최진실
+ * 액티비티 삭제
+ *
+ */
+
 package test.com.activity.controller;
 
 import java.io.IOException;
@@ -14,11 +21,8 @@ import test.com.activity.model.ActivityDAO;
 import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
-
 public class ActivityDeleteAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println(request.getParameter("activity_no"));
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -26,7 +30,6 @@ public class ActivityDeleteAction {
 		String cookie_county = "";
 		String cookie_nickName = "";
 		
-		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -47,8 +50,6 @@ public class ActivityDeleteAction {
 			
 			request.setAttribute("list", map);
 			
-			System.out.println("Headercontroller");
-			System.out.println(cookie_nickName);
 		}else {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
@@ -58,12 +59,10 @@ public class ActivityDeleteAction {
 		ActivityVO avo = new ActivityVO();
 		avo.setActivity_no(request.getParameter("activity_no"));
 		
-		System.out.println("ㅇㅇㅇㅇㅇㅇ:"+request.getParameter("meet_no"));
 		
 		ActivityDAO a_dao = new ActivityDAOImpl();
 		int result = a_dao.activity_delete(avo);
 		
-		System.out.println(result);
 		if(result==1) {
 			response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + request.getParameter("meet_no"));
 		}else

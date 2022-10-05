@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 액티비티 내에 투표 조기마감
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;

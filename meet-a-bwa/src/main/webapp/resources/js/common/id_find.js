@@ -1,6 +1,7 @@
 /**
- * 
+ * @author 김예은
  */
+ 
  $(function(){
  	let flag = true;
  	
@@ -39,6 +40,7 @@
 			 }
         });
  	}
+ 	
  	// 토스트 함수
     function fade_in_out(text){
         if(flag){

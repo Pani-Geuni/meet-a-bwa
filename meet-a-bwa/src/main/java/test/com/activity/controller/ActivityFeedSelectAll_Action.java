@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 최진실
+ * 액티비티 내 필요한 정보 불어오기
+ *
+ */
+
 package test.com.activity.controller;
 
 import java.io.IOException;
@@ -24,7 +31,6 @@ import test.com.vote.model.VoteListVO;
 
 public class ActivityFeedSelectAll_Action {
 public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -33,7 +39,6 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -65,11 +70,9 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		
 		String idx = request.getParameter("idx");
 		
-		
-		// activity-cnt(user)-cnt(like)
 		ActivityDAO a_dao = new ActivityDAOImpl();
 		ActivityVO3 avo = new ActivityVO3();
-		avo.setActivity_no(idx); //수정해야함
+		avo.setActivity_no(idx);
 		
 		ActivityVO3 avo2 = a_dao.activity_selectOne_main_feed(avo);
 		
@@ -90,7 +93,6 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		List<VoteListVO> vvos = v_dao.vote_list_selectAll(idx); 
 		
 		request.setAttribute("vvos", vvos);
-		
 		request.getRequestDispatcher("views/activity/ACTI02.jsp").forward(request, response);
 	}
 }

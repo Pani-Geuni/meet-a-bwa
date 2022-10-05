@@ -1,21 +1,21 @@
+/**
+ * 
+ * @author 김예은
+ * 이벤트 삭제 후 원래 페이지로 복귀
+ *
+ */
+
 package test.com.event.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import test.com.event.model.EventDAO;
 import test.com.event.model.EventDAOImpl;
-import test.com.event.model.EventVO;
-import test.com.vote.model.VoteDAO;
-import test.com.vote.model.VoteDAOImpl;
+
 
 public class EventDeleteAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,7 @@
-$(function(){
+/**
+ * @author 김예은
+ */
+ $(function(){
     let cnt = 0;
     let flag = true;
     let ajax_flag = true;
@@ -28,7 +31,6 @@ $(function(){
         		if(Number(arr[1]) != 12){
         			time = (Number(arr[1]) + 12) + ":" + arr[2] + ":59";
         		}else{
-        			console.log("dd");
         			time = arr[1] + ":" + arr[2] + ":59";
         		}
         	}else if(ampm == "오전"){

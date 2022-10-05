@@ -29,10 +29,8 @@ public class MeetDAOImpl implements MeetDAO {
 		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("conn successed...");
 			
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_INSERT);	
-			
 			pstmt.setString(1, mvo.getMeet_image()); 
 			pstmt.setString(2, mvo.getMeet_name());
 			pstmt.setString(3, mvo.getMeet_description());
@@ -42,9 +40,7 @@ public class MeetDAOImpl implements MeetDAO {
 			pstmt.setString(7, mvo.getMeet_gender());
 			pstmt.setInt(8, mvo.getMeet_nop());
 			pstmt.setInt(9, mvo.getMeet_age());
-//			pstmt.setDate(9, (java.sql.Date) new Date());
 			pstmt.setString(10, mvo.getUser_no()); 
-			
 			
 			flag = pstmt.executeUpdate();
 			
@@ -78,15 +74,11 @@ public class MeetDAOImpl implements MeetDAO {
 	
 	@Override
 	public String select_meet_lastNo() {
-
 		String meet_no = "";
 		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("conn successed...");
-			
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_SELECT_LAST_NO);	
-			
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -128,13 +120,10 @@ public class MeetDAOImpl implements MeetDAO {
 	public int meet_registered(String user_no, String meet_no) {
 		int flag = 0;
 		
-		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("conn successed...");
 			
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_REGISTERED);	
-			
 			pstmt.setString(1, meet_no); 
 			pstmt.setString(2, user_no);
 			
@@ -172,12 +161,11 @@ public class MeetDAOImpl implements MeetDAO {
 	@Override
 	public int meet_leave(String user_no, String meet_no) {
 		int flag = 0;
+		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("leave conn successed...");
 			
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_LEAVE);
-			
 			pstmt.setString(1, user_no);
 			pstmt.setString(2, meet_no);
 			
@@ -216,31 +204,17 @@ public class MeetDAOImpl implements MeetDAO {
 	@Override
 	public MeetVO meet_selectOne(MeetVO mvo) {
 		MeetVO mvo2 = null;
+		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("conn successed...");
+
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_SELECT_ONE);
-			
 		    pstmt.setString(1, mvo.getMeet_no());    
-			
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				
-				System.out.println("==================");
-				System.out.print(rs.getString("meet_no") + " ");
-				System.out.print(rs.getString("meet_image") + " ");
-				System.out.print(rs.getString("meet_name") + " ");
-				System.out.print(rs.getString("meet_description") + " ");
-				System.out.print(rs.getString("meet_city") + " ");
-				System.out.print(rs.getString("meet_county") + " ");
-				System.out.print(rs.getString("meet_interest_name") + " ");
-				System.out.print(rs.getString("meet_gender") + " ");
-				System.out.print(rs.getString("meet_nop") + " ");
-				System.out.println(rs.getString("meet_age") + " ");
-				
-				
 				mvo2 = new MeetVO();
+				
 				mvo2.setMeet_no(rs.getString("meet_no"));
 				mvo2.setMeet_image(rs.getString("meet_image"));
 				mvo2.setMeet_name(rs.getString("meet_name"));
@@ -250,9 +224,6 @@ public class MeetDAOImpl implements MeetDAO {
 				mvo2.setMeet_interest_name(rs.getString("meet_interest_name"));
 				mvo2.setMeet_gender(rs.getString("meet_gender"));
 				mvo2.setMeet_nop(rs.getInt("meet_nop"));
-				mvo2.setMeet_age(rs.getInt("meet_age"));
-				//avo2.setActivity_date(rs.getDate("activity_date"));
-				//avo2.setUser_no(rs.getString("user_no"));
 			}
 			
 		} catch (SQLException e) {
@@ -286,11 +257,11 @@ public class MeetDAOImpl implements MeetDAO {
 	@Override
 	public int meet_update(MeetVO mvo) {
 		int flag=0;
+		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("conn successed...");
+
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_UPDATE);
-			
 			pstmt.setString(1, mvo.getMeet_image()); 
 			pstmt.setString(2, mvo.getMeet_name());
 			pstmt.setString(3, mvo.getMeet_description());
@@ -299,12 +270,8 @@ public class MeetDAOImpl implements MeetDAO {
 			pstmt.setString(6, mvo.getMeet_interest_name());
 			pstmt.setString(7, mvo.getMeet_gender());
 			pstmt.setInt(8, mvo.getMeet_nop());
-			pstmt.setInt(9, mvo.getMeet_age());
-//			pstmt.setDate(9, (java.sql.Date) new Date());
-//			pstmt.setString(10, avo.getUser_no()); 
-//			pstmt.setString(11, avo.getMeet_no()); 
+			pstmt.setInt(9, mvo.getMeet_age()); 
 			pstmt.setString(10, mvo.getMeet_no()); 
-			
 			
 			flag=pstmt.executeUpdate(); 
 			
@@ -338,16 +305,15 @@ public class MeetDAOImpl implements MeetDAO {
 
 	@Override
 	public int meet_delete(MeetVO mvo) {
-		System.out.println("delete()...");
 		int flag = 0;
 		
 		try {
 			conn = DriverManager.getConnection(MeetDB.URL,MeetDB.TEST_USER,MeetDB.TEST_PASSWORD);
-			System.out.println("conn successed...");
+
 			pstmt = conn.prepareStatement(MeetDB.SQL_MEET_DELETE);
 			pstmt.setString(1, mvo.getMeet_no()); 
 			
-			flag=pstmt.executeUpdate();  // insert占쏙옙 executeUpdate占싱곤옙 占쏙옙占쏙옙타占쏙옙(flag)占쏙옙 占쌍억옙占� 占쏙옙
+			flag=pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -377,8 +343,5 @@ public class MeetDAOImpl implements MeetDAO {
 		
 		return flag;
 	}
-
-
-
 
 }

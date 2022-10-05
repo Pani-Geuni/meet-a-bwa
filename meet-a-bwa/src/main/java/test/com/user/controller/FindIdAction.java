@@ -1,4 +1,9 @@
-package test.com.member.controller;
+/**
+ * @author 김예은
+ * 이메일로 유저 아이디 찾기
+ */
+
+package test.com.user.controller;
 
 import java.io.IOException;
 
@@ -8,21 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
+import test.com.user.model.UserDAO;
+import test.com.user.model.UserDAOImpl;
 
-public class FindPwAction {
+public class FindIdAction {
 	@SuppressWarnings("unchecked")
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
-		System.out.println("pw : " + email);
 		
-		MemberDAO dao = new MemberDAOImpl();
-		String pw = dao.selectOne_pw(email);
+		UserDAO dao = new UserDAOImpl();
+		String id = dao.selectOne_id(email);
 		
 		JSONObject obj = new JSONObject();
-		if(pw.length() > 0)
-			obj.put("result", pw);
+		if(id.length() > 0)
+			obj.put("result", id);
 		else 
 			obj.put("result", "not found");
 		response.setContentType("application/x-json; charset=UTF-8");

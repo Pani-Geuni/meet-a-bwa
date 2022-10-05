@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 전판근
+ *
+ */
+
 package test.com.meetboard.model;
 
 import java.sql.Connection;
@@ -34,10 +40,8 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
-			System.out.println("MemberBoard conn succeed...");
 			
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_POST_INSERT);
-			
 			pstmt.setString(1, bvo.getBoard_title());
 			pstmt.setString(2, bvo.getBoard_content());
 			pstmt.setString(3, bvo.getUser_no());
@@ -79,14 +83,10 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 	public int board_update(MeetBoardVO bvo) {
 		int flag = 0;
 		
-		System.out.println("board update()...");
-		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
-			System.out.println("MemberBoard update conn succeed...");
 			
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_UPDATE_TEST);
-			
 			pstmt.setString(1, bvo.getBoard_title());
 			pstmt.setString(2, bvo.getBoard_content());
 			pstmt.setString(3, bvo.getBoard_no());
@@ -125,14 +125,10 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 
 	@Override
 	public List<MeetBoardVO> board_selectAll(String idx) {
-		System.out.println("board selectAll()...");
-		
 		List<MeetBoardVO> vos = new ArrayList<MeetBoardVO>();
-		
 		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
-			System.out.println("MemberBoard selectAll conn succeed...");
 			
 			// 전체 글 불러오기
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_SELECT_ALL_TEST);
@@ -140,8 +136,6 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				
-				
 				MeetBoardVO vo = new MeetBoardVO();
 				vo.setBoard_no(rs.getString("BOARD_NO"));
 				vo.setBoard_title(rs.getString("BOARD_TITLE"));
@@ -185,17 +179,12 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 
 	@Override
 	public MeetBoardVO board_selectOne(MeetBoardVO bvo) {
-		System.out.println("board selectOne()...");
-		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
-			System.out.println("MemberBoard selectOne conn succeed...");
 			
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_SELECT_ONE_TEST);
-			
 			pstmt.setString(1, bvo.getBoard_no());
 			rs = pstmt.executeQuery();
-			
 			
 			while (rs.next()) {
 				bvo.setBoard_no(rs.getString("board_no"));
@@ -242,16 +231,12 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 
 	@Override
 	public int board_delete(MeetBoardVO bvo) {
-		System.out.println("board delete()...");
-		
 		int flag = 0;
 		
 		try {
 			conn = DriverManager.getConnection(MeetBoardDB.URL, MeetBoardDB.TEST_USER, MeetBoardDB.TEST_PASSWORD);
-			System.out.println("MemberBoard selectOne conn succeed...");
 			
 			pstmt = conn.prepareStatement(MeetBoardDB.SQL_MEET_BOARD_DELETE_TEST);
-			
 			pstmt.setString(1, bvo.getBoard_no());
 			flag = pstmt.executeUpdate();
 			
@@ -287,6 +272,4 @@ public class MeetBoardDAOImpl implements MeetBoardDAO {
 		
 		return flag;
 	}
-
-
 }

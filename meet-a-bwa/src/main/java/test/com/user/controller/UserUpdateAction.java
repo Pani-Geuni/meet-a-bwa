@@ -1,3 +1,8 @@
+/**
+ * @author 최진실
+ * 회원 수정 처리
+ */
+
 package test.com.user.controller;
 
 import java.io.BufferedReader;
@@ -31,7 +36,6 @@ public class UserUpdateAction {
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -54,8 +58,6 @@ public class UserUpdateAction {
 			
 			request.setAttribute("list", map);
 			
-			System.out.println("Headercontroller");
-			System.out.println(cookie_nickName);
 		}else {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
@@ -75,14 +77,11 @@ public class UserUpdateAction {
 
 		if(file.exists()){ // 파일이 존재하면
             BufferedReader reader = new BufferedReader(new FileReader(file));
-
-            System.out.println("파일내용 출력------------------");
             String line = null;
+            
             while ((line = reader.readLine()) != null){
                 System.out.println(line);
             }
-            System.out.println("------------------------------");
-
             reader.close();
         }
 

@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 최진실
+ * 모임 생성
+ *
+ */
+
 package test.com.meet.controller2;
 
 import java.io.IOException;
@@ -23,7 +30,6 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -52,17 +58,11 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			request.setAttribute("list", map);
 		}
 		
-		//String idx = request.getParameter("meet_no");
-		//System.out.println(idx);
 		
 		MeetVO mvo = new MeetVO();
-		//avo.setMeet_no(idx);
 		mvo.setUser_no(cookie_userNo);
 		
 		request.setAttribute("mvo", mvo);
-		
-		//System.out.println("meet_no::::::::"+avo.getMeet_no());
-		System.out.println("user_no::::::::"+cookie_userNo);
 		
 		request.getRequestDispatcher("views/meet/MEET05.jsp").forward(request, response);
 	}

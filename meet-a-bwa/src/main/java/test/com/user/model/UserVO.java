@@ -1,4 +1,8 @@
+/**
+ * @author 최진실
+ */
 package test.com.user.model;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,7 +24,6 @@ public class UserVO {
 	private String user_state;
 	
 	public UserVO() {}
-
 	
 	
 	public UserVO(String user_no, String user_image, String user_id, String user_pw, String user_name,

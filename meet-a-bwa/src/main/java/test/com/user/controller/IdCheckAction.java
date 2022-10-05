@@ -1,3 +1,8 @@
+/**
+ * @author 최진실
+ * 회원가입 시 아이디 중복 체크
+ */
+
 package test.com.user.controller;
 
 import java.io.IOException;
@@ -12,15 +17,11 @@ import test.com.user.model.UserVO;
 
 public class IdCheckAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println(request.getParameter("id"));
-	    
 		UserDAO u_dao = new UserDAOImpl();
 	    UserVO uvo = new UserVO();
 	    uvo.setUser_id(request.getParameter("id"));
 		
 	    UserVO uvo2 = u_dao.idCheck(uvo);
-	    System.out.println("idCheck:"+uvo2);
-	    
 	    
 	    response.addHeader("Access-Control-Allow-Origin", "*");
 	    response.addHeader("Access-Control-Allow-Credentials", "true");

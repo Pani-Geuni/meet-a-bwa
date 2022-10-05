@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 전판근
+ *
+ */
+
 package test.com.meetboard.model;
 
 import java.util.Date;

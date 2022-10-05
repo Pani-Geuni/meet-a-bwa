@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author 김예은
+ *
+ */
 package test.com.vote.model;
 
 import java.sql.Timestamp;

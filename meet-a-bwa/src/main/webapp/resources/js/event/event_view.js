@@ -1,4 +1,7 @@
-$(function(){
+/**
+ * @author 김예은
+ */
+ $(function(){
 	let event_idx = "";
 	let toast_flag = true;
 	let ajax_flag2 = true;
@@ -12,7 +15,6 @@ $(function(){
 	// 삭제 컨펌창 - 예 버튼 클릭 이벤트
     $("#e_yesBtn").click(function(){
         location.href = "/meet-a-bwa/event_delete.do?event_no=" + event_idx + "&activity_no=" + location.href.split("idx=")[1];
-    	
     });
 	// 삭제 컨펌창 - 아니오 버튼 클릭 이벤트
     $("#e_noBtn").click(function(){
@@ -245,7 +247,6 @@ $(function(){
         }
     }
     function time_list(arr){
-    	console.log($("#eu_time_listWrap"));
         for(x of arr){
             let sample = $("#eu_time_listWrap").children(".sample").clone();
             sample.removeClass("sample");
@@ -320,7 +321,6 @@ $(function(){
 				
 			},
 			error: function(res, status, text) {
-				console.log("error");
 				console.log(text);
 			}
 		})

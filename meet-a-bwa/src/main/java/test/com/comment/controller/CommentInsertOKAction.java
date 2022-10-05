@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 댓글 추가
+ *
+ */
+
 package test.com.comment.controller;
 
 import java.io.IOException;
@@ -12,8 +19,6 @@ import test.com.comment.model.CommentVO;
 
 public class CommentInsertOKAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Comment Insert OK Action");
-		
 		String mother_no = request.getParameter("mother_no");
 		String comment_content = request.getParameter("comment_content");
 		String board_no = request.getParameter("board_no");

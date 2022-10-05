@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 액티비티 카테고리 눌렀던 것 그대로 로드될 떄 눌림표시하기위한 로직
+ *
+ */
+
 package test.com.main.controller;
 
 import java.io.IOException;
@@ -59,11 +66,9 @@ public class SelectOne_category_Action {
 				list = m_dao.select_county(cookie_county);
 			}else {
 				list = m_dao.select_interest(cookie_interest);
-				
 			}
 			request.setAttribute("u_list", list);
 		}else {
-			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
 			request.setAttribute("list", map);
@@ -71,9 +76,7 @@ public class SelectOne_category_Action {
 			MeetDAO m_dao = new MeetDAOImpl();
 			List<MeetVO2> list = m_dao.select_like();
 			request.setAttribute("u_list", list);
-			
 		}
-
 		
 		ActivityDAO dao2 = new ActivityDAOImpl();
 		if(category.equals("전체")) {
@@ -84,10 +87,8 @@ public class SelectOne_category_Action {
 			request.setAttribute("a_list", list2);
 		}
 		request.setAttribute("checkCategory", category);
-
-
+		
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 
-		
 	}
 }

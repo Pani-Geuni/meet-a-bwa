@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 전판근
+ *
+ */
+
 package test.com.list.controller;
 
 import java.io.IOException;
@@ -26,7 +32,6 @@ public class ListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String sPath = request.getServletPath();
 		System.out.println("[doGet] " + sPath);
 		

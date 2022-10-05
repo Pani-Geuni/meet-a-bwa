@@ -1,4 +1,8 @@
-package test.com.member.controller;
+/**
+ * @author 김예은
+ * 로그아웃 처리
+ */
+package test.com.user.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,27 +21,27 @@ import test.com.activity.model.ActivityVO2;
 import test.com.meet.model.MeetDAO;
 import test.com.meet.model.MeetDAOImpl;
 import test.com.meet.model.MeetVO2;
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
-import test.com.member.model.MemberVO;
+import test.com.user.model.UserDAO;
+import test.com.user.model.UserDAOImpl;
+import test.com.user.model.UserVO;
 
-public class M_LoginOKAction {
+public class LoginOKAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		MemberVO vo = new MemberVO();
+		UserVO vo = new UserVO();
 		vo.setUser_id(id);
 		vo.setUser_pw(pw);
 		
-		MemberDAO dao = new MemberDAOImpl();
-		MemberVO vo2 = dao.login(vo);
+		UserDAO dao = new UserDAOImpl();
+		UserVO vo2 = dao.login(vo);
 		
-		if(vo2.getUser_no() != null && vo2.getUser_state() != "N") {
+		// 회원 정보가 없거나 탈퇴한 회원의 로그인은 허용하지않음
+		if(vo2.getUser_no() != null && !vo2.getUser_state().equals("N")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", id);
 			
-			// 荑좏궎 �깮�꽦
 			Cookie cookie1 = new Cookie("isLogin", "true");
 			Cookie cookie2 = new Cookie("user_no", vo2.getUser_no());
 			Cookie cookie3 = new Cookie("user_interest", vo2.getUser_interest());
@@ -54,7 +58,6 @@ public class M_LoginOKAction {
 			String like_activityNo_str = String.join("/", like_activityNo);
 			Cookie cookie7 = new Cookie("like_activity", like_activityNo_str);
 
-			// 荑좏궎瑜� �겢�씪�씠�뼵�듃濡� �쟾�넚
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
 			response.addCookie(cookie3);
@@ -78,7 +81,7 @@ public class M_LoginOKAction {
 			}else {
 				list = m_dao.select_interest(vo2.getUser_interest());
 			}
-			System.out.println(list);
+
 			request.setAttribute("u_list", list);
 			
 		}else {
@@ -86,20 +89,17 @@ public class M_LoginOKAction {
 			session.removeAttribute("user_id");
 			
 			Cookie[] cookies = request.getCookies();
-			if(cookies != null) { // NullPointerException 泥섎━
+			if(cookies != null) {
 				for(int i = 0; i< cookies.length; i++){
-					// �쑀�슚�떆媛꾩쓣 0珥� �꽕�젙 �궘�젣�븯�뒗 �슚怨�
 					cookies[i].setMaxAge(0);
 					response.addCookie(cookies[i]);
 				}
 			}
 			
-			// 荑좏궎 �깮�꽦
 			Cookie cookie1 = new Cookie("isLogin", "false");
 			Cookie cookie2 = new Cookie("login_result", "fail");
 			
 
-			// 荑좏궎瑜� �겢�씪�씠�뼵�듃濡� �쟾�넚
 			response.addCookie(cookie1);
 			response.addCookie(cookie2);
 			
@@ -119,7 +119,7 @@ public class M_LoginOKAction {
 		ActivityDAO dao2 = new ActivityDAOImpl();
 		List<ActivityVO2> list2 = dao2.selectAll10();
 		request.setAttribute("a_list", list2);
-		request.setAttribute("checkCategory", "�쟾泥�");
+		request.setAttribute("checkCategory", "전체");
 
 		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 	}

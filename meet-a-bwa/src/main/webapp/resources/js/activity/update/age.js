@@ -1,33 +1,26 @@
+/**
+ * @author 최진실
+ */
+
 $(function () {
-
- //   let ageRange = $("#ageRange");
-//    $("#ageWrap").each(function () {
-//        for (let i = 10; i <= 90; i+=10) {
-//            $("#ageBody").append("<option>" + i + "대"+ "</option>");
- //       }
- //   });
-
-    // $("#ageBody").on("change", function () {
-    //     console.log($(this).val());
-    // });
-
     let tag = $(".age_result:eq(0)").clone();
     let cnt=0;
     var arr = [];
     var arr_x = [];
+    
     $("#ageBody").on("change", function (e) {
         tag = tag.clone();
         tag.removeClass("blind"); // 초기에 자동 생성된 버튼 숨기기
         let select_value = $("#ageBody option:selected").text();
+        
         if (!arr.includes(select_value)&&select_value!='') {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
             tag.val(select_value + " X");
             arr.push(select_value);
             tag.attr("idx",++cnt);
+            
             $("#tagWrap_age").append(tag);
-            console.log(select_value);
             arr_x.push(select_value+" X");
-            console.log(arr);
         }
     });
 
@@ -52,9 +45,6 @@ $(function () {
     			i--;
   			}
 		}
-        
-        console.log("삭제 후 result:"+result);
-        console.log("삭제 후 result_x:"+result_x);
     });
 
 });

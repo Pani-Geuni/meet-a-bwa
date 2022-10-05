@@ -1,7 +1,11 @@
+/**
+ * 
+ * @author 김예은
+ *
+ */
 package test.com.event.model;
 
 import java.util.List;
-
 
 public interface EventDAO {
 	public int insert_event(EventVO vo);

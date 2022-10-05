@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 액티비티 내에 투표 삭제
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;
