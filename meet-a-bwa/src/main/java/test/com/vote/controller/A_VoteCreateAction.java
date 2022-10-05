@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 액티비티 내에 투표 생성
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;
@@ -15,7 +22,6 @@ import test.com.vote.model.VoteContentVO;
 import test.com.vote.model.VoteDAO;
 import test.com.vote.model.VoteDAOImpl;
 import test.com.vote.model.VoteVO;
-
 public class A_VoteCreateAction {
 	@SuppressWarnings("unchecked")  // JSONObject
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,13 +31,6 @@ public class A_VoteCreateAction {
 		String user_no = request.getParameter("user_no");
 		String activity_no = request.getParameter("activity_no");
 		String[] contents = request.getParameterValues("contents");
-		
-		System.out.println(vote_title);
-		System.out.println(vote_description);
-		System.out.println(vote_eod);
-		System.out.println(user_no);
-		System.out.println(activity_no);
-		System.out.println(contents);
 		
 		// 포맷터        
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -63,7 +62,6 @@ public class A_VoteCreateAction {
 		if(result1 == 1) {
 			for(String content : contents) {
 				String vote_no = v_dao.select_last_voteNO();
-				System.out.println("content : " + content);
 				
 				VoteContentVO cvo = new VoteContentVO();
 				cvo.setVote_no(vote_no);

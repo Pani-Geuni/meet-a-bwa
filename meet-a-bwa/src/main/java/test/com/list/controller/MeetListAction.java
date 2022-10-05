@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 모임 더보기/검색 결과 리스트
+ *
+ */
+
 package test.com.list.controller;
 
 import java.io.IOException;
@@ -17,11 +24,8 @@ import test.com.meet.model.MeetVO2;
 
 public class MeetListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Meet List Action");
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
-		System.out.println("INIT session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -70,24 +74,14 @@ public class MeetListAction {
 		String typeData = request.getParameter("typeData");
 		String searchWord = request.getParameter("searchWord");
 		
-		System.out.println("type : " + type);
-		System.out.println("typeData : " + typeData);
-		System.out.println("searchWord : " + searchWord);
-		
 		MeetDAO mldao = new MeetDAOImpl();
 		List<MeetVO2> mlvos = null;
+
 		
-		// 검색어가 없을 때의 더보기
-//		if (typeData.equals("전체")) {
-//			if (type.equals("like"))
-//				mlvos = mldao.select_like();
-//		}
 		if (type.equals("like")) {
-			System.out.println("-============-------");
 			mlvos = mldao.select_all_more_like(searchWord);
 		} else if (type.equals("interest")) {
 			if (typeData.equals("전체")) {
-				System.out.println("-============");
 				mlvos = mldao.select_all_more_like(searchWord);
 			} else {
 				mlvos = mldao.select_all_more_interest(typeData, searchWord);				
@@ -95,8 +89,8 @@ public class MeetListAction {
 		} else if (type.equals("county")) {
 			mlvos = mldao.select_all_more_county(typeData, searchWord);
 		}
-		request.setAttribute("mlvos", mlvos);
 		
+		request.setAttribute("mlvos", mlvos);
 		request.getRequestDispatcher("views/meet/MEET01.jsp").forward(request, response);
 	}
 

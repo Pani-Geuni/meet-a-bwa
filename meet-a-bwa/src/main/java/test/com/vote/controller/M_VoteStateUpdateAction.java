@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 모임 내에 투표 조기 마감
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;
@@ -13,9 +20,6 @@ public class M_VoteStateUpdateAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String vote_no = request.getParameter("vote_no");
 		String meet_no = request.getParameter("meet_no");
-		
-		System.out.println("vote_no : " + vote_no);
-		System.out.println("meet_no : " + meet_no);
 		
 		VoteDAO dao = new VoteDAOImpl();
 		int result = dao.update_voteState(vote_no);

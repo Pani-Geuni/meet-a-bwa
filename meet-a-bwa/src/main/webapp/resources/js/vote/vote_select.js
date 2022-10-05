@@ -1,3 +1,6 @@
+/**
+* @author 김예은
+*/
 $(function() {
 	let idx = '';
 	let vote_idx = '';
@@ -52,6 +55,7 @@ $(function() {
     // 투표 버튼 클릭
     $("#voteBtn").click(function(){
     	let isChoice = $("#choice_wrap").find(".in_circle").hasClass("choice");
+    	
     	if(!isChoice){
     		fade_in_out("투표 항목을 선택해주세요.");
     	}else{
@@ -67,11 +71,11 @@ $(function() {
     // 재투표 버튼 클릭
     $("#re_voteBtn").click(function(){
     	flag = true;
+    	
     	$(".reVoteBtn").addClass("blind");
     	$(".voteBtn").removeClass("blind");
     	$("#choice_wrap").find(".choice_mem_cnt").addClass("blind");
 		$("#choice_wrap").find(".list_percentage_wrap").addClass("blind");
-		//$("#choice_wrap").find(".in_circle").removeClass("choice");
     });	
     
     // 투표 마감 여부 묻는 컨펌 창 버튼 이벤트
@@ -102,6 +106,7 @@ $(function() {
     // 커스텀 셀렉트 중 수정 클릭 -> 창 초기화 하여 닫은 후 수정창 오픈
     $("#update").click(function(){
     	let num = 0;
+    	
     	// 세팅 초기화 후 수정 팝업 open
     	$(".vote-view-wrap").addClass("blind");
     	$(".vote-view-wrap>.select_custom").addClass("blind");
@@ -170,7 +175,6 @@ $(function() {
 			
 			dataType: "JSON",
 			success: function(res) {
-			console.log(res);
 				vote_no =  res.vote_no;
 				title = res.vote_title;
 				description = res.vote_description;
@@ -328,7 +332,6 @@ $(function() {
 				
 			},
 			error: function(res, status, text) {
-				console.log("error");
 				console.log(text);
 			}
 		})

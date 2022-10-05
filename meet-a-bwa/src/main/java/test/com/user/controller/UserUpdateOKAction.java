@@ -1,9 +1,13 @@
+/**
+ * @author 최진실
+ * 회원 수정 처리
+ */
+
 package test.com.user.controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
 import java.util.HashMap;
 //import java.util.Date;
 import java.util.List;
@@ -21,9 +25,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
-import test.com.meet.model2.MeetDAO;
-import test.com.meet.model2.MeetDAOImpl;
-import test.com.meet.model2.MeetVO;
 import test.com.user.model.UserDAO;
 import test.com.user.model.UserDAOImpl;
 import test.com.user.model.UserVO;
@@ -40,7 +41,6 @@ public class UserUpdateOKAction {
 		String cookie_nickName = "";
 		String cookie_userno="";
 		
-		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -61,8 +61,6 @@ public class UserUpdateOKAction {
 			
 			request.setAttribute("list", map);
 			
-			System.out.println("Headercontroller");
-			System.out.println(cookie_nickName);
 		}else {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
@@ -70,25 +68,19 @@ public class UserUpdateOKAction {
 		}
 		
 		
-		
-		String dir_path = request.getServletContext().getRealPath("/resources/img/"); // �떎寃쎈줈(=�떎�꽌踰�)�뿉 ���옣
-		System.out.println(dir_path);
+		String dir_path = request.getServletContext().getRealPath("/resources/img/"); 
 
 		int fileSizeMax = 1024 * 1024 * 100;
+		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
 
-		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); // is = > 硫��떚�뙆�듃�삎�씤吏� 臾쇱쓬.
-
-		// Multipart �슂泥��씠硫� true, �씪諛섏슂泥��씠硫� false
 		if (isMultipartContent) {
-
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(fileSizeMax);
 			ServletFileUpload sfu = new ServletFileUpload(factory);
-			sfu.setFileSizeMax(fileSizeMax);// �뙆�씪 �궗�씠利� �젣�븳
+			sfu.setFileSizeMax(fileSizeMax);
 
 			String user_no =null;
 			String user_image = "";
-			
 			String user_id = null;
 			String user_pw = null;
 			String user_name = null;
@@ -101,9 +93,6 @@ public class UserUpdateOKAction {
 			String user_city = null;
 			String user_county = null;
 			
-//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			
-//			long checkFileSize = 0;
 
 			try {
 				List<FileItem> items = sfu.parseRequest(request);
@@ -129,7 +118,7 @@ public class UserUpdateOKAction {
 							user_tel = item.getString("UTF-8");
 						}
 						else if(item.getFieldName().equals("birth")) {
-							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); //getDate �빐蹂닿린
+							user_birth =java.sql.Date.valueOf(item.getString("UTF-8")); 
 							System.out.println("insertOKAction:" + (user_birth instanceof Date));
 						}
 						else if(item.getFieldName().equals("gender")) {
@@ -142,75 +131,35 @@ public class UserUpdateOKAction {
 							user_county = item.getString("UTF-8");
 						}
 
-
-						//System.out.println("�뤌�븘�뱶 �궎 : " + item.getFieldName());
-
-						//System.out.println("�뤌�븘�뱶 媛� : " + item.getString("UTF-8"));
-
-					} else {// upFile諛쏄린
-
-						System.out.println("�뙆�씪�쓽 �궎 : " + item.getFieldName());
-						System.out.println("�뙆�씪 �뙆�씪紐� : " + item.getName());
-						System.out.println("�뙆�씪 而⑦뀗痢� ���엯 : " + item.getContentType());
-						System.out.println("�뙆�씪 �궗�씠利�  : " + item.getSize());
-//						checkFileSize = item.getSize();
-//						if (checkFileSize == 0) {
+					} else {
 						if (item.getSize() != 0) {
-//							response.sendRedirect("u_update.do" + cookie_userno);}
-//						else {
 							user_image = FilenameUtils.getName(item.getName());
-
-							File saveFile = new File(dir_path, user_image); // dir_path: 占쎈씜嚥≪뮆諭� 野껋럥以�
-
+							File saveFile = new File(dir_path, user_image);
 							try {
 								item.write(saveFile);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-//						}
+						}
 					}
-				} // end for loop
 				}
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			}
-			
 
-//			if(checkFileSize!=0) { // �궗�씠利덇� 0�씠 �븘�땺�븣 �떎�뻾 
 			UserVO uvo = new UserVO();
 			uvo.setUser_no(user_no);
-//			uvo.setUser_id(user_id);
-//			uvo.setUser_image(user_image);
 			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":"/meet-a-bwa/resources/img/"+user_image);
 			uvo.setUser_pw(user_pw);
-//			uvo.setUser_name(user_name);
 			uvo.setUser_nickname(user_nickname);
 			uvo.setUser_email(user_email);
 			uvo.setUser_tel(user_tel);
-//			uvo.setUser_birth(user_birth);
-//			System.out.println("InsertOKAction:"+user_birth);
-//			uvo.setUser_gender(user_gender);
 			uvo.setUser_interest(user_interest);
 			uvo.setUser_city(user_city);
 			uvo.setUser_county(user_county);
 			
-//			System.out.println("please:"+user_image);
-//			uvo.setUser_image(user_image==null?"/meet-a-bwa/resources/img/placeholder1.webp":user_image); // 0�씠硫� img_001.jpg�쓽 �씠誘몄�瑜�, 0�씠 �븘�땲硫� img
-			
-			System.out.println(user_image);
-			System.out.println(user_pw);
-			System.out.println(user_nickname);
-			System.out.println(user_email);
-			System.out.println(user_tel);
-			System.out.println(user_birth);
-			System.out.println(user_gender);
-			System.out.println(user_interest);
-			System.out.println(user_city);
-			System.out.println(user_county);
-			
 			//image 
 			UserDAO test_dao = new UserDAOImpl();
-			
 			UserVO uvo2 = test_dao.user_selectOne(uvo);
 			
 			if (user_image.equals("")) {
@@ -231,15 +180,13 @@ public class UserUpdateOKAction {
 			
 			UserDAO u_dao = new UserDAOImpl();
 			int result = u_dao.user_update(uvo);
-			System.out.println("result: "+result);
 
 			if(result==1) {
 				response.sendRedirect("/meet-a-bwa/mypage.do");
-				}else
-					response.sendRedirect("u_update.do" + cookie_userno);
+			}else
+				response.sendRedirect("u_update.do" + cookie_userno);
 			}
-//		 }// end if
 		
-		} // end if << isMultipartContent
+		} 
 	
 }

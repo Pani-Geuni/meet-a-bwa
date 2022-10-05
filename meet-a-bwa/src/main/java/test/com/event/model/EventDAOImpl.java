@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author 김예은
+ *
+ */
 package test.com.event.model;
 
 import java.sql.Connection;
@@ -7,10 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import test.com.vote.model.VoteDB;
-import test.com.vote.model.VoteListVO;
-import test.com.vote.model.VoteVO;
 
 public class EventDAOImpl implements EventDAO{
 	private Connection conn = null;

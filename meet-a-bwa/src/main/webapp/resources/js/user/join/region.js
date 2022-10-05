@@ -1,3 +1,6 @@
+/**
+* @author 최진실
+*/
 $(function () {
 
   let cityArr = [];
@@ -22,19 +25,18 @@ $(function () {
 
   $("#city").on("change", function () {
   	city = $(this).val();
-    console.log("city : " + city);
   	
   	if(city.length != 0 && city!="전체"){
-  	 $.getJSON("/meet-a-bwa/resources/json/city.json", function(data) {
-        townArr = data.filter(function(v,i){
-        	if(v.city == city){
-        		return true; 
-        	}
-        });
-        townArr = townArr[0].arr;
-	    town_set(townArr);
-	  });
-	  }else{
+	  	 $.getJSON("/meet-a-bwa/resources/json/city.json", function(data) {
+	        townArr = data.filter(function(v,i){
+	        	if(v.city == city){
+	        		return true; 
+	        	}
+	        });
+	        townArr = townArr[0].arr;
+		    town_set(townArr);
+		  });
+	 }else{
 	  let arr2 = $("#country").find(".country_option:lt(2)").clone(); //시/군 선택 전체 리스트 복사
 	    $("#country").empty(); 
 	    
@@ -43,13 +45,6 @@ $(function () {
 	    } 
 	  }
   });
-  
-   $("#country").on("change", function () {
-  		console.log($(this).val());
-	  	//flag = true;
-  		
-  });
-  
  
 
 
@@ -60,9 +55,8 @@ $(function () {
 	function city_set(arr){
 		let arr2 = $("#city").find(".city_list:lt(2)").clone();
 	    $("#city").empty();
-	    console.log(arr2.length);
+
 	    for(x of arr2){
-	    	console.log($(x));
 	    	$("#city").append($(x));
 	    }
 		let sample = $(".city_list:eq(0)").clone();

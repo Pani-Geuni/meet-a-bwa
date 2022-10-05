@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 모임 상세 정보
+ *
+ */
+
 package test.com.meet.controller2;
 
 import java.io.IOException;
@@ -74,8 +81,7 @@ public class MeetDetailAction {
 		List<String> m_list = new ArrayList<String>();
 				
 		for (MeetUserVO uvo : uvos) {
-			System.out.println(uvo.getUser_no());
-				m_list.add(uvo.getUser_no());
+			m_list.add(uvo.getUser_no());
 		}
 		request.setAttribute("m_list", m_list);
 		

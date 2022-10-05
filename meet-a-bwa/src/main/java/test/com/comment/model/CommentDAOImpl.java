@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author 전판근
+ * 댓글 삭제
+ *
+ */
+
+
 package test.com.comment.model;
 
 import java.sql.Connection;
@@ -31,10 +39,8 @@ public class CommentDAOImpl implements CommentDAO {
 		
 		try {
 			conn = DriverManager.getConnection(CommentDB.URL, CommentDB.TEST_USER, CommentDB.TEST_PASSWORD);
-			System.out.println("Comment conn succeed....");
 			
 			pstmt = conn.prepareStatement(CommentDB.SQL_COMMENT_INSERT);
-			
 			pstmt.setString(1, cvo.getMother_no());
 			pstmt.setString(2, cvo.getComment_content());
 			pstmt.setString(3, cvo.getBoard_no());
@@ -72,8 +78,6 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public List<CommentVO> comment_selectAll(String board_no) {
-		System.out.println("comment selectAll()...");
-		
 		List<CommentVO> cvos = new ArrayList<CommentVO>();
 		
 		try {
@@ -126,16 +130,11 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public int comment_delete(CommentVO cvo) {
-		System.out.println("comment delete()...");
-		
 		int flag = 0;
 		
 		try {
 			conn = DriverManager.getConnection(CommentDB.URL, CommentDB.TEST_USER, CommentDB.TEST_PASSWORD);
-			System.out.println("Comment Delete conn succeed");
-			
 			pstmt = conn.prepareStatement(CommentDB.SQL_COMMENT_DELETE);
-			
 			pstmt.setString(1, cvo.getComment_no());
 			
 			flag = pstmt.executeUpdate();

@@ -1,4 +1,9 @@
-package test.com.member.controller;
+/**
+ * @author 김예은
+ * 로그인 로직 처리
+ */
+
+package test.com.user.controller;
 
 import java.io.IOException;
 

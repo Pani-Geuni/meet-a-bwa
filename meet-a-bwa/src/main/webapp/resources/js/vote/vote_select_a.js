@@ -1,3 +1,6 @@
+/**
+* @author 김예은
+*/
 $(function() {
 	let idx = '';
 	let vote_idx = '';
@@ -72,7 +75,6 @@ $(function() {
     	$(".voteBtn").removeClass("blind");
     	$("#choice_wrap").find(".choice_mem_cnt").addClass("blind");
 		$("#choice_wrap").find(".list_percentage_wrap").addClass("blind");
-		//$("#choice_wrap").find(".in_circle").removeClass("choice");
     });	
     
     // 투표 마감 여부 묻는 컨펌 창 버튼 이벤트
@@ -103,6 +105,7 @@ $(function() {
     // 커스텀 셀렉트 중 수정 클릭 -> 창 초기화 하여 닫은 후 수정창 오픈
     $("#update").click(function(){
     	let num = 0;
+    	
     	// 세팅 초기화 후 수정 팝업 open
     	$(".vote-view-wrap").addClass("blind");
     	$(".vote-view-wrap>.select_custom").addClass("blind");
@@ -162,9 +165,7 @@ $(function() {
 	
 	$(".vote_action").click(function(){
 			idx = $(this).attr("idx");
-			console.log("idx:::"+idx);
 			ajax_load(idx);
-			//location.href = "/meet-a-bwa/a_vote_view.do?vote_no="+idx;
 	});
 	
 	function ajax_load(idx) {
@@ -178,7 +179,6 @@ $(function() {
 			
 			dataType: "JSON",
 			success: function(res) {
-			console.log(res)
 				vote_no =  res.vote_no;
 				title = res.vote_title;
 				description = res.vote_description;
@@ -267,7 +267,6 @@ $(function() {
 							for(var j = 0; j < res.vote_result.length; j++){
 								total_cnt += Number(res.vote_result[j].cnt);
 							}
-							console.log(total_cnt);
 							
 							let tmp_arr = $("#choice_wrap").children(".choiceList:gt(0)").slice();
 							for(var i = 0; i < tmp_arr.length; i++){
@@ -341,7 +340,6 @@ $(function() {
 				
 			},
 			error: function(res, status, text) {
-				console.log("error");
 				console.log(text);
 			}
 		})
@@ -554,7 +552,7 @@ $(function() {
                 toast_flag = true; // 추후에 사용할 수 있도록 변수값 변경
                 $("#toastWrap").removeClass("fade-in");
                 $("#toastWrap").addClass("fade-out");
-            }, 2000);
+            }, 1000);
         }
     }
     

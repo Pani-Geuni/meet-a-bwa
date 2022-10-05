@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 모임 내에 투표 생성
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;
@@ -26,14 +33,10 @@ public class M_VoteCreateAction {
 		String meet_no = request.getParameter("meet_no");
 		String[] contents = request.getParameterValues("contents");
 		
-		// 포맷터        
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		
-		// 문자열 -> Date       
 		Date date = null;
-		
-		// java.util.Date to java.sql.Date
 		java.sql.Timestamp eod = null ;
+		
 		try {
 			date = formatter.parse(vote_eod);
 			eod = new java.sql.Timestamp(date.getTime());
@@ -56,7 +59,6 @@ public class M_VoteCreateAction {
 		if(result1 == 1) {
 			for(String content : contents) {
 				String vote_no = v_dao.select_last_voteNO();
-				System.out.println("content : " + content);
 				
 				VoteContentVO cvo = new VoteContentVO();
 				cvo.setVote_no(vote_no);

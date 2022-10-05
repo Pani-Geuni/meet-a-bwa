@@ -1,5 +1,9 @@
+/**
+ * 
+ * @author 김예은
+ *
+ */
 package test.com.vote.model;
-
 
 public interface VoteDB {
 	String DRIVER_NAME = "oracle.jdbc.OracleDriver";

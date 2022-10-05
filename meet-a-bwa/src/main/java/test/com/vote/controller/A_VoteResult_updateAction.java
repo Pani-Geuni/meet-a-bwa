@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 액티비티 내에 투표 재투표 시 투표 결과 변경
+ *
+ */
+
 package test.com.vote.controller;
 
 import java.io.IOException;
@@ -21,11 +28,6 @@ public class A_VoteResult_updateAction {
 		vo.setVote_no(vote_no);
 		vo.setUser_no(user_no);
 		vo.setContent_no(content_no);
-		
-		System.out.println("vote_no : " + vote_no);
-		System.out.println("user_no : " + user_no);
-		System.out.println("content_no : " + content_no);
-		System.out.println("activity_no : " + activity_no);
 		
 		
 		VoteDAO dao = new VoteDAOImpl();

@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 모임 피드 로드 시 필요한 정보 불러오기
+ *
+ */
+
 package test.com.meet_feed.controller;
 
 import java.io.IOException;
@@ -29,7 +36,6 @@ import test.com.vote.model.VoteVO;
 public class MeetFeedSelectAll_Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String like_meet = request.getParameter("like_meet");
-		
 		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
@@ -96,7 +102,6 @@ public class MeetFeedSelectAll_Action {
 		List<String> m_list = new ArrayList<String>();
 		
 		for (MeetUserVO uvo : uvos) {
-			System.out.println(uvo.getUser_no());
 			m_list.add(uvo.getUser_no());
 		}
 		request.setAttribute("m_list", m_list);

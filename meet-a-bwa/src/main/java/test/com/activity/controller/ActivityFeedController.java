@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 최진실
+ *
+ */
+
 package test.com.activity.controller;
 
 import java.io.IOException;

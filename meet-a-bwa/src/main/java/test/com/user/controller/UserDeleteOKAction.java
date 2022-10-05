@@ -1,3 +1,8 @@
+/**
+ * @author 최진실
+ * 회원 탈퇴 처리
+ */
+
 package test.com.user.controller;
 
 import java.io.IOException;
@@ -17,8 +22,6 @@ import test.com.user.model.UserVO;
 public class UserDeleteOKAction {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("user_no"));
-		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -26,7 +29,6 @@ public class UserDeleteOKAction {
 		String cookie_county = "";
 		String cookie_nickName = "";
 		
-		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -57,16 +59,14 @@ public class UserDeleteOKAction {
 		
 		UserVO uvo = new UserVO();
 		uvo.setUser_no(request.getParameter("user_no"));
-		System.out.println(uvo);
+
 		UserDAO dao = new UserDAOImpl();
 		int result = dao.user_delete(uvo);
-		System.out.println(result);
+
 		if(result==1) {
-			//request.getRequestDispatcher("/views/main/USER04.jsp?user_no"+user_no).forward(request, response);
-			//request.getRequestDispatcher("/views/main/USER04.jsp").forward(request, response);
 			request.getRequestDispatcher("/u_deleteOK.do?user_id"+session_user_id).forward(request, response);
-			}else
-				request.getRequestDispatcher("/u_update.do?user_id"+session_user_id).forward(request, response);
+		}else
+			request.getRequestDispatcher("/u_update.do?user_id"+session_user_id).forward(request, response);
 		}
 
 }

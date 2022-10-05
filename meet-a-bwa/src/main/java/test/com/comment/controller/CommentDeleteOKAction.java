@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 댓글 삭제
+ *
+ */
+
 package test.com.comment.controller;
 
 import java.io.IOException;
@@ -11,8 +18,8 @@ import org.json.simple.JSONObject;
 import test.com.comment.model.CommentDAO;
 import test.com.comment.model.CommentDAOImpl;
 import test.com.comment.model.CommentVO;
-
 public class CommentDeleteOKAction {
+	@SuppressWarnings("unchecked")
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		CommentDAO cdao = new CommentDAOImpl();

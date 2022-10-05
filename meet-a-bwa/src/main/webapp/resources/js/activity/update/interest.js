@@ -1,3 +1,7 @@
+/**
+ * @author 최진실
+ */
+
 $(function () {
 
     var interest = ["취미",
@@ -43,20 +47,18 @@ $(function () {
     let tag = $(".delete_interest:eq(0)").clone();
     let cnt=0;
 	var arr = [];
+	
     $("#interest").on("change", function (e) {
-
         tag = tag.clone();
         tag.removeClass("blind");
         let select_value = $(this).val();
     		
-    		 if (!arr.includes(select_value)&&select_value!='') {
+		 if (!arr.includes(select_value)&&select_value!='') {
             //선택한 관심사가 중복으로 들어가지 않도록 includes 함수 사용해서 배열 안에 해당 관심사가 없으면 아래 코드가 동작하게 함.
             tag.val(select_value + " X");
             tag.attr("idx",++cnt);
             $("#tagWrap").append(tag);
-            console.log(select_value);
             arr.push(select_value);
-            console.log(arr);
         }
     });
 
@@ -65,10 +67,8 @@ $(function () {
     /** 관심사 태그 삭제 */
     /*************************************************** */
     $("#tagWrap").on("click",".delete_interest",function () {
-        console.log($(this).attr("idx"));
         let idx =$(this).attr("idx");
         let arr = $(".delete_interest").slice();
-        // console.log(arr);
         
         $("#tagWrap").empty().append($(arr[0]));
 

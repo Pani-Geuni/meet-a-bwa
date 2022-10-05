@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 댓글 삭제
+ *
+ */
+
 package test.com.comment.model;
 
 import java.util.Date;

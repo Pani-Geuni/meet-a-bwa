@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 모임 게시글 상세 보기
+ *
+ */
+
 package test.com.meetboard.controller;
 
 import java.io.IOException;
@@ -74,18 +81,11 @@ public class MeetBoardSelectOneAction {
 		
 		if (request.getParameter("board_no") != null) {
 			String board_no = request.getParameter("board_no");
-			System.out.println("SelectOne board_no :" + board_no);
 			
 			MeetBoardVO bvo = new MeetBoardVO();
-			
 			bvo.setBoard_no(board_no);
-			System.out.println("board_no check 1 : " + board_no);
 			
 			MeetBoardVO bvo2 = dao.board_selectOne(bvo);
-			
-			System.out.println("board_no check 2 : " + board_no);
-			System.out.println("board of meet no check : " + bvo.getMeet_no());
-			
 			request.setAttribute("bvo2", bvo2);
 			
 			// 모임 정보 불러오기
@@ -103,7 +103,6 @@ public class MeetBoardSelectOneAction {
 			List<String> m_list = new ArrayList<String>();
 			
 			for (MeetUserVO uvo : uvos) {
-				System.out.println(uvo.getUser_no());
 				m_list.add(uvo.getUser_no());
 			}
 			request.setAttribute("m_list", m_list);
@@ -124,7 +123,6 @@ public class MeetBoardSelectOneAction {
 			List<VoteVO> vvos = vdao.vote_selectAll(mvo3.getMeet_no()); 
 			
 			request.setAttribute("vvos", vvos);
-			
 			request.getRequestDispatcher("views/meet/MEET03.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("meet-main.do");

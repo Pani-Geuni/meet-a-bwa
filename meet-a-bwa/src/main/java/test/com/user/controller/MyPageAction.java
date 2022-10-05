@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 마이페이지 내에 필요한 개인 정보 불러오는 로직
+ *
+ */
+
 package test.com.user.controller;
 
 import java.io.IOException;
@@ -9,16 +16,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
-import test.com.member.model.MemberVO;
-
+ 
+import test.com.user.model.UserDAO;
+import test.com.user.model.UserDAOImpl;
+import test.com.user.model.UserVO;
 public class MyPageAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
-		System.out.println("session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -49,10 +54,6 @@ public class MyPageAction {
 			
 			request.setAttribute("list", map);
 			
-			System.out.println("Headercontroller");
-			System.out.println(cookie_nickName);
-			System.out.println(cookie_userNo);
-			
 		}else {
 			Cookie[] cookies = request.getCookies();
 			if(cookies != null) { // NullPointerException 처리
@@ -69,9 +70,8 @@ public class MyPageAction {
 		}
 		
 		// 마이페이지 개인 정보(이름, 프로필사진, 이메일 가져오기)
-		MemberDAO dao = new MemberDAOImpl();
-					
-		MemberVO vo = dao.selectOne_mypage(cookie_userNo);
+		UserDAO dao = new UserDAOImpl();
+		UserVO vo = dao.selectOne_mypage(cookie_userNo);
 					
 		request.setAttribute("vo", vo);
 		request.getRequestDispatcher("/views/user/USER04.jsp").forward(request, response);

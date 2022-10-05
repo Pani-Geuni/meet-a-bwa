@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 이벤트 상세 보기
+ *
+ */
+
 package test.com.event.controller;
 
 import java.io.IOException;
@@ -12,8 +19,8 @@ import org.json.simple.JSONObject;
 import test.com.event.model.EventDAO;
 import test.com.event.model.EventDAOImpl;
 import test.com.event.model.EventVO;
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
+import test.com.user.model.UserDAO;
+import test.com.user.model.UserDAOImpl;
 
 public class EventSelectOneAction {
 	@SuppressWarnings("unchecked")
@@ -23,7 +30,7 @@ public class EventSelectOneAction {
 		EventDAO dao = new EventDAOImpl();
 		EventVO vo = dao.event_selectOne(event_no);
 		
-		MemberDAO m_dao = new MemberDAOImpl();
+		UserDAO m_dao = new UserDAOImpl();
 		String name = m_dao.selectOne_name(vo.getUser_no());
 		
 		JSONObject obj = new JSONObject();

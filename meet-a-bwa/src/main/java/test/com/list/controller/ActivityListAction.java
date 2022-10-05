@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 전판근
+ * 액티비티 더보기 / 검색 리스트
+ *
+ */
+
 package test.com.list.controller;
 
 import java.io.IOException;
@@ -13,13 +20,8 @@ import test.com.activity.model.ActivityVO2;
 
 public class ActivityListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Activity List Action");
-		
-		
 		String category = request.getParameter("category");
 		String searchWord = request.getParameter("searchWord");
-		System.out.println("category : " + category);
-		System.out.println("searchWord : " + searchWord);
 		
 		ActivityDAO adao = new ActivityDAOImpl();
 		List<ActivityVO2> a_list = null;
@@ -27,7 +29,6 @@ public class ActivityListAction {
 		a_list = adao.select_all_more_like(category, searchWord);
 		
 		request.setAttribute("a_list", a_list);
-		
 		request.getRequestDispatcher("views/activity/ACTI01.jsp").forward(request, response);
 	}
 }

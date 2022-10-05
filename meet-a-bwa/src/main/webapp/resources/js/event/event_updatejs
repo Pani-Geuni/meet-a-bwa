@@ -1,22 +1,11 @@
-$(function(){
+/**
+ * @author 김예은
+ */
+ $(function(){
     let cnt = 0;
     let flag = true;
     
     plus_list();
-    
-    /************************************************************* */
-    /** 버튼 클릭 이벤트 */
-    /************************************************************* */
-    
-    $("#closeBtn").click(function(){
-        console.log("closeBtn click...");
-    });
-    $("#updateBtn").click(function(){
-        console.log("updateBtn click...");
-    });
-    $("#deleteBtn").click(function(){
-        console.log("deleteBtn click...");
-    });
     
     
     /************************************************************* */
@@ -80,7 +69,6 @@ $(function(){
         sample.prop("idx", cnt);
         cnt++;
         
-        console.log($(sample));
         
         append_element.children(".before_choice").addClass("blind");
         append_element.children(".after_choice").removeClass("blind");
@@ -125,10 +113,7 @@ $(function(){
     /**************************************************************/
     $("#eventDate").datepicker({
         changeYear:true,
-        changeMonth:true,
-        onSelect:function(dateText) {
-            console.log(dateText);
-        }
+        changeMonth:true
     });
     
     

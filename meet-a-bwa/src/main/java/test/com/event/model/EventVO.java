@@ -1,7 +1,13 @@
+/**
+ * 
+ * @author 김예은
+ *
+ */
 package test.com.event.model;
 
 import java.sql.Timestamp;
 import java.util.Objects;
+
 
 public class EventVO {
 	private String event_no;

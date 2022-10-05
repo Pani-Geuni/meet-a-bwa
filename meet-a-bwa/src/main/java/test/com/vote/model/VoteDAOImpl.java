@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author 김예은
+ *
+ */
 package test.com.vote.model;
 
 import java.sql.Connection;
@@ -32,11 +37,11 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public int insert_meetVote(VoteVO vvo) {
 		int flag=0;
+		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("user insert db conn successed...");
-			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_INSERT_M);
 			
+			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_INSERT_M);
 		    pstmt.setString(1, vvo.getVote_title());    
 			pstmt.setString(2, vvo.getVote_description());
 			pstmt.setTimestamp(3, vvo.getVote_eod());
@@ -76,18 +81,18 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public int insert_activityVote(VoteVO vvo) {
 		int flag=0;
+		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("user insert db conn successed...");
+
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_INSERT_A);
-			
 			pstmt.setString(1, vvo.getVote_title());    
 			pstmt.setString(2, vvo.getVote_description());
 			pstmt.setTimestamp(3, vvo.getVote_eod());
 			pstmt.setString(4, vvo.getUser_no());
 			pstmt.setString(5, vvo.getActivity_no());
 			
-			flag=pstmt.executeUpdate(); 
+			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,11 +125,11 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public int insert_voteContent(VoteContentVO vvo) {
 		int flag=0;
+		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("user insert db conn successed...");
-			pstmt = conn.prepareStatement(VoteDB.SQL_V_CONTENT_INSERT);
 			
+			pstmt = conn.prepareStatement(VoteDB.SQL_V_CONTENT_INSERT);
 		    pstmt.setString(1, vvo.getVote_no());    
 			pstmt.setString(2, vvo.getVote_content());
 			
@@ -164,10 +169,11 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("SQL_DELETE_RESULT db conn successed...");
+
 			pstmt = conn.prepareStatement(VoteDB.SQL_DELETE_RESULT);
 		    pstmt.setString(1, vote_no);
-			flag=pstmt.executeUpdate(); 
+		    
+			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -204,10 +210,11 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("delete_content db conn successed...");
+
 			pstmt = conn.prepareStatement(VoteDB.SQL_DELETE_CONTENT);
 			pstmt.setString(1, vote_no);
-			flag=pstmt.executeUpdate(); 
+			
+			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -244,10 +251,11 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("delete_vote db conn successed...");
+
 			pstmt = conn.prepareStatement(VoteDB.SQL_DELETE_VOTE);
 			pstmt.setString(1, vote_no);
-			flag=pstmt.executeUpdate(); 
+			
+			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -317,7 +325,7 @@ public class VoteDAOImpl implements VoteDAO {
 					e.printStackTrace();
 				}
 			}
-		} // end finally
+		}
 		
 		return vote_no;
 	}
@@ -325,16 +333,14 @@ public class VoteDAOImpl implements VoteDAO {
 
 	@Override
 	public List<VoteVO> vote_selectAll(String meet_no) {
-		System.out.println("vote selectAll()..");
-		
 		List<VoteVO> vos = new ArrayList<VoteVO>();
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
-			System.out.println("Vote SelectAll conn secceed");
 			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ALL_M);
 			pstmt.setString(1, meet_no);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -379,7 +385,6 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public List<VoteJOIN_VO> vote_selectOne(VoteVO vvo) {
 		List<VoteJOIN_VO> list = new ArrayList<VoteJOIN_VO>();
-		System.out.println("vote_selectOne()..");
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
@@ -437,7 +442,6 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public List<Object> vr_selectOne(String vote_no) {
 		List<Object> list = new ArrayList<Object>();
-		System.out.println("vr_selectOne()..");
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
@@ -495,8 +499,6 @@ public class VoteDAOImpl implements VoteDAO {
 			
 			while(rs.next()) {
 				content_no = rs.getString("content_no");
-				System.out.println(vote_no + " " + user_no);
-				System.out.println("content_no ?? content_no: " + content_no);
 			}
 		} catch (SQLException e) {
             System.out.println("SQLException1 : " + e);
@@ -537,11 +539,12 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
-			System.out.println("delete_vote db conn successed...");
+
 			pstmt = conn.prepareStatement(VoteDB.SQL_RESERT_INSERT);
 			pstmt.setString(1, vo.getVote_no());
 			pstmt.setString(2, vo.getUser_no());
 			pstmt.setString(3, vo.getContent_no());
+			
 			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
@@ -579,10 +582,12 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
+			
 			pstmt = conn.prepareStatement(VoteDB.SQL_RESERT_UPDATE);
 			pstmt.setString(1, vo.getContent_no());
 			pstmt.setString(2, vo.getVote_no());
 			pstmt.setString(3, vo.getUser_no());
+			
 			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
@@ -620,11 +625,13 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
+			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_UPDATE);
 			pstmt.setString(1, vo.getVote_title());
 			pstmt.setString(2, vo.getVote_description());
 			pstmt.setTimestamp(3, vo.getVote_eod());
 			pstmt.setString(4, vo.getVote_no());
+			
 			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
@@ -662,8 +669,10 @@ public class VoteDAOImpl implements VoteDAO {
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL,VoteDB.USER,VoteDB.PASSWORD);
+			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_STATE_UPDATE);
 			pstmt.setString(1, vote_no);
+			
 			flag = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
@@ -698,12 +707,10 @@ public class VoteDAOImpl implements VoteDAO {
 
 	@Override
 	public List<VoteListVO> vote_list_selectAll(String activity_no) {
-		System.out.println("vote selectAll()..");
 		List<VoteListVO> vvos = new ArrayList<VoteListVO>();
 		
 		try {
 			conn = DriverManager.getConnection(VoteDB.URL, VoteDB.USER, VoteDB.PASSWORD);
-			System.out.println("Vote List SelectAll conn secceed");
 			
 			pstmt = conn.prepareStatement(VoteDB.SQL_VOTE_SELECT_ALL_A);
 			pstmt.setString(1, activity_no);

@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css"/>
     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/find-popup.css"/>
-<!--     <link rel="stylesheet" href="/meet-a-bwa/resources/css/user/find-pw.css"/> -->
     
     <script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
     <script src="/meet-a-bwa/resources/js/common/jquery.cookie.js"></script>
@@ -28,7 +27,9 @@
     <script src="/meet-a-bwa/resources/js/common/pw_find.js"></script>
     <script src="/meet-a-bwa/resources/js/common/header.js"></script>
     <script src="/meet-a-bwa/resources/js/common/searchBar.js"></script>
-    <script>    	
+    <script>
+     	//작성자 : 김예은
+
     	$(function(){
     		var user_id = '${user_id}'; //세션값 가져옴
 	    	
@@ -452,80 +453,81 @@
 	 </div>
      <!-- end contentWrap -->
         
-        <!-- START LOGIN POPUP -->
-        <c:choose>
-	        <c:when test = "${login_result.login_result eq 'fail'}">
-		        <div class="login-layer">
-	        </c:when>
-	        <c:when test = "${login_result.login_result eq null}">
-		        <div class="login-layer blind">
-	        </c:when>
-        </c:choose>
-	      <div class="login-popup-wrap">
+     <!-- START LOGIN POPUP -->
+     <c:choose>
+     	<c:when test = "${login_result.login_result eq 'fail'}">
+      		<div class="login-layer">
+     	</c:when>
+     	
+     	<c:when test = "${login_result.login_result eq null}">
+      		<div class="login-layer blind">
+     	</c:when>
+     </c:choose>
+     
+	     <div class="login-popup-wrap">
 		    <div class="login-top">
 		        <img id="logo" src="resources/img/logo.svg" alt="login logo image" />
 		    </div>
-	
+		
 		    <div class="login-middle">
 		      <form action="/meet-a-bwa/m_loginOK.do" class="login-form" method="post" id = "loginForm">
 		        <label for="id">아이디</label>
 		        <input type="text" id = "idInput" name = "id" placeholder="아이디 입력"/>
 		
-	            <label for="pw">비밀번호</label>
+		           <label for="pw">비밀번호</label>
 		        <input type="password" id = "pwInput" name = "pw" placeholder="비밀번호 입력"/>
 		        
 		        <input type="submit" onsubmit = "check_length();" value = "로그인">
 		        <input type = "button" value = "창닫기" id = "login-popup-closeBtn">
 		      </form>
 		
-	        <div class="login-bottom">
-		        <div id = "id_find_btn" class = "findCommon">ID 찾기</div>
-		        <div id = "pw_find_btn" class = "findCommon">PW 찾기</div>
-	           	<div>
-		          <a href="/meet-a-bwa/u_insert.do" class = "findCommon">회원가입</a>
-		        </div>
+		       <div class="login-bottom">
+			        <div id = "id_find_btn" class = "findCommon">ID 찾기</div>
+			        <div id = "pw_find_btn" class = "findCommon">PW 찾기</div>
+			          	<div>
+			          <a href="/meet-a-bwa/u_insert.do" class = "findCommon">회원가입</a>
+			        </div>
 		      </div>
 		    </div>
-	      </div>
-      </div>
-	      
-        <!-- END LOGIN POPUP -->
+	     </div>
+	</div>
+   	<!-- END LOGIN POPUP -->
         
-        <!-- START LOGOUT POPUP -->
-        <div class="logout-layer blind">
-         <div class="logout-popup-wrap">
-            <img src="resources/img/worry.svg" alt="logout worry img"/>
-            <h1>
-              정말 로그아웃 <br />
-              하시겠습니까?
-            </h1>
-      
-            <div class="btn-group">
-	            <a href = "/meet-a-bwa/logoutOK.do">
-	              <button class="btn-logout">로그아웃</button>
-	            </a>
-              <button class="btn-cancel">취소</button>
-            </div>
-       	  </div>
+    <!-- START LOGOUT POPUP -->
+    <div class="logout-layer blind">
+     <div class="logout-popup-wrap">
+        <img src="resources/img/worry.svg" alt="logout worry img"/>
+        <h1>
+          정말 로그아웃 <br />
+          하시겠습니까?
+        </h1>
+  
+        <div class="btn-group">
+         <a href = "/meet-a-bwa/logoutOK.do">
+           <button class="btn-logout">로그아웃</button>
+         </a>
+          <button class="btn-cancel">취소</button>
         </div>
-        <!-- END LOGOUT POPUP -->
+   	  </div>
+    </div>
+    <!-- END LOGOUT POPUP -->
         
-         <!-- START WARNING POPUP -->
-        <div class="warning-layer blind">
-         <div class="warning-popup-wrap">
-         	<div class = "warning-img-section">
-	            <img src="resources/img/warning.svg" alt="경고 이미지"/>
-         	</div>
-            <h1 id = "warning-text">
-             	로그인 후 이용가능한 기능입니다.
-            </h1>
-      
-            <div class="btn-group">
-              <button class="warning-close">취소</button>
-            </div>
-       	  </div>
-        </div>
-        <!-- END WARNING POPUP -->
+    <!-- START WARNING POPUP -->
+   <div class="warning-layer blind">
+    <div class="warning-popup-wrap">
+    	<div class = "warning-img-section">
+        <img src="resources/img/warning.svg" alt="경고 이미지"/>
+    	</div>
+       <h1 id = "warning-text">
+        	로그인 후 이용가능한 기능입니다.
+       </h1>
+ 
+       <div class="btn-group">
+         <button class="warning-close">취소</button>
+       </div>
+  	  </div>
+   </div>
+   <!-- END WARNING POPUP -->
         
         
       <!--  START HEADER INCLUDE -->
@@ -580,8 +582,8 @@
     </div>
     <!-- END PW FIND POPUP --> 
     
+    
 	<!-- START toastWrap -->
-	<!-- 필요할 때, hide 없애고 fade-in 클래스 추가-->
 	<div id="toastWrap" class="hide">
 		<span id="toast_txt"></span>
 	</div>

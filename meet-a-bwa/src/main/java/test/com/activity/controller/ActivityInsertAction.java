@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 최진실
+ * 액티비티 생성
+ *
+ */
+
 package test.com.activity.controller;
 
 import java.io.IOException;
@@ -10,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import test.com.activity.model.ActivityDAO;
-import test.com.activity.model.ActivityDAOImpl;
 import test.com.activity.model.ActivityVO;
 
 public class ActivityInsertAction {
@@ -25,7 +30,6 @@ public class ActivityInsertAction {
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		//濡쒓렇�씤 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -55,18 +59,12 @@ public class ActivityInsertAction {
 		}
 		
 		String idx = request.getParameter("meet_no");
-		System.out.println(idx);
 		
-		//ActivityDAO a_dao = new ActivityDAOImpl();
 		ActivityVO avo = new ActivityVO();
 		avo.setMeet_no(idx);
 		avo.setUser_no(cookie_userNo);
 		
 		request.setAttribute("avo", avo);
-		
-		System.out.println("meet_no::::::::"+avo.getMeet_no());
-		System.out.println("user_no::::::::"+cookie_userNo);
-		
 		request.getRequestDispatcher("views/activity/ACTI03.jsp").forward(request, response);
 	}
 }

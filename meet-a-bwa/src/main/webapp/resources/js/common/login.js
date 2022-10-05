@@ -1,6 +1,7 @@
 /**
- * 
+ * @author 김예은
  */
+ 
  $(function(){
  	let flag = true;
  

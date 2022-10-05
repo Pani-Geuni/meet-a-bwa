@@ -1,3 +1,8 @@
+/**
+ * @author 전판근
+ * 마이페이지 내에서 나의 액티비티 리스트 불러오는 로직
+ */
+
 package test.com.user.controller;
 
 import java.io.IOException;
@@ -12,16 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import test.com.activity.model.ActivityVO2;
-import test.com.member.model.MemberDAO;
-import test.com.member.model.MemberDAOImpl;
+import test.com.user.model.UserDAO;
+import test.com.user.model.UserDAOImpl;
 
 public class MyActivityListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
-		System.out.println("session_user_id : " + session_user_id);
 		
 		String cookie_interest = "";
 		String cookie_county = "";
@@ -71,7 +73,7 @@ public class MyActivityListAction {
 			request.setAttribute("list", map);
 		}
 		
-		MemberDAO dao = new MemberDAOImpl();
+		UserDAO dao = new UserDAOImpl();
 		
 		List<ActivityVO2> avos = dao.selectAll_myActivity(cookie_userNo);
 		

@@ -1,3 +1,6 @@
+/**
+* @author 전판근
+*/
 $(function() {
 	$(".edit-user-info").on('click', function() {
 		location.href = "u_update.do";

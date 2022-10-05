@@ -1,3 +1,6 @@
+/**
+* @author 최진실
+*/
 $(function () {
     let flag = true; // 꼭 전역변수로 선언
 
@@ -6,7 +9,6 @@ $(function () {
     function fade_in_out(element) {
         if (flag) {
             flag = false;
-            // $("#toast_txt").text("글자수를 초과하였습니다.")
             if (element.attr("id") == 'u_nickname') {
                 $("#toastWrap_nick").removeClass("hide");
                 $("#toastWrap_nick").removeClass("fade-out");
@@ -34,6 +36,7 @@ $(function () {
 
             setTimeout(function () {
                 flag = true; // 추후에 사용할 수 있도록 변수값 변경
+                
                 if (element.attr("id") == 'u_nickname') {
                     $("#toastWrap_nick").removeClass("fade-in");
                     $("#toastWrap_nick").addClass("fade-out");
@@ -50,7 +53,7 @@ $(function () {
                     $("#toastWrap_tel").removeClass("fade-in");
                     $("#toastWrap_tel").addClass("fade-out");
                 }
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -63,9 +66,9 @@ $(function () {
         } else {
             txt.text(element.val().length + '자');
         }
+        
         // 글자수 제한
         if (element.val().length > max_length) {
-
             // 500자 부터는 타이핑 되지 않도록
             element.val(element.val().substring(0, max_length));
             // 500자 넘으면 알림창 뜨도록
@@ -81,14 +84,15 @@ $(function () {
         } else {
             txt.text(element.val().length + '자');
         }
+        
         // 글자수 제한
         if (element.val().length > max_length) {
-
             // 500자 부터는 타이핑 되지 않도록
             element.val(element.val().substring(0, max_length));
             // 500자 넘으면 알림창 뜨도록
             fade_in_out(element);
-        }//8글자 이하면 토스트 출력
+        }
+        //8글자 이하면 토스트 출력
         else if (element.val().length!=0 && element.val().length <= min_length) {
             if(element.attr("id") == 'user_pw'){
                 $(".toastText_min1").removeClass("hide");
@@ -108,9 +112,6 @@ $(function () {
     function texteq(){
         if($('#user_pw').val().length!=0 && $('#pw_check').val().length!=0){
             let result = $('#user_pw').val()===($('#pw_check').val());
-            // console.log($('#user_pw').val());
-            // console.log($('#pw_check').val());
-            // console.log(result);
             if(result){
                 $(".toastText_checkNo").addClass("blind");
                 $(".toastText_checkYes").removeClass("blind");
@@ -118,7 +119,6 @@ $(function () {
                 $(".toastText_checkYes").addClass("blind");
                 $(".toastText_checkNo").removeClass("blind");
             }
-            //$('#user_pw').val()=='' || $('#pw_check').val()==''
             else {
                 $(".toastText_checkYes").addClass("blind");
                 $(".toastText_checkNo").addClass("blind");
@@ -140,6 +140,7 @@ $(function () {
     $('#user_pw').keydown(function () {
         textLengthCnt2(7, 15, $(this), $('.textCount_pw'));
     });
+    
     //비밀번호 재입력 글자수 제한
     $('#pw_check').keyup(function () {
         textLengthCnt2(7, 15, $(this), $('.textCount_pwcheck'));
@@ -152,6 +153,7 @@ $(function () {
         textLengthCnt2(7, 15, $(this), $('.textCount_pwcheck'));
         // texteq();
     });
+    
     //닉네임 글자수 제한
     $('#u_nickname').keyup(function () {
         textLengthCnt(10, $(this), $('.textCount_nick'));
@@ -159,6 +161,7 @@ $(function () {
     $('#u_nickname').keydown(function () {
         textLengthCnt(10, $(this), $('.textCount_nick'));
     });
+    
     //이메일 글자수 제한
     $('#email').keyup(function () {
         textLengthCnt(40, $(this), $('.textCount_email'));
@@ -166,6 +169,7 @@ $(function () {
     $('#email').keydown(function () {
         textLengthCnt(40, $(this), $('.textCount_email'));
     });
+    
     //전화번호 글자수 제한
     $('#tel').keyup(function () {
         textLengthCnt(13, $(this), $('.textCount_tel'));

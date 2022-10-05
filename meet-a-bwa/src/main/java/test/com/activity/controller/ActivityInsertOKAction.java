@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 최진실
+ * 액티비티 생성 로직 처리
+ *
+ */
+
 package test.com.activity.controller;
 
 import java.io.File;
@@ -26,18 +33,14 @@ public class ActivityInsertOKAction {
 	
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//********************************헤더***********************************//
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
-		
 		
 		String cookie_interest = "";
 		String cookie_county = "";
 		String cookie_nickName = "";
 		String cookie_userNo = "";
 		
-		
-		//嚥≪뮄�젃占쎌뵥 O
 		if(session_user_id != null) {
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies) {
@@ -61,20 +64,15 @@ public class ActivityInsertOKAction {
 			
 			request.setAttribute("list", map);
 			
-			System.out.println("Headercontroller");
-			System.out.println(cookie_nickName);
 		}else {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("isLogin", false);
 			request.setAttribute("list", map);
 		}
-		//**********************************************************************//
 		
 		String dir_path = request.getServletContext().getRealPath("/resources/img"); 
-		System.out.println(dir_path);
 
 		int fileSizeMax = 1024 * 1024 * 100;
-
 		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request); 
 		
 		if (isMultipartContent) {
@@ -93,7 +91,6 @@ public class ActivityInsertOKAction {
 			String activity_gender = "";
 			Integer activity_nop=0;
 			Integer activity_age=0;
-//			String activity_date = "";
 			String user_no = "";
 			String meet_no = "";
 
@@ -123,44 +120,29 @@ public class ActivityInsertOKAction {
 							activity_age = Integer.parseInt(age_re);
 						}else if(item.getFieldName().equals("user_no")) {
 							user_no = item.getString("UTF-8"); 
-							System.out.println("user_no:"+user_no);
 						}else if(item.getFieldName().equals("meet_no")) {
 							meet_no = item.getString("UTF-8"); 
-							System.out.println("meet_no:"+meet_no);
 						}
 
 
-						//System.out.println("占쏙옙占십듸옙 키 : " + item.getFieldName());
-
-						//System.out.println("占쏙옙占십듸옙 占쏙옙 : " + item.getString("UTF-8"));
-
-					} else {// upFile占쌨깍옙
-
-						System.out.println("파일의 키 : " + item.getFieldName());
-						System.out.println("파일 파일명 : " + item.getName());
-						System.out.println("파일 컨텐츠 타입 : " + item.getContentType());
-						System.out.println("파일 사이즈  : " + item.getSize());
+					} else {
 
 						if(item.getSize()!=0) { 
-						activity_image = FilenameUtils.getName(item.getName());
-							
-						
-						
-						File saveFile = new File(dir_path, activity_image); // dir_path: 占쏙옙占싸듸옙 占쏙옙占�
-
-						try {
-							item.write(saveFile);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+							activity_image = FilenameUtils.getName(item.getName());
+							File saveFile = new File(dir_path, activity_image); // dir_path: 占쏙옙占싸듸옙 占쏙옙占�
+	
+							try {
+								item.write(saveFile);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 						}
 					}
-				} // end for loop
+				}
 
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			}
-			
 
 			
 			ActivityVO avo = new ActivityVO();
@@ -173,7 +155,6 @@ public class ActivityInsertOKAction {
 			avo.setActivity_nop(activity_nop);
 			avo.setActivity_age(activity_age);
 			avo.setUser_no(user_no);
-			//avo.setUser_no(cookie_userNo);
 			avo.setMeet_no(meet_no);
 			
 			avo.setActivity_image(activity_image==""?"/meet-a-bwa/resources/img/default-image2.png":"/meet-a-bwa/resources/img/"+activity_image); // 0占싱몌옙 img_001.jpg占쏙옙 占싱뱄옙占쏙옙占쏙옙, 0占쏙옙 占싣니몌옙 img
@@ -181,20 +162,16 @@ public class ActivityInsertOKAction {
 			ActivityDAO a_dao = new ActivityDAOImpl();
 			int result = a_dao.activity_insert(avo);
 
-			System.out.println("result: "+result);
-			
 			String activity_no = a_dao.select_activity_lastNo();
-			
 			int resultRegistered = a_dao.activity_registered(user_no, activity_no);
 			
 
 			if(result==1&& resultRegistered == 1) {
 				response.sendRedirect("/meet-a-bwa/activity-main.do?idx=" + activity_no);
 			}else {
-				//response.sendRedirect("/meet-a-bwa/meet-main.do?idx=" + meet_no);
 				response.sendRedirect("a_insert.do?meet_no=" + meet_no);
 			}
 			
-			}
-		} // end if << isMultipartContent
+		}
+	}
 }

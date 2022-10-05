@@ -1,6 +1,7 @@
 /**
- * 
+ * @author 김예은
  */
+ 
  $(document).ready(function() {
     let category = [];
     
@@ -13,14 +14,10 @@
     
     $("#searchWord").keydown(function(key){
     	if(key.keyCode==13) {             
-	    	console.log("엔터");
-	    	console.log($("#category").val());
-	    	console.log($("#detailCategory").val());
 	    	if($("#category").val() == "모임")
 	    		location.href = "/meet-a-bwa/meet-list.do?type=interest&&typeData=" + $("#detailCategory").val() + "&&searchWord=" + $(this).val();
     		else if($("#category").val() == "액티비티")
 	    		 location.href = "/meet-a-bwa/activity-list.do?category=" + $("#detailCategory").val() + "&&searchWord=" + $(this).val();
-    			
 		}
     });
  

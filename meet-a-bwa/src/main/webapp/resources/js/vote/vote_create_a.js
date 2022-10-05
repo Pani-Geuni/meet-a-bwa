@@ -1,3 +1,6 @@
+/**
+* @author 김예은
+*/
 $(function(){
 	let content_arr = [];
 	let cnt = 1;
@@ -6,7 +9,6 @@ $(function(){
     let ajax_flag = true;
     
     plus_list();
-	
     
     
     /************************************************ */
@@ -142,7 +144,6 @@ $(function(){
         $(this).addClass("time_choice");
 
         let arr = $("#timeValue").text().split(":");
-        /* prop flag */
         arr[2] = $(this).attr("minute");
 
         $("#timeValue").text(arr.join(":"));
@@ -207,10 +208,7 @@ $(function(){
     /************************************************ */
     $("#vote_endDate").datepicker({
         changeYear:true,
-        changeMonth:true,
-        onSelect:function(dateText) {
-            // console.log(dateText);/
-        }
+        changeMonth:true
     });
     
     
@@ -279,9 +277,9 @@ $(function(){
     function time_list(arr){
         for(x of arr){
             let sample = $("#time_listWrap").children(".sample").clone();
+            
             sample.removeClass("sample");
             sample.text(x);
-            /* prop flag */
             sample.attr("time", x);
 
             $("#time_listWrap").append(sample);
@@ -290,9 +288,9 @@ $(function(){
     function minute_list(arr){
         for(x of arr){
             let sample = $("#minute_listWrap").children(".sample").clone();
+            
             sample.removeClass("sample");
             sample.text(x);
-            /* prop flag */
             sample.attr("minute", x);
 
             $("#minute_listWrap").append(sample);

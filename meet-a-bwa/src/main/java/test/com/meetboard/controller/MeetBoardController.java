@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 전판근
+ *
+ */
+
 package test.com.meetboard.controller;
 
 import java.io.IOException;
@@ -28,7 +34,6 @@ public class MeetBoardController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String sPath = request.getServletPath();
 		System.out.println("doPost..." + sPath);
 		

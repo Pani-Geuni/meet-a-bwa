@@ -2,8 +2,6 @@ package test.com.activity.model;
 
 import java.util.List;
 
-import test.com.user.model.UserVO;
-
 
 public interface ActivityDAO {
 

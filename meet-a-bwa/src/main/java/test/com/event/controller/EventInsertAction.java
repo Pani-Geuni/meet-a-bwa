@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author 김예은
+ * 이벤트 생성 로직
+ *
+ */
+
 package test.com.event.controller;
 
 import java.io.IOException;
@@ -14,6 +21,7 @@ import org.json.simple.JSONObject;
 import test.com.event.model.EventDAO;
 import test.com.event.model.EventDAOImpl;
 import test.com.event.model.EventVO;
+
 
 public class EventInsertAction {
 	@SuppressWarnings("unchecked")
