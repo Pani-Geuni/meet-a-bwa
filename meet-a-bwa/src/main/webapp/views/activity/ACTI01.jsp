@@ -46,14 +46,13 @@
     	    $(".tagItem").click(function(e){
     	        $(".tagItem").removeClass("check");
     	        $(e.target).addClass("check");
-    	        console.log($(this).text());
+
     	        let category = $(this).text();
     	        location.href = "/meet-a-bwa/activity-list.do?category="+category + "&&searchWord=";
     	    });
     	    
     	    $("#recommend_list_wrap").on("click", ".content-list", function(){
 	    		 let idx = $(this).attr("idx");
-	    		 console.log("clic")
 	    		 location.href = "/meet-a-bwa/activity-main.do?idx="+idx;
 	    	 });
     	    

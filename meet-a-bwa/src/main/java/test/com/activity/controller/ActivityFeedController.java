@@ -22,7 +22,7 @@ import test.com.meet_feed.controller.MeetFeedSelectAll_Action;
 /**
  * Servlet implementation class ActivityFeedController
  */
-@WebServlet({"/activity-main.do", "/a_registered.do", "/a_withdrawal.do", "/activity_like_delete_feed.do", "/activity_like_insert_feed.do"})
+@WebServlet({"/activity-main.do", "/a_registered.do", "/a_withdrawal.do"})
 public class ActivityFeedController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,43 +48,6 @@ public class ActivityFeedController extends HttpServlet {
 			new ActivityFeedRegistered_Action().execute(request, response);
 		}else if (sPath.equals("/a_withdrawal.do")) {
 			new ActivityFeedWithdrawal_Action().execute(request, response);
-		} else if(sPath.equals("/activity_like_delete_feed.do")) {
-			String activity_no = request.getParameter("activity_no");
-			String user_no = request.getParameter("user_no");
-			
-			ActivityDAO dao = new ActivityDAOImpl();
-			int result = dao.delete_activity_like(activity_no, user_no);
-			if(result == 1) {
-				ActivityDAO a_dao = new ActivityDAOImpl();
-				List<String> like_activityNo = a_dao.select_all_activity_like(user_no);
-				String like_activityNo_str = String.join("/", like_activityNo);
-				for (String like : like_activityNo) {
-					if(activity_no==like) {
-						
-					}
-				}
-			         
-				response.sendRedirect("/meet-a-bwa/activity-main.do?like_activity="+like_activityNo_str);
-			}
-		} else if(sPath.equals("/activity_like_insert_feed.do")) {
-			String activity_no = request.getParameter("activity_no");
-			String user_no = request.getParameter("user_no");
-			
-			ActivityDAO dao = new ActivityDAOImpl();
-			int result = dao.insert_activity_like(activity_no, user_no);
-			System.out.println(result);
-			if(result == 1) {
-				ActivityDAO a_dao = new ActivityDAOImpl();
-				List<String> like_activityNo = a_dao.select_all_activity_like(user_no);
-				//String like_activityNo_str = String.join("/", like_activityNo);
-				for (String like : like_activityNo) {
-					if(activity_no.equals(like)) {
-						request.setAttribute("like_activityNo", like_activityNo);
-						response.sendRedirect("/meet-a-bwa/activity-main.do?idx="+like);
-						return;
-					}
-				}
-			}
 		}
 	}
 

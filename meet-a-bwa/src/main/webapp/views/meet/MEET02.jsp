@@ -78,10 +78,10 @@
 			if($.cookie("isLogin") == "true") {
 				// 좋아요 추가
 				if ($(this).find(".afterLike_heart").hasClass("blind")) {
-					location.href = "/meet-a-bwa/main_meet_like_insert.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+					location.href = "/meet-a-bwa/meet_like_insert.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
 				} else {
 					// 좋아요 삭제
-					location.href = "/meet-a-bwa/main_meet_like_delete.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+					location.href = "/meet-a-bwa/meet_like_delete.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
 				}
 			} else {
 				$(".warning-layer").removeClass("blind");

@@ -118,6 +118,9 @@ public class MeetFeedSelectAll_Action {
 		
 		request.setAttribute("vvos", vvos);
 
-		request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
+		if (like_meet != null) {
+			response.sendRedirect("/meet-a-bwa/meet-main.do?idx="+idx);
+		}
+		else request.getRequestDispatcher("views/meet/MEET02.jsp").forward(request, response);
 	}
 }

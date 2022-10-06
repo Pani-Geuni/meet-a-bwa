@@ -32,7 +32,6 @@
 		// 상세 리스트 클릭 이벤트
 		$("#meet-list-section").on("click", ".content-list.meet-list", function() {
 			let idx = $(this).attr("idx");
-			
 			location.href = "/meet-a-bwa/meet-main.do?idx=" + idx;
 		});
 		
