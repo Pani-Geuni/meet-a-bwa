@@ -290,7 +290,7 @@
 
 /***********************************************/
 
-#recommend_list_wrap{
+#activity-list-section{
 	display: flex;
     align-items : center;
     justify-content: space-between;
