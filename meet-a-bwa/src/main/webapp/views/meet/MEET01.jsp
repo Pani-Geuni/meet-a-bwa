@@ -169,7 +169,7 @@
 									</div>
 
 									<div class="likeWrap">
-										<section class="heartSection">
+										<section class="heartSection" idx = "${ mlvo.meet_no }">
 											<img src="/meet-a-bwa/resources/img/heart-outlined.svg"
 												alt='라인하트이미지' class="beforeLike_heart heartCommon" /> <img
 												src="/meet-a-bwa/resources/img/heart-filled.svg"
