@@ -12,32 +12,67 @@
 
 ## 기술 스택
 
+<span>
 <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/JQuery-0769AD?style=for-the-badge&logo=JQuery&logoColor=white">
+</span>
 
+<span>
 <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/JSP-E4E4E4?style=for-the-badge&logo=JSP&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/Servlet-007396?style=for-the-badge&logo=Servlet&logoColor=white">
+</span>
 
 <br />
 
 ---
 
 ## Tools
-
+<span>
 <img src="https://img.shields.io/badge/VisualStudioCode-5C2D91?style=for-the-badge&logo=VisualStudioCode&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/STS3-6DB33F?style=for-the-badge&logo=STS3&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/GitKraken-179287?style=for-the-badge&logo=GitKraken&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=Trello&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/Miro-050038?style=for-the-badge&logo=Miro&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/GoogleDrive-4285F4?style=for-the-badge&logo=GoogleDrive&logoColor=white">
+</span>
+<span>
 <img src="https://img.shields.io/badge/ApacheTomcat-F8DC75?style=for-the-badge&logo=ApacheTomcat&logoColor=white">
+</span>
 
 <br />
 
