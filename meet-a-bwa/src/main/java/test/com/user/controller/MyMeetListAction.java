@@ -22,6 +22,8 @@ import test.com.user.model.UserDAOImpl;
 
 public class MyMeetListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String like_meet = request.getParameter("like_meet");
+		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -52,6 +54,11 @@ public class MyMeetListAction {
 			map.put("county", cookie_county);
 			map.put("user_no", cookie_userNo);
 			
+			if (like_meet != null) {
+				Cookie cookie = new Cookie("like_meet", like_meet);
+				response.addCookie(cookie);
+			}
+			
 			request.setAttribute("list", map);
 			
 			System.out.println("Headercontroller");
@@ -78,6 +85,7 @@ public class MyMeetListAction {
 		List<MeetVO4> mvos = dao.selectAll_myMeet(cookie_userNo);
 		
 		request.setAttribute("mvos", mvos);
+		
 		request.getRequestDispatcher("/views/user/USER05.jsp").forward(request, response);
 		
 	}

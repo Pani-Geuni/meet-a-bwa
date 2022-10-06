@@ -24,7 +24,8 @@ import test.com.meet.model.MeetDAOImpl;
  * Servlet implementation class LikeController
  */
 @WebServlet({"/main_meet_like_delete.do", "/main_meet_like_insert.do", "/main_activity_like_delete.do", "/main_activity_like_insert.do",
-			 "/meet_like_delete.do", "/meet_like_insert.do", "/activity_like_delete.do", "/activity_like_insert.do"})
+			 "/meet_like_delete.do", "/meet_like_insert.do", "/activity_like_delete.do", "/activity_like_insert.do",
+			 "/my_meet_like_insert.do", "/my_meet_like_delete.do"})
 public class LikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -148,6 +149,34 @@ public class LikeController extends HttpServlet {
 				String like_activityNo_str = String.join("/", like_activityNo);
 			         
 				response.sendRedirect("/meet-a-bwa/activity-main.do?like_activity="+like_activityNo_str+"&idx="+activity_no);
+			}
+		} else if (sPath.equals("/my_meet_like_delete.do")) {
+			String meet_no = request.getParameter("meet_no");
+			String user_no = request.getParameter("user_no");
+			
+			MeetDAO dao = new MeetDAOImpl();
+			int result = dao.delete_meet_like(meet_no, user_no);
+			if(result == 1) {
+				MeetDAO m_dao = new MeetDAOImpl();
+				List<String> like_meetNo = m_dao.select_all_meet_like(user_no);
+				String like_meetNo_str = String.join("/", like_meetNo);
+				
+				response.sendRedirect("/meet-a-bwa/my-meet.do?like_meet="+like_meetNo_str);
+			}
+		} else if (sPath.equals("/my_meet_like_insert.do")) {
+			String meet_no = request.getParameter("meet_no");
+			String user_no = request.getParameter("user_no");
+			
+			MeetDAO dao = new MeetDAOImpl();
+			
+			int result = dao.insert_meet_like(meet_no, user_no);
+			
+			if(result == 1) {
+				MeetDAO m_dao = new MeetDAOImpl();
+				List<String> like_meetNo = m_dao.select_all_meet_like(user_no);
+				String like_meetNo_str = String.join("/", like_meetNo);
+				
+				response.sendRedirect("/meet-a-bwa/my-meet.do?like_meet="+like_meetNo_str);
 			}
 		}
 	}
