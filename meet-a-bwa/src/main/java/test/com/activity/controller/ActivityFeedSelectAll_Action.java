@@ -31,6 +31,8 @@ import test.com.vote.model.VoteListVO;
 
 public class ActivityFeedSelectAll_Action {
 public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String like_activity = request.getParameter("like_activity");
+	
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -59,6 +61,11 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
 			map.put("user_no", cookie_userNo);
+			
+			if (like_activity != null) {
+				Cookie cookie = new Cookie("like_activity", like_activity);
+				response.addCookie(cookie);
+			}
 			
 			request.setAttribute("list", map);
 		}else {
@@ -93,6 +100,10 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		List<VoteListVO> vvos = v_dao.vote_list_selectAll(idx); 
 		
 		request.setAttribute("vvos", vvos);
-		request.getRequestDispatcher("views/activity/ACTI02.jsp").forward(request, response);
+		
+		if (like_activity != null) {
+			response.sendRedirect("/meet-a-bwa/activity-main.do?idx="+idx);
+		}
+		else request.getRequestDispatcher("views/activity/ACTI02.jsp").forward(request, response);
 	}
 }

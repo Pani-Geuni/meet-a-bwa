@@ -68,66 +68,45 @@
       
       $(".likeWrap").on("click", ".heartSection", function(event){
           event.stopPropagation();
-          console.log("ㅠㅠㅠㅠ"+$(".heartSection").attr("idx"));
+
           if($.cookie("isLogin") == 'true'){
               // 좋아요 추가
               if($(".heartSection").find(".afterLike_heart").hasClass("blind")){
-                 location.href = "/meet-a-bwa/activity_like_insert_feed.do?activity_no=" + $(".heartSection").attr("idx") + "&user_no=" + $.cookie("user_no");
+                 location.href = "/meet-a-bwa/activity_like_insert.do?activity_no=" + $(".heartSection").attr("idx") + "&user_no=" + $.cookie("user_no");
               }
               // 좋아요 삭제
               else{
-                 location.href = "/meet-a-bwa/activity_like_delete_feed.do?activity_no=" + $(".heartSection").attr("idx") + "&user_no=" + $.cookie("user_no");
+                 location.href = "/meet-a-bwa/activity_like_delete.do?activity_no=" + $(".heartSection").attr("idx") + "&user_no=" + $.cookie("user_no");
               }
           }else{
              $(".warning-layer").removeClass("blind");
           }
        });
-      
-/*       <c:forEach items="${like_activityNo}" var="item">
-  			console.log(${item.val});
-  			if($(".heartSection").attr("idx")==${item.val}){
-  				 $(".heartSection").find(".beforeLike_heart").addClass("blind");
-            	 $(".heartSection").find(".afterLike_heart").removeClass("blind");
-  			}
-  		</c:forEach> */
        
- 	let like_activity_arr = $.cookie('like_activity');
-    console.log("like_activity_arr:"+like_activity_arr);
+ 		let like_activity_arr = $.cookie('like_activity');
+ 		
        if(like_activity_arr != undefined){
           like_activity_arr = like_activity_arr.split("/");
-           console.log("like_activity_arr,,"+like_activity_arr);
            
            for(like_activity of like_activity_arr){
-              console.log("하트야 응답해줘"+$(".heartSection").attr("idx"));
-              console.log(like_activity);
                  if($(".heartSection").attr("idx") == like_activity) {
                 	 $(".heartSection").find(".beforeLike_heart").addClass("blind");
                 	 $(".heartSection").find(".afterLike_heart").removeClass("blind");
                  }
            }
         } 
-// 경고 팝업 닫기 버튼 클릭 이벤트
-    $(".warning-close").click(function(){
-       $(".warning-layer").addClass("blind");
-    });
+       
+		// 경고 팝업 닫기 버튼 클릭 이벤트
+		$(".warning-close").click(function(){
+	       $(".warning-layer").addClass("blind");
+	    });
 
-      let idx = "";
-      $(".activityUpdateBtn").click(
-            function() {
-
-               console.log("activity update");
-
-               //idx = $(this).attr("idx");
-
-               //location.href = "/meet-a-bwa/a_update.do?activity_no=" + idx;
-               location.href = "/meet-a-bwa/a_update.do?activity_no="
-                     + $("#activity_no").val();
-
-               //location.href = "ACTI04.jsp?activity_no=" + idx;
-               //ajax_load(idx);
-
-            });
-      function ajax_load(idx) {
+		let idx = "";
+		$(".activityUpdateBtn").click(function() {
+			location.href = "/meet-a-bwa/a_update.do?activity_no="+ $("#activity_no").val();
+		});
+		
+		function ajax_load(idx) {
          $.ajax({
             url : "/meet-a-bwa/a_update.do",
             type : "GET",
@@ -136,58 +115,24 @@
             },
 
             dataType : "json",
-
             success : function(res) {
-               console.log("succees")
-               console.log(res)
             },
-
             error : function(res, status, text) {
-               console.log("error")
                console.log(text)
             }
          });
       }
 
-      $(".activityDeleteBtn")
-            .click(
-                  function() {
-
-                     console.log("activity delete");
-
-                     $(".activityDelete-popup").removeClass("blind");
-                     $(".delete")
-                           .click(
-                                 function() {
-                                    $(".activityDelete-popup")
-                                          .addClass("blind");
-
-                                    //idx = $(this).attr("idx");
-                                    location.href = "/meet-a-bwa/a_delete.do?activity_no="
-                                          + $("#activity_no")
-                                                .val();
-
-                                 });
-                     $(".cancle").click(function() {
-                        $(".activityDelete-popup").addClass("blind");
-                     });
-                  });
-
-/*        $(".activityExitBtn").click(function() {
-
-         $(".activityExit-popup").removeClass("blind");
-         $(".withdrawal").click(function() {
-            $(".activityExit-popup").addClass("blind");
-
-            //idx = $(this).attr("idx");
-            //location.href = "/meet-a-bwa/a_delete.do?activity_no=" + idx;
-
+      $(".activityDeleteBtn").click(function() {
+         $(".activityDelete-popup").removeClass("blind");
+         $(".delete").click(function() {
+         	$(".activityDelete-popup").addClass("blind");
+            location.href = "/meet-a-bwa/a_delete.do?activity_no="+ $("#activity_no").val();
          });
          $(".cancle").click(function() {
-            $(".activityExit-popup").addClass("blind");
+            $(".activityDelete-popup").addClass("blind");
          });
-      });  */
-
+      });
    });
 </script>
 

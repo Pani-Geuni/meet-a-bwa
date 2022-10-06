@@ -46,11 +46,11 @@ public class ActivityController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // �ѱ� ���� ����
-		// doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
 		String sPath = request.getServletPath();
 		System.out.print("doPost:");
-		System.out.println(sPath); // ������ ����Ʈ
+		System.out.println(sPath);
+
 		if (sPath.equals("/a_insertOK.do")) {
 			new ActivityInsertOKAction().execute(request, response);
 		}else if (sPath.equals("/a_updateOK.do")) {

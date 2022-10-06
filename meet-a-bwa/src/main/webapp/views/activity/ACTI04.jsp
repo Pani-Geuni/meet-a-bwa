@@ -31,51 +31,21 @@
 <script src="/meet-a-bwa/resources/js/common/logout.js"></script>
 
 <script>
-	//$(function() {
-
-		//var user_id = '${user_id}'; //세션값 가져옴
-		//console.log(user_id);
-
-		/* $("#membership_withdrawal_btn").on("click", function() {
-			$(".withdrawal-popup").removeClass("blind");
-			$(".withdrawalOK").click(function() {
-				$(".withdrawal-popup").addClass("blind");
-					
-					// $.cookie("user_no");
-					
-					location.replace("u_delete.do?user_no=" + $.cookie("user_no"));
-				});
-			});
-			$(".cancle").click(function() {
-				$(".withdrawal-popup").addClass("blind");
-			}); *//* 탈퇴는 액티비티 피드에서 구현 */
-
-//	});
-
 	function check() {
 		let activity_name = $.trim($("#activity_name").val()).length;
 		let activity_description = $.trim($("#activity_description").val()).length;
         let nop = $("#numberofpeople").val();
 
-        console.log(activity_name);
-        console.log(activity_description);
-        console.log(nop);
-        //console.log($("#age").val());
-
         if(activity_name>0&&activity_description>0&&nop!=0){
-                console.log("생성 가능");
-                let user_id = $("#id").val();
-        }else {
-			console.log("생성 불가능");
-
+            let user_id = $("#id").val();
+        } else {
 			if (activity_name<=0||activity_description<=0||nop<=0) {
-
 				$(".bin-popup").removeClass("blind");
 				$(".ok").on("click", function(){
 				  	$(".bin-popup").addClass("blind");
-				 });
+				});
 			} 
-		return false;
+			return false;
 		}
 	}
 </script>

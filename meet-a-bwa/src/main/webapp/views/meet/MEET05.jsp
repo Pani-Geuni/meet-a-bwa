@@ -40,39 +40,25 @@
 <script src="/meet-a-bwa/resources/js/meet/create/age.js"></script>
 
 <script>
-		//$("#create_meeting").click(function(){
-
-		// 1. NOT NULL 충족 - alert Popup 
-
-		var user_id = '${user_id}'; //세션값 가져옴
-		console.log(user_id);
-
-		window.check = function() {
-			let meet_name = $.trim($("#meet_name").val()).length;
-			let meet_description = $.trim($("#meet_description").val()).length;
-			let nop = $("#numberofpeople").val();
-
-			console.log(meet_name);
-			console.log(meet_description);
-			console.log(nop);
-			//console.log($("#age").val());
-
-			if (meet_name > 0 && meet_description > 0 && nop != 0) {
-				console.log("생성 가능");
-				let user_id = $("#id").val();
-			} else {
-				console.log("생성 불가능");
-
-				if (meet_name <= 0 || meet_description <= 0 || nop <= 0) {
-
-					$(".bin-popup").removeClass("blind");
-					$(".ok").on("click", function() {
-						$(".bin-popup").addClass("blind");
-					});
+		$(function() {
+			$("#create_meeting").submit(function(){
+				let meet_name = $.trim($("#meet_name").val()).length;
+				let meet_description = $.trim($("#meet_description").val()).length;
+				let nop = $("#numberofpeople").val();
+	
+				if (meet_name > 0 && meet_description > 0 && nop != 0) {
+					let user_id = $("#id").val();
+				} else {
+					if (meet_name <= 0 || meet_description <= 0 || nop <= 0) {
+						$(".bin-popup").removeClass("blind");
+						$(".ok").on("click", function() {
+							$(".bin-popup").addClass("blind");
+						});
+					}
+					return false;
 				}
-				return false;
-			}
-		}
+			});
+		});
 </script>
 
 <title>모임 생성</title>

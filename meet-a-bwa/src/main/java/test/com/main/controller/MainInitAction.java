@@ -107,7 +107,10 @@ public class MainInitAction {
 		request.setAttribute("a_list", list2);
 		request.setAttribute("checkCategory", "전체");
 		
-		request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
+		if(like_meet != null || like_activity != null) {
+			response.sendRedirect("/meet-a-bwa/index.do");
+		}
+		else request.getRequestDispatcher("/views/main/MAIN01.jsp").forward(request, response);
 		
 	}
 }

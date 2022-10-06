@@ -41,35 +41,25 @@
 <script src="/meet-a-bwa/resources/js/meet/update/age.js"></script>
 
 <script>	
-		var user_id = '${user_id}'; // 세션 값 가져옴
-		console.log(user_id);
-		
-		window.check = function() {
+	$(function() {
+		$("#update_meet_information_btn").submit(function(){
 			let meet_name = $.trim($("#meet_name").val()).length;
 			let meet_description = $.trim($("#meet_description").val()).length;
 			let nop = $("#numberofpeople").val();
 			
-			console.log(meet_name);
-			console.log(meet_description);
-			console.log(nop);
-			console.log($("#age").val());
-			
 			if (meet_name > 0 && meet_description > 0 && nop != 0) {
-				console.log("생성 가능");
 				let user_id = $("#id").val();
 			} else {
-				console.log("생성 불가능");
-				
 				if (meet_name <= 0 || meet_description <= 0 || nop <= 0) {
 					$(".btn-popup").removeClass("blind");
 					$(".ok").on("click", function() {
 						$(".bin-popup").addClass("blind")
 					});
 				}
-				
 				return false;
 			}
-		}
+		});
+	});
 </script>
 
 <title>모임 수정</title>
