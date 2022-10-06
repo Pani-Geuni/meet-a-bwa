@@ -125,6 +125,7 @@
 - 리스트 섹션
   <img width="1056" alt="스크린샷 2022-10-06 13 44 59" src="https://user-images.githubusercontent.com/22641134/194216241-15eb2043-7cbb-44ec-9306-e9c683480845.png">
 
+
 - 검색 섹션
   <img width="602" alt="스크린샷 2022-10-06 13 45 57" src="https://user-images.githubusercontent.com/22641134/194216330-0a6768b9-bc5f-41ec-bf88-86583db5b9b1.png">
 
@@ -133,9 +134,11 @@
 ### 1-3. 메인 화면 (좋아요)
 
 - 리스트 좋아요 전
+
   <img width="368" alt="스크린샷 2022-10-06 13 47 33" src="https://user-images.githubusercontent.com/22641134/194216531-34a1e0e3-0075-4b7a-85af-a7c03fbf6b85.png">
 
 - 리스트 좋아요 후
+
   <img width="368" alt="스크린샷 2022-10-06 13 47 19" src="https://user-images.githubusercontent.com/22641134/194216540-54b63757-77af-48fe-8d77-3b2b62475bc5.png">
 
 <br />
@@ -203,7 +206,7 @@
 
 ### 10-3. 모임 피드 (액티비티 리스트)
 
-<img width="125" alt="모임 내 액티비티 리스트" src="https://user-images.githubusercontent.com/22641134/194218717-466a285f-4f05-4c5f-875f-edfc2e1ed47e.png">
+<img width="300" alt="모임 내 액티비티 리스트" src="https://user-images.githubusercontent.com/22641134/194218717-466a285f-4f05-4c5f-875f-edfc2e1ed47e.png">
 
 <br />
 
@@ -215,7 +218,7 @@
 
 ### 10-5. 모임 및 액티비티 공통 (투표 리스트)
 
-<img width="125" alt="모임 내 투표 리스트" src="https://user-images.githubusercontent.com/22641134/194218718-f038b00e-270f-4389-b67b-d22436d435c9.png">
+<img width="300" alt="모임 내 투표 리스트" src="https://user-images.githubusercontent.com/22641134/194218718-f038b00e-270f-4389-b67b-d22436d435c9.png">
 
 <br />
 
