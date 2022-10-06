@@ -127,7 +127,7 @@
 
 
 - 검색 섹션
-  <img width="602" alt="스크린샷 2022-10-06 13 45 57" src="https://user-images.githubusercontent.com/22641134/194216330-0a6768b9-bc5f-41ec-bf88-86583db5b9b1.png">
+  <img width="1056" alt="스크린샷 2022-10-06 13 45 57" src="https://user-images.githubusercontent.com/22641134/194216330-0a6768b9-bc5f-41ec-bf88-86583db5b9b1.png">
 
 <br />
 
