@@ -8,6 +8,7 @@
 package test.com.list.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,8 @@ import test.com.meet.model.MeetVO2;
 
 public class MeetListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String like_meet = request.getParameter("like_meet");
+		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -52,6 +55,11 @@ public class MeetListAction {
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
 			
+			if (like_meet != null) {
+				Cookie cookie = new Cookie("like_meet", like_meet);
+				response.addCookie(cookie);
+			}
+			
 			request.setAttribute("list", map);
 			
 		}else {
@@ -74,9 +82,9 @@ public class MeetListAction {
 		String typeData = request.getParameter("typeData");
 		String searchWord = request.getParameter("searchWord");
 		
+		
 		MeetDAO mldao = new MeetDAOImpl();
 		List<MeetVO2> mlvos = null;
-
 		
 		if (type.equals("like")) {
 			mlvos = mldao.select_all_more_like(searchWord);
@@ -91,7 +99,12 @@ public class MeetListAction {
 		}
 		
 		request.setAttribute("mlvos", mlvos);
-		request.getRequestDispatcher("views/meet/MEET01.jsp").forward(request, response);
+		
+		if (like_meet != null) {
+			response.sendRedirect("/meet-a-bwa/meet-list.do?type=" + type + "&typeData=" + typeData + "&searchWord=" + searchWord);
+		}
+
+		else request.getRequestDispatcher("views/meet/MEET01.jsp").forward(request, response);
 	}
 
 }

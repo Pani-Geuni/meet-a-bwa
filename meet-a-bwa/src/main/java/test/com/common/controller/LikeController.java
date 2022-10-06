@@ -7,6 +7,7 @@
 package test.com.common.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,8 @@ import test.com.meet.model.MeetDAOImpl;
  */
 @WebServlet({"/main_meet_like_delete.do", "/main_meet_like_insert.do", "/main_activity_like_delete.do", "/main_activity_like_insert.do",
 			 "/meet_like_delete.do", "/meet_like_insert.do", "/activity_like_delete.do", "/activity_like_insert.do",
-			 "/my_meet_like_insert.do", "/my_meet_like_delete.do", "/my_activity_like_insert.do", "/my_activity_like_delete.do"})
+			 "/my_meet_like_insert.do", "/my_meet_like_delete.do", "/my_activity_like_insert.do", "/my_activity_like_delete.do",
+			 "/meet_more_like_insert.do", "/meet_more_like_delete.do"})
 public class LikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,7 +42,11 @@ public class LikeController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+//		response.setCharacterEncoding("UTF-8");
+
 		String sPath = request.getServletPath();
 		System.out.println("doGet..." + sPath);
 		
@@ -204,7 +210,47 @@ public class LikeController extends HttpServlet {
 				
 				response.sendRedirect("/meet-a-bwa/my-activity.do?like_activity="+like_activityNo_str);
 			}
-		}
+		} else if (sPath.equals("/meet_more_like_delete.do")) {
+			String type = request.getParameter("type");
+			String typeData = URLEncoder.encode(request.getParameter("typeData"));
+			String searchWord = request.getParameter("searchWord");
+			String meet_no = request.getParameter("meet_no");
+			String user_no = request.getParameter("user_no");
+			
+			typeData = URLEncoder.encode(typeData);
+			
+			MeetDAO dao = new MeetDAOImpl();
+			
+			int result = dao.delete_meet_like(meet_no, user_no);
+			
+			if(result == 1) {
+				MeetDAO m_dao = new MeetDAOImpl();
+				List<String> like_meetNo = m_dao.select_all_meet_like(user_no);
+				String like_meetNo_str = String.join("/", like_meetNo);
+				
+				response.sendRedirect("/meet-a-bwa/meet-list.do?type="+type+"&typeData="+typeData+"&searchWord=&like_meet="+like_meetNo_str);
+			}
+		} else if (sPath.equals("/meet_more_like_insert.do")) {
+			String type = request.getParameter("type");
+			String typeData = URLEncoder.encode(request.getParameter("typeData"));
+			String searchWord = request.getParameter("searchWord");
+			String meet_no = request.getParameter("meet_no");
+			String user_no = request.getParameter("user_no");
+
+			typeData = URLEncoder.encode(typeData);
+			
+			MeetDAO dao = new MeetDAOImpl();
+			
+			int result = dao.insert_meet_like(meet_no, user_no);
+			
+			if(result == 1) {
+				MeetDAO m_dao = new MeetDAOImpl();
+				List<String> like_meetNo = m_dao.select_all_meet_like(user_no);
+				String like_meetNo_str = String.join("/", like_meetNo);
+				
+				response.sendRedirect("/meet-a-bwa/meet-list.do?type="+type+"&typeData="+typeData+"&searchWord=&like_meet="+like_meetNo_str);
+			}
+		} 
 	}
 
 	/**
