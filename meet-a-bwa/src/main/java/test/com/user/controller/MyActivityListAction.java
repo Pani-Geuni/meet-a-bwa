@@ -22,6 +22,8 @@ import test.com.user.model.UserDAOImpl;
 
 public class MyActivityListAction {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String like_activity = request.getParameter("like_activity");
+		
 		HttpSession session = request.getSession();
 		String session_user_id = (String) session.getAttribute("user_id");
 		
@@ -51,6 +53,11 @@ public class MyActivityListAction {
 			map.put("interest", cookie_interest);
 			map.put("county", cookie_county);
 			map.put("user_no", cookie_userNo);
+			
+			if (like_activity != null) {
+				Cookie cookie = new Cookie("like_activity", like_activity);
+				response.addCookie(cookie);
+			}
 			
 			request.setAttribute("list", map);
 			

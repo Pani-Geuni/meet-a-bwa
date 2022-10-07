@@ -15,6 +15,8 @@
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/login.css" />
 	<link rel="stylesheet" href="/meet-a-bwa/resources/css/user/logout.css" />
 	
+	<link rel="stylesheet" href="/meet-a-bwa/resources/css/list/meet-list.css" />
+	
 	<script src="/meet-a-bwa/resources/js/common/jquery-3.6.1.min.js"></script>
 	<script src="/meet-a-bwa/resources/js/common/header.js"></script>
 	<script src="/meet-a-bwa/resources/js/common/logout.js"></script>
@@ -23,13 +25,45 @@
 	<script>
     	$(function() {
     		// 상세 리스트 클릭 이벤트
-	    	 $("#meet_recommendSection").on("click", ".content_list.meet-list", function(){
+	    	 $("#meet-list-section").on("click", ".content-list.meet-list", function(){
 	    		 let idx = $(this).attr("idx");
-	    		 
-	    		 console.log(idx)
 	    		 location.href = "/meet-a-bwa/meet-main.do?idx="+idx;
-	    	 });	
+	    	 });
+    		
+	    	 $("#meet-list-section").on("click", ".heartSection", function(event){
+		   		 event.stopPropagation();
+		   		 
+		   		 if($.cookie("isLogin") == 'true'){
+		   		 	// 좋아요 추가
+			    		 if($(this).find(".afterLike_heart").hasClass("blind")){
+				    		 location.href = "/meet-a-bwa/my_meet_like_insert.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    		 }
+			    		 // 좋아요 삭제
+			    		 else{
+				    		 location.href = "/meet-a-bwa/my_meet_like_delete.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    		 }
+		   		 }else{
+		   			 $(".warning-layer").removeClass("blind");
+		   		 }
+	   	 	});
+	    	
+	    	// 모임 좋아요 처리
+		   	 let like_meet_arr = $.cookie('like_meet');
+		   	 if(like_meet_arr != undefined){
+		  	 	like_meet_arr = like_meet_arr.split("/");
+			    	 
+		   		let meet_elements = $(".content-list.meet-list").slice();
+			    	for(like_meet of like_meet_arr){
+			    		for(list of meet_elements){
+				    		if($(list).attr("idx") == like_meet) {
+					    		$(list).find(".beforeLike_heart").addClass("blind");
+					    		$(list).find(".afterLike_heart").removeClass("blind");
+				    		}
+			    		}
+			    	}
+		   	 }
     	})
+    	
     </script>
     
 <title>나의 모임 리스트</title>
@@ -48,10 +82,10 @@
 				<h1 class="titleSection">나의 모임</h1>
 
 
-				<div id="meet_recommendSection">
+				<div id="meet-list-section">
 					<c:forEach var="mvo" items="${mvos}">
 						<!-- start content_list div-->
-						<div class="content_list meet-list" idx="${mvo.meet_no}">
+						<div class="content-list meet-list" idx="${mvo.meet_no}">
 							<div class="info-list-wrap">
 								<div class="listCommon">
 									<span class="content_title">${mvo.meet_name}</span>
@@ -106,7 +140,7 @@
 								</div>
 
 								<div class="likeWrap">
-									<section class="heartSection">
+									<section class="heartSection" idx = "${ mvo.meet_no }">
 										<img src="/meet-a-bwa/resources/img/heart-outlined.svg"
 											alt='라인하트이미지' class="beforeLike_heart heartCommon" /> <img
 											src="/meet-a-bwa/resources/img/heart-filled.svg" alt='풀하트이미지'
@@ -175,4 +209,20 @@
 	</div>
 </div>
 <!-- END LOGOUT POPUP -->
+<!-- START WARNING POPUP -->
+<div class="warning-layer blind">
+ <div class="warning-popup-wrap">
+ 	<div class = "warning-img-section">
+     <img src="resources/img/warning.svg" alt="경고 이미지"/>
+ 	</div>
+    <h1 id = "warning-text">
+     	로그인 후 이용가능한 기능입니다.
+    </h1>
+
+    <div class="btn-group">
+      <button class="warning-close">취소</button>
+    </div>
+	  </div>
+</div>
+<!-- END WARNING POPUP -->
 </html>

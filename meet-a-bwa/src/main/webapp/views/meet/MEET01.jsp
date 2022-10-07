@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,14 +40,27 @@
 	   		 event.stopPropagation();
 	   		 
 	   		 if($.cookie("isLogin") == 'true'){
+	   		 	if ($.cookie('user_interest') == "" || $.cookie('user_interest') == undefined) {
+		   			// 좋아요 추가
+			    	if($(this).find(".afterLike_heart").hasClass("blind")){
+				    	location.href = "/meet-a-bwa/meet_more_like_insert.do?type=county&typeData=" + $.cookie('user_county') + "&searchWord=&meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    	}
+			    	// 좋아요 삭제
+			    	else{
+				    	location.href = "/meet-a-bwa/meet_more_like_delete.do?type=county&typeData=" + $.cookie('user_county') + "&searchWord=&meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    	}	   		 		
+	   		 	} else {
 	   		 	// 좋아요 추가
-		    		 if($(this).find(".afterLike_heart").hasClass("blind")){
-			    		 location.href = "/meet-a-bwa/main_meet_like_insert.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
-		    		 }
-		    		 // 좋아요 삭제
-		    		 else{
-			    		 location.href = "/meet-a-bwa/main_meet_like_delete.do?meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
-		    		 }
+			    	if($(this).find(".afterLike_heart").hasClass("blind")){
+			    		console.log($.cookie('user_interest'));
+				    	location.href = "/meet-a-bwa/meet_more_like_insert.do?type=interest&typeData=" + $.cookie('user_interest') + "&searchWord=&meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    	}
+			    	// 좋아요 삭제
+			    	else{
+				    	location.href = "/meet-a-bwa/meet_more_like_delete.do?type=interest&typeData=" + $.cookie('user_interest') + "&searchWord=&meet_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    	}
+	   		 	}
+	   		 	
 	   		 }else{
 	   			 $(".warning-layer").removeClass("blind");
 	   		 }
@@ -57,7 +71,7 @@
 	   	 if(like_meet_arr != undefined){
 	  	 		like_meet_arr = like_meet_arr.split("/");
 		    	 
-	   		 let meet_elements = $(".content_list.meet-list").slice();
+	   		 let meet_elements = $(".content-list.meet-list").slice();
 		    	 for(like_meet of like_meet_arr){
 		    		 for(list of meet_elements){
 			    		 if($(list).attr("idx") == like_meet) {

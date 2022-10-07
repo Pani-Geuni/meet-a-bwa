@@ -27,7 +27,11 @@
     <script>
     	$(function() {
 			var user_id = '${user_id}'; //세션값 가져옴
-	    	
+			
+			var category = $(location).attr('href');
+    		category = category.split("category=")[1];
+    		category = category.split("&&")[0];
+			
 			// 액티비티 추천 - 카테고리 더보기 버튼 클릭 이벤트
     	    $("#plusImg").click(function(){
     	        $("#fold_tag").removeClass("blind");
@@ -51,21 +55,21 @@
     	        location.href = "/meet-a-bwa/activity-list.do?category="+category + "&&searchWord=";
     	    });
     	    
-    	    $("#recommend_list_wrap").on("click", ".content-list", function(){
+    	    $("#activity-list-section").on("click", ".content-list", function(){
 	    		 let idx = $(this).attr("idx");
 	    		 location.href = "/meet-a-bwa/activity-main.do?idx="+idx;
 	    	 });
     	    
-    	    $("#recommend_list_wrap").on("click", ".heartSection", function(event){
+    	    $("#activity-list-section").on("click", ".heartSection", function(event){
 	    		 event.stopPropagation();
 	    		 if($.cookie("isLogin") == 'true'){
 		    		 // 좋아요 추가
 		    		 if($(this).find(".afterLike_heart").hasClass("blind")){
-			    		 location.href = "/meet-a-bwa/main_activity_like_insert.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+			    		 location.href = "/meet-a-bwa/activity_more_like_insert.do?category=" + category + "&activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
 		    		 }
 		    		 // 좋아요 삭제
 		    		 else{
-			    		 location.href = "/meet-a-bwa/main_activity_like_delete.do?activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
+		    			 location.href = "/meet-a-bwa/activity_more_like_delete.do?category=" + category + "&activity_no=" + $(this).attr("idx") + "&user_no=" + $.cookie("user_no");
 		    		 }
 	    		 }else{
 	    			 $(".warning-layer").removeClass("blind");
@@ -77,7 +81,7 @@
 	    	 if(like_activity_arr != undefined){
 		    	 like_activity_arr = like_activity_arr.split("/");
 		    	 
-	    		 let activity_elements = $(".content_list.activity-list").slice();
+	    		 let activity_elements = $(".content-list.activity-list").slice();
 		    	 for(like_activity of like_activity_arr){
 		    		 for(list of activity_elements){
 			    		 if($(list).attr("idx") == like_activity) {
@@ -170,10 +174,10 @@
                 </div>
                 <!-- END TAG SECTION -->
                 
-                <div id = "recommend_list_wrap">
+                <div id = "activity-list-section">
                 	<c:if test = "${a_list.size() != 0}">
 		                    <c:forEach var="avo" items="${a_list}">
-			                   	<div class = "content-list" idx = "${avo.activity_no}">
+			                   	<div class = "content-list activity-list" idx = "${avo.activity_no}">
 			                        <div class = "info-list-wrap">
 			                            <div class = "listCommon">
 			                                <span class = "content_title">${avo.activity_name}</span>
