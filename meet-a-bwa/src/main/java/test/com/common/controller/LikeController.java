@@ -27,7 +27,7 @@ import test.com.meet.model.MeetDAOImpl;
 @WebServlet({"/main_meet_like_delete.do", "/main_meet_like_insert.do", "/main_activity_like_delete.do", "/main_activity_like_insert.do",
 			 "/meet_like_delete.do", "/meet_like_insert.do", "/activity_like_delete.do", "/activity_like_insert.do",
 			 "/my_meet_like_insert.do", "/my_meet_like_delete.do", "/my_activity_like_insert.do", "/my_activity_like_delete.do",
-			 "/meet_more_like_insert.do", "/meet_more_like_delete.do"})
+			 "/meet_more_like_insert.do", "/meet_more_like_delete.do", "/activity_more_like_insert.do", "/activity_more_like_delete.do" })
 public class LikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -249,6 +249,40 @@ public class LikeController extends HttpServlet {
 				String like_meetNo_str = String.join("/", like_meetNo);
 				
 				response.sendRedirect("/meet-a-bwa/meet-list.do?type="+type+"&typeData="+typeData+"&searchWord=&like_meet="+like_meetNo_str);
+			}
+		} else if (sPath.equals("/activity_more_like_delete.do")) {
+			String category = URLEncoder.encode(request.getParameter("category"));
+			String searchWord = request.getParameter("searchWord");
+			String activity_no = request.getParameter("activity_no");
+			String user_no = request.getParameter("user_no");
+			
+			ActivityDAO dao = new ActivityDAOImpl();
+			
+			int result = dao.delete_activity_like(activity_no, user_no);
+			
+			if(result == 1) {
+				ActivityDAO a_dao = new ActivityDAOImpl();
+				List<String> like_meetNo = a_dao.select_all_activity_like(user_no); 
+				String like_meetNo_str = String.join("/", like_meetNo);
+				
+				response.sendRedirect("/meet-a-bwa/activity-list.do?category=" + category + "&searchWord=" + "&like_activity="+like_meetNo_str);
+			}
+		} else if (sPath.equals("/activity_more_like_insert.do")) {
+			String category = URLEncoder.encode(request.getParameter("category"));
+			String searchWord = request.getParameter("searchWord");
+			String activity_no = request.getParameter("activity_no");
+			String user_no = request.getParameter("user_no");
+
+			ActivityDAO dao = new ActivityDAOImpl();
+			
+			int result = dao.insert_activity_like(activity_no, user_no);
+			
+			if(result == 1) {
+				ActivityDAO a_dao = new ActivityDAOImpl();
+				List<String> like_meetNo = a_dao.select_all_activity_like(user_no);
+				String like_meetNo_str = String.join("/", like_meetNo);
+				
+				response.sendRedirect("/meet-a-bwa/activity-list.do?category=" + category + "&searchWord=" + "&like_activity="+like_meetNo_str);
 			}
 		} 
 	}
