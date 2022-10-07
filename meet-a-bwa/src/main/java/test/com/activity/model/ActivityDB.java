@@ -38,7 +38,7 @@ public interface ActivityDB {
 			+ "from activity_join_view order by like_cnt desc, activity_no desc) where rownum between 1 and 10";
 	String SQL_SELECT_CATE_10 
 		= "select * from ( select activity_no, activity_image, activity_name, activity_description, activity_city, activity_county, activity_interest_name, activity_gender, activity_nop, activity_age, activity_date, user_no, meet_no, nvl(like_cnt, 0) as like_cnt, user_cnt "
-			+ "from activity_join_view where activity_interest_name = '친목/모임' order by like_cnt desc, activity_no desc) "
+			+ "from activity_join_view where activity_interest_name = ? order by like_cnt desc, activity_no desc) "
 			+ "where rownum between 1 and 10";
 	String SQL_SELECT_ALL_LIKE_ACTIVITY_NO = "SELECT ACTIVITY_NO FROM TEST_ACTIVITY_LIKE WHERE USER_NO = ? ";
 	String SQL_SELECT_ALL_FEED 
